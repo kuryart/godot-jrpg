@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="Player" format=3 uid="uid://c3hk845ccfu7s"]
+
+[ext_resource type="Resource" uid="uid://c6cmww8puraic" path="res://tests/actors/battlers/classes/test_battler_class_1.tres" id="1_3w2ll"]
+[ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://resources/actors/battlers/players/player.gd" id="1_xmx45"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://resources/actors/battlers/stats/stat.gd" id="3_b0a07"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://resources/actors/battlers/stats/stats.gd" id="4_lh7j6"]
+[ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://resources/status/status.gd" id="5_b0a07"]
+[ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://resources/formulas/xp/formula_xp_pokemon.gd" id="6_up6jx"]
+
+[sub_resource type="Resource" id="Resource_wrkiq"]
+script = ExtResource("3_b0a07")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2p28r"]
+script = ExtResource("3_b0a07")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_s1pwp"]
+script = ExtResource("3_b0a07")
+base_value = 100
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_gf1c3"]
+script = ExtResource("3_b0a07")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_5gbj5"]
+script = ExtResource("3_b0a07")
+base_value = 50
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2hriq"]
+script = ExtResource("3_b0a07")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_e7fee"]
+script = ExtResource("4_lh7j6")
+hp = SubResource("Resource_s1pwp")
+mp = SubResource("Resource_5gbj5")
+attack = SubResource("Resource_wrkiq")
+defense = SubResource("Resource_2p28r")
+intelligence = SubResource("Resource_gf1c3")
+speed = SubResource("Resource_2hriq")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_dyfle"]
+script = ExtResource("6_up6jx")
+metadata/_custom_type_script = "uid://ds4qg0x2vjt4y"
+
+[resource]
+script = ExtResource("1_xmx45")
+battler_class = ExtResource("1_3w2ll")
+stats = SubResource("Resource_e7fee")
+xp_formula = SubResource("Resource_dyfle")
+name = "player1"
+metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

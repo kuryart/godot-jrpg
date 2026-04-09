@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dpaki785pyawl"]
+
+[ext_resource type="Script" uid="uid://dymed0uw0h7ig" path="res://nodes/ui/splash_screen/splash_screen.gd" id="1_yhkg5"]
+
+[node name="SplashScreen" type="Control" unique_id=1323021285]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yhkg5")
