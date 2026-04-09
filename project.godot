@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="JRPG Battle Godot"
+config/name="Godot JRPG"
 run/main_scene="uid://idk622o1a4ry"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
