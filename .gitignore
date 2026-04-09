@@ -4,3 +4,6 @@
 
 # Temp folders
 .temp/
+
+# Obsidian
+.obsidian/

@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://idk622o1a4ry"]
+
+[ext_resource type="Script" uid="uid://k7luinj2i6yw" path="res://tests/battle/test_battle.gd" id="1_q0mfn"]
+[ext_resource type="Script" uid="uid://n2b7ojicu1g0" path="res://nodes/battle/battle_engine.gd" id="2_nkpat"]
+[ext_resource type="Resource" uid="uid://creqo0s1k7tlr" path="res://resources/battle/battle_signals.tres" id="3_vojpk"]
+[ext_resource type="Resource" uid="uid://caggj6rpows4p" path="res://tests/battle/settings/test_battle_settings.tres" id="4_wwol7"]
+[ext_resource type="Script" uid="uid://csv8v2cgsfg56" path="res://resources/formulas/hit_chance/formula_hit_chance_sigmoid.gd" id="5_waiuf"]
+[ext_resource type="Script" uid="uid://dh2xmelh50nrm" path="res://resources/formulas/damage/formula_damage_rpg_maker.gd" id="6_g51bd"]
+[ext_resource type="Script" uid="uid://d3d8uo3me16g1" path="res://resources/formulas/critical_chance/formula_critical_chance_ragnarok.gd" id="7_jsw3t"]
+[ext_resource type="Script" uid="uid://c58pat03iu43k" path="res://resources/formulas/critical_damage/formula_critical_damage_basic.gd" id="8_fp3np"]
+[ext_resource type="Script" uid="uid://cyias6dpfredp" path="res://nodes/battle/battle_ui.gd" id="9_uhpc7"]
+[ext_resource type="PackedScene" uid="uid://bakdaco2wh4pb" path="res://nodes/battle/battle_enemy_ui.tscn" id="10_akfou"]
+[ext_resource type="PackedScene" uid="uid://bg5usakaeelmf" path="res://nodes/battle/battle_player_ui.tscn" id="11_vveyo"]
+[ext_resource type="Texture2D" uid="uid://d52xi71py1jf" path="res://assets/sprites/battle/backgrounds/back-desert-005.jpg" id="12_hk0ic"]
+[ext_resource type="Script" uid="uid://oe5vgr0ypqrg" path="res://nodes/battle/battle_menu_items.gd" id="13_cewy4"]
+[ext_resource type="Script" uid="uid://flgultxg04s0" path="res://nodes/battle/battle_menu_skills.gd" id="14_5cn5b"]
+[ext_resource type="Script" uid="uid://jmpyaedit0kc" path="res://nodes/battle/battle_fight_button.gd" id="15_qcl64"]
+[ext_resource type="Script" uid="uid://blyhn0wf5f2ru" path="res://nodes/battle/battle_attack_button.gd" id="16_vascn"]
+[ext_resource type="Script" uid="uid://b0oq5vat5comf" path="res://nodes/battle/battle_face.gd" id="17_owt1j"]
+
+[sub_resource type="Resource" id="Resource_iyrn2"]
+script = ExtResource("5_waiuf")
+metadata/_custom_type_script = "uid://csv8v2cgsfg56"
+
+[sub_resource type="Resource" id="Resource_tn54o"]
+script = ExtResource("6_g51bd")
+metadata/_custom_type_script = "uid://dh2xmelh50nrm"
+
+[sub_resource type="Resource" id="Resource_j5dfo"]
+script = ExtResource("7_jsw3t")
+metadata/_custom_type_script = "uid://d3d8uo3me16g1"
+
+[sub_resource type="Resource" id="Resource_00gwn"]
+script = ExtResource("8_fp3np")
+metadata/_custom_type_script = "uid://c58pat03iu43k"
+
+[node name="Battle" type="Node" unique_id=1635175538]
+script = ExtResource("1_q0mfn")
+
+[node name="BattleEngine" type="Node" parent="." unique_id=237790622 node_paths=PackedStringArray("battle_ui")]
+script = ExtResource("2_nkpat")
+battle_signals = ExtResource("3_vojpk")
+battle_settings = ExtResource("4_wwol7")
+visuals_enabled = true
+battle_ui = NodePath("../BattleUI")
+hit_chance_formula = SubResource("Resource_iyrn2")
+physical_formula = SubResource("Resource_tn54o")
+critical_chance_formula = SubResource("Resource_j5dfo")
+critical_damage_formula = SubResource("Resource_00gwn")
+
+[node name="BattleUI" type="Control" parent="." unique_id=689135276]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("9_uhpc7")
+battle_signals = ExtResource("3_vojpk")
+enemy_scene = ExtResource("10_akfou")
+player_scene = ExtResource("11_vveyo")
+
+[node name="Background" type="TextureRect" parent="BattleUI" unique_id=1870404302]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1288.0
+offset_bottom = 736.0
+texture = ExtResource("12_hk0ic")
+expand_mode = 1
+
+[node name="Enemies" type="Control" parent="BattleUI" unique_id=807974783]
+unique_name_in_owner = true
+anchors_preset = 0
+
+[node name="MenuItems" type="PanelContainer" parent="BattleUI" unique_id=12032347]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 304.0
+offset_top = 230.0
+offset_right = 954.0
+offset_bottom = 524.0
+script = ExtResource("13_cewy4")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BattleUI/MenuItems" unique_id=2049513689]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuItems/ScrollContainer" unique_id=1714386771]
+layout_mode = 2
+
+[node name="ItemsGrid" type="GridContainer" parent="BattleUI/MenuItems/ScrollContainer/MarginContainer" unique_id=641442992]
+layout_mode = 2
+
+[node name="MenuSkills" type="PanelContainer" parent="BattleUI" unique_id=1623108429]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 304.0
+offset_top = 230.0
+offset_right = 954.0
+offset_bottom = 524.0
+script = ExtResource("14_5cn5b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BattleUI/MenuSkills" unique_id=1191767434]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuSkills/ScrollContainer" unique_id=1968755713]
+layout_mode = 2
+
+[node name="SkillsGrid" type="GridContainer" parent="BattleUI/MenuSkills/ScrollContainer/MarginContainer" unique_id=531496894]
+layout_mode = 2
+
+[node name="MenuBottom" type="PanelContainer" parent="BattleUI" unique_id=953539049]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 304.0
+offset_top = 524.0
+offset_right = 954.0
+offset_bottom = 702.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleUI/MenuBottom" unique_id=1167888038]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+
+[node name="MenuSelection" type="PanelContainer" parent="BattleUI/MenuBottom/HBoxContainer" unique_id=264605814]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuSelection" unique_id=952128496]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuSelection/ScrollContainer" unique_id=129743648]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="MenuSelectionOptions" type="VBoxContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuSelection/ScrollContainer/MarginContainer" unique_id=1848853710]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Fight" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuSelection/ScrollContainer/MarginContainer/MenuSelectionOptions" unique_id=1946236748]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Run")
+text = "Fight"
+script = ExtResource("15_qcl64")
+
+[node name="Run" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuSelection/ScrollContainer/MarginContainer/MenuSelectionOptions" unique_id=2002751662]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Fight")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Run"
+
+[node name="MenuFight" type="PanelContainer" parent="BattleUI/MenuBottom/HBoxContainer" unique_id=1175953099]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight" unique_id=1774659175]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer" unique_id=929688127]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="MenuFightOptions" type="VBoxContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer/MarginContainer" unique_id=2014475760]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Attack" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer/MarginContainer/MenuFightOptions" unique_id=178803565]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Defend")
+text = "Attack"
+script = ExtResource("16_vascn")
+
+[node name="Defend" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer/MarginContainer/MenuFightOptions" unique_id=858169178]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Attack")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Items")
+text = "Defend"
+
+[node name="Items" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer/MarginContainer/MenuFightOptions" unique_id=945015329]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Defend")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Skills")
+text = "Items"
+
+[node name="Skills" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer/MarginContainer/MenuFightOptions" unique_id=1249186778]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Items")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+text = "Skills"
+
+[node name="MenuPlayers" type="PanelContainer" parent="BattleUI/MenuBottom/HBoxContainer" unique_id=669055748]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuPlayers" unique_id=467431801]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Players" type="VBoxContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuPlayers/MarginContainer" unique_id=1733770711]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Faces" type="PanelContainer" parent="BattleUI/MenuBottom/HBoxContainer" unique_id=1012302201]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+
+[node name="Face" type="TextureRect" parent="BattleUI/MenuBottom/HBoxContainer/Faces" unique_id=467451471]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("17_owt1j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleUI/MenuBottom/HBoxContainer/Faces/Face" unique_id=1461987633]
+
+[node name="Messager" type="PanelContainer" parent="BattleUI" unique_id=1565607411]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 304.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 72.0
+
+[node name="MessagerLabel" type="RichTextLabel" parent="BattleUI/Messager" unique_id=1485600197]
+layout_mode = 2
+
+[node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]
