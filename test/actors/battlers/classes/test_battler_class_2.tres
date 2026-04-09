@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="BattlerClass" format=3 uid="uid://bxkgpx0qyy13u"]
+
+[ext_resource type="Script" uid="uid://coq8anpgbky31" path="res://data/formulas/stats/formula_stat_growth_pokemon.gd" id="1_r1qoh"]
+[ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://data/actors/battlers/classes/battler_class.gd" id="2_0hyb2"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://data/actors/battlers/stats/stat.gd" id="3_2c2bd"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://data/actors/battlers/stats/stats.gd" id="4_2wmc0"]
+
+[sub_resource type="Resource" id="Resource_pn2bk"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_3vk1f"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_s0eh1"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_6r67j"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_4nhf3"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_75hai"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_oh6ty"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_vct1q"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_1omdc"]
+script = ExtResource("1_r1qoh")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_toc1p"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_o0iwd"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_vhtc5"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_dijnc"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_1h1vx"]
+script = ExtResource("3_2c2bd")
+base_value = 150
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_ahllu"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_tcon8"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_qciww"]
+script = ExtResource("3_2c2bd")
+base_value = 80
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_5mucu"]
+script = ExtResource("3_2c2bd")
+base_value = 12
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_8qk83"]
+script = ExtResource("4_2wmc0")
+hp = SubResource("Resource_1h1vx")
+mp = SubResource("Resource_qciww")
+attack = SubResource("Resource_o0iwd")
+defense = SubResource("Resource_vhtc5")
+intelligence = SubResource("Resource_ahllu")
+speed = SubResource("Resource_5mucu")
+accuracy = SubResource("Resource_toc1p")
+evasion = SubResource("Resource_dijnc")
+luck = SubResource("Resource_tcon8")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[resource]
+script = ExtResource("2_0hyb2")
+name = "test_class_2"
+description = "test class 2"
+stats = SubResource("Resource_8qk83")
+hp_growth = SubResource("Resource_4nhf3")
+mp_growth = SubResource("Resource_vct1q")
+attack_growth = SubResource("Resource_3vk1f")
+defense_growth = SubResource("Resource_s0eh1")
+intelligence_growth = SubResource("Resource_75hai")
+speed_growth = SubResource("Resource_1omdc")
+accuracy_growth = SubResource("Resource_pn2bk")
+evasion_growth = SubResource("Resource_6r67j")
+luck_growth = SubResource("Resource_oh6ty")
+metadata/_custom_type_script = "uid://dacbahk8dn11p"

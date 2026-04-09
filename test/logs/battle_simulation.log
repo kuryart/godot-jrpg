@@ -1,0 +1,16 @@
+Godot Engine v4.6.1.stable.arch_linux.14d19694e - https://godotengine.org
+
+[Battle] Starting test.
+[Battle] CURRENT PHASE: Init
+[BattlePhaseInit] Players: player1
+[BattlePhaseInit] Players: player2
+[BattlePhaseInit] Players: player3
+[BattlePhaseInit] Players: player4
+[BattlePhaseInit] Enemies: test_enemy_1
+[BattlePhaseInit] Battle Actors: player1
+[BattlePhaseInit] Battle Actors: player2
+[BattlePhaseInit] Battle Actors: player3
+[BattlePhaseInit] Battle Actors: player4
+[BattlePhaseInit] Battle Actors: test_enemy_1
+[Battle] CURRENT PHASE: Start
+[Battle] CURRENT PHASE: Selection

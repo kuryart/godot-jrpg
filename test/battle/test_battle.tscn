@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dyi5qn6i82y33"]
+
+[ext_resource type="Script" uid="uid://k7luinj2i6yw" path="res://test/battle/test_battle.gd" id="1_adona"]
+[ext_resource type="Script" uid="uid://n2b7ojicu1g0" path="res://objects/battle/battle_engine.gd" id="2_adona"]
+[ext_resource type="Script" uid="uid://dh2xmelh50nrm" path="res://data/formulas/damage/formula_damage_rpg_maker.gd" id="3_7on8q"]
+[ext_resource type="Resource" uid="uid://creqo0s1k7tlr" path="res://data/battle/battle_signals.tres" id="4_655j7"]
+[ext_resource type="Resource" uid="uid://caggj6rpows4p" path="res://test/battle/settings/test_battle_settings.tres" id="5_i015i"]
+[ext_resource type="Script" uid="uid://cyias6dpfredp" path="res://objects/battle/battle_ui.gd" id="6_7on8q"]
+[ext_resource type="Texture2D" uid="uid://d52xi71py1jf" path="res://assets/sprites/battle/backgrounds/back-desert-005.jpg" id="7_4qrtq"]
+
+[sub_resource type="Resource" id="Resource_tn54o"]
+script = ExtResource("3_7on8q")
+metadata/_custom_type_script = "uid://dh2xmelh50nrm"
+
+[node name="Battle" type="Node" unique_id=1635175538]
+script = ExtResource("1_adona")
+
+[node name="BattleEngine" type="Node" parent="." unique_id=237790622 node_paths=PackedStringArray("battle_ui")]
+script = ExtResource("2_adona")
+physical_formula = SubResource("Resource_tn54o")
+battle_signals = ExtResource("4_655j7")
+battle_settings = ExtResource("5_i015i")
+visuals_enabled = true
+battle_ui = NodePath("../BattleUI")
+
+[node name="BattleUI" type="Control" parent="." unique_id=689135276]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("6_7on8q")
+battle_signals = ExtResource("4_655j7")
+
+[node name="Background" type="TextureRect" parent="BattleUI" unique_id=1870404302]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1288.0
+offset_bottom = 736.0
+texture = ExtResource("7_4qrtq")
+expand_mode = 1
+
+[node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Party" format=3 uid="uid://v6gnmntcrn3t"]
+
+[ext_resource type="Resource" uid="uid://b0c02wq5ttngw" path="res://data/items/test_inventory.tres" id="1_8g0tp"]
+[ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://data/actors/battlers/players/player.gd" id="1_sadef"]
+[ext_resource type="Script" uid="uid://bolkcf4dvwgu5" path="res://data/actors/party.gd" id="2_jxybv"]
+[ext_resource type="Resource" uid="uid://xcf0l6c5vwkg" path="res://test/actors/battlers/players/test_player_1.tres" id="3_78mbn"]
+[ext_resource type="Resource" uid="uid://c0bhjkxrged" path="res://test/actors/battlers/players/test_player_2.tres" id="4_8ygxl"]
+[ext_resource type="Resource" uid="uid://b5rmkhl73blly" path="res://test/actors/battlers/players/test_player_3.tres" id="5_1p5i3"]
+[ext_resource type="Resource" uid="uid://bk0otfxgmtbe5" path="res://test/actors/battlers/players/test_player_4.tres" id="6_6vggn"]
+
+[resource]
+script = ExtResource("2_jxybv")
+players = Array[ExtResource("1_sadef")]([ExtResource("3_78mbn"), ExtResource("4_8ygxl"), ExtResource("5_1p5i3"), ExtResource("6_6vggn")])
+inventory = ExtResource("1_8g0tp")
+metadata/_custom_type_script = "uid://bolkcf4dvwgu5"

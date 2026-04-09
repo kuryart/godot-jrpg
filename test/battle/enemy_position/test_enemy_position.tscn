@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d24r0orh7mg54"]
+
+[ext_resource type="Texture2D" uid="uid://dko3xg5khtcnr" path="res://assets/sprites/battle/backgrounds/back-knights-002.jpg" id="1_rwvxe"]
+
+[node name="TestEnemyPosition" type="Control" unique_id=55731237]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=1650496671]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 732.0
+texture = ExtResource("1_rwvxe")
+expand_mode = 1

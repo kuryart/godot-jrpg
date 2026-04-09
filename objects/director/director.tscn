@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://idk622o1a4ry"]
+
+[ext_resource type="Script" uid="uid://di6yaysurqocs" path="res://objects/director/director.gd" id="1_xxdyr"]
+[ext_resource type="Resource" uid="uid://biw2y7wsqeuhy" path="res://data/events/event_signals.tres" id="2_4u2wq"]
+[ext_resource type="Script" uid="uid://drvm3js2dq3rs" path="res://objects/events/event_runner.gd" id="2_fv1o4"]
+[ext_resource type="Resource" uid="uid://v6gnmntcrn3t" path="res://test/actors/test_party.tres" id="3_756xr"]
+[ext_resource type="PackedScene" uid="uid://dpaki785pyawl" path="res://objects/ui/splash_screen/splash_screen.tscn" id="3_tditk"]
+[ext_resource type="PackedScene" uid="uid://daeh6hcpb60r1" path="res://objects/ui/main_menu/main_menu.tscn" id="4_756xr"]
+[ext_resource type="PackedScene" uid="uid://cb74nrxym2kse" path="res://objects/maps/map_0001.tscn" id="5_o8flq"]
+[ext_resource type="PackedScene" uid="uid://bgyg5l0h0l00g" path="res://objects/battle/battle.tscn" id="6_55iuj"]
+[ext_resource type="PackedScene" uid="uid://beqs4poemc5dy" path="res://test/ui/splash_screen/test_splash_screen.tscn" id="7_qcp3w"]
+[ext_resource type="PackedScene" uid="uid://wqhgxtigubs" path="res://test/ui/main_menu/test_main_menu.tscn" id="8_8y3j3"]
+[ext_resource type="PackedScene" uid="uid://c4fam1iqxhfhs" path="res://test/map/test_map.tscn" id="9_q0mfn"]
+[ext_resource type="PackedScene" uid="uid://dyi5qn6i82y33" path="res://test/battle/test_battle.tscn" id="10_nkpat"]
+
+[node name="Director" type="Node" unique_id=895651955]
+script = ExtResource("1_xxdyr")
+event_signals = ExtResource("2_4u2wq")
+party = ExtResource("3_756xr")
+splash_screen = ExtResource("3_tditk")
+main_menu = ExtResource("4_756xr")
+map = ExtResource("5_o8flq")
+battle = ExtResource("6_55iuj")
+test_splash_screen = ExtResource("7_qcp3w")
+test_main_menu = ExtResource("8_8y3j3")
+test_map = ExtResource("9_q0mfn")
+test_battle = ExtResource("10_nkpat")
+
+[node name="EventRunner" type="Node" parent="." unique_id=769566883]
+script = ExtResource("2_fv1o4")
