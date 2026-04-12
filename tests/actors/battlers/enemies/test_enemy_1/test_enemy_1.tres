@@ -17,6 +17,11 @@ script = ExtResource("1_yhfdy")
 brain = SubResource("Resource_ha3q0")
 metadata/_custom_type_script = "uid://bpmohnsv7yfs6"
 
+[sub_resource type="Resource" id="Resource_x7jgy"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
 [sub_resource type="Resource" id="Resource_vmhau"]
 script = ExtResource("2_vmhau")
 base_value = 10
@@ -27,12 +32,22 @@ script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
+[sub_resource type="Resource" id="Resource_kopul"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
 [sub_resource type="Resource" id="Resource_fw4qq"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_23sea"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_1s1si"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
@@ -55,6 +70,9 @@ attack = SubResource("Resource_vmhau")
 defense = SubResource("Resource_w6an3")
 intelligence = SubResource("Resource_23sea")
 speed = SubResource("Resource_2lnoi")
+accuracy = SubResource("Resource_x7jgy")
+evasion = SubResource("Resource_kopul")
+luck = SubResource("Resource_1s1si")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [resource]

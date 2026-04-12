@@ -1,6 +1,6 @@
 # Godot JRPG
 
-![[icon.svg]]
+![godot-icon|128](icon.svg)
 
 *This is a work-in-progress project*.
 

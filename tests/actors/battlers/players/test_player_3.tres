@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://resources/actors/battlers/stats/stat.gd" id="3_w6dso"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://resources/actors/battlers/stats/stats.gd" id="4_puiit"]
 [ext_resource type="Texture2D" uid="uid://cy51yjoh71dku" path="res://assets/sprites/actors/players/faces/player-3-face.png" id="4_v07i3"]
+[ext_resource type="Resource" uid="uid://bgwhrdfs2uqxf" path="res://tests/actors/battlers/classes/test_battler_class_3.tres" id="4_ws3vo"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://resources/formulas/xp/formula_xp_pokemon.gd" id="5_h56vd"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://resources/status/status.gd" id="6_pxb88"]
 
@@ -81,6 +82,7 @@ metadata/_custom_type_script = "uid://ds4qg0x2vjt4y"
 [resource]
 script = ExtResource("2_kipje")
 face = ExtResource("4_v07i3")
+player_class = ExtResource("4_ws3vo")
 xp_formula = SubResource("Resource_dyfle")
 stats = SubResource("Resource_e7fee")
 controller = SubResource("Resource_v07i3")

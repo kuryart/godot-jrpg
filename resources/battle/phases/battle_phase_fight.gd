@@ -10,5 +10,5 @@ func resolve(engine: BattleEngine):
 	engine.go_to_fight_menu()
 	player = null
 	
-func set_player(_player: BattlePlayer):
+func set_player(_player: Player):
 	player = _player

@@ -7,8 +7,8 @@
 [ext_resource type="Resource" uid="uid://creqo0s1k7tlr" path="res://resources/battle/battle_signals.tres" id="4_nterj"]
 [ext_resource type="Resource" uid="uid://caggj6rpows4p" path="res://tests/battle/settings/test_battle_settings.tres" id="5_cuiqo"]
 [ext_resource type="Script" uid="uid://cyias6dpfredp" path="res://nodes/battle/battle_ui.gd" id="6_ai006"]
+[ext_resource type="Script" uid="uid://cxvldb77hafxl" path="res://resources/formulas/critical_chance/formula_critical_chance_pokemon.gd" id="7_85kgi"]
 [ext_resource type="PackedScene" uid="uid://bakdaco2wh4pb" path="res://nodes/battle/battle_enemy_ui.tscn" id="7_e54bw"]
-[ext_resource type="Script" uid="uid://d3d8uo3me16g1" path="res://resources/formulas/critical_chance/formula_critical_chance_ragnarok.gd" id="7_gbo6c"]
 [ext_resource type="Texture2D" uid="uid://d52xi71py1jf" path="res://assets/sprites/battle/backgrounds/back-desert-005.jpg" id="7_khqb2"]
 [ext_resource type="Script" uid="uid://c58pat03iu43k" path="res://resources/formulas/critical_damage/formula_critical_damage_basic.gd" id="8_uw4g8"]
 [ext_resource type="PackedScene" uid="uid://bg5usakaeelmf" path="res://nodes/battle/battle_player_ui.tscn" id="9_pe87g"]
@@ -16,7 +16,9 @@
 [ext_resource type="Script" uid="uid://flgultxg04s0" path="res://nodes/battle/battle_menu_skills.gd" id="11_3ra5b"]
 [ext_resource type="Script" uid="uid://jmpyaedit0kc" path="res://nodes/battle/battle_fight_button.gd" id="12_3ra5b"]
 [ext_resource type="Script" uid="uid://blyhn0wf5f2ru" path="res://nodes/battle/battle_attack_button.gd" id="13_3r1vh"]
+[ext_resource type="Material" uid="uid://c03324vpjatgx" path="res://resources/materials/battler.tres" id="17_fxdbb"]
 [ext_resource type="Script" uid="uid://b0oq5vat5comf" path="res://nodes/battle/battle_face.gd" id="17_uw4g8"]
+[ext_resource type="Animation" uid="uid://dvtxa8chfd46o" path="res://resources/animations/damage.res" id="19_uoapb"]
 
 [sub_resource type="Resource" id="Resource_iyrn2"]
 script = ExtResource("3_thq7n")
@@ -26,13 +28,18 @@ metadata/_custom_type_script = "uid://csv8v2cgsfg56"
 script = ExtResource("3_lci8g")
 metadata/_custom_type_script = "uid://dh2xmelh50nrm"
 
-[sub_resource type="Resource" id="Resource_j5dfo"]
-script = ExtResource("7_gbo6c")
-metadata/_custom_type_script = "uid://d3d8uo3me16g1"
+[sub_resource type="Resource" id="Resource_fxdbb"]
+script = ExtResource("7_85kgi")
+metadata/_custom_type_script = "uid://cxvldb77hafxl"
 
 [sub_resource type="Resource" id="Resource_00gwn"]
 script = ExtResource("8_uw4g8")
 metadata/_custom_type_script = "uid://c58pat03iu43k"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_56x7e"]
+_data = {
+&"damage": ExtResource("19_uoapb")
+}
 
 [node name="Battle" type="Node" unique_id=1635175538]
 script = ExtResource("1_72ttr")
@@ -45,7 +52,7 @@ visuals_enabled = true
 battle_ui = NodePath("../BattleUI")
 hit_chance_formula = SubResource("Resource_iyrn2")
 physical_formula = SubResource("Resource_tn54o")
-critical_chance_formula = SubResource("Resource_j5dfo")
+critical_chance_formula = SubResource("Resource_fxdbb")
 critical_damage_formula = SubResource("Resource_00gwn")
 
 [node name="BattleUI" type="Control" parent="." unique_id=689135276]
@@ -236,10 +243,12 @@ layout_mode = 2
 
 [node name="Face" type="TextureRect" parent="BattleUI/MenuBottom/HBoxContainer/Faces" unique_id=467451471]
 unique_name_in_owner = true
+material = ExtResource("17_fxdbb")
 layout_mode = 2
 script = ExtResource("17_uw4g8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BattleUI/MenuBottom/HBoxContainer/Faces/Face" unique_id=1461987633]
+libraries/biblioteca = SubResource("AnimationLibrary_56x7e")
 
 [node name="Messager" type="PanelContainer" parent="BattleUI" unique_id=1565607411]
 unique_name_in_owner = true

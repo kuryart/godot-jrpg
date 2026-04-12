@@ -11,9 +11,9 @@ var shaders = {
 }
 
 func get_attacked():
-	Audio.play_hit_sound()
+	#Audio.play_hit_sound()
 	animation_player.stop()
 	material.shader = shaders["damage"]
 	material.set_shader_parameter("flash_color", Color.RED)
-	animation_player.play("damage")
+	animation_player.play("biblioteca/damage")
 	await animation_player.animation_finished

@@ -1,7 +1,7 @@
 class_name FormulaCriticalChanceParameter extends FormulaParameter
 
-var attacker: BattleBattler
-var defender: BattleBattler
+var attacker: Battler
+var defender: Battler
 
 # Pokemon
 var is_high_crit_move: bool

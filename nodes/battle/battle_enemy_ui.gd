@@ -3,7 +3,7 @@ class_name BattleEnemyUI extends BattleBattlerUI
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var engine: BattleEngine
-var battle_enemy: BattleEnemy
+var enemy: Enemy
 var shaders = {
 	"flash": preload("uid://c5ntiylsybtxo"),
 	"damage": preload("uid://clyi8d64f0spx"),
@@ -17,15 +17,15 @@ func _ready() -> void:
 	material = material.duplicate()
 	material.set_shader_parameter("flash_percentage", 0.0)
 
-func setup(_battle_enemy: BattleEnemy, _enemy_settings: EnemySettings, _engine: BattleEngine):
-	battle_enemy = _battle_enemy
+func setup(_enemy: Enemy, _enemy_settings: EnemySettings, _engine: BattleEngine):
+	enemy = _enemy
 	size = _enemy_settings.size
 	position = _enemy_settings.position
 	set("texture_normal", _enemy_settings.enemy.sprite)
 	engine = _engine
 
 func get_attacked():
-	Audio.play_hit_sound()
+	#Audio.play_hit_sound()
 	animation_player.stop()
 	material.shader = shaders["damage"]
 	material.set_shader_parameter("flash_color", Color.RED)
@@ -35,7 +35,7 @@ func get_attacked():
 	material.set_shader_parameter("flash_color", Color.WHITE)
 	
 func select_attack():
-	var targets: Array[BattleBattler] = [battle_enemy]
+	var targets: Array[Battler] = [enemy]
 	var action = BattleActionAttack.new(engine.current_battler, targets)
 	engine.action_pool.append(action)
 	engine.battle_signals.enemy_selected.emit()

@@ -1,3 +1,3 @@
 class_name BattleBattlerUI extends UIButton
 
-var battle_battler: BattleBattler
+var battle_battler: Battler
