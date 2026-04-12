@@ -49,11 +49,11 @@ func validate_targets(action: BattleAction, engine: BattleEngine):
 
 ## Tries to find an alternative target, id est, returns the first alive enemy or the first alive player.
 ## Returns null if no one was found.
-func get_alternative_target(target: BattleBattler, engine: BattleEngine) -> BattleBattler:
-	if target is BattleEnemy:
+func get_alternative_target(target: Battler, engine: BattleEngine) -> Battler:
+	if target is Enemy:
 		return engine.get_first_alive_enemy()
 	
-	if target is BattlePlayer:
+	if target is Player:
 		return engine.get_first_alive_player()
 		
 	return null

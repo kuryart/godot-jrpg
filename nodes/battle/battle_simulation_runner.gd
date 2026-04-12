@@ -34,7 +34,7 @@ func run_single_battle(id: int) -> Dictionary:
 	data["sim_id"] = id
 	return data
 
-func create_mock_battler(actor_name: String, is_player: bool) -> BattleBattler:
+func create_mock_battler(actor_name: String, is_player: bool) -> Battler:
 	# 1. Criamos os Stats individuais
 	var s = Stats.new()
 	s.hp = Stat.new(); s.hp.base_value = 100
@@ -54,8 +54,8 @@ func create_mock_battler(actor_name: String, is_player: bool) -> BattleBattler:
 	var ctrl_path = "res://data/battle/controllers/player_ai_controller.gd" if is_player else "res://data/battle/controllers/enemy_ai_controller.gd"
 	var ctrl = load(ctrl_path).new()
 
-	# 4. Agora passamos os 2 argumentos esperados pelo BattleBattler._init
-	var actor = BattleBattler.new(res, ctrl)
+	# 4. Agora passamos os 2 argumentos esperados pelo Battler._init
+	var actor = Battler.new(res, ctrl)
 	actor.is_player = is_player # Define o lado para o filtro funcionar
 	return actor
 

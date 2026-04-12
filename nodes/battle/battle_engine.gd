@@ -33,12 +33,12 @@ class_name BattleEngine extends Node
 @export var critical_chance_formula: FormulaCriticalChance
 @export var critical_damage_formula: FormulaCriticalDamage
 
-var battle_battlers: Array[BattleBattler] = []
-var battle_players: Array[BattlePlayer] = []
-var battle_enemies: Array[BattleEnemy] = []
-var leader: BattlePlayer
-var current_player: BattlePlayer
-var current_battler: BattleBattler
+var battlers: Array[Battler] = []
+var players: Array[Player] = []
+var enemies: Array[Enemy] = []
+var leader: Player
+var current_player: Player
+var current_battler: Battler
 var current_phase: BattlePhase
 var current_turn: int = 1
 var action_pool: Array[BattleAction]
@@ -105,29 +105,29 @@ func calc_action_order():
 		pool[j + 1] = current_action 
 
 	for action in action_pool:
-		print("[BattleActionOrder] Ator: ", action.actor.data.name, " | Velocidade: ", action.actor.stats.speed.get_value(), " | Ação: ", action)
+		print("[BattleActionOrder] Actor: ", action.actor.name, " | Speed: ", action.actor.stats.speed.get_value(), " | Action: ", action.resource_name)
 
 # --- Battlers methods ---
-func add_battle_battler(actor: BattleBattler):
-	battle_battlers.append(actor)
+func add_battle_battler(actor: Battler):
+	battlers.append(actor)
 	
-	if actor is BattlePlayer:
-		battle_players.append(actor)
-	elif actor is BattleEnemy:
-		battle_enemies.append(actor)
+	if actor is Player:
+		players.append(actor)
+	elif actor is Enemy:
+		enemies.append(actor)
 
-func change_to_player(player: BattlePlayer):
+func change_to_player(player: Player):
 	current_player = player
 	battle_signals.request_player_focus_emited.emit(player)
 	
-func change_to_battler(battler: BattleBattler):
+func change_to_battler(battler: Battler):
 	current_battler = battler
 
 ## Change to the next player. If there's no player to change to, it starts the [BattlePhaseUpkeep].
 func change_to_next_player():
 	var next_player = get_next_player()
 	
-	if battle_players.find(next_player) <= battle_players.find(current_player):
+	if players.find(next_player) <= players.find(current_player):
 		current_phase.end()
 		await change_phase(BattlePhaseUpkeep.new())
 		return
@@ -135,34 +135,34 @@ func change_to_next_player():
 	change_to_player(next_player)
 
 ## Used to cycle players forward or backward. Direction is: 1 for next player, -1 for previous player. Used by [method get_next_player] and [method get_previous_player].
-func cycle_player(direction: int = 1) -> BattlePlayer:
+func cycle_player(direction: int = 1) -> Player:
 	# Circular calculus algorithm to avoid Index Out of Bounds problems
-	var start_index = battle_players.find(current_player)
-	var count = battle_players.size()
+	var start_index = players.find(current_player)
+	var count = players.size()
 	
 	for i in range(1, count + 1):
 		var next_index = (start_index + (i * direction) + count) % count
-		var player = battle_players[next_index]
+		var player = players[next_index]
 		if player.is_alive():
 			return player
 	return null
 
 ## It gets next player using [method cycle_player].
-func get_next_player() -> BattlePlayer:
+func get_next_player() -> Player:
 	return cycle_player(1)
 
 ## It gets previous player using [method cycle_player].
-func get_previous_player() -> BattlePlayer:
+func get_previous_player() -> Player:
 	return cycle_player(-1)
 
-## Returns first alive [BattlePlayer]. If there's no alive player, returns null.
-func get_first_alive_player() -> BattlePlayer:
-	var alive_players = battle_players.filter(func(player): return player.is_alive())
+## Returns first alive [Player]. If there's no alive player, returns null.
+func get_first_alive_player() -> Player:
+	var alive_players = players.filter(func(player): return player.is_alive())
 	return alive_players[0] if alive_players.size() > 0 else null
 
-## Returns first alive [BattleEnemy]. If there's no alive enemy, returns null.
-func get_first_alive_enemy() -> BattleEnemy:
-	var alive_enemies = battle_enemies.filter(func(e): return e.is_alive())
+## Returns first alive [Enemy]. If there's no alive enemy, returns null.
+func get_first_alive_enemy() -> Enemy:
+	var alive_enemies = enemies.filter(func(e): return e.is_alive())
 	return alive_enemies[0] if alive_enemies.size() > 0 else null
 
 func select_enemy():
@@ -170,10 +170,10 @@ func select_enemy():
 	battle_signals.select_enemy_emited.emit()
 	
 func manage_enemies_decisions():
-	for enemy in battle_enemies:
+	for enemy in enemies:
 		var context = {
-			"foes": battle_players,
-			"allies": battle_enemies,
+			"foes": players,
+			"allies": enemies,
 			"current_actor": enemy,
 			"turn_number": current_turn
 		}
@@ -183,8 +183,8 @@ func manage_enemies_decisions():
 func check_for_death() -> void:
 	var death_occurred = false
 		
-	for battler in battle_battlers:
-		if battler.data.current_hp <= 0 and battler.is_alive():
+	for battler in battlers:
+		if battler.current_hp <= 0 and battler.is_alive():
 			await battler.die()
 			death_occurred = true
 	
@@ -194,10 +194,10 @@ func check_for_death() -> void:
 
 func move_focus_to_next_enemy() -> void:
 	var current_focus = get_viewport().gui_get_focus_owner()
-	if current_focus is BattleEnemy and not current_focus.data.is_active():
-		var next_enemy = battle_enemies.find_custom(func(enemy: BattleEnemy): return enemy.is_alive())
+	if current_focus is Enemy and not current_focus.is_active():
+		var next_enemy = enemies.find_custom(func(enemy: Enemy): return enemy.is_alive())
 		if next_enemy != -1:
-			battle_enemies[next_enemy].grab_focus()
+			enemies[next_enemy].grab_focus()
 
 # --- Menus methods ---
 func go_to_selection_menu():
@@ -214,7 +214,7 @@ func go_to_fight_menu():
 	battle_signals.select_menu_fight_option_emited.emit(0)
 
 # --- Attack methods ---
-func calculate_physical_damage(attacker: BattleBattler, defender: BattleBattler) -> int:
+func calculate_physical_damage(attacker: Battler, defender: Battler) -> int:
 	var param = FormulaDamageParameter.new()
 	param.attacker = attacker
 	param.defender = defender
@@ -230,7 +230,7 @@ func calculate_critical_damage(damage: int) -> int:
 	var critical_multiplier = critical_damage_formula.calculate(param)
 	return int(critical_multiplier * damage)
 
-func is_attack_critical(attacker: BattleBattler, defender: BattleBattler) -> bool:
+func is_attack_critical(attacker: Battler, defender: Battler) -> bool:
 	var param = FormulaCriticalChanceParameter.new()
 	param.attacker = attacker
 	param.defender = defender
@@ -238,7 +238,7 @@ func is_attack_critical(attacker: BattleBattler, defender: BattleBattler) -> boo
 	var chance = critical_chance_formula.calculate(param)
 	return randf() <= chance
 
-func is_attack_missed(attacker: BattleBattler, defender: BattleBattler) -> bool:
+func is_attack_missed(attacker: Battler, defender: Battler) -> bool:
 	var param = FormulaHitChanceParameter.new()
 	param.attacker = attacker
 	param.defender = defender

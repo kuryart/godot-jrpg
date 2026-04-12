@@ -4,9 +4,9 @@ class_name PlayerManualController extends PlayerController
 
 var engine: BattleEngine
 var handler: BattleInputHandler
-var actor: BattleBattler
+var actor: Battler
 
-func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: BattleBattler):
+func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: Battler):
 	engine = _engine
 	handler = _handler
 	actor = _actor
@@ -18,6 +18,7 @@ func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: BattleBa
 
 func _on_action_pressed():
 	if engine.current_phase is BattlePhaseInit and engine.leader == actor and engine.current_phase.is_finished:
+
 		BattleInputStartBattle.new().resolve(engine)
 
 func _on_cancel_pressed():

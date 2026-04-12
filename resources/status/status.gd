@@ -5,7 +5,7 @@ class_name Status extends Resource
 
 var tick: int = 0
 
-func apply_effects(actor: BattleBattler):
+func apply_effects(actor: Battler):
 	resolve(actor)
 
 func process_duration() -> bool:
@@ -13,5 +13,5 @@ func process_duration() -> bool:
 	return tick >= duration
 
 @warning_ignore("unused_parameter")
-func resolve(actor: BattleBattler):
+func resolve(actor: Battler):
 	pass

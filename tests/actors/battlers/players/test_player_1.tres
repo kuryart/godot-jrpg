@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://resources/actors/battlers/players/player.gd" id="2_6i2qp"]
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://resources/controllers/player_manual_controller.gd" id="2_yohbo"]
 [ext_resource type="Texture2D" uid="uid://cdsfo01vc8fim" path="res://assets/sprites/actors/players/faces/player-1-face.png" id="3_nf7ob"]
+[ext_resource type="Resource" uid="uid://c6cmww8puraic" path="res://tests/actors/battlers/classes/test_battler_class_1.tres" id="3_txp2h"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://resources/actors/battlers/stats/stat.gd" id="3_u4h65"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://resources/actors/battlers/stats/stats.gd" id="4_dmcd4"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://resources/formulas/xp/formula_xp_pokemon.gd" id="5_nbwjj"]
@@ -77,6 +78,7 @@ metadata/_custom_type_script = "uid://ds4qg0x2vjt4y"
 [resource]
 script = ExtResource("2_6i2qp")
 face = ExtResource("3_nf7ob")
+player_class = ExtResource("3_txp2h")
 xp_formula = SubResource("Resource_dyfle")
 stats = SubResource("Resource_e7fee")
 controller = SubResource("Resource_nf7ob")

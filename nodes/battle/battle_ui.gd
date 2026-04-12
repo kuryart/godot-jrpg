@@ -19,8 +19,8 @@ class_name BattleUI extends Control
 @export var enemy_scene: PackedScene
 @export var player_scene: PackedScene
 
-var players: Dictionary[BattlePlayer, BattlePlayerUI]
-var enemies: Dictionary[BattleEnemy, BattleEnemyUI]
+var players: Dictionary[Player, BattlePlayerUI]
+var enemies: Dictionary[Enemy, BattleEnemyUI]
 
 func _ready() -> void:
 	if DisplayServer.get_name() == "headless":
@@ -71,36 +71,39 @@ func _on_set_background_emited(settings: BattleSettings):
 	background.size = settings.background_size
 
 # --- Actors ---
-func _on_instantiate_enemies_emited(enemies_settings: Array[EnemySettings], battle_enemies: Array[BattleEnemy], engine: BattleEngine):
+func _on_instantiate_enemies_emited(enemies_settings: Array[EnemySettings], _enemies: Array[Enemy], engine: BattleEngine):
 	await wait_ready()
-	for i in range(battle_enemies.size()):
+	for i in range(_enemies.size()):
 		var enemy_ui = enemy_scene.instantiate() as BattleEnemyUI
 		var enemy_settings = enemies_settings[i]
-		var battle_enemy = battle_enemies[i]
-		enemy_ui.setup(battle_enemy, enemy_settings, engine)
-		enemies[battle_enemy] = enemy_ui
+		var enemy = _enemies[i]
+		enemy_ui.setup(enemy, enemy_settings, engine)
+		enemies[enemy] = enemy_ui
 		enemies_options.add_child(enemy_ui)
 
-func _on_instantiate_players_emited(engine: BattleEngine, battle_players: Array[BattlePlayer]):
+func _on_instantiate_players_emited(engine: BattleEngine, _players: Array[Player]):
 	await wait_ready()
-	for battle_player in battle_players:
+	for player in _players:
 		var player_ui = player_scene.instantiate() as BattlePlayerUI
-		player_ui.setup(engine, battle_player)
-		players[battle_player] = player_ui
+		player_ui.setup(engine, player)
+		players[player] = player_ui
 		players_options.add_child(player_ui)
 
 func _on_select_enemy_emited():
-	var enemies_array = enemies.keys()
-	var first_alive = enemies_array.filter(func(enemy): return enemy.is_alive())
-	enemies[first_alive[0]].grab_focus()
+	await wait_ready()
+	var enemies_array: Array[Enemy] = enemies.keys()
+	var enemies_alive: Array[Enemy] = enemies_array.filter(func(enemy: Enemy): return enemy.is_alive())
+	enemies[enemies_alive[0]].grab_focus()
 	
-func _on_battler_damaged(battler: BattleBattler):
-	if battler is BattleEnemy:
-		battler.get_attacked()
-	elif battler is BattlePlayer:
+func _on_battler_damaged(battler: Battler):
+	await wait_ready()
+	if battler is Enemy:
+		var enemy = enemies[battler as Enemy]
+		enemy.get_attacked()
+	elif battler is Player:
 		face.get_attacked()
 
-func _on_player_changed(player: BattlePlayer):
+func _on_player_changed(player: Player):
 	face.texture = player.data.face
 
 # --- Focus ---
@@ -134,9 +137,10 @@ func _on_menu_fight_focus_mode_changed(mode: Control.FocusMode):
 	for option in menu_fight_options.get_children():
 		option.focus_mode = mode
 
-func _on_request_player_focus_emited(player: BattlePlayer):
+func _on_request_player_focus_emited(player: Player):
 	await wait_ready()
-	players[player].grab_focus()
+	var player_ui = players[player]
+	player_ui.grab_focus()
 
 func _on_select_menu_selection_option_emited(id: int):
 	await wait_ready()
@@ -148,12 +152,12 @@ func _on_select_menu_fight_option_emited(id: int):
 	
 func _on_update_enemy_focus_neighbor_emited():
 	await wait_ready()
-	var enemies_array = enemies.values()
-	var active_enemies = enemies_array.filter(func(enemy): return enemy.battle_enemy.is_alive())
+	var enemies_array: Array[BattleEnemyUI] = enemies.values()
+	var active_enemies: Array[BattleEnemyUI] = enemies_array.filter(func(enemy: BattleEnemyUI): return enemy.enemy.is_alive())
 	var count = active_enemies.size()
 	
 	for i in range(count):
-		var enemy = active_enemies[i]
+		var enemy: BattleEnemyUI = active_enemies[i]
 		enemy.focus_mode = Control.FOCUS_ALL
 		
 		var left = active_enemies[(i - 1 + count) % count]

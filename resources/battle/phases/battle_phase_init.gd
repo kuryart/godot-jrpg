@@ -15,17 +15,16 @@ func resolve(engine: BattleEngine):
 	hide_menus(engine.battle_ui)
 	drop_enemies_focus(engine.battle_ui)
 	connect_signals(engine)
-	for i in range(engine.battle_battlers.size()):
-		print("[BattlePhaseInit] Battle Actors: ", engine.battle_battlers[i].data.name)
+	for i in range(engine.battlers.size()):
+		print("[BattlePhaseInit] Battle Actors: ", engine.battlers[i].name)
 	end()
 
 func setup_players(engine: BattleEngine) -> void:
 	var handlers_root = engine.get_node("../BattleInputHandlers")
 	
 	for i in range(engine.battle_settings.party.players.size()):
-		var player_data: Player = engine.battle_settings.party.players[i]
-		var ctrl = player_data.controller.duplicate()
-		var actor = BattlePlayer.new(player_data, ctrl)
+		var player: Player = engine.battle_settings.party.players[i]
+		var ctrl = player.controller
 
 		if ctrl is PlayerManualController:
 			ctrl.input_assignment = InputManager.get_assignment(i)
@@ -34,28 +33,27 @@ func setup_players(engine: BattleEngine) -> void:
 			handler.name = "P%d_Handler" % (i + 1)
 			handlers_root.add_child(handler)
 			
-			ctrl.setup(engine, handler, actor)
+			ctrl.setup(engine, handler, player)
 		elif ctrl is PlayerNPCController:
 			ctrl.setup(engine, null, null)
 			
-		engine.add_battle_battler(actor)
+		engine.add_battle_battler(player)
 	
-	for i in range(engine.battle_players.size()):
-		print("[BattlePhaseInit] Players: ", engine.battle_players[i].data.name)
+	for i in range(engine.players.size()):
+		print("[BattlePhaseInit] Players: ", engine.players[i].name)
 
 func define_leader(engine: BattleEngine) -> void:
-	engine.leader = engine.battle_players[0]
+	engine.leader = engine.players[0]
 
 func setup_enemies(engine: BattleEngine) -> void:
 	for i in range(engine.battle_settings.enemies.size()):
-		var enemy_data: Enemy = engine.battle_settings.enemies[i].enemy
-		var ctrl: EnemyController = enemy_data.controller.duplicate()
-		var actor = BattleEnemy.new(enemy_data, ctrl)
+		var enemy: Enemy = engine.battle_settings.enemies[i].enemy.duplicate()
+		var ctrl: EnemyController = enemy.controller
 		ctrl.setup(engine, null, null)
-		engine.add_battle_battler(actor)
+		engine.add_battle_battler(enemy)
 
-	for i in range(engine.battle_enemies.size()):
-		print("[BattlePhaseInit] Enemies: ", engine.battle_enemies[i].data.name)
+	for i in range(engine.enemies.size()):
+		print("[BattlePhaseInit] Enemies: ", engine.enemies[i].name)
 
 func setup_ui(engine: BattleEngine):
 	if not engine.visuals_enabled: return
@@ -69,17 +67,17 @@ func set_background(engine: BattleEngine):
 
 func instantiate_enemies(engine: BattleEngine):
 	var enemies_settings: Array[EnemySettings] = engine.battle_settings.enemies
-	var battle_enemies: Array[BattleEnemy] = engine.battle_enemies
+	var enemies: Array[Enemy] = engine.enemies
 	var ui: BattleUI = engine.battle_ui
-	ui.battle_signals.instantiate_enemies_emited.emit(enemies_settings, battle_enemies, engine)
+	ui.battle_signals.instantiate_enemies_emited.emit(enemies_settings, enemies, engine)
 
 func define_focus_neighbors(ui: BattleUI):
 	ui.battle_signals.define_focus_neighbors_emited.emit()
 
 func instantiate_players(engine: BattleEngine):
-	var battle_players: Array[BattlePlayer] = engine.battle_players
+	var players: Array[Player] = engine.players
 	var ui: BattleUI = engine.battle_ui
-	ui.battle_signals.instantiate_players_emited.emit(engine, battle_players)
+	ui.battle_signals.instantiate_players_emited.emit(engine, players)
 
 func hide_menus(ui: BattleUI):
 	ui.battle_signals.toggle_menu_bottom_emited.emit(false)

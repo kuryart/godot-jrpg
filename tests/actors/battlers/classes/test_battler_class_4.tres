@@ -1,9 +1,7 @@
-[gd_resource type="Resource" script_class="BattlerClass" format=3 uid="uid://chpnhsj7w1tj4"]
+[gd_resource type="Resource" script_class="PlayerClass" format=3 uid="uid://chpnhsj7w1tj4"]
 
 [ext_resource type="Script" uid="uid://coq8anpgbky31" path="res://resources/formulas/stats/formula_stat_growth_pokemon.gd" id="1_nn7tt"]
-[ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://resources/actors/battlers/classes/battler_class.gd" id="2_1yj6n"]
-[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://resources/actors/battlers/stats/stat.gd" id="3_367uc"]
-[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://resources/actors/battlers/stats/stats.gd" id="4_m6chp"]
+[ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://resources/actors/battlers/classes/player_class.gd" id="2_1yj6n"]
 
 [sub_resource type="Resource" id="Resource_pn2bk"]
 script = ExtResource("1_nn7tt")
@@ -41,69 +39,10 @@ metadata/_custom_type_script = "uid://coq8anpgbky31"
 script = ExtResource("1_nn7tt")
 metadata/_custom_type_script = "uid://coq8anpgbky31"
 
-[sub_resource type="Resource" id="Resource_toc1p"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_o0iwd"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_vhtc5"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_dijnc"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_1h1vx"]
-script = ExtResource("3_367uc")
-base_value = 150
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_ahllu"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_tcon8"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_qciww"]
-script = ExtResource("3_367uc")
-base_value = 80
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_5mucu"]
-script = ExtResource("3_367uc")
-base_value = 12
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_8qk83"]
-script = ExtResource("4_m6chp")
-hp = SubResource("Resource_1h1vx")
-mp = SubResource("Resource_qciww")
-attack = SubResource("Resource_o0iwd")
-defense = SubResource("Resource_vhtc5")
-intelligence = SubResource("Resource_ahllu")
-speed = SubResource("Resource_5mucu")
-accuracy = SubResource("Resource_toc1p")
-evasion = SubResource("Resource_dijnc")
-luck = SubResource("Resource_tcon8")
-metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
-
 [resource]
 script = ExtResource("2_1yj6n")
 name = "test_class_4"
 description = "test class 4"
-stats = SubResource("Resource_8qk83")
 hp_growth = SubResource("Resource_4nhf3")
 mp_growth = SubResource("Resource_vct1q")
 attack_growth = SubResource("Resource_3vk1f")

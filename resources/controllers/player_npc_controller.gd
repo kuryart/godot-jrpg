@@ -4,7 +4,7 @@ class_name PlayerNPCController extends PlayerController
 
 var engine: BattleEngine
 
-func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: BattleBattler) -> void:
+func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: Battler) -> void:
 	engine = _engine
 
 func think() -> void:

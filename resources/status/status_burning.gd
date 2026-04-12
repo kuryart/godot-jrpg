@@ -2,7 +2,7 @@ class_name StatusBurning extends Status
 
 @export var damage_percentage: float = 0.1 
 
-func resolve(actor: BattleBattler):
+func resolve(actor: Battler):
 	var max_hp = actor.stats.hp.get_value()
 	var damage = int(max_hp * damage_percentage) 
 	
