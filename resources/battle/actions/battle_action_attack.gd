@@ -14,5 +14,4 @@ func resolve(engine: BattleEngine):
 
 func take_damage(engine: BattleEngine, target: Battler):
 	var damage = engine.calculate_physical_damage(actor, target)
-	#target.current_hp -= damage
 	target.take_damage(damage)
