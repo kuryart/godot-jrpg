@@ -89,5 +89,7 @@ player_class = ExtResource("4_3wjiw")
 xp_formula = SubResource("Resource_dyfle")
 stats = SubResource("Resource_e7fee")
 controller = SubResource("Resource_7ekjg")
+current_hp = 100
+current_mp = 50
 name = "player2"
 metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

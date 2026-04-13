@@ -25,7 +25,6 @@ func resolve(engine: BattleEngine):
 		# --- Action ---
 		engine.battle_signals.change_player_face_emited.emit(action)
 		await action.resolve(engine)
-
 		
 		# --- Post-action ---
 	

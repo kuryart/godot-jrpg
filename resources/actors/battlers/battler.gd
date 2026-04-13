@@ -8,10 +8,23 @@ class_name Battler extends Actor
 @export var status: Array[Status]
 ## The controller used by battler. It can be Manual, NPC, Simulation, or RL (Reinforcement Learning). Learn more in [BattlerController].
 @export var controller: BattlerController
-## The battler current HP.
-@export var current_hp: int
-## The battler current MP.
-@export var current_mp: int
+## The battler current HP. It emits a signal on changing.
+@export var current_hp: int:
+	set(val):
+		current_hp = clamp(val, 0, stats.hp.get_value())
+		if hp_changed.get_connections().size() > 0:
+			hp_changed.emit(current_hp)
+## The battler current MP. It emits a signal on changing.
+@export var current_mp: int:
+	set(val):
+		current_mp = clamp(val, 0, stats.mp.get_value())
+		if mp_changed.get_connections().size() > 0:
+			mp_changed.emit(current_mp)
+
+@warning_ignore_start("unused_signal")
+## Used to change values in [Bar] and [BarLabel].
+signal hp_changed
+signal mp_changed
 
 ## Adds a status to battler.
 func add_status(_status: Status) -> void:
