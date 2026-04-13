@@ -1,4 +1,4 @@
-class_name BattleFightButton extends UIButton
+class_name BattleRunButton extends UIButton
 
 @export var battle_signals: BattleSignals = preload("uid://creqo0s1k7tlr")
 
@@ -8,7 +8,7 @@ func _ready():
 	
 func _on_button_up():
 	super()
-	battle_signals.fight_button_up.emit()
+	battle_signals.run_button_up.emit()
 
 func _on_focus_entered():
-	battle_signals.fight_button_entered.emit()
+	battle_signals.run_button_entered.emit()

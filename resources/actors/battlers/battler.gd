@@ -41,6 +41,7 @@ func is_stunned() -> bool:
 ## Makes the battler take damage
 func take_damage(damage: int) -> void:
 	current_hp -= damage
+	print("[Battler] ", name, " took ", damage, " damage.")
 
 ## Kills the battler
 func die() -> void:

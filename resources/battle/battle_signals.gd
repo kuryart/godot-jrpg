@@ -1,7 +1,6 @@
 class_name BattleSignals extends Resource
 
 @warning_ignore_start("unused_signal")
-# === UI ====
 # --- Background ---
 signal set_background_emited(settings: BattleSettings)
 # --- Actors ---
@@ -12,6 +11,8 @@ signal select_enemy_emited
 signal battler_damaged(battler: Battler)
 signal player_changed(player: Player)
 signal enemy_selected
+signal damage_finished
+signal change_player_face_emited(action: BattleAction)
 # --- Focus ---
 signal define_focus_neighbors_emited
 signal select_menu_selection_option_emited(id: int)

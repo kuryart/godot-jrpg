@@ -4,6 +4,7 @@ class_name BattleFace extends TextureRect
 
 @export var icon_fight: CompressedTexture2D
 @export var icon_run: CompressedTexture2D
+@export var battle_signals: BattleSignals = preload("uid://creqo0s1k7tlr")
 
 var shaders = {
 	"flash": preload("uid://c5ntiylsybtxo"),
@@ -17,3 +18,5 @@ func get_attacked():
 	material.set_shader_parameter("flash_color", Color.RED)
 	animation_player.play("biblioteca/damage")
 	await animation_player.animation_finished
+	await get_tree().create_timer(1.0).timeout
+	battle_signals.damage_finished.emit()

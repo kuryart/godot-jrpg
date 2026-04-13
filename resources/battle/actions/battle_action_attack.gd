@@ -11,8 +11,10 @@ func resolve(engine: BattleEngine):
 			if not engine.is_attack_missed(actor, target):
 				take_damage(engine, target)
 				engine.battle_signals.battler_damaged.emit(target)
+				await engine.battle_signals.damage_finished
+			else:
+				print("[BattleActionAttack] ", actor.name, " missed the attack to ", target.name)
 
 func take_damage(engine: BattleEngine, target: Battler):
 	var damage = engine.calculate_physical_damage(actor, target)
-	#target.current_hp -= damage
 	target.take_damage(damage)

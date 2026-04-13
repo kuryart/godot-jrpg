@@ -99,12 +99,12 @@ func _on_battler_damaged(battler: Battler):
 	await wait_ready()
 	if battler is Enemy:
 		var enemy = enemies[battler as Enemy]
-		enemy.get_attacked()
+		await enemy.get_attacked()
 	elif battler is Player:
-		face.get_attacked()
+		await face.get_attacked()
 
 func _on_player_changed(player: Player):
-	face.texture = player.data.face
+	face.texture = player.face
 
 # --- Focus ---
 func _on_define_focus_neighbors_emited():
