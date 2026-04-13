@@ -11,6 +11,10 @@ func _init() -> void:
 ## of the entire battle system, because it resolves the actions choosen by players and enemies. It
 ## iterates by the actions in the action pool and resolve one by one.
 func resolve(engine: BattleEngine):
+	engine.clear_focus()
+	engine.manage_enemies_decisions()
+	engine.calc_action_order()	
+	
 	for action in engine.action_pool:
 		# --- Pre-action ---
 		if not can_actor_act(action): continue
@@ -19,9 +23,12 @@ func resolve(engine: BattleEngine):
 		engine.check_for_death()
 		
 		# --- Action ---
+		engine.battle_signals.change_player_face_emited.emit(action)
 		await action.resolve(engine)
 		
 		# --- Post-action ---
+	
+	end()
 
 ## Checks if player can act, id est, if player is dead or stunned.
 func can_actor_act(action: BattleAction) -> bool:

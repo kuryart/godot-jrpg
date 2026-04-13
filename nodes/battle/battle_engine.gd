@@ -64,7 +64,7 @@ func change_phase(phase: BattlePhase):
 	is_busy = true
 	current_phase = phase
 	print("[BattlePhase%s] CURRENT PHASE: %s" % [phase.resource_name, phase.resource_name])
-	phase.resolve(self)
+	await phase.resolve(self)
 	if not phase.is_finished: await phase.finished
 	is_busy = false
 
@@ -77,10 +77,7 @@ func change_turn():
 	battle_signals.toggle_messager_emited.emit(false)
 
 func resolve_battle():
-	clear_focus()
-	manage_enemies_decisions()
-	calc_action_order()
-	current_phase.end()
+	current_phase.end() # Upkeep
 	change_phase(BattlePhaseResolveActions.new())
 
 func clear_focus():
@@ -221,6 +218,7 @@ func calculate_physical_damage(attacker: Battler, defender: Battler) -> int:
 	var damage = physical_formula.calculate(param)
 	if is_attack_critical(attacker, defender):
 		damage = calculate_critical_damage(damage)
+		print("[BattleEngine] ", attacker.name, " dealt critical damage to ", defender.name)
 	
 	return damage
 	
@@ -244,10 +242,15 @@ func is_attack_missed(attacker: Battler, defender: Battler) -> bool:
 	param.defender = defender
 
 	var chance = hit_chance_formula.calculate(param)
-	return randf() <= chance
+	return not randf() <= chance
 
 # --- Signals methods ---
 func _on_enemy_selected():
 	change_to_next_player()
-	current_phase.end()
+	if current_phase is BattlePhaseAttack or \
+	current_phase is BattlePhaseItemTarget or \
+	current_phase is BattlePhaseSkillTarget:
+		current_phase.end()
+	else:
+		return
 	await change_phase(BattlePhasePlayers.new())

@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://k7luinj2i6yw" path="res://tests/battle/test_battle.gd" id="1_72ttr"]
 [ext_resource type="Script" uid="uid://n2b7ojicu1g0" path="res://nodes/battle/battle_engine.gd" id="2_85q1k"]
 [ext_resource type="Script" uid="uid://dh2xmelh50nrm" path="res://resources/formulas/damage/formula_damage_rpg_maker.gd" id="3_lci8g"]
-[ext_resource type="Script" uid="uid://csv8v2cgsfg56" path="res://resources/formulas/hit_chance/formula_hit_chance_sigmoid.gd" id="3_thq7n"]
 [ext_resource type="Resource" uid="uid://creqo0s1k7tlr" path="res://resources/battle/battle_signals.tres" id="4_nterj"]
+[ext_resource type="Script" uid="uid://d2ehgkrinrjq7" path="res://resources/formulas/hit_chance/formula_hit_chance_always.gd" id="5_cpmal"]
 [ext_resource type="Resource" uid="uid://caggj6rpows4p" path="res://tests/battle/settings/test_battle_settings.tres" id="5_cuiqo"]
 [ext_resource type="Script" uid="uid://cyias6dpfredp" path="res://nodes/battle/battle_ui.gd" id="6_ai006"]
 [ext_resource type="Script" uid="uid://cxvldb77hafxl" path="res://resources/formulas/critical_chance/formula_critical_chance_pokemon.gd" id="7_85kgi"]
@@ -16,13 +16,16 @@
 [ext_resource type="Script" uid="uid://flgultxg04s0" path="res://nodes/battle/battle_menu_skills.gd" id="11_3ra5b"]
 [ext_resource type="Script" uid="uid://jmpyaedit0kc" path="res://nodes/battle/battle_fight_button.gd" id="12_3ra5b"]
 [ext_resource type="Script" uid="uid://blyhn0wf5f2ru" path="res://nodes/battle/battle_attack_button.gd" id="13_3r1vh"]
+[ext_resource type="Script" uid="uid://bl6jqa5yko7s8" path="res://nodes/battle/battle_run_button.gd" id="16_cpmal"]
 [ext_resource type="Material" uid="uid://c03324vpjatgx" path="res://resources/materials/battler.tres" id="17_fxdbb"]
 [ext_resource type="Script" uid="uid://b0oq5vat5comf" path="res://nodes/battle/battle_face.gd" id="17_uw4g8"]
+[ext_resource type="Texture2D" uid="uid://du576w5wphuyr" path="res://assets/sprites/battle/ui/icon-sword.png" id="19_cagfm"]
 [ext_resource type="Animation" uid="uid://dvtxa8chfd46o" path="res://resources/animations/damage.res" id="19_uoapb"]
+[ext_resource type="Texture2D" uid="uid://bmmvef1tpe86n" path="res://assets/sprites/battle/ui/icon-run.png" id="20_cpmal"]
 
-[sub_resource type="Resource" id="Resource_iyrn2"]
-script = ExtResource("3_thq7n")
-metadata/_custom_type_script = "uid://csv8v2cgsfg56"
+[sub_resource type="Resource" id="Resource_3ewcx"]
+script = ExtResource("5_cpmal")
+metadata/_custom_type_script = "uid://d2ehgkrinrjq7"
 
 [sub_resource type="Resource" id="Resource_tn54o"]
 script = ExtResource("3_lci8g")
@@ -50,7 +53,7 @@ battle_signals = ExtResource("4_nterj")
 battle_settings = ExtResource("5_cuiqo")
 visuals_enabled = true
 battle_ui = NodePath("../BattleUI")
-hit_chance_formula = SubResource("Resource_iyrn2")
+hit_chance_formula = SubResource("Resource_3ewcx")
 physical_formula = SubResource("Resource_tn54o")
 critical_chance_formula = SubResource("Resource_fxdbb")
 critical_damage_formula = SubResource("Resource_00gwn")
@@ -164,6 +167,7 @@ focus_neighbor_top = NodePath("../Fight")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Run"
+script = ExtResource("16_cpmal")
 
 [node name="MenuFight" type="PanelContainer" parent="BattleUI/MenuBottom/HBoxContainer" unique_id=1175953099]
 unique_name_in_owner = true
@@ -245,7 +249,11 @@ layout_mode = 2
 unique_name_in_owner = true
 material = ExtResource("17_fxdbb")
 layout_mode = 2
+expand_mode = 1
+flip_h = true
 script = ExtResource("17_uw4g8")
+icon_fight = ExtResource("19_cagfm")
+icon_run = ExtResource("20_cpmal")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BattleUI/MenuBottom/HBoxContainer/Faces/Face" unique_id=1461987633]
 libraries/biblioteca = SubResource("AnimationLibrary_56x7e")
