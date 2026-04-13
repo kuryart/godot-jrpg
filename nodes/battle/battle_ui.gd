@@ -39,6 +39,7 @@ func setup_ui():
 	battle_signals.select_enemy_emited.connect(_on_select_enemy_emited)
 	battle_signals.battler_damaged.connect(_on_battler_damaged)
 	battle_signals.player_changed.connect(_on_player_changed)
+	battle_signals.change_player_face_emited.connect(_on_change_player_face_emited)
 	# --- Focus ---
 	battle_signals.request_player_focus_emited.connect(_on_request_player_focus_emited)
 	battle_signals.define_focus_neighbors_emited.connect(_on_define_focus_neighbors_emited)
@@ -105,6 +106,10 @@ func _on_battler_damaged(battler: Battler):
 
 func _on_player_changed(player: Player):
 	face.texture = player.face
+	
+func _on_change_player_face_emited(action: BattleAction):
+	var first_target = action.targets[0]
+	face.texture = first_target.face if action.actor is Enemy else action.actor.face
 
 # --- Focus ---
 func _on_define_focus_neighbors_emited():
