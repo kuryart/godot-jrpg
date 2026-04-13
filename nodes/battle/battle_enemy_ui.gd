@@ -34,7 +34,7 @@ func get_attacked():
 	await get_tree().create_timer(1.0).timeout
 	material.shader = shaders["flash"]
 	material.set_shader_parameter("flash_color", Color.WHITE)
-	battle_signals.damage_finished.emit()
+	engine.battle_signals.damage_finished.emit()
 	
 func select_attack():
 	var targets: Array[Battler] = [enemy]

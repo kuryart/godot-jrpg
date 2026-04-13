@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bg5usakaeelmf"]
 
 [ext_resource type="Script" uid="uid://c2dn57lnxpyh0" path="res://nodes/battle/battle_player_ui.gd" id="1_v45wu"]
+[ext_resource type="Script" uid="uid://bjn8a8svw8sat" path="res://nodes/ui/bars/bar_label.gd" id="2_1trru"]
+[ext_resource type="Script" uid="uid://bcujvgam7focj" path="res://nodes/ui/bars/bar.gd" id="3_6ka35"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v45wu"]
 bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.54901963)
@@ -54,11 +56,14 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CurrentHP" type="Label" parent="VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=835238501]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 horizontal_alignment = 2
+script = ExtResource("2_1trru")
 
 [node name="HPBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1687198805]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(43, 3)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_v45wu")
@@ -66,6 +71,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_fnojh")
 value = 85.17
 fill_mode = 1
 show_percentage = false
+script = ExtResource("3_6ka35")
 
 [node name="HPLabel" type="Label" parent="VBoxContainer/HBoxContainer/HP" unique_id=104581077]
 layout_mode = 2
@@ -83,11 +89,14 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CurrentMP" type="Label" parent="VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1270628368]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 horizontal_alignment = 2
+script = ExtResource("2_1trru")
 
 [node name="MPBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1064729535]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(43, 3)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_v45wu")
@@ -95,6 +104,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_13h0l")
 value = 85.17
 fill_mode = 1
 show_percentage = false
+script = ExtResource("3_6ka35")
 
 [node name="MPLabel" type="Label" parent="VBoxContainer/HBoxContainer/MP" unique_id=1634213817]
 layout_mode = 2
