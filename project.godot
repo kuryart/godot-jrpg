@@ -23,6 +23,7 @@ buses/default_bus_layout="uid://8amf0haepi4a"
 
 InputManager="*uid://cm3mcbqssdg0d"
 Audio="*uid://dkod14f143sv2"
+VFXManager="*uid://cgkr7tsoxq5kj"
 
 [display]
 
