@@ -1,6 +1,6 @@
 extends Node
 
-@export var sfx_bank: SFXBank = preload("uid://bglecu7o2iv1v") 
+@export var sfx_bank_ui: SFXBank = preload("uid://bglecu7o2iv1v") 
 @export var music_bank: MusicBank = preload("uid://dua0ynuhyda1a") 
 
 var music_player: AudioStreamPlayer

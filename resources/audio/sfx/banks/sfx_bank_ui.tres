@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SFXBank" format=3 uid="uid://bglecu7o2iv1v"]
+
+[ext_resource type="Script" uid="uid://bv8reig1fhqiw" path="res://resources/audio/sfx/sfx.gd" id="1_m01ok"]
+[ext_resource type="Resource" uid="uid://bjagqv44h4i64" path="res://resources/audio/sfx/ui/select.tres" id="2_8epme"]
+[ext_resource type="Resource" uid="uid://chr3rr5i45n03" path="res://resources/audio/sfx/ui/cursor.tres" id="3_jwoaq"]
+[ext_resource type="Script" uid="uid://c6r3atglrl1ya" path="res://resources/audio/sfx/banks/sfx_bank.gd" id="4_74qg8"]
+
+[resource]
+script = ExtResource("4_74qg8")
+bank = Dictionary[String, ExtResource("1_m01ok")]({
+"cursor": ExtResource("3_jwoaq"),
+"select": ExtResource("2_8epme")
+})
+metadata/_custom_type_script = "uid://c6r3atglrl1ya"

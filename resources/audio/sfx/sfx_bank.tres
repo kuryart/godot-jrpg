@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="SFXBank" format=3 uid="uid://bglecu7o2iv1v"]
-
-[ext_resource type="Resource" uid="uid://chr3rr5i45n03" path="res://resources/audio/sfx/cursor.tres" id="1_3kw03"]
-[ext_resource type="Script" uid="uid://c6r3atglrl1ya" path="res://resources/audio/sfx/sfx_bank.gd" id="2_qpe0n"]
-[ext_resource type="Resource" uid="uid://bjagqv44h4i64" path="res://resources/audio/sfx/select.tres" id="3_jxqkv"]
-
-[resource]
-script = ExtResource("2_qpe0n")
-metadata/_custom_type_script = "uid://c6r3atglrl1ya"
