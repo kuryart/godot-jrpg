@@ -1,5 +1,6 @@
 class_name Stat extends Resource
 
+@export var name: String
 @export var base_value: int = 0:
 	set(v):
 		base_value = v
