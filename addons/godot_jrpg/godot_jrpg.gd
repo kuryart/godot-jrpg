@@ -20,7 +20,7 @@ func _enter_tree() -> void:
 	database_ui = preload("res://addons/godot_jrpg/editor/database/database_ui.tscn").instantiate()
 	get_editor_interface().get_editor_main_screen().add_child(database_ui)
 	_make_visible(false)
-	add_custom_type("BattleEngine", "Node", preload("res://addons/godot_jrpg/nodes/battle/battle_engine.gd"), preload("res://icon.svg"))
+	#add_custom_type("BattleEngine", "Node", preload("res://addons/godot_jrpg/nodes/battle/battle_engine.gd"), preload("res://icon.svg"))
 
 func _exit_tree() -> void:
 	# Clean-up of the plugin goes here.
