@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="MusicBank" format=3 uid="uid://dua0ynuhyda1a"]
-
-[ext_resource type="Resource" uid="uid://bu6pe4r5rs8hw" path="res://resources/audio/music/battle_music_01.tres" id="1_wcvi3"]
-[ext_resource type="Script" uid="uid://b4xfntrjlnstq" path="res://resources/audio/music/music_bank.gd" id="2_s66mi"]
-
-[resource]
-script = ExtResource("2_s66mi")
-metadata/_custom_type_script = "uid://b4xfntrjlnstq"

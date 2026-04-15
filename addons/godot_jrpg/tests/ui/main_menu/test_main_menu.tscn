@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://wqhgxtigubs"]
+
+[ext_resource type="Script" uid="uid://c3316u1uvkfaq" path="res://addons/godot_jrpg/tests/ui/main_menu/test_main_menu.gd" id="1_qwia0"]
+
+[node name="MainMenu" type="Control" unique_id=948077911]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qwia0")
