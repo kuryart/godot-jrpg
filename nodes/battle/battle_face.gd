@@ -6,6 +6,8 @@ class_name BattleFace extends TextureRect
 @export var icon_run: CompressedTexture2D
 @export var battle_signals: BattleSignals = preload("uid://creqo0s1k7tlr")
 
+var player: Player
+
 var shaders = {
 	"flash": preload("uid://c5ntiylsybtxo"),
 	"damage": preload("uid://clyi8d64f0spx"),

@@ -11,6 +11,8 @@ class_name Player extends Battler
 @export var player_class: PlayerClass
 ## The formula used to calculate the necessary xp required to achieve a certain level.
 @export var xp_formula: FormulaXP
+## The character equipment
+@export var equip: EquipmentSlots
 
 ## Signal emited when player level up.
 signal leveled_up(new_level: int)

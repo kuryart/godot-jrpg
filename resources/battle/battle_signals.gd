@@ -7,6 +7,7 @@ signal set_background_emited(settings: BattleSettings)
 signal battler_damaged(battler: Battler)
 signal change_player_face_emited(action: BattleAction)
 signal damage_finished
+signal enemy_damaged(enemy: BattleEnemyUI)
 signal enemy_selected
 signal instantiate_enemies_emited(enemies_settings: Array[EnemySettings], enemies: Array[Enemy], engine: BattleEngine)
 signal instantiate_players_emited(engine: BattleEngine, players: Array[Player])
