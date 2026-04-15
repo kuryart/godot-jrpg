@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://l03e2mmhgbjs"]
+
+[ext_resource type="Script" uid="uid://cm3mcbqssdg0d" path="res://addons/godot_jrpg/nodes/autoloads/input_manager.gd" id="1_i8jjv"]
+
+[node name="InputManager" type="Node" unique_id=2116014765]
+script = ExtResource("1_i8jjv")

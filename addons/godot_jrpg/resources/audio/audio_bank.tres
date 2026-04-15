@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AudioBank" format=3 uid="uid://bwvug15sdpxnk"]
+
+[ext_resource type="Script" uid="uid://bhowhtgfh2w1" path="res://addons/godot_jrpg/resources/audio/audio_bank.gd" id="2_aiqxw"]
+
+[resource]
+script = ExtResource("2_aiqxw")
+metadata/_custom_type_script = "uid://bhowhtgfh2w1"

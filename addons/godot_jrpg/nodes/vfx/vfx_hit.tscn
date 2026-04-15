@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bcjf4gwmy06t4"]
+
+[ext_resource type="Texture2D" uid="uid://cryi527nxmpn4" path="res://addons/godot_jrpg/assets/sprites/vfx/vfx-hit.png" id="1_s6fdg"]
+[ext_resource type="Material" uid="uid://c03324vpjatgx" path="res://addons/godot_jrpg/resources/materials/battler.tres" id="2_fg4uj"]
+[ext_resource type="Texture2D" uid="uid://ca17no4jdeecw" path="res://addons/godot_jrpg/assets/sprites/vfx/vfx-flare.png" id="3_hs4jy"]
+[ext_resource type="Texture2D" uid="uid://cuxlr54x4g0pi" path="res://addons/godot_jrpg/assets/sprites/vfx/vfx-shockwave.png" id="4_ili1d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_numc7"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_s6fdg")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_c7rpx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi68n"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_hs4jy")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_bq8xv"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sy550"]
+curve = SubResource("Curve_bq8xv")
+
+[sub_resource type="Curve" id="Curve_hh552"]
+_data = [Vector2(0, 0), 0.0, 1.2716763, 0, 1, Vector2(0.7863636, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ybuig"]
+curve = SubResource("Curve_hh552")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mph6k"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_ybuig")
+color = Color(0.8800719, 0.51772493, 0, 1)
+alpha_curve = SubResource("CurveTexture_sy550")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mph6k"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("4_ili1d")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxud8"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_ybuig")
+color = Color(0.7254902, 0.42352942, 0, 0.5686275)
+alpha_curve = SubResource("CurveTexture_sy550")
+
+[node name="VFXHit" type="Node3D" unique_id=995821632]
+
+[node name="Flash" type="GPUParticles3D" parent="." unique_id=1620968213]
+material_override = SubResource("StandardMaterial3D_numc7")
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+process_material = ExtResource("2_fg4uj")
+draw_pass_1 = SubResource("QuadMesh_c7rpx")
+
+[node name="Flare" type="GPUParticles3D" parent="." unique_id=54190094]
+material_override = SubResource("StandardMaterial3D_yi68n")
+emitting = false
+amount = 1
+lifetime = 0.2
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_mph6k")
+draw_pass_1 = SubResource("QuadMesh_c7rpx")
+
+[node name="Shockwave" type="GPUParticles3D" parent="." unique_id=134717350]
+material_override = SubResource("StandardMaterial3D_mph6k")
+emitting = false
+amount = 1
+lifetime = 0.4
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_gxud8")
+draw_pass_1 = SubResource("QuadMesh_c7rpx")

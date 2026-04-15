@@ -21,15 +21,19 @@ buses/default_bus_layout="uid://8amf0haepi4a"
 
 [autoload]
 
-InputManager="*uid://cm3mcbqssdg0d"
-Audio="*uid://dkod14f143sv2"
 VFXManager="*uid://cgkr7tsoxq5kj"
+Audio="*uid://dkod14f143sv2"
+InputManager="*uid://l03e2mmhgbjs"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_jrpg/plugin.cfg")
 
 [input]
 

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="BattleSignals" format=3 uid="uid://creqo0s1k7tlr"]
+
+[ext_resource type="Script" uid="uid://duaih12l7adak" path="res://addons/godot_jrpg/resources/battle/battle_signals.gd" id="1_ccl0o"]
+
+[resource]
+script = ExtResource("1_ccl0o")
+metadata/_custom_type_script = "uid://duaih12l7adak"

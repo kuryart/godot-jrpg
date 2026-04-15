@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EquipmentSlots" format=3 uid="uid://28fcnl7fk5vu"]
+
+[ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/items/equippable/slots/equipment_slots.gd" id="1_q38c5"]
+
+[resource]
+script = ExtResource("1_q38c5")
+metadata/_custom_type_script = "uid://c00chyv6jtl7b"

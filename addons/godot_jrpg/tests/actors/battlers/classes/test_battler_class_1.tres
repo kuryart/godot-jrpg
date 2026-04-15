@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="PlayerClass" format=3 uid="uid://c6cmww8puraic"]
+
+[ext_resource type="Script" uid="uid://coq8anpgbky31" path="res://addons/godot_jrpg/resources/formulas/stats/formula_stat_growth_pokemon.gd" id="1_0pq37"]
+[ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://addons/godot_jrpg/resources/actors/battlers/classes/player_class.gd" id="2_7hskb"]
+
+[sub_resource type="Resource" id="Resource_pn2bk"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_3vk1f"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_s0eh1"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_6r67j"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_4nhf3"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_75hai"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_oh6ty"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_vct1q"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_1omdc"]
+script = ExtResource("1_0pq37")
+metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[resource]
+script = ExtResource("2_7hskb")
+name = "test_class_1"
+description = "test class 1"
+hp_growth = SubResource("Resource_4nhf3")
+mp_growth = SubResource("Resource_vct1q")
+attack_growth = SubResource("Resource_3vk1f")
+defense_growth = SubResource("Resource_s0eh1")
+intelligence_growth = SubResource("Resource_75hai")
+speed_growth = SubResource("Resource_1omdc")
+accuracy_growth = SubResource("Resource_pn2bk")
+evasion_growth = SubResource("Resource_6r67j")
+luck_growth = SubResource("Resource_oh6ty")
+metadata/_custom_type_script = "uid://dacbahk8dn11p"

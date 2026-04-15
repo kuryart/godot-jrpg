@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://boliaxia5nxax"]
+
+[ext_resource type="Script" uid="uid://fonb13nkm4yv" path="res://addons/godot_jrpg/resources/actors/battlers/enemies/enemy.gd" id="1_6s3k7"]
+[ext_resource type="Script" uid="uid://c0cnc6567nkft" path="res://addons/godot_jrpg/resources/controllers/brains/brain_dumb.gd" id="1_48ydv"]
+[ext_resource type="Script" uid="uid://bpmohnsv7yfs6" path="res://addons/godot_jrpg/resources/controllers/enemy_ai_controller.gd" id="1_yhfdy"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="2_vmhau"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="3_w6an3"]
+[ext_resource type="Texture2D" uid="uid://dkjir2ox7rf1e" path="res://addons/godot_jrpg/assets/sprites/actors/enemies/enemy-goblin.png" id="3_yfqnd"]
+[ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="4_k2p5p"]
+
+[sub_resource type="Resource" id="Resource_ha3q0"]
+script = ExtResource("1_48ydv")
+metadata/_custom_type_script = "uid://c0cnc6567nkft"
+
+[sub_resource type="Resource" id="Resource_yfqnd"]
+script = ExtResource("1_yhfdy")
+brain = SubResource("Resource_ha3q0")
+metadata/_custom_type_script = "uid://bpmohnsv7yfs6"
+
+[sub_resource type="Resource" id="Resource_x7jgy"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_vmhau"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_w6an3"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_kopul"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_fw4qq"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_23sea"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_1s1si"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_kppqb"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2lnoi"]
+script = ExtResource("2_vmhau")
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_gfeoi"]
+script = ExtResource("3_w6an3")
+hp = SubResource("Resource_fw4qq")
+mp = SubResource("Resource_kppqb")
+attack = SubResource("Resource_vmhau")
+defense = SubResource("Resource_w6an3")
+intelligence = SubResource("Resource_23sea")
+speed = SubResource("Resource_2lnoi")
+accuracy = SubResource("Resource_x7jgy")
+evasion = SubResource("Resource_kopul")
+luck = SubResource("Resource_1s1si")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[resource]
+script = ExtResource("1_6s3k7")
+sprite = ExtResource("3_yfqnd")
+stats = SubResource("Resource_gfeoi")
+controller = SubResource("Resource_yfqnd")
+name = "test_enemy_1"
+metadata/_custom_type_script = "uid://fonb13nkm4yv"
