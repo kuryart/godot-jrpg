@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://du576w5wphuyr" path="res://assets/sprites/battle/ui/icon-sword.png" id="19_cagfm"]
 [ext_resource type="Animation" uid="uid://dvtxa8chfd46o" path="res://resources/animations/damage.res" id="19_uoapb"]
 [ext_resource type="Texture2D" uid="uid://bmmvef1tpe86n" path="res://assets/sprites/battle/ui/icon-run.png" id="20_cpmal"]
+[ext_resource type="Script" uid="uid://t4cbxo4nowao" path="res://nodes/battle/battle_vfx.gd" id="23_3ewcx"]
 
 [sub_resource type="Resource" id="Resource_3ewcx"]
 script = ExtResource("5_cpmal")
@@ -270,3 +271,6 @@ offset_bottom = 72.0
 layout_mode = 2
 
 [node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]
+
+[node name="BattleVFX" type="Node" parent="." unique_id=1169910518]
+script = ExtResource("23_3ewcx")

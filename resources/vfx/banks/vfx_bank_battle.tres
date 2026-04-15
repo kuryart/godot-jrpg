@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="VFXBank" format=3 uid="uid://df62y1mwgiwyo"]
+
+[ext_resource type="Script" uid="uid://diobl2lg54y6d" path="res://resources/vfx/vfx.gd" id="1_031m0"]
+[ext_resource type="Script" uid="uid://bihtri0usrs8t" path="res://resources/vfx/banks/vfx_bank.gd" id="2_3cxh6"]
+[ext_resource type="Resource" uid="uid://dcl8bbjqdrt6r" path="res://resources/vfx/vfx_hit.tres" id="2_ba30f"]
+
+[resource]
+script = ExtResource("2_3cxh6")
+bank = Dictionary[String, ExtResource("1_031m0")]({
+"hit": ExtResource("2_ba30f")
+})
+metadata/_custom_type_script = "uid://bihtri0usrs8t"
