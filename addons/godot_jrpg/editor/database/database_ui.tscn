@@ -1,80 +1,224 @@
 [gd_scene format=3 uid="uid://punuyhoqrp71"]
 
+[ext_resource type="Theme" uid="uid://7euphyxethbl" path="res://addons/godot_jrpg/resources/themes/database_theme.tres" id="1_2ql7h"]
 [ext_resource type="Script" uid="uid://tb5eud75u6v6" path="res://addons/godot_jrpg/editor/database/database_ui.gd" id="1_5la1j"]
+[ext_resource type="Script" uid="uid://d3psk2poufhj5" path="res://addons/godot_jrpg/editor/database/enemies/db_enemies_new_enemy_button.gd" id="3_2ql7h"]
 
-[node name="DatabaseUi" type="Control" unique_id=243645972]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27fsu"]
+bg_color = Color(0.5014065, 0.50140655, 0.50140643, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrkdh"]
+bg_color = Color(0.9867516, 0.9867516, 0.9867516, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l5p8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11nrq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5la1j"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ql7h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y88r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="DatabaseUI" type="Control" unique_id=4282358]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_2ql7h")
 script = ExtResource("1_5la1j")
 
-[node name="TabContainer" type="TabContainer" parent="." unique_id=2070452193]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-current_tab = 0
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=72122896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer" unique_id=1448740841]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/HSplitContainer" unique_id=2070452193]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 6
 tab_10/title = "Common Events"
 
-[node name="Players" type="PanelContainer" parent="TabContainer" unique_id=1369048766]
+[node name="Players" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=1369048766]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Classes" type="PanelContainer" parent="TabContainer" unique_id=195457158]
+[node name="Classes" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=195457158]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Skills" type="PanelContainer" parent="TabContainer" unique_id=1213381527]
+[node name="Skills" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=1213381527]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Items" type="PanelContainer" parent="TabContainer" unique_id=911318146]
+[node name="Items" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=911318146]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Weapons" type="PanelContainer" parent="TabContainer" unique_id=189479989]
+[node name="Weapons" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=189479989]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
-[node name="Armors" type="PanelContainer" parent="TabContainer" unique_id=319789811]
+[node name="Armors" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=319789811]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 5
 
-[node name="Enemies" type="PanelContainer" parent="TabContainer" unique_id=1568146883]
-visible = false
+[node name="Enemies" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=1568146883]
 layout_mode = 2
 metadata/_tab_index = 6
 
-[node name="Troops" type="PanelContainer" parent="TabContainer" unique_id=709152734]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies" unique_id=1197015903]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 24
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer" unique_id=115077742]
+layout_mode = 2
+split_offsets = PackedInt32Array(0, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer" unique_id=1309403680]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+theme_override_styles/panel = SubResource("StyleBoxFlat_27fsu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer" unique_id=587545917]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer" unique_id=413814070]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vrkdh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer" unique_id=250751918]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_8l5p8")
+bbcode_enabled = true
+text = "[color=blue]ENEMIES[/color]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer" unique_id=540935329]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.58
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer2" unique_id=1608048086]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=59897804]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_11nrq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer2/MarginContainer/ScrollContainer" unique_id=1849644898]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Enemy1" type="Button" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer2/MarginContainer/ScrollContainer/VBoxContainer" unique_id=314203904]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5la1j")
+text = "Enemy 1"
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer" unique_id=1707035465]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer3" unique_id=1563693055]
+layout_mode = 2
+alignment = 1
+
+[node name="NewEnemyButton" type="Button" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer3/HBoxContainer" unique_id=1778028631]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_2ql7h")
+script = ExtResource("3_2ql7h")
+
+[node name="RemoveEnemyButton" type="Button" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer/PanelContainer/VBoxContainer/PanelContainer3/HBoxContainer" unique_id=855321623]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0y88r")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer" unique_id=1305496850]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.84
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HSplitContainer/TabContainer/Enemies/MarginContainer/HSplitContainer" unique_id=874082332]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.47
+
+[node name="Troops" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=709152734]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 7
 
-[node name="Status" type="PanelContainer" parent="TabContainer" unique_id=1976710815]
+[node name="Status" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=1976710815]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 8
 
-[node name="VFX" type="PanelContainer" parent="TabContainer" unique_id=460954290]
+[node name="VFX" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=460954290]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 9
 
-[node name="CommonEvents" type="PanelContainer" parent="TabContainer" unique_id=2085244809]
+[node name="CommonEvents" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=2085244809]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 10
 metadata/_tab_name = "Common Events"
 
-[node name="System" type="PanelContainer" parent="TabContainer" unique_id=816492840]
+[node name="System" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=816492840]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 11
 
-[node name="Vocabulary" type="PanelContainer" parent="TabContainer" unique_id=1221415227]
+[node name="Vocabulary" type="PanelContainer" parent="MarginContainer/HSplitContainer/TabContainer" unique_id=1221415227]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 12

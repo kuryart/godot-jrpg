@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://7euphyxethbl"]
+
+[ext_resource type="FontFile" uid="uid://bvv0ovjjk5j6d" path="res://addons/godot_jrpg/assets/fonts/BigBlueTermPlusNerdFontMono-Regular.ttf" id="1_xtacc"]
+
+[resource]
+default_font = ExtResource("1_xtacc")
