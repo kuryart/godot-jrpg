@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Element" format=3 uid="uid://d3mlslh5fvesk"]
+
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="1_0m05x"]
+
+[resource]
+script = ExtResource("1_0m05x")
+name = "Wind"
+metadata/_custom_type_script = "uid://x086btbocuul"

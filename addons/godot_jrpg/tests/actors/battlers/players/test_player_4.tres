@@ -89,4 +89,5 @@ controller = SubResource("Resource_16738")
 current_hp = 100
 current_mp = 50
 name = "player4"
+description = "A description."
 metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

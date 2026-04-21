@@ -8,68 +8,83 @@
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_dmcd4"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://addons/godot_jrpg/resources/formulas/xp/formula_xp_pokemon.gd" id="5_nbwjj"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="6_sn8uf"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_5djld"]
+[ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="9_k5m06"]
+[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate.gd" id="10_u4pjs"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="13_nqs0a"]
 
 [sub_resource type="Resource" id="Resource_nf7ob"]
 script = ExtResource("2_yohbo")
 metadata/_custom_type_script = "uid://cwt6qegyo50wf"
 
-[sub_resource type="Resource" id="Resource_yohbo"]
+[sub_resource type="Resource" id="Resource_5djld"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_wrkiq"]
+[sub_resource type="Resource" id="Resource_r4fbl"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_2p28r"]
+[sub_resource type="Resource" id="Resource_wx43h"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_sn8uf"]
+[sub_resource type="Resource" id="Resource_afqr4"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_s1pwp"]
+[sub_resource type="Resource" id="Resource_q81us"]
 script = ExtResource("3_u4h65")
 base_value = 100
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_gf1c3"]
+[sub_resource type="Resource" id="Resource_nqs0a"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_wp05l"]
+[sub_resource type="Resource" id="Resource_krbav"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_5gbj5"]
+[sub_resource type="Resource" id="Resource_8r64l"]
 script = ExtResource("3_u4h65")
 base_value = 50
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_2hriq"]
+[sub_resource type="Resource" id="Resource_fsba0"]
 script = ExtResource("3_u4h65")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_e7fee"]
+[sub_resource type="Resource" id="Resource_qrtct"]
 script = ExtResource("4_dmcd4")
-hp = SubResource("Resource_s1pwp")
-mp = SubResource("Resource_5gbj5")
-attack = SubResource("Resource_wrkiq")
-defense = SubResource("Resource_2p28r")
-intelligence = SubResource("Resource_gf1c3")
-speed = SubResource("Resource_2hriq")
-accuracy = SubResource("Resource_yohbo")
-evasion = SubResource("Resource_sn8uf")
-luck = SubResource("Resource_wp05l")
+hp = SubResource("Resource_q81us")
+mp = SubResource("Resource_8r64l")
+attack = SubResource("Resource_r4fbl")
+defense = SubResource("Resource_wx43h")
+intelligence = SubResource("Resource_nqs0a")
+speed = SubResource("Resource_fsba0")
+accuracy = SubResource("Resource_5djld")
+evasion = SubResource("Resource_afqr4")
+luck = SubResource("Resource_krbav")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_wfock"]
+script = ExtResource("10_u4pjs")
+element = ExtResource("9_k5m06")
+rate = 1.2
+metadata/_custom_type_script = "uid://bj3nxpjiumj8i"
+
+[sub_resource type="Resource" id="Resource_8ednr"]
+script = ExtResource("13_nqs0a")
+entries = Array[ExtResource("8_5djld")]([SubResource("Resource_wfock")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
 
 [sub_resource type="Resource" id="Resource_dyfle"]
 script = ExtResource("5_nbwjj")
@@ -80,9 +95,11 @@ script = ExtResource("2_6i2qp")
 face = ExtResource("3_nf7ob")
 player_class = ExtResource("3_txp2h")
 xp_formula = SubResource("Resource_dyfle")
-stats = SubResource("Resource_e7fee")
+stats = SubResource("Resource_qrtct")
 controller = SubResource("Resource_nf7ob")
 current_hp = 100
 current_mp = 50
+traits = SubResource("Resource_8ednr")
 name = "player1"
+description = "A description."
 metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

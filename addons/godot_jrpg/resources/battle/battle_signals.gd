@@ -35,5 +35,5 @@ signal toggle_menu_fight_emited(on: bool)
 signal toggle_menu_items_emited(on: bool)
 signal toggle_menu_selection_emited(on: bool)
 signal toggle_menu_skills_emited(on: bool)
-signal toggle_messager_emited(on: bool)
+signal toggle_messenger_emited(on: bool)
 # --- Handle cancel ---

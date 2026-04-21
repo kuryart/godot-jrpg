@@ -259,7 +259,7 @@ icon_run = ExtResource("20_cpmal")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BattleUI/MenuBottom/HBoxContainer/Faces/Face" unique_id=1461987633]
 libraries/biblioteca = SubResource("AnimationLibrary_56x7e")
 
-[node name="Messager" type="PanelContainer" parent="BattleUI" unique_id=1565607411]
+[node name="Messenger" type="PanelContainer" parent="BattleUI" unique_id=1565607411]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 304.0
@@ -267,7 +267,7 @@ offset_top = 16.0
 offset_right = 944.0
 offset_bottom = 72.0
 
-[node name="MessagerLabel" type="RichTextLabel" parent="BattleUI/Messager" unique_id=1485600197]
+[node name="Messenger" type="RichTextLabel" parent="BattleUI/Messenger" unique_id=1485600197]
 layout_mode = 2
 
 [node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]

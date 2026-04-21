@@ -12,7 +12,6 @@ class_name Player extends Battler
 ## The formula used to calculate the necessary xp required to achieve a certain level.
 @export var xp_formula: FormulaXP
 ## The character equipment
-@export var equip: EquipmentSlots
 
 ## Signal emited when player level up.
 signal leveled_up(new_level: int)
@@ -41,31 +40,9 @@ func check_level_up():
 func update_base_stats():
 	var param = FormulaStatGrowthParameter.new()
 	param.level = level
-	
-	# --- HP ---
-	param.base_stat_value = stats.hp.base_value
-	stats.hp.base_value = player_class.hp_growth.calculate(param)
-	# --- MP ---
-	param.base_stat_value = stats.mp.base_value
-	stats.mp.base_value = player_class.mp_growth.calculate(param)
-	# --- Attack ---
-	param.base_stat_value = stats.attack.base_value
-	stats.attack.base_value = player_class.attack_growth.calculate(param)
-	# --- Defense ---
-	param.base_stat_value = stats.defense.base_value
-	stats.defense.base_value = player_class.defense_growth.calculate(param)
-	# --- Intelligence ---
-	param.base_stat_value = stats.intelligence.base_value
-	stats.intelligence.base_value = player_class.intelligence_growth.calculate(param)
-	# --- Speed ---
-	param.base_stat_value = stats.speed.base_value
-	stats.speed.base_value = player_class.speed_growth.calculate(param)
-	# --- Accuracy ---
-	param.base_stat_value = stats.accuracy.base_value
-	stats.accuracy.base_value = player_class.accuracy_growth.calculate(param)
-	# --- Evasion ---
-	param.base_stat_value = stats.evasion.base_value
-	stats.evasion.base_value = player_class.evasion_growth.calculate(param)
-	# --- Luck ---
-	param.base_stat_value = stats.luck.base_value
-	stats.luck.base_value = player_class.luck_growth.calculate(param)
+
+	for stat_name in ["hp", "mp", "attack", "defense", "intelligence", "speed", "accuracy", "evasion", "luck"]:
+		var stat = stats.get_stat_by_name(stat_name)
+		var growth_formula = player_class.get(stat_name + "_growth")
+		param.base_stat_value = stat.base_value
+		stat.level_growth_value = growth_formula.calculate(param)

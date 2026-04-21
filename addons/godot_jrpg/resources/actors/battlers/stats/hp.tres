@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Stat" format=3 uid="uid://cci5bhhtnli2d"]
+
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="1_cks6q"]
+
+[resource]
+script = ExtResource("1_cks6q")
+name = "HP"
+base_value = 5
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"

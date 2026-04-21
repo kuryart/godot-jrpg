@@ -1,1 +1,0 @@
-class_name Shield extends ItemEquippable
