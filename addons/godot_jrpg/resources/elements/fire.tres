@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Element" format=3 uid="uid://dimvgsvpff3v0"]
+
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="1_fbkcu"]
+
+[resource]
+script = ExtResource("1_fbkcu")
+name = "Fire"
+metadata/_custom_type_script = "uid://x086btbocuul"

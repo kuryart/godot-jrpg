@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="HeadSlot" format=3 uid="uid://bimuljcfutk1c"]
+
+[ext_resource type="Script" uid="uid://pdcs5gv200d5" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.gd" id="1_ld7aj"]
+
+[resource]
+script = ExtResource("1_ld7aj")
+name = "Head"
+metadata/_custom_type_script = "uid://pdcs5gv200d5"

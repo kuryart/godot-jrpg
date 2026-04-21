@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Shield" format=3 uid="uid://bom1ewtwomyhw"]
+
+[ext_resource type="Script" uid="uid://b634qeky1f75i" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/shield.gd" id="1_nj6r6"]
+
+[resource]
+script = ExtResource("1_nj6r6")
+metadata/_custom_type_script = "uid://b634qeky1f75i"

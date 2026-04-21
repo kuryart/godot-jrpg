@@ -32,3 +32,28 @@ The project is structured in:
 - [Nodes](nodes/README.md)
 - [Resources](resources/README.md)
 - [Tests](tests/README.md)
+
+## Features
+
+- Almost all the RPG Maker VX ACE concepts, including Traits, powered by Godot features like tilemap and tilemap layer;
+- A separation between logic and UI, to be able to run the battle as a simulation (and export the data to Jupyter Notebook) or to connect to a RL ([Reinforcement Learning](https://en.wikipedia.org/wiki/Reinforcement_learning)) model to have an IA learning how to play your game;
+- Controllers to manage who will play: a player? an enemy? a npc? an ai? 
+- Resources and nodes that helps building the game;
+- Local multiplayer (up to 4 player) in battle mode:
+	- Plannings to make a network multiplayer;
+	- Plannings to make a multiplayer in map too;
+
+## Goals
+
+- [ ] Save/load system;
+- [ ] Map scene system (we barely have battle system);
+- [ ] Menus system;
+- [ ] Use item in battle;
+- [ ] Use skill in battle;
+- [ ] Defend in battle;
+- [ ] Develop traits;
+- [ ] Victory system;
+- [ ] Game over system;
+- [ ] Equip system;
+- [ ] Trait system;
+- [ ] A lot more I can't remember now...

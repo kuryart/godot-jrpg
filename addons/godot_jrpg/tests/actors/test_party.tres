@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Party" format=3 uid="uid://v6gnmntcrn3t"]
 
-[ext_resource type="Resource" uid="uid://b0c02wq5ttngw" path="res://addons/godot_jrpg/resources/items/test_inventory.tres" id="1_8g0tp"]
+[ext_resource type="Resource" uid="uid://b0c02wq5ttngw" path="res://addons/godot_jrpg/resources/stuff/test_inventory.tres" id="1_8g0tp"]
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="1_sadef"]
 [ext_resource type="Script" uid="uid://bolkcf4dvwgu5" path="res://addons/godot_jrpg/resources/actors/party.gd" id="2_jxybv"]
 [ext_resource type="Resource" uid="uid://xcf0l6c5vwkg" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_1.tres" id="3_78mbn"]

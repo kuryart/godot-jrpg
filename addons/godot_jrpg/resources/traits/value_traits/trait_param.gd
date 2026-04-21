@@ -1,0 +1,18 @@
+## Handles Page 2: Parameter Settings - Normal Parameters
+## This trait defines multiplicative modifiers for core actor/enemy stats.
+class_name TraitParam extends TraitValue
+
+## The core statistic to be modified.
+@export var stat_name: StringName = &"attack"
+## The multiplier applied to the base parameter.
+## 1.0 = 100% (No change)
+## 1.2 = 120% (20% bonus)
+## 0.8 = 80% (20% penalty)
+@export var value_multiply: float = 1.0
+@export var value_add: int = 0
+
+func _init() -> void:
+	type = TYPE.STAT
+
+func apply() -> StatModifier:
+	return StatModifier.new(&"trait_passive", value_multiply, value_add, -1)

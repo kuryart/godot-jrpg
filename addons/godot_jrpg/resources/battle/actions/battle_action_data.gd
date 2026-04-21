@@ -1,1 +1,0 @@
-class_name BattleActionData extends Resource

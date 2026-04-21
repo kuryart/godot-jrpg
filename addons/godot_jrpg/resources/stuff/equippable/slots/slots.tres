@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EquipmentSlots" format=3 uid="uid://dsdnj6sb2ks2g"]
+
+[ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="1_dte3o"]
+[ext_resource type="Resource" uid="uid://s2uh3aftp8tb" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.tres" id="1_hugdc"]
+[ext_resource type="Resource" uid="uid://co3i6w452clor" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.tres" id="2_hdmkq"]
+[ext_resource type="Resource" uid="uid://bimuljcfutk1c" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.tres" id="3_k5s8g"]
+[ext_resource type="Resource" uid="uid://be87dx0ep2c8" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.tres" id="5_g8xx8"]
+[ext_resource type="Resource" uid="uid://c6v481x4st7pe" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.tres" id="6_hdmkq"]
+
+[resource]
+script = ExtResource("1_dte3o")
+accessory = ExtResource("1_hugdc")
+armor = ExtResource("2_hdmkq")
+head = ExtResource("3_k5s8g")
+shield = ExtResource("5_g8xx8")
+weapon = ExtResource("6_hdmkq")
+metadata/_custom_type_script = "uid://c00chyv6jtl7b"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://cef5smra746qk"]
+
+[ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="1_r6iaj"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="2_2m2o0"]
+
+[resource]
+script = ExtResource("1_r6iaj")
+end_in = "Nothing"
+metadata/_custom_type_script = "uid://qpouciwxr7ym"

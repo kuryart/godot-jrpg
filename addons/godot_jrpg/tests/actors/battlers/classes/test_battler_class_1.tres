@@ -2,6 +2,24 @@
 
 [ext_resource type="Script" uid="uid://coq8anpgbky31" path="res://addons/godot_jrpg/resources/formulas/stats/formula_stat_growth_pokemon.gd" id="1_0pq37"]
 [ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://addons/godot_jrpg/resources/actors/battlers/classes/player_class.gd" id="2_7hskb"]
+[ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="3_3o4tx"]
+[ext_resource type="Script" uid="uid://ck34vnnmgp4fr" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/accessory.gd" id="3_fhcej"]
+[ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="4_cgrhw"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="4_nc6vj"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="5_d4exq"]
+[ext_resource type="Script" uid="uid://dngvhngdndfxx" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/armor.gd" id="5_exqdm"]
+[ext_resource type="Script" uid="uid://pdcs5gv200d5" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.gd" id="5_ndnh0"]
+[ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="6_n7bxs"]
+[ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_on_attack.gd" id="6_ttriy"]
+[ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="7_316c8"]
+[ext_resource type="Script" uid="uid://bur5etll5sgps" path="res://addons/godot_jrpg/resources/stuff/equippable/head/head.gd" id="7_rgvu4"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="7_xv2ev"]
+[ext_resource type="Script" uid="uid://dm5t5sv617qda" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.gd" id="8_yjsgi"]
+[ext_resource type="Script" uid="uid://b634qeky1f75i" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/shield.gd" id="10_mx0w2"]
+[ext_resource type="Script" uid="uid://dc8xx5obav1ec" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/weapon.gd" id="12_kmoyx"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="14_ttriy"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="15_nc6vj"]
+[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_param.gd" id="15_rgvu4"]
 
 [sub_resource type="Resource" id="Resource_pn2bk"]
 script = ExtResource("1_0pq37")
@@ -35,14 +53,117 @@ metadata/_custom_type_script = "uid://coq8anpgbky31"
 script = ExtResource("1_0pq37")
 metadata/_custom_type_script = "uid://coq8anpgbky31"
 
+[sub_resource type="Resource" id="Resource_ojov4"]
+script = ExtResource("4_nc6vj")
+name = "HP"
+base_value = 5
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_fib80"]
+script = ExtResource("5_d4exq")
+hp = SubResource("Resource_ojov4")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_45ca5"]
+script = ExtResource("7_xv2ev")
+name = "Wind"
+metadata/_custom_type_script = "uid://x086btbocuul"
+
+[sub_resource type="Resource" id="Resource_3xam4"]
+script = ExtResource("6_ttriy")
+element = SubResource("Resource_45ca5")
+metadata/_custom_type_script = "uid://dv7c0njyh764x"
+
+[sub_resource type="Resource" id="Resource_gec8p"]
+script = ExtResource("15_nc6vj")
+entries = Array[ExtResource("14_ttriy")]([SubResource("Resource_3xam4")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[sub_resource type="Resource" id="Resource_cxnxv"]
+script = ExtResource("3_fhcej")
+traits = SubResource("Resource_gec8p")
+stats_modifiers = SubResource("Resource_fib80")
+display_name = "Test - Item 1"
+description = "Test - item 1"
+price = 10
+metadata/_custom_type_script = "uid://ck34vnnmgp4fr"
+
+[sub_resource type="Resource" id="Resource_fl4or"]
+script = ExtResource("3_3o4tx")
+item = SubResource("Resource_cxnxv")
+name = "Accessory"
+metadata/_custom_type_script = "uid://lxtk6udhgpkx"
+
+[sub_resource type="Resource" id="Resource_7uwue"]
+script = ExtResource("5_exqdm")
+metadata/_custom_type_script = "uid://dngvhngdndfxx"
+
+[sub_resource type="Resource" id="Resource_tyl8h"]
+script = ExtResource("4_cgrhw")
+item = SubResource("Resource_7uwue")
+name = "Armor"
+metadata/_custom_type_script = "uid://jwdpbp37yjue"
+
+[sub_resource type="Resource" id="Resource_5ckqd"]
+script = ExtResource("7_rgvu4")
+metadata/_custom_type_script = "uid://bur5etll5sgps"
+
+[sub_resource type="Resource" id="Resource_0lrve"]
+script = ExtResource("5_ndnh0")
+item = SubResource("Resource_5ckqd")
+name = "Head"
+metadata/_custom_type_script = "uid://pdcs5gv200d5"
+
+[sub_resource type="Resource" id="Resource_oe04g"]
+script = ExtResource("10_mx0w2")
+metadata/_custom_type_script = "uid://b634qeky1f75i"
+
+[sub_resource type="Resource" id="Resource_2gqu5"]
+script = ExtResource("7_316c8")
+item = SubResource("Resource_oe04g")
+name = "Shield"
+metadata/_custom_type_script = "uid://sty40x7p8w2t"
+
+[sub_resource type="Resource" id="Resource_818ik"]
+script = ExtResource("12_kmoyx")
+metadata/_custom_type_script = "uid://dc8xx5obav1ec"
+
+[sub_resource type="Resource" id="Resource_x1dha"]
+script = ExtResource("8_yjsgi")
+item = SubResource("Resource_818ik")
+name = "Weapon"
+metadata/_custom_type_script = "uid://dm5t5sv617qda"
+
+[sub_resource type="Resource" id="Resource_0pdnm"]
+script = ExtResource("6_n7bxs")
+accessory = SubResource("Resource_fl4or")
+armor = SubResource("Resource_tyl8h")
+head = SubResource("Resource_0lrve")
+shield = SubResource("Resource_2gqu5")
+weapon = SubResource("Resource_x1dha")
+metadata/_custom_type_script = "uid://c00chyv6jtl7b"
+
 [sub_resource type="Resource" id="Resource_1omdc"]
 script = ExtResource("1_0pq37")
 metadata/_custom_type_script = "uid://coq8anpgbky31"
+
+[sub_resource type="Resource" id="Resource_ttriy"]
+script = ExtResource("15_rgvu4")
+value_multiply = 1.2
+value_add = 15
+metadata/_custom_type_script = "uid://cuqvw14m0anvs"
+
+[sub_resource type="Resource" id="Resource_krq5h"]
+script = ExtResource("15_nc6vj")
+entries = Array[ExtResource("14_ttriy")]([SubResource("Resource_ttriy")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
 
 [resource]
 script = ExtResource("2_7hskb")
 name = "test_class_1"
 description = "test class 1"
+slots = SubResource("Resource_0pdnm")
+traits = SubResource("Resource_krq5h")
 hp_growth = SubResource("Resource_4nhf3")
 mp_growth = SubResource("Resource_vct1q")
 attack_growth = SubResource("Resource_3vk1f")

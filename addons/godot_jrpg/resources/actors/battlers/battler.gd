@@ -20,6 +20,8 @@ class_name Battler extends Actor
 		current_mp = clamp(val, 0, stats.mp.get_value())
 		if mp_changed.get_connections().size() > 0:
 			mp_changed.emit(current_mp)
+## The [TraitList] for the battler.
+@export var traits: TraitList
 
 @warning_ignore_start("unused_signal")
 ## Used to change values in [Bar] and [BarLabel].
@@ -45,11 +47,12 @@ func update_status() -> void:
 ## Checks if battler is alive.
 func is_alive() -> bool:
 	if not is_instance_valid(self) or is_queued_for_deletion(): return false
-	return not status.any(func(s): return s is StatusDead)
+	return not status.any(func(s: Status): return s.is_dead_state)
 
 ## Checks if battler is stunned.
 func is_stunned() -> bool:
-	return status.any(func(s): return s is StatusFrozen or s is StatusParalyzed)
+	#return status.any(func(s): return s is StatusFrozen or s is StatusParalyzed)
+	return false
 
 ## Makes the battler take damage
 func take_damage(damage: int) -> void:

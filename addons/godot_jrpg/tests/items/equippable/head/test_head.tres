@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Head" format=3 uid="uid://dt7orskndguhh"]
+
+[ext_resource type="Script" uid="uid://bur5etll5sgps" path="res://addons/godot_jrpg/resources/stuff/equippable/head/head.gd" id="1_sdfcc"]
+
+[resource]
+script = ExtResource("1_sdfcc")
+metadata/_custom_type_script = "uid://bur5etll5sgps"

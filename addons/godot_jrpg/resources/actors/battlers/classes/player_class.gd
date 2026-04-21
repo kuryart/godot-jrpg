@@ -6,6 +6,10 @@ class_name PlayerClass extends Resource
 @export var name: String
 ## The class description.
 @export_multiline var description: String
+## The slots of equipment of the player
+@export var slots: EquipmentSlots
+## The list of traits for the class
+@export var traits: TraitList
 
 @export_group("Growth Methods")
 ## The progression by level for hp.

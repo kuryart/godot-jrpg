@@ -8,6 +8,7 @@ static var instance: Director
 @export var event_signals: EventSignals
 
 @export var party: Party
+@export var steps_walked: int = 0
 
 # Cenas
 @export_category("Scenes")

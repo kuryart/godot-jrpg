@@ -20,7 +20,7 @@ func resolve(engine: BattleEngine):
 		if not can_actor_act(action): continue
 		if not validate_targets(action, engine): continue
 		resolve_pre_action_effects()
-		engine.check_for_death()
+		engine.validate_deaths()
 		
 		# --- Action ---
 		engine.battle_signals.change_player_face_emited.emit(action)
