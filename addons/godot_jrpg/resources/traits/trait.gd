@@ -10,3 +10,7 @@ enum TYPE {
 	}
 
 var type: TYPE
+
+func _to_string() -> String:
+	var type_name = TYPE.keys()[type]
+	return "[Trait:%s]" % type_name

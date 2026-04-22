@@ -1,6 +1,6 @@
 ## Handles Page 2: Parameter Settings - Normal Parameters
 ## This trait defines multiplicative modifiers for core actor/enemy stats.
-class_name TraitParam extends TraitValue
+class_name TraitStat extends TraitValue
 
 ## The core statistic to be modified.
 @export var stat_name: StringName = &"attack"
@@ -16,3 +16,6 @@ func _init() -> void:
 
 func apply() -> StatModifier:
 	return StatModifier.new(&"trait_passive", value_multiply, value_add, -1)
+
+func _to_string() -> String:
+	return "[Trait:STAT | %s x%.2f +%d]" % [stat_name, value_multiply, value_add]

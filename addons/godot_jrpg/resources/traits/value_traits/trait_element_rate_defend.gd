@@ -1,5 +1,5 @@
 ## This trait defines how much damage is taken from a specific element.
-class_name TraitElementRate extends TraitValue
+class_name TraitElementRateDefend extends TraitValue
 
 ## Reference to your custom Element Resource (e.g., Fire.tres, Ice.tres)
 @export var element: Element
@@ -14,8 +14,12 @@ func _init() -> void:
 	type = TYPE.DAMAGE_RECEIVED
 
 ## Proccess the element rate if the element is the same.
-func calculate(target_element: Element, damage: float) -> float:
+func apply(target_element: Element, damage: float) -> float:
 	if target_element == element:
 		return damage * rate
 	
 	return damage
+
+func _to_string() -> String:
+	var element_name = element.name if element else "None"
+	return "[Trait:RESISTANCE | %s x%.2f]" % [element_name, rate]

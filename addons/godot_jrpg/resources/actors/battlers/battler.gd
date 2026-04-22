@@ -22,11 +22,16 @@ class_name Battler extends Actor
 			mp_changed.emit(current_mp)
 ## The [TraitList] for the battler.
 @export var traits: TraitList
+## The class used to collect all traits in player, class, status, equip, etc.
+var trait_aggregator: TraitAggregator
 
 @warning_ignore_start("unused_signal")
 ## Used to change values in [Bar] and [BarLabel].
 signal hp_changed
 signal mp_changed
+
+func _init() -> void:
+	trait_aggregator = TraitAggregator.new(self)
 
 ## Adds a status to battler.
 func add_status(_status: Status) -> void:

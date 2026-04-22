@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://dc8xx5obav1ec" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/weapon.gd" id="12_kmoyx"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="14_ttriy"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="15_nc6vj"]
-[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_param.gd" id="15_rgvu4"]
+[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="15_rgvu4"]
 
 [sub_resource type="Resource" id="Resource_pn2bk"]
 script = ExtResource("1_0pq37")

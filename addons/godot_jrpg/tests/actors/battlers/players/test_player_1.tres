@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="6_sn8uf"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_5djld"]
 [ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="9_k5m06"]
-[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate.gd" id="10_u4pjs"]
+[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate_defend.gd" id="10_k5m06"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="13_nqs0a"]
 
 [sub_resource type="Resource" id="Resource_nf7ob"]
@@ -76,7 +76,7 @@ luck = SubResource("Resource_krbav")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [sub_resource type="Resource" id="Resource_wfock"]
-script = ExtResource("10_u4pjs")
+script = ExtResource("10_k5m06")
 element = ExtResource("9_k5m06")
 rate = 1.2
 metadata/_custom_type_script = "uid://bj3nxpjiumj8i"

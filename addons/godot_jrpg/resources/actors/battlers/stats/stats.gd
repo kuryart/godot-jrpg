@@ -1,5 +1,6 @@
 class_name Stats extends Resource
 
+@export_group("Main Stats")
 ## The stat used for HP.
 @export var hp: Stat
 ## The stat used for MP.
@@ -18,6 +19,22 @@ class_name Stats extends Resource
 @export var evasion: Stat
 ## The stat used for Luck.
 @export var luck: Stat
+
+@export_group("Other Stats")
+## The hp regeneration rate
+@export var hp_regen: Stat
+## The mp regeneration rate
+@export var mp_regen: Stat
+## The critical chance rate
+@export var critical: Stat
+## The critical dodge chance rate
+@export var critical_dodge: Stat
+## The magical dodge chance rate
+@export var magical_dodge: Stat
+## The reflection (skill) chance rate
+@export var reflection: Stat
+## The counter-attack (attack) chance rate
+@export var counter_attack: Stat
 
 ## Internal cache for searches by name.
 var stat_map: Dictionary = {}
