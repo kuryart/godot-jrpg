@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bnr74cxwnsy6b" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/accessory_type.gd" id="3_wijvd"]
 [ext_resource type="Resource" uid="uid://bpcf1ruapju8w" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.tres" id="5_ck0dc"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="6_ggxx1"]
-[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_param.gd" id="7_f3jkn"]
+[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="7_f3jkn"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="9_5vlrj"]
 [ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="10_tu7dj"]
 [ext_resource type="Script" uid="uid://dngvhngdndfxx" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/armor.gd" id="11_na47u"]

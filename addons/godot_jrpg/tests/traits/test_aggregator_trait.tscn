@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ueb25w3o01uf"]
+
+[ext_resource type="Script" uid="uid://do3p8str0up6w" path="res://addons/godot_jrpg/tests/traits/test_aggregator_trait.gd" id="1_dev6s"]
+[ext_resource type="Resource" uid="uid://xcf0l6c5vwkg" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_1.tres" id="2_b2scd"]
+[ext_resource type="Resource" uid="uid://boliaxia5nxax" path="res://addons/godot_jrpg/tests/actors/battlers/enemies/test_enemy_1/test_enemy_1.tres" id="3_5wfea"]
+
+[node name="TestTraitAggregator" type="Node" unique_id=1226984280]
+script = ExtResource("1_dev6s")
+battler_player = ExtResource("2_b2scd")
+battler_enemy = ExtResource("3_5wfea")

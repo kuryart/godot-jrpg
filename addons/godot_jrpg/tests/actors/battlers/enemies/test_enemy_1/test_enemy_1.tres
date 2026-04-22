@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="3_w6an3"]
 [ext_resource type="Texture2D" uid="uid://dkjir2ox7rf1e" path="res://addons/godot_jrpg/assets/sprites/actors/enemies/enemy-goblin.png" id="3_yfqnd"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="4_k2p5p"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_jgrbp"]
+[ext_resource type="Script" uid="uid://dfck85v6aerpq" path="res://addons/godot_jrpg/resources/traits/chance_traits/trait_status_chance_attack.gd" id="9_fkgf5"]
+[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="10_fkgf5"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="10_omfch"]
 
 [sub_resource type="Resource" id="Resource_ha3q0"]
 script = ExtResource("1_48ydv")
@@ -17,68 +21,82 @@ script = ExtResource("1_yhfdy")
 brain = SubResource("Resource_ha3q0")
 metadata/_custom_type_script = "uid://bpmohnsv7yfs6"
 
-[sub_resource type="Resource" id="Resource_x7jgy"]
+[sub_resource type="Resource" id="Resource_cywwm"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_vmhau"]
+[sub_resource type="Resource" id="Resource_qjwl1"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_w6an3"]
+[sub_resource type="Resource" id="Resource_bkfwp"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_kopul"]
+[sub_resource type="Resource" id="Resource_i87i4"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_fw4qq"]
+[sub_resource type="Resource" id="Resource_tfxke"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_23sea"]
+[sub_resource type="Resource" id="Resource_1v1w1"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_1s1si"]
+[sub_resource type="Resource" id="Resource_amcxx"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_kppqb"]
+[sub_resource type="Resource" id="Resource_ppbf5"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_2lnoi"]
+[sub_resource type="Resource" id="Resource_gh4b0"]
 script = ExtResource("2_vmhau")
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_gfeoi"]
+[sub_resource type="Resource" id="Resource_84mw0"]
 script = ExtResource("3_w6an3")
-hp = SubResource("Resource_fw4qq")
-mp = SubResource("Resource_kppqb")
-attack = SubResource("Resource_vmhau")
-defense = SubResource("Resource_w6an3")
-intelligence = SubResource("Resource_23sea")
-speed = SubResource("Resource_2lnoi")
-accuracy = SubResource("Resource_x7jgy")
-evasion = SubResource("Resource_kopul")
-luck = SubResource("Resource_1s1si")
+hp = SubResource("Resource_tfxke")
+mp = SubResource("Resource_ppbf5")
+attack = SubResource("Resource_qjwl1")
+defense = SubResource("Resource_bkfwp")
+intelligence = SubResource("Resource_1v1w1")
+speed = SubResource("Resource_gh4b0")
+accuracy = SubResource("Resource_cywwm")
+evasion = SubResource("Resource_i87i4")
+luck = SubResource("Resource_amcxx")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_omfch"]
+script = ExtResource("9_fkgf5")
+chance = 100.0
+status = ExtResource("10_fkgf5")
+metadata/_custom_type_script = "uid://dfck85v6aerpq"
+
+[sub_resource type="Resource" id="Resource_qpd36"]
+script = ExtResource("10_omfch")
+entries = Array[ExtResource("8_jgrbp")]([SubResource("Resource_omfch")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
 
 [resource]
 script = ExtResource("1_6s3k7")
 sprite = ExtResource("3_yfqnd")
-stats = SubResource("Resource_gfeoi")
+stats = SubResource("Resource_84mw0")
 controller = SubResource("Resource_yfqnd")
+current_hp = 12
+current_mp = 12
+traits = SubResource("Resource_qpd36")
 name = "test_enemy_1"
 metadata/_custom_type_script = "uid://fonb13nkm4yv"

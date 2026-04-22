@@ -1,34 +1,75 @@
 class_name TraitAggregator extends Resource
 
-var owner: Battler
+## Godot don't allows nested typed collection, but the right signature is 
+## Dictionary[Trait.TYPE, Array[Traits]].
+var traits_by_type: Dictionary = {}
+var stat_multipliers: Dictionary = {}
+var stat_sums: Dictionary = {}
+var flags: Dictionary = {}
+var battler: Battler
 var sources: Array[TraitList] = []
 
-func _init(_owner: Battler) -> void:
-	owner = _owner
+func _init(_battler: Battler) -> void:
+	battler = _battler
+	clear_cache()
+
+func refresh():
+	clear_cache()
+	traits_by_type = collect_and_sort_traits()
+	process_stat_multipliers()
+
+func clear_cache() -> void:
+	traits_by_type.clear()
+	stat_multipliers.clear()
+	flags.clear()
+	for type_key in Trait.TYPE.values():
+		traits_by_type[type_key] = []
 
 func collect_and_sort_traits() -> Dictionary:
 	var sorted_traits: Dictionary = {}
 	for type_key in Trait.TYPE.values():
 		sorted_traits[type_key] = []
-	
 	prepare_sources()
-	
 	for list in sources:
+		if list == null: 
+			continue
 		for t in list.entries:
 			sorted_traits[t.type].append(t)
 				
 	return sorted_traits
 
 func prepare_sources() -> void:
-	if owner is Player:
+	if battler is Player:
 		sources = [
-			owner.traits,
-			owner.player_class.traits,
-			owner.player_class.slots.weapon.traits,
-			owner.player_class.slots.armor.traits,
-			owner.player_class.slots.accessory.traits,
-			owner.player_class.slots.head.traits,
-			owner.player_class.slots.shield.traits
+			battler.player_class.traits,
+			battler.player_class.slots.weapon.item.traits,
+			battler.player_class.slots.armor.item.traits,
+			battler.player_class.slots.accessory.item.traits,
+			battler.player_class.slots.head.item.traits,
+			battler.player_class.slots.shield.item.traits
 		]
-	elif owner is Enemy:
-		sources = [owner.traits]
+	sources.append(battler.traits)
+	for s in battler.status:
+		sources.append(s.traits)
+
+func process_stat_multipliers() -> void:
+	var list = traits_by_type.get(Trait.TYPE.STAT, [])
+	for _trait in list:
+		if _trait is TraitStat:
+			var stat_name = _trait.stat_name
+			var current_multiplier = stat_multipliers.get(stat_name, 1.0)
+			var current_sum = stat_sums.get(stat_name, 0)
+			stat_multipliers[stat_name] = current_multiplier * _trait.value_multiply
+			stat_sums[stat_name] = current_sum + _trait.value_add
+
+#---------------
+#--- FACADES ---
+#---------------
+func get_stat_multiplier(stat_name: StringName) -> float:
+	return stat_multipliers.get(stat_name, 1.0)
+	
+func get_element_resistance(element_id):
+	pass
+
+func get_damage_modifier(type):
+	pass
