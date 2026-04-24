@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d37liuqu78fwj"]
+
+[ext_resource type="Script" uid="uid://bv6eri7u646de" path="res://addons/godot_jrpg/nodes/events/event.gd" id="1_g08g4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a2skq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wocrl"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8eb8"]
+size = Vector2(32, 32)
+
+[node name="Event" type="CharacterBody2D" unique_id=761686257]
+script = ExtResource("1_g08g4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=308051993]
+sprite_frames = SubResource("SpriteFrames_a2skq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=933550529]
+shape = SubResource("RectangleShape2D_wocrl")
+
+[node name="EventArea" type="Area2D" parent="." unique_id=1528874607]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EventArea" unique_id=1022258660]
+shape = SubResource("RectangleShape2D_j8eb8")
+
+[node name="EventBus" type="Node" parent="." unique_id=412273184]
