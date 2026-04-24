@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dbuqdifn4p3xd"]
-
-[ext_resource type="Script" uid="uid://jpeqi1pb7q3t" path="res://addons/godot_jrpg/resources/traits/trait_aggregator.gd" id="1_l1phk"]
-
-[node name="TraitAggregator" type="Node" unique_id=1964792716]
-script = ExtResource("1_l1phk")

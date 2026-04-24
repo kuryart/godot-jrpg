@@ -27,8 +27,8 @@ InputManager="*uid://l03e2mmhgbjs"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=352
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
