@@ -6,6 +6,14 @@
 
 Godot JRPG is a framework for building 2D JRPGs (Japanese Role Playing Games) in Godot game engine, inspired by RPG Maker.
 
+## Screenshots
+
+![](addons/godot_jrpg/assets/screenshots/ss01.png)
+![](addons/godot_jrpg/assets/screenshots/ss02.png)
+![](addons/godot_jrpg/assets/screenshots/ss03.png)
+![](addons/godot_jrpg/assets/screenshots/ss04.png)
+![](addons/godot_jrpg/assets/screenshots/ss05.png)
+
 ## What Godot JRPG is?
 
 - A framework build in Godot game engine for building classic 2D JRPGs like old Final Fantasy series;
