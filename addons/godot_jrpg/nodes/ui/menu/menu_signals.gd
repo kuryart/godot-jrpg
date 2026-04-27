@@ -1,0 +1,3 @@
+class_name MenuSignals extends Resource
+
+signal open_menu_status_emited

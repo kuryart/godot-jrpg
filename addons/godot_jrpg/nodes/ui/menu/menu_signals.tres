@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MenuSignals" format=3 uid="uid://bjcik50rg61bm"]
+
+[ext_resource type="Script" uid="uid://mrlx0rsgouct" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.gd" id="1_vk42h"]
+
+[resource]
+script = ExtResource("1_vk42h")
+metadata/_custom_type_script = "uid://mrlx0rsgouct"

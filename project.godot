@@ -21,19 +21,26 @@ buses/default_bus_layout="uid://8amf0haepi4a"
 
 [autoload]
 
-VFXManager="*uid://cgkr7tsoxq5kj"
 Audio="*uid://dkod14f143sv2"
+EventRunner="*uid://kxo4x8hx1iyn"
+GameManager="*uid://3ddu8s8blwil"
 InputManager="*uid://l03e2mmhgbjs"
+MenuManager="*uid://0s7bgl0inxnc"
+UI="*uid://cxbfphub3ll7l"
+VFXManager="*uid://cgkr7tsoxq5kj"
+DialogueManager="*uid://c3rodes2l3gxb"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=352
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_jrpg/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
 [input]
 

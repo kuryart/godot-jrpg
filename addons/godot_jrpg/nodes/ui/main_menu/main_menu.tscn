@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://daeh6hcpb60r1"]
 
 [ext_resource type="Script" uid="uid://boovhtqcogpmv" path="res://addons/godot_jrpg/nodes/ui/main_menu/main_menu.gd" id="1_ml1r0"]
+[ext_resource type="Texture2D" uid="uid://bd8r1fphy24yi" path="res://addons/godot_jrpg/assets/sprites/title/battleback6.png" id="2_527yb"]
+[ext_resource type="PackedScene" uid="uid://cb74nrxym2kse" path="res://addons/godot_jrpg/nodes/maps/map_0001.tscn" id="2_pdef1"]
 
 [node name="MainMenu" type="Control" unique_id=1045469098]
 layout_mode = 3
@@ -10,3 +12,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ml1r0")
+first_map = ExtResource("2_pdef1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2032050699]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_527yb")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=34822823]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 128.0
+offset_right = 365.0
+offset_bottom = 168.0
+
+[node name="NewGame" type="Button" parent="VBoxContainer" unique_id=864098480]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="VBoxContainer" unique_id=1018804275]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=1670525448]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=686371712]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"

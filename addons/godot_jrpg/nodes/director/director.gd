@@ -2,8 +2,6 @@ class_name Director extends Node
 
 static var instance: Director
 
-@onready var runner: EventRunner = $EventRunner
-
 @export var is_testing: bool = true
 @export var event_signals: EventSignals
 
@@ -33,7 +31,15 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	if is_testing:
 		print("[Director] Modo de teste ativado")
-		run_test_flow()
+		run_flow()
+		#run_test_flow()
+
+func run_flow():
+	var flow = CommandList.new()
+	# Splash
+	flow.add_command(CommandChangeScene.create(splash_screen))
+	flow.add_command(CommandWait.create(2.0))
+	await EventRunner.run(flow)
 
 func run_test_flow():
 	var flow = CommandList.new()
@@ -50,7 +56,7 @@ func run_test_flow():
 	var battle_settings = load("uid://caggj6rpows4p")
 	flow.add_command(CommandStartBattle.create(battle_settings))
 
-	await runner.run(flow)
+	await EventRunner.run(flow)
 
 func replace_scene(new_scene: Node):
 	if current_scene:

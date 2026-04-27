@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://0s7bgl0inxnc"]
+
+[ext_resource type="Script" uid="uid://bo83b2i6pipab" path="res://addons/godot_jrpg/nodes/autoloads/menu_manager.gd" id="1_47e7o"]
+
+[node name="MenuManager" type="Node" unique_id=1394474807]
+script = ExtResource("1_47e7o")

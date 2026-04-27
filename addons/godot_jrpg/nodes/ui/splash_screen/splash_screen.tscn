@@ -1,12 +1,42 @@
-[gd_scene format=3 uid="uid://dpaki785pyawl"]
+[gd_scene format=3 uid="uid://cym3qtfsj8s75"]
 
-[ext_resource type="Script" uid="uid://dymed0uw0h7ig" path="res://addons/godot_jrpg/nodes/ui/splash_screen/splash_screen.gd" id="1_yhkg5"]
+[ext_resource type="Script" uid="uid://c6q3govpmx55i" path="res://addons/godot_jrpg/nodes/ui/splash_screen/splash_screen.gd" id="1_bj02i"]
+[ext_resource type="Texture2D" uid="uid://cw5kac0xqswxl" path="res://addons/godot_jrpg/assets/sprites/logo/logo.png" id="2_px5fl"]
+[ext_resource type="PackedScene" uid="uid://daeh6hcpb60r1" path="res://addons/godot_jrpg/nodes/ui/main_menu/main_menu.tscn" id="2_y70si"]
 
-[node name="SplashScreen" type="Control" unique_id=1323021285]
+[sub_resource type="LabelSettings" id="LabelSettings_dnh2b"]
+font_size = 42
+
+[node name="SplashScreen" type="Control" unique_id=2045559559]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yhkg5")
+script = ExtResource("1_bj02i")
+title_scene = ExtResource("2_y70si")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=219872027]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 352.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=228189449]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 32.0
+offset_right = 432.0
+offset_bottom = 232.0
+texture = ExtResource("2_px5fl")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=342194573]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 247.0
+offset_right = 412.0
+offset_bottom = 308.0
+text = "KuryArt"
+label_settings = SubResource("LabelSettings_dnh2b")
