@@ -1,0 +1,147 @@
+## A line of dialogue returned from [code]DialogueManager[/code].
+class_name DialogueLine extends RefCounted
+
+
+## The ID of this line
+var id: String
+
+## The internal type of this dialogue object. One of [code]TYPE_DIALOGUE[/code] or [code]TYPE_MUTATION[/code]
+var type: String = DMConstants.TYPE_DIALOGUE
+
+## The next line ID after this line.
+var next_id: String = ""
+
+## The character name that is saying this line.
+var character: String = ""
+
+## A dictionary of variable replacements fo the character name. Generally for internal use only.
+var character_replacements: Array[Dictionary] = []
+
+## The dialogue being spoken.
+var text: String = ""
+
+## A dictionary of replacements for the text. Generally for internal use only.
+var text_replacements: Array[Dictionary] = []
+
+## The key to use for translating this line.
+var static_id: String = ""
+
+## A map for speed changes when typing out the dialogue text.
+var speeds: Dictionary = {}
+
+## A map of any mutations to run while typing out the dialogue text.
+var inline_mutations: Array[Array] = []
+
+## A list of responses attached to this line of dialogue.
+var responses: Array = []
+
+## A list of lines that are spoken simultaneously with this one.
+var concurrent_lines: Array[DialogueLine] = []
+
+## A list of any extra game states to check when resolving variables and mutations.
+var extra_game_states: Array = []
+
+## How long to show this line before advancing to the next. Either a float (of seconds), [code]"auto"[/code], or [code]null[/code].
+var time: String = ""
+
+## Any #tags that were included in the line
+var tags: PackedStringArray = []
+
+## The mutation details if this is a mutation line (where [code]type == TYPE_MUTATION[/code]).
+var mutation: Dictionary = {}
+
+
+func _init(data: Dictionary = {}) -> void:
+	if data.size() > 0:
+		id = data.id
+		next_id = data.next_id
+		type = data.type
+		extra_game_states = data.get("extra_game_states", [])
+
+		match type:
+			DMConstants.TYPE_DIALOGUE:
+				character = data.character
+				character_replacements = data.get("character_replacements", [] as Array[Dictionary])
+				text = data.text
+				text_replacements = data.get("text_replacements", [] as Array[Dictionary])
+				static_id = data.get("static_id", data.text)
+				speeds = data.get("speeds", {})
+				inline_mutations = data.get("inline_mutations", [] as Array[Array])
+				time = data.get("time", "")
+				tags = data.get("tags", [])
+				concurrent_lines = data.get("concurrent_lines", [] as Array[DialogueLine])
+
+			DMConstants.TYPE_MUTATION:
+				mutation = data.mutation
+
+
+## Reload this line from it's resource.
+func refresh() -> void:
+	if not "@" in id:
+		push_warning(DMConstants.translate("Cannot refresh dialogue line because its ID is missing a resource UID."))
+		return
+
+	var resource: DialogueResource = load("uid://%s" % id.split("@")[0])
+	var next_dialogue_line: DialogueLine = await resource.get_next_dialogue_line(next_id, extra_game_states)
+	type = next_dialogue_line.type
+	next_id = next_dialogue_line.next_id
+	character = next_dialogue_line.character
+	character_replacements = next_dialogue_line.character_replacements
+	text = next_dialogue_line.text
+	text_replacements = next_dialogue_line.text_replacements
+	static_id = next_dialogue_line.static_id
+	speeds = next_dialogue_line.speeds
+	inline_mutations = next_dialogue_line.inline_mutations
+	responses = next_dialogue_line.responses
+	concurrent_lines = next_dialogue_line.concurrent_lines
+	extra_game_states = next_dialogue_line.extra_game_states
+	time = next_dialogue_line.time
+	tags = next_dialogue_line.tags
+	mutation = next_dialogue_line.mutation
+
+
+## Restore a [DialogueLine] from a [code]to_serialized[/code] string, providing any extra
+## game states that would have been used fetch the line in the first place.
+static func new_from_serialized(serialized_data: String, extra_game_states_: Array = []) -> DialogueLine:
+	var bits: PackedStringArray = serialized_data.split("=>")
+	var id_bits: PackedStringArray = bits[0].split("@")
+	var resource: DialogueResource = load("uid://%s" % id_bits[0])
+	var line: DialogueLine = await resource.get_next_dialogue_line(id_bits[1], extra_game_states_)
+	line.next_id = bits[1]
+	return line
+
+
+## Serialize this [DialogueLine] to a string. Restore with
+## [code]DialogueLine.new_from_serialized(...)[/code].
+func to_serialized() -> String:
+	return "=>".join([id, next_id])
+
+
+func _to_string() -> String:
+	match type:
+		DMConstants.TYPE_DIALOGUE:
+			return "<DialogueLine character=\"%s\" text=\"%s\">" % [character, text]
+		DMConstants.TYPE_MUTATION:
+			return "<DialogueLine mutation>"
+	return ""
+
+
+## Check if a dialogue line has a given tag.
+func has_tag(tag_name: String) -> bool:
+	if tags.has(tag_name):
+		return true
+	else:
+		var wrapped: String = "%s=" % tag_name
+		for t: String in tags:
+			if t.begins_with(wrapped):
+				return true
+	return false
+
+
+## Get the value of a tag if the tag is in the form of [code]tag=value[/code]
+func get_tag_value(tag_name: String) -> String:
+	var wrapped: String = "%s=" % tag_name
+	for t: String in tags:
+		if t.begins_with(wrapped):
+			return t.replace(wrapped, "").strip_edges()
+	return ""

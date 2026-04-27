@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bpmohnsv7yfs6" path="res://addons/godot_jrpg/resources/controllers/enemy_ai_controller.gd" id="1_yhfdy"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="2_vmhau"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="3_w6an3"]
-[ext_resource type="Texture2D" uid="uid://dkjir2ox7rf1e" path="res://addons/godot_jrpg/assets/sprites/actors/enemies/enemy-goblin.png" id="3_yfqnd"]
+[ext_resource type="Texture2D" uid="uid://ck4la48vgpefh" path="res://addons/godot_jrpg/assets/sprites/actors/enemies/enemy-ghost.png" id="4_fkgf5"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="4_k2p5p"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_jgrbp"]
 [ext_resource type="Script" uid="uid://dfck85v6aerpq" path="res://addons/godot_jrpg/resources/traits/chance_traits/trait_status_chance_attack.gd" id="9_fkgf5"]
@@ -92,7 +92,7 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 
 [resource]
 script = ExtResource("1_6s3k7")
-sprite = ExtResource("3_yfqnd")
+sprite = ExtResource("4_fkgf5")
 stats = SubResource("Resource_84mw0")
 controller = SubResource("Resource_yfqnd")
 current_hp = 12

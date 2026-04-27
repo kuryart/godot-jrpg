@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cyias6dpfredp" path="res://addons/godot_jrpg/nodes/battle/battle_ui.gd" id="6_ai006"]
 [ext_resource type="Script" uid="uid://cxvldb77hafxl" path="res://addons/godot_jrpg/resources/formulas/critical_chance/formula_critical_chance_pokemon.gd" id="7_85kgi"]
 [ext_resource type="PackedScene" uid="uid://bakdaco2wh4pb" path="res://addons/godot_jrpg/nodes/battle/battle_enemy_ui.tscn" id="7_e54bw"]
-[ext_resource type="Texture2D" uid="uid://d52xi71py1jf" path="res://addons/godot_jrpg/assets/sprites/battle/backgrounds/back-desert-005.jpg" id="7_khqb2"]
 [ext_resource type="Script" uid="uid://c58pat03iu43k" path="res://addons/godot_jrpg/resources/formulas/critical_damage/formula_critical_damage_basic.gd" id="8_uw4g8"]
 [ext_resource type="PackedScene" uid="uid://bg5usakaeelmf" path="res://addons/godot_jrpg/nodes/battle/battle_player_ui.tscn" id="9_pe87g"]
 [ext_resource type="Script" uid="uid://oe5vgr0ypqrg" path="res://addons/godot_jrpg/nodes/battle/battle_menu_items.gd" id="10_et2ga"]
@@ -62,6 +61,7 @@ critical_damage_formula = SubResource("Resource_00gwn")
 [node name="BattleUI" type="Control" parent="." unique_id=689135276]
 layout_mode = 3
 anchors_preset = 0
+scale = Vector2(0.5, 0.5)
 script = ExtResource("6_ai006")
 battle_signals = ExtResource("4_nterj")
 enemy_scene = ExtResource("7_e54bw")
@@ -72,7 +72,6 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 1288.0
 offset_bottom = 736.0
-texture = ExtResource("7_khqb2")
 expand_mode = 1
 
 [node name="Enemies" type="Control" parent="BattleUI" unique_id=807974783]

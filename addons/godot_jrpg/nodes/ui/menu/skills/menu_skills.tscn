@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dtjni76nvmilg"]
+
+[ext_resource type="Script" uid="uid://b77ixoljirr5u" path="res://objects/menu/menu_skills.gd" id="1_5qqe7"]
+[ext_resource type="Theme" uid="uid://dpth8apo6i3oy" path="res://data/ui/theme.tres" id="1_wp08o"]
+
+[node name="MenuSkills" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5qqe7")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.1035156e-05
+offset_right = 122.1062
+offset_bottom = 0.98516846
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.91291237, 0.9986337)
+theme = ExtResource("1_wp08o")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 282.0
+offset_right = 692.0
+offset_bottom = 349.0
+theme_override_font_sizes/font_size = 48
+text = "Skills"

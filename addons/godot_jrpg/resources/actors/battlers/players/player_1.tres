@@ -54,7 +54,6 @@ script = ExtResource("1_xmx45")
 level = null
 xp = null
 xp_formula = SubResource("Resource_dyfle")
-equip = null
 stats = SubResource("Resource_e7fee")
 status = null
 current_hp = null

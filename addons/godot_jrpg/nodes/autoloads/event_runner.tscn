@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://kxo4x8hx1iyn"]
+
+[ext_resource type="Script" uid="uid://drvm3js2dq3rs" path="res://addons/godot_jrpg/nodes/autoloads/event_runner.gd" id="1_rgskj"]
+
+[node name="EventRunner" type="Node" unique_id=1840733369]
+script = ExtResource("1_rgskj")

@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://di6yaysurqocs" path="res://addons/godot_jrpg/nodes/director/director.gd" id="1_xxdyr"]
 [ext_resource type="Resource" uid="uid://biw2y7wsqeuhy" path="res://addons/godot_jrpg/resources/events/event_signals.tres" id="2_4u2wq"]
-[ext_resource type="Script" uid="uid://drvm3js2dq3rs" path="res://addons/godot_jrpg/nodes/events/event_runner.gd" id="2_fv1o4"]
 [ext_resource type="Resource" uid="uid://v6gnmntcrn3t" path="res://addons/godot_jrpg/tests/actors/test_party.tres" id="3_756xr"]
-[ext_resource type="PackedScene" uid="uid://dpaki785pyawl" path="res://addons/godot_jrpg/nodes/ui/splash_screen/splash_screen.tscn" id="3_tditk"]
+[ext_resource type="PackedScene" uid="uid://cym3qtfsj8s75" path="res://addons/godot_jrpg/nodes/ui/splash_screen/splash_screen.tscn" id="3_tditk"]
 [ext_resource type="PackedScene" uid="uid://daeh6hcpb60r1" path="res://addons/godot_jrpg/nodes/ui/main_menu/main_menu.tscn" id="4_756xr"]
 [ext_resource type="PackedScene" uid="uid://cb74nrxym2kse" path="res://addons/godot_jrpg/nodes/maps/map_0001.tscn" id="5_o8flq"]
 [ext_resource type="PackedScene" uid="uid://bgyg5l0h0l00g" path="res://addons/godot_jrpg/nodes/battle/battle.tscn" id="6_55iuj"]
@@ -25,6 +24,3 @@ test_splash_screen = ExtResource("7_qcp3w")
 test_main_menu = ExtResource("8_8y3j3")
 test_map = ExtResource("9_q0mfn")
 test_battle = ExtResource("10_nkpat")
-
-[node name="EventRunner" type="Node" parent="." unique_id=769566883]
-script = ExtResource("2_fv1o4")

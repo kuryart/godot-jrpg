@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bjsdujeknnms6" path="res://addons/godot_jrpg/resources/controllers/inputs/input_assignment.gd" id="2_7aeq3"]
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="2_24rt2"]
+[ext_resource type="Texture2D" uid="uid://b1gwysomqpsg7" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-4.png" id="3_5qgge"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_14h8m"]
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="3_16738"]
-[ext_resource type="Texture2D" uid="uid://cdhw4evdn83rx" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/player-4-face.png" id="4_16738"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_o8cr6"]
 [ext_resource type="Resource" uid="uid://chpnhsj7w1tj4" path="res://addons/godot_jrpg/tests/actors/battlers/classes/test_battler_class_4.tres" id="4_ye0my"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://addons/godot_jrpg/resources/formulas/xp/formula_xp_pokemon.gd" id="5_8aw43"]
@@ -81,7 +81,7 @@ metadata/_custom_type_script = "uid://ds4qg0x2vjt4y"
 
 [resource]
 script = ExtResource("2_24rt2")
-face = ExtResource("4_16738")
+face = ExtResource("3_5qgge")
 player_class = ExtResource("4_ye0my")
 xp_formula = SubResource("Resource_dyfle")
 stats = SubResource("Resource_e7fee")

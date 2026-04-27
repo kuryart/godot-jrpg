@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b51dcr5t6xm4b"]
+
+[ext_resource type="Script" uid="uid://dhkdl4swsjji" path="res://objects/menu/new_file_button.gd" id="1_fcniu"]
+
+[node name="NewFile" type="MarginContainer"]
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "save_new_file"
+alignment = 0
+script = ExtResource("1_fcniu")

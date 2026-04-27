@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cxbfphub3ll7l"]
+
+[ext_resource type="Script" uid="uid://dkjuodiyve7n3" path="res://addons/godot_jrpg/nodes/autoloads/ui.gd" id="1_v5gy5"]
+
+[node name="UI" type="Control" unique_id=465975404]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_v5gy5")
