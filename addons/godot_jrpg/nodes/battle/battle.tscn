@@ -70,8 +70,8 @@ player_scene = ExtResource("9_pe87g")
 [node name="Background" type="TextureRect" parent="BattleUI" unique_id=1870404302]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 1288.0
-offset_bottom = 736.0
+offset_right = 1280.0
+offset_bottom = 704.0
 expand_mode = 1
 
 [node name="Enemies" type="Control" parent="BattleUI" unique_id=807974783]

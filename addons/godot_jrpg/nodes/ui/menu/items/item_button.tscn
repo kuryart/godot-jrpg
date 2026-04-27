@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cyg643b7arrft"]
+
+[ext_resource type="Script" uid="uid://cd1t17gwxtoft" path="res://addons/godot_jrpg/nodes/ui/menu/items/item_button.gd" id="1_wbgn7"]
+
+[node name="ItemButton" type="Button" unique_id=765523746]
+script = ExtResource("1_wbgn7")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://crap7j7473tk8"]
+
+[ext_resource type="Script" uid="uid://d21jjwjq0bmjo" path="res://addons/godot_jrpg/nodes/ui/menu/save/old_file_button.gd" id="1_kgw54"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_07al6"]
+
+[node name="OldFile" type="MarginContainer" unique_id=1115860310]
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="." unique_id=377537537]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "save_save_game"
+alignment = 0
+script = ExtResource("1_kgw54")
+menu_signals = ExtResource("2_07al6")

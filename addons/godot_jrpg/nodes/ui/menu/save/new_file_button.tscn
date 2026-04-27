@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://b51dcr5t6xm4b"]
 
-[ext_resource type="Script" uid="uid://dhkdl4swsjji" path="res://objects/menu/new_file_button.gd" id="1_fcniu"]
+[ext_resource type="Script" uid="uid://dp1ibj8t8khd2" path="res://addons/godot_jrpg/nodes/ui/menu/save/new_file_button.gd" id="1_sn1xb"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_bwsfy"]
 
-[node name="NewFile" type="MarginContainer"]
+[node name="NewFile" type="MarginContainer" unique_id=1757475989]
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=258996570]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "save_new_file"
 alignment = 0
-script = ExtResource("1_fcniu")
+script = ExtResource("1_sn1xb")
+menu_signals = ExtResource("2_bwsfy")

@@ -7,3 +7,15 @@
 
 # Obsidian
 .obsidian/
+
+# Third party plugins
+addons/UniversalFade/
+addons/dialogue_manager/
+addons/gd-plug-ui/
+addons/gd-plug/
+addons/phantom_camera/
+addons/safe_resource_loader/
+addons/switch_manager/
+
+# gd-plug directory
+.plugged/

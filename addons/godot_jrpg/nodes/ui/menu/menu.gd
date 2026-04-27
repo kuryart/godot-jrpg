@@ -1,4 +1,4 @@
-extends Control
+class_name Menu extends Control
 
 @export var menu_items_scene: PackedScene
 @export var menu_skills_scene: PackedScene
@@ -13,6 +13,7 @@ var menu: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	menu_signals.open_menu_status_emited.connect(_on_status_button_up)
+	menu_signals.open_menu_save_emited.connect(_on_save_button_up)
 	MenuManager.register_menu(self)
 
 func _exit_tree():
@@ -29,9 +30,6 @@ func _on_equip_button_up():
 	
 func _on_status_button_up():
 	open_menu_status()
-
-func _on_wiki_button_up():
-	pass
 	
 func _on_save_button_up():
 	open_menu_save()

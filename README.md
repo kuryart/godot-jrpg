@@ -25,6 +25,10 @@ Godot JRPG is a framework for building 2D JRPGs (Japanese Role Playing Games) in
 - A "one-size-fits-all" tool for building RPGs. It doesn't work, for example, for 3D games, action RPGs, or JRPGs with complex battle systems like Fear and Hunger or Don't Look Outside. Nonetheless, you can use it as a base to build your own systems by extending the code;
 - An exact copy of RPG Maker. Godot have different approaches, and the main goal is not to avoid coding 100% by creating a "drag and drop" solution with editor tools and buttons that simply create everything like in RPG Maker. Otherwise, Godot RPG have nodes and resources that simplify a lot the process of creating a 2D JRPG.
 
+## Installation
+
+- Add this plugin in the Asset Store
+
 ## Documentation
 
 If you have any question, you can:
