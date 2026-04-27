@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Armor" format=3 uid="uid://cl5fcye8lg7ax"]
+
+[ext_resource type="Script" uid="uid://dngvhngdndfxx" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/armor.gd" id="1_478c6"]
+[ext_resource type="Resource" uid="uid://dw3id8v8odu8w" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/types/light.tres" id="1_ov2r8"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_7gtya"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="3_drp62"]
+[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="4_7gtya"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_mwxlf"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="5_mwxlf"]
+
+[sub_resource type="Resource" id="Resource_4c36d"]
+script = ExtResource("3_7gtya")
+name = "HP"
+base_value = 5
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_f2mod"]
+script = ExtResource("4_mwxlf")
+hp = SubResource("Resource_4c36d")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_h118v"]
+script = ExtResource("4_7gtya")
+stat_name = &"defense"
+value_multiply = 1.2
+value_add = 5
+metadata/_custom_type_script = "uid://cuqvw14m0anvs"
+
+[sub_resource type="Resource" id="Resource_kxsr5"]
+script = ExtResource("5_mwxlf")
+entries = Array[ExtResource("3_drp62")]([SubResource("Resource_h118v")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[resource]
+script = ExtResource("1_478c6")
+armor_type = ExtResource("1_ov2r8")
+traits = SubResource("Resource_kxsr5")
+stats_modifiers = SubResource("Resource_f2mod")
+metadata/_custom_type_script = "uid://dngvhngdndfxx"

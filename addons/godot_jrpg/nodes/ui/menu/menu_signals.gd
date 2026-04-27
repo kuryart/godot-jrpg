@@ -1,3 +1,10 @@
 class_name MenuSignals extends Resource
 
 signal open_menu_status_emited
+signal open_menu_save_emited
+
+signal save_old_file_emited
+signal save_new_file_emited
+
+signal item_clicked
+signal item_changed

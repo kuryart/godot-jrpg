@@ -5,6 +5,10 @@ class_name TraitAggregator extends Resource
 var traits_by_type: Dictionary = {}
 var stat_multipliers: Dictionary = {}
 var stat_sums: Dictionary = {}
+var damage_dealt_multipliers: Dictionary = {}
+var damage_dealt_sums: Dictionary = {}
+var damage_received_multipliers: Dictionary = {}
+var damage_received_sums: Dictionary = {}
 var flags: Dictionary = {}
 var battler: Battler
 var sources: Array[TraitList] = []
@@ -16,11 +20,18 @@ func _init(_battler: Battler) -> void:
 func refresh():
 	clear_cache()
 	traits_by_type = collect_and_sort_traits()
-	process_stat_multipliers()
+	stat_calc()
+	damage_dealt_calc()
+	damage_received_calc()
 
 func clear_cache() -> void:
 	traits_by_type.clear()
 	stat_multipliers.clear()
+	stat_sums.clear()
+	damage_dealt_multipliers.clear()
+	damage_dealt_sums.clear()
+	damage_received_multipliers.clear()
+	damage_received_sums.clear()
 	flags.clear()
 	for type_key in Trait.TYPE.values():
 		traits_by_type[type_key] = []
@@ -52,8 +63,8 @@ func prepare_sources() -> void:
 	for s in battler.status:
 		sources.append(s.traits)
 
-func process_stat_multipliers() -> void:
-	var list = traits_by_type.get(Trait.TYPE.STAT, [])
+func stat_calc() -> void:
+	var list = traits_by_type.get(Trait.TYPE.STAT)
 	for _trait in list:
 		if _trait is TraitStat:
 			var stat_name = _trait.stat_name
@@ -61,15 +72,39 @@ func process_stat_multipliers() -> void:
 			var current_sum = stat_sums.get(stat_name, 0)
 			stat_multipliers[stat_name] = current_multiplier * _trait.value_multiply
 			stat_sums[stat_name] = current_sum + _trait.value_add
+			
+func damage_dealt_calc() -> void:
+	var list = traits_by_type.get(Trait.TYPE.DAMAGE_DEALT, [])
+	for _trait in list:
+		var type = _trait.damage_type
+		var current_mult = damage_dealt_multipliers.get(type, 1.0)
+		var current_sum = damage_dealt_sums.get(type, 0.0)
+		damage_dealt_multipliers[type] = current_mult * _trait.value_multiply
+		damage_dealt_sums[type] = current_sum + _trait.value_add
+
+func damage_received_calc() -> void:
+	var list = traits_by_type.get(Trait.TYPE.DAMAGE_RECEIVED, [])
+	for _trait in list:
+		var type = _trait.damage_type
+		var current_mult = damage_received_multipliers.get(type, 1.0)
+		var current_sum = damage_received_sums.get(type, 0.0)
+		damage_received_multipliers[type] = current_mult * _trait.value_multiply
+		damage_received_sums[type] = current_sum + _trait.value_add
 
 #---------------
 #--- FACADES ---
 #---------------
-func get_stat_multiplier(stat_name: StringName) -> float:
-	return stat_multipliers.get(stat_name, 1.0)
-	
-func get_element_resistance(element_id):
-	pass
+func get_stat_modified(stat_name: StringName, base_value: float) -> float:
+	var sum = stat_sums.get(stat_name, 0.0)
+	var mult = stat_multipliers.get(stat_name, 1.0)
+	return (base_value + sum) * mult
 
-func get_damage_modifier(type):
-	pass
+func get_damage_dealt_modified(type: StringName, base_damage: float) -> float:
+	var sum = damage_dealt_sums.get(type, 0.0)
+	var mult = damage_dealt_multipliers.get(type, 1.0)
+	return (base_damage + sum) * mult
+
+func get_damage_received_modified(type: StringName, base_damage: float) -> float:
+	var sum = damage_received_sums.get(type, 0.0)
+	var mult = damage_received_multipliers.get(type, 1.0)
+	return (base_damage + sum) * mult

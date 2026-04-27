@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://cpqg0bmekcg3r" path="res://addons/godot_jrpg/nodes/maps/map_player.gd" id="3_wtxw3"]
 [ext_resource type="Texture2D" uid="uid://dan6on5tusira" path="res://addons/godot_jrpg/assets/sprites/actors/players/characters/lpc_entry/png/walkcycle/HEAD_leather_armor_hat.png" id="4_5wlvn"]
 [ext_resource type="Script" uid="uid://bv6eri7u646de" path="res://addons/godot_jrpg/nodes/events/event.gd" id="7_b8y8i"]
+[ext_resource type="Script" uid="uid://5fddyhh8diog" path="res://addons/godot_jrpg/resources/events/commands/command.gd" id="7_dq5tp"]
+[ext_resource type="Script" uid="uid://bxrm82tresdjb" path="res://addons/godot_jrpg/resources/events/commands/battle/command_start_battle.gd" id="8_gygg5"]
+[ext_resource type="Resource" uid="uid://caggj6rpows4p" path="res://addons/godot_jrpg/tests/battle/settings/test_battle_settings.tres" id="9_wa8n0"]
+[ext_resource type="Script" uid="uid://dvxlkyt6f00jt" path="res://addons/godot_jrpg/resources/events/commands/command_list.gd" id="10_wevp0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wlvn"]
 size = Vector2(32, 32)
@@ -626,6 +630,16 @@ size = Vector2(15, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3w4"]
 size = Vector2(15, 15)
 
+[sub_resource type="Resource" id="Resource_qx3w4"]
+script = ExtResource("8_gygg5")
+settings = ExtResource("9_wa8n0")
+metadata/_custom_type_script = "uid://bxrm82tresdjb"
+
+[sub_resource type="Resource" id="Resource_7yq6e"]
+script = ExtResource("10_wevp0")
+commands = Array[ExtResource("7_dq5tp")]([SubResource("Resource_qx3w4")])
+metadata/_custom_type_script = "uid://dvxlkyt6f00jt"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_a2skq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yq6e"]
@@ -852,6 +866,7 @@ tile_set = ExtResource("2_p673k")
 [node name="BattleEvent" type="CharacterBody2D" parent="Events" unique_id=761686257]
 position = Vector2(48, 112)
 script = ExtResource("7_b8y8i")
+command_list = SubResource("Resource_7yq6e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Events/BattleEvent" unique_id=308051993]
 sprite_frames = SubResource("SpriteFrames_a2skq")

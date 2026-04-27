@@ -2,7 +2,7 @@ extends Node
 
 var stack: Array[Control] = []
 var focus_history: Array[Control] = []
-var main_menu_scene: PackedScene = preload("uid://bbh8f5fqnojgp")
+@export var menu_scene: PackedScene = preload("uid://bnxih5di4foi1")
 
 func register_menu(menu: Control):
 	var current_focus = get_viewport().gui_get_focus_owner()
@@ -31,7 +31,7 @@ func unregister_menu(menu: Control):
 func open_main_menu():
 	if !GameManager.can_open_menu: return
 	
-	var menu_instance = main_menu_scene.instantiate()
+	var menu_instance = menu_scene.instantiate()
 	get_tree().root.add_child(menu_instance)
 	await get_tree().process_frame 
 	menu_instance.get_node("%Items").grab_focus()

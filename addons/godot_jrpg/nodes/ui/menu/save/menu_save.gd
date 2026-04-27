@@ -3,8 +3,8 @@ extends Control
 
 @onready var options_list = %OptionsList
 
-@export var new_file_button: PackedScene
-@export var old_file_button: PackedScene
+@export var new_file_button: PackedScene = preload("uid://b51dcr5t6xm4b")
+@export var old_file_button: PackedScene = preload("uid://crap7j7473tk8")
 
 func _ready() -> void:
 	MenuManager.register_menu(self)
@@ -19,7 +19,7 @@ func list_saves() -> void:
 		child.queue_free()
 	
 	# 2. Get files data
-	var saves = SaveGame.get_all_saves()
+	var saves = SaveState.get_all_saves()
 
 	# 3. Instantiate buttons
 	for i in range(saves.size()):
@@ -28,7 +28,7 @@ func list_saves() -> void:
 		var btn = instance if instance is Button else instance.find_child("*Button*", true, false)
 		var date_str = format_save_date(saves[i]["time"])
 		
-		var btn_res = load(saves[i]["path"]) as SaveGame
+		var btn_res = load(saves[i]["path"]) as SaveState
 		btn.text = "%s [%s]" % ["Save" + str(i + 1), date_str] + " - " + btn_res.current_scene_name
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		
