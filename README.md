@@ -37,6 +37,7 @@ If you have any question, you can:
 The project is structured in: 
 
 - [Assets](assets/README.md)
+- [Editor](editor/README)
 - [Nodes](nodes/README.md)
 - [Resources](resources/README.md)
 - [Tests](tests/README.md)
@@ -48,7 +49,12 @@ The project is structured in:
 - Skeleton for menu system
 - Splash screen
 - Main menu
-- Resources and nodes which can help building the game;
+- Skeleton for traits system
+- Flexible formulas for damage, hit chance, critical chance and critical damage, so you can create your own calculations
+- Flexible formulas for leveling and stats growth, so you can create your own calculations
+- Skeleton for database editor, to create enemies, players, classes, skills, items, status, etc.
+- Resources and nodes which can help building the game
+- More skeletons for status, items, skills, etc.
 
 ## Planned features
 
@@ -111,19 +117,3 @@ This addon uses third-party plugins. You can install all at once using [gd-plug]
 - [KoBeWi/Godot-Universal-Fade](https://github.com/KoBeWi/Godot-Universal-Fade)
 - [AlecSouthward/switch-manager](https://github.com/AlecSouthward/switch-manager) 
 - [ramokz/phantom-camera](https://github.com/ramokz/phantom-camera) 
-
-Godot JRPG is a framework for building 2D JRPGs (Japanese Role Playing Games) in Godot game engine, inspired by RPG Maker.
-
-This is a work-in-progress project (early alpha, version 0.0.1), but it already have:
-
-- Skeleton for a battle system
-- Map system
-- Skeleton for menu system
-- Splash screen
-- Main menu
-- Skeleton for traits system
-- Flexible formulas for damage, hit chance, critical chance and critical damage, so you can create your own calculations
-- Flexible formulas for leveling and stats growth, so you can create your own calculations
-- Skeleton for database editor, to create enemies, players, classes, skills, items, status, etc.
-- Resources and nodes which can help building the game
-- More skeletons for status, items, skills, etc.
