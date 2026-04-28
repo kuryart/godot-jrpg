@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://8bjgw40uftjv"]
-
-[ext_resource type="Script" uid="uid://drg3pjy0ibdv3" path="res://addons/switch_manager/switch_manager.gd" id="1_ffbqr"]
-
-[node name="SwitchManager" type="Node" unique_id=604948053]
-script = ExtResource("1_ffbqr")
