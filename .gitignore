@@ -2,6 +2,19 @@
 .godot/
 /android/
 
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
 # Temp folders
 .temp/
 
@@ -9,13 +22,11 @@
 .obsidian/
 
 # Third party plugins
-addons/UniversalFade/
-addons/dialogue_manager/
-addons/gd-plug-ui/
-addons/gd-plug/
-addons/phantom_camera/
-addons/safe_resource_loader/
-addons/switch_manager/
+addons/*
+
+# Permit Godot JRPG
+!addons/godot_jrpg/
 
 # gd-plug directory
 .plugged/
+
