@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://3ddu8s8blwil"]
 
 [ext_resource type="Script" uid="uid://xy1isg75nsgg" path="res://addons/godot_jrpg/nodes/autoloads/game_manager.gd" id="1_ulwfa"]
+[ext_resource type="Resource" uid="uid://v6gnmntcrn3t" path="res://addons/godot_jrpg/tests/actors/test_party.tres" id="2_lkkkd"]
 
 [node name="GameManager" type="Node" unique_id=525089218]
 script = ExtResource("1_ulwfa")
+party = ExtResource("2_lkkkd")

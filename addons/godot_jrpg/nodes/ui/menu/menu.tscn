@@ -4,36 +4,22 @@
 [ext_resource type="Script" uid="uid://8vipec8mno3o" path="res://addons/godot_jrpg/nodes/ui/menu/menu.gd" id="1_hvec1"]
 [ext_resource type="PackedScene" uid="uid://de6e343s07542" path="res://addons/godot_jrpg/nodes/ui/menu/status/menu_status.tscn" id="2_f3mx3"]
 [ext_resource type="PackedScene" uid="uid://c7cp17ambp815" path="res://addons/godot_jrpg/nodes/ui/menu/items/menu_items.tscn" id="2_jjnjm"]
-[ext_resource type="PackedScene" uid="uid://qjstunvul8a5" path="res://addons/godot_jrpg/nodes/ui/menu/save/menu_save.tscn" id="3_86thk"]
 [ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="3_f3mx3"]
+[ext_resource type="PackedScene" uid="uid://b7rec6sbed7vs" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip.tscn" id="3_wa1vw"]
 [ext_resource type="Script" uid="uid://t7g0m11f0vq0" path="res://addons/godot_jrpg/nodes/ui/menu/save/menu_save_button.gd" id="5_0kbj6"]
-[ext_resource type="Script" uid="uid://cbfp45h6ea85r" path="res://addons/godot_jrpg/nodes/ui/menu/items/menu_items.gd" id="6_ai74e"]
+[ext_resource type="PackedScene" uid="uid://c5etbfyw0wg85" path="res://addons/godot_jrpg/nodes/ui/menu/players/menu_player.tscn" id="7_ab2m6"]
+[ext_resource type="Script" uid="uid://c2rp6orbiomhx" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip_button.gd" id="7_evij6"]
 
 [node name="Menu" type="Control" unique_id=652208107]
 z_index = 99
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_hvec1")
 menu_items_scene = ExtResource("2_jjnjm")
+menu_equip_scene = ExtResource("3_wa1vw")
 menu_status_scene = ExtResource("2_f3mx3")
-menu_save_scene = ExtResource("3_86thk")
+menu_player_scene = ExtResource("7_ab2m6")
 menu_signals = ExtResource("3_f3mx3")
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2093570503]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 8.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=678495828]
 custom_minimum_size = Vector2(200, 0)
@@ -41,60 +27,95 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 512.0
-offset_top = 176.0
-offset_right = -512.0
-offset_bottom = -224.0
+offset_left = 112.0
+offset_top = 16.0
+offset_right = 539.0
+offset_bottom = 348.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=580522819]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=863715493]
+layout_mode = 2
+
+[node name="LeftMenu" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=580522819]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2099767871]
+[node name="Options" type="VBoxContainer" parent="PanelContainer/HBoxContainer/LeftMenu" unique_id=2099767871]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="Items" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=310509440]
+[node name="Items" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=310509440]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Skills")
 text = "Items"
-script = ExtResource("6_ai74e")
 
-[node name="Skills" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1597931563]
+[node name="Skills" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1597931563]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Items")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Equip")
 text = "Skills
 "
 
-[node name="Equip" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1275821431]
+[node name="Equip" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1275821431]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Skills")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Status")
 text = "Equip
 "
+script = ExtResource("7_evij6")
+menu_signals = ExtResource("3_f3mx3")
 
-[node name="Status" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=117994084]
+[node name="Status" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=117994084]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Status
-"
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Equip")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Save")
+text = "Status"
 script = ExtResource("1_hutda")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Save" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1669263171]
+[node name="Save" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1669263171]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Status")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../Exit")
 text = "Save"
 script = ExtResource("5_0kbj6")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=574676852]
+[node name="Exit" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=574676852]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../Save")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 text = "Exit"
+
+[node name="RightMenu" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=135680054]
+layout_mode = 2
+
+[node name="Players" type="VBoxContainer" parent="PanelContainer/HBoxContainer/RightMenu" unique_id=1010908341]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1

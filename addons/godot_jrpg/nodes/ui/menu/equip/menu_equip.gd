@@ -1,6 +1,7 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
+var player: Player
+
 func _ready() -> void:
 	MenuManager.register_menu(self)
 

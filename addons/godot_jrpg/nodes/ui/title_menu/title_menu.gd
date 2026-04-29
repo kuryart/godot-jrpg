@@ -1,4 +1,4 @@
-class_name MainMenu extends Control
+class_name TitleMenu extends Control
 
 # Buttons
 @onready var new_game_button = %NewGame
