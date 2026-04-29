@@ -13,13 +13,13 @@ static var instance: Director
 # Cenas Reais
 @export_group("Real Scenes")
 @export var splash_screen: PackedScene
-@export var main_menu: PackedScene
+@export var title_menu: PackedScene
 @export var map: PackedScene
 @export var battle: PackedScene
 @export_group("Test Scenes")
 # Cenas de Teste (Mocks)
 @export var test_splash_screen: PackedScene
-@export var test_main_menu: PackedScene
+@export var test_title_menu: PackedScene
 @export var test_map: PackedScene
 @export var test_battle: PackedScene
 
@@ -47,7 +47,7 @@ func run_test_flow():
 	flow.add_command(CommandChangeScene.create(test_splash_screen))
 	flow.add_command(CommandWait.create(2.0))
 	# Menu
-	flow.add_command(CommandChangeScene.create(test_main_menu))
+	flow.add_command(CommandChangeScene.create(test_title_menu))
 	flow.add_command(CommandWait.create(2.0))
 	# Mapa
 	flow.add_command(CommandChangeScene.create(test_map))

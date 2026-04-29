@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6q3govpmx55i" path="res://addons/godot_jrpg/nodes/ui/splash_screen/splash_screen.gd" id="1_bj02i"]
 [ext_resource type="Texture2D" uid="uid://cw5kac0xqswxl" path="res://addons/godot_jrpg/assets/sprites/logo/logo.png" id="2_px5fl"]
-[ext_resource type="PackedScene" uid="uid://daeh6hcpb60r1" path="res://addons/godot_jrpg/nodes/ui/main_menu/main_menu.tscn" id="2_y70si"]
+[ext_resource type="PackedScene" uid="uid://daeh6hcpb60r1" path="res://addons/godot_jrpg/nodes/ui/title_menu/title_menu.tscn" id="2_y70si"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dnh2b"]
 font_size = 42

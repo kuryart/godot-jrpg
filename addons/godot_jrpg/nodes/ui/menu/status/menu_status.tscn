@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://de6e343s07542"]
 
 [ext_resource type="Texture2D" uid="uid://bgsxxjqb5374h" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-1.png" id="1_dy0y1"]
+[ext_resource type="Script" uid="uid://c7ky1iwx7lyhq" path="res://addons/godot_jrpg/nodes/ui/menu/status/menu_status.gd" id="1_li2ur"]
 [ext_resource type="Texture2D" uid="uid://bu02dmnnugcti" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-2.png" id="2_ftvnt"]
 [ext_resource type="Texture2D" uid="uid://b0574t1qowx6l" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-3.png" id="3_x3dth"]
 [ext_resource type="Texture2D" uid="uid://b1gwysomqpsg7" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-4.png" id="4_6fu7a"]
@@ -22,6 +23,7 @@ offset_bottom = -352.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+script = ExtResource("1_li2ur")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1322071516]
 layout_mode = 1
@@ -35,597 +37,548 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.91291237, 0.9986337)
 
-[node name="Chars" type="Control" parent="." unique_id=8381392]
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Chars" unique_id=1653306553]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1653306553]
 layout_mode = 0
 offset_right = 1280.0
-offset_bottom = 304.0
+offset_bottom = 616.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chars/MarginContainer" unique_id=1680140629]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1680140629]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="FacePlayer1" type="TextureRect" parent="Chars" unique_id=1657134046]
-layout_mode = 0
-offset_left = 59.0
-offset_top = 20.0
-offset_right = 323.0
-offset_bottom = 284.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1808888843]
+layout_mode = 2
+
+[node name="FacePlayer1" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1657134046]
+layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_dy0y1")
-expand_mode = 3
+expand_mode = 5
 
-[node name="NamePlayer1" type="Label" parent="Chars" unique_id=1914665886]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 296.0
-offset_right = 192.0
-offset_bottom = 319.0
+[node name="NamePlayer1" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1914665886]
+layout_mode = 2
 text = "Player1"
 
-[node name="FacePlayer2" type="TextureRect" parent="Chars" unique_id=327066068]
-layout_mode = 0
-offset_left = 370.0
-offset_top = 20.0
-offset_right = 634.0
-offset_bottom = 284.0
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1843271385]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=2033492680]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1219554050]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2047272054]
+layout_mode = 2
+
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1795205585]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1714426230]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=970674662]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=69368323]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
+value = 100.0
+show_percentage = false
+
+[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=740779707]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
+text = "HP"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1837282549]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=104505719]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1601784200]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1442800036]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1370863035]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
+value = 100.0
+show_percentage = false
+
+[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1945271579]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
+text = "MP"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=131630224]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=713590043]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=78123777]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1512223023]
+layout_mode = 2
+text = "status_attack"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=870742509]
+layout_mode = 2
+text = "10"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=764685933]
+layout_mode = 2
+text = "status_armor"
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1902592185]
+layout_mode = 2
+text = "10"
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1243633670]
+layout_mode = 2
+text = "status_evasion"
+
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=988398527]
+layout_mode = 2
+text = "10"
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1487444480]
+layout_mode = 2
+text = "status_speed"
+
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=562561550]
+layout_mode = 2
+text = "10"
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1293773364]
+layout_mode = 2
+text = "status_inteligence"
+
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=437531075]
+layout_mode = 2
+text = "10"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1652962847]
+layout_mode = 2
+
+[node name="FacePlayer2" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=327066068]
+layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_ftvnt")
 expand_mode = 3
 
-[node name="NamePlayer2" type="Label" parent="Chars" unique_id=944952440]
-layout_mode = 0
-offset_left = 344.0
-offset_top = 296.0
-offset_right = 488.0
-offset_bottom = 319.0
+[node name="NamePlayer2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=944952440]
+layout_mode = 2
 text = "Player2"
 
-[node name="FacePlayer3" type="TextureRect" parent="Chars" unique_id=1549055825]
-layout_mode = 0
-offset_left = 653.0
-offset_top = 20.0
-offset_right = 917.0
-offset_bottom = 284.0
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=517109002]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=852012018]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer" unique_id=1680693559]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer" unique_id=546152444]
+layout_mode = 2
+
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1952553789]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1526564913]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1849224843]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1902140776]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
+value = 100.0
+show_percentage = false
+
+[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=994977388]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
+text = "HP"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1511159085]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1320943232]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1990212955]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=979915896]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=180505309]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
+value = 100.0
+show_percentage = false
+
+[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1095910248]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
+text = "MP"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=287950263]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer" unique_id=78031653]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1424432493]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1403585127]
+layout_mode = 2
+text = "status_attack"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=928963509]
+layout_mode = 2
+text = "10"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=747780854]
+layout_mode = 2
+text = "status_armor"
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1532658674]
+layout_mode = 2
+text = "10"
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1767880989]
+layout_mode = 2
+text = "status_evasion"
+
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=2138267834]
+layout_mode = 2
+text = "10"
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1593811529]
+layout_mode = 2
+text = "status_speed"
+
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1049889262]
+layout_mode = 2
+text = "10"
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=604749874]
+layout_mode = 2
+text = "status_inteligence"
+
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=571323697]
+layout_mode = 2
+text = "10"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1397038486]
+layout_mode = 2
+
+[node name="FacePlayer3" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=1549055825]
+layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("3_x3dth")
 expand_mode = 3
 
-[node name="NamePlayer3" type="Label" parent="Chars" unique_id=2082960063]
-layout_mode = 0
-offset_left = 647.0
-offset_top = 296.0
-offset_right = 791.0
-offset_bottom = 319.0
+[node name="NamePlayer3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=2082960063]
+layout_mode = 2
 text = "Player3"
 
-[node name="FacePlayer4" type="TextureRect" parent="Chars" unique_id=643062597]
-layout_mode = 0
-offset_left = 956.0
-offset_top = 20.0
-offset_right = 1220.0
-offset_bottom = 284.0
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=749638587]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3" unique_id=1620419181]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer" unique_id=1266415207]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer" unique_id=1695563360]
+layout_mode = 2
+
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1475722545]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=575316643]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1616694422]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=356021148]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
+value = 100.0
+show_percentage = false
+
+[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=315417385]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
+text = "HP"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=657093518]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1309291376]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=139673104]
+layout_mode = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1211624578]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1629862496]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
+value = 100.0
+show_percentage = false
+
+[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=961591388]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
+text = "MP"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1830615697]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer" unique_id=371037393]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer" unique_id=783946983]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1038856982]
+layout_mode = 2
+text = "status_attack"
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=737602196]
+layout_mode = 2
+text = "10"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=912574591]
+layout_mode = 2
+text = "status_armor"
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1475595963]
+layout_mode = 2
+text = "10"
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1593772477]
+layout_mode = 2
+text = "status_evasion"
+
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1443367072]
+layout_mode = 2
+text = "10"
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=792670504]
+layout_mode = 2
+text = "status_speed"
+
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1799825404]
+layout_mode = 2
+text = "10"
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=121955680]
+layout_mode = 2
+text = "status_inteligence"
+
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=901223205]
+layout_mode = 2
+text = "10"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1748563558]
+layout_mode = 2
+
+[node name="FacePlayer4" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer4" unique_id=643062597]
+layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_6fu7a")
 expand_mode = 3
 
-[node name="NamePlayer4" type="Label" parent="Chars" unique_id=1301418581]
-layout_mode = 0
-offset_left = 935.0
-offset_top = 296.0
-offset_right = 1079.0
-offset_bottom = 319.0
+[node name="NamePlayer4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4" unique_id=1301418581]
+layout_mode = 2
 text = "Player4"
 
-[node name="Stats" type="Control" parent="." unique_id=398788866]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4" unique_id=621555713]
+layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Stats" unique_id=1843271385]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 328.0
-offset_right = 331.0
-offset_bottom = 574.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer" unique_id=2033492680]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4" unique_id=845708000]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer/MarginContainer" unique_id=1219554050]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer" unique_id=80046611]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer" unique_id=2047272054]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer" unique_id=141575346]
 layout_mode = 2
 
-[node name="HP" type="BoxContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1795205585]
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer" unique_id=507305595]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1714426230]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1245322920]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current HP" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=970674662]
+[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=79404248]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="HP Bar" type="ProgressBar" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=69368323]
+[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=2015416386]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
 value = 100.0
 show_percentage = false
 
-[node name="HP Label" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=740779707]
+[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=2023161383]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
 text = "HP"
 
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1837282549]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=628250002]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="MP" type="BoxContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=104505719]
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer" unique_id=312948554]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1601784200]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1033634078]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current MP" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1442800036]
+[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=484819595]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="MP Bar" type="ProgressBar" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1370863035]
+[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=239149095]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
 value = 100.0
 show_percentage = false
 
-[node name="MP Label" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1945271579]
+[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1708377572]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
 text = "MP"
 
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=131630224]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=706223459]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="HSeparator" type="HSeparator" parent="Stats/PanelContainer/MarginContainer/VBoxContainer" unique_id=713590043]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer" unique_id=1287607159]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="GridContainer" type="GridContainer" parent="Stats/PanelContainer/MarginContainer/VBoxContainer" unique_id=78123777]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer" unique_id=282070820]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1512223023]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=309056977]
 layout_mode = 2
 text = "status_attack"
 
-[node name="Label2" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=870742509]
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=710525392]
 layout_mode = 2
 text = "10"
 
-[node name="Label3" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=764685933]
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1388145841]
 layout_mode = 2
 text = "status_armor"
 
-[node name="Label4" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1902592185]
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1089295361]
 layout_mode = 2
 text = "10"
 
-[node name="Label5" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1243633670]
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=719664514]
 layout_mode = 2
 text = "status_evasion"
 
-[node name="Label6" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=988398527]
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=568615676]
 layout_mode = 2
 text = "10"
 
-[node name="Label7" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1487444480]
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=420872377]
 layout_mode = 2
 text = "status_speed"
 
-[node name="Label8" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=562561550]
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=902585716]
 layout_mode = 2
 text = "10"
 
-[node name="Label9" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1293773364]
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1130442417]
 layout_mode = 2
 text = "status_inteligence"
 
-[node name="Label10" type="Label" parent="Stats/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=437531075]
-layout_mode = 2
-text = "10"
-
-[node name="PanelContainer2" type="PanelContainer" parent="Stats" unique_id=517109002]
-layout_mode = 0
-offset_left = 344.0
-offset_top = 328.0
-offset_right = 627.0
-offset_bottom = 574.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer2" unique_id=852012018]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer2/MarginContainer" unique_id=1680693559]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer" unique_id=546152444]
-layout_mode = 2
-
-[node name="HP" type="BoxContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1952553789]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1526564913]
-layout_mode = 2
-theme_override_constants/separation = -5
-alignment = 1
-
-[node name="Current HP" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1849224843]
-layout_mode = 2
-text = "9999/9999"
-
-[node name="HP Bar" type="ProgressBar" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1902140776]
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
-value = 100.0
-show_percentage = false
-
-[node name="HP Label" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=994977388]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
-text = "HP"
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1511159085]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="MP" type="BoxContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1320943232]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1990212955]
-layout_mode = 2
-theme_override_constants/separation = -5
-alignment = 1
-
-[node name="Current MP" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=979915896]
-layout_mode = 2
-text = "9999/9999"
-
-[node name="MP Bar" type="ProgressBar" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=180505309]
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
-value = 100.0
-show_percentage = false
-
-[node name="MP Label" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1095910248]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
-text = "MP"
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=287950263]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="HSeparator" type="HSeparator" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer" unique_id=78031653]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="GridContainer" type="GridContainer" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1424432493]
-layout_mode = 2
-theme_override_constants/h_separation = 100
-theme_override_constants/v_separation = 10
-columns = 2
-
-[node name="Label" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1403585127]
-layout_mode = 2
-text = "status_attack"
-
-[node name="Label2" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=928963509]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=747780854]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1532658674]
-layout_mode = 2
-text = "10"
-
-[node name="Label5" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1767880989]
-layout_mode = 2
-text = "status_evasion"
-
-[node name="Label6" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=2138267834]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1593811529]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1049889262]
-layout_mode = 2
-text = "10"
-
-[node name="Label9" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=604749874]
-layout_mode = 2
-text = "status_inteligence"
-
-[node name="Label10" type="Label" parent="Stats/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=571323697]
-layout_mode = 2
-text = "10"
-
-[node name="PanelContainer3" type="PanelContainer" parent="Stats" unique_id=749638587]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 328.0
-offset_right = 923.0
-offset_bottom = 574.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer3" unique_id=1620419181]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer3/MarginContainer" unique_id=1266415207]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer" unique_id=1695563360]
-layout_mode = 2
-
-[node name="HP" type="BoxContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1475722545]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=575316643]
-layout_mode = 2
-theme_override_constants/separation = -5
-alignment = 1
-
-[node name="Current HP" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1616694422]
-layout_mode = 2
-text = "9999/9999"
-
-[node name="HP Bar" type="ProgressBar" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=356021148]
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
-value = 100.0
-show_percentage = false
-
-[node name="HP Label" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=315417385]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
-text = "HP"
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=657093518]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="MP" type="BoxContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1309291376]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=139673104]
-layout_mode = 2
-theme_override_constants/separation = -5
-alignment = 1
-
-[node name="Current MP" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1211624578]
-layout_mode = 2
-text = "9999/9999"
-
-[node name="MP Bar" type="ProgressBar" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1629862496]
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
-value = 100.0
-show_percentage = false
-
-[node name="MP Label" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=961591388]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
-text = "MP"
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1830615697]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="HSeparator" type="HSeparator" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer" unique_id=371037393]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="GridContainer" type="GridContainer" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer" unique_id=783946983]
-layout_mode = 2
-theme_override_constants/h_separation = 100
-theme_override_constants/v_separation = 10
-columns = 2
-
-[node name="Label" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1038856982]
-layout_mode = 2
-text = "status_attack"
-
-[node name="Label2" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=737602196]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=912574591]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1475595963]
-layout_mode = 2
-text = "10"
-
-[node name="Label5" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1593772477]
-layout_mode = 2
-text = "status_evasion"
-
-[node name="Label6" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1443367072]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=792670504]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1799825404]
-layout_mode = 2
-text = "10"
-
-[node name="Label9" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=121955680]
-layout_mode = 2
-text = "status_inteligence"
-
-[node name="Label10" type="Label" parent="Stats/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=901223205]
-layout_mode = 2
-text = "10"
-
-[node name="PanelContainer4" type="PanelContainer" parent="Stats" unique_id=621555713]
-layout_mode = 0
-offset_left = 936.0
-offset_top = 328.0
-offset_right = 1219.0
-offset_bottom = 574.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer4" unique_id=845708000]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer4/MarginContainer" unique_id=80046611]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer" unique_id=141575346]
-layout_mode = 2
-
-[node name="HP" type="BoxContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer" unique_id=507305595]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1245322920]
-layout_mode = 2
-theme_override_constants/separation = -5
-alignment = 1
-
-[node name="Current HP" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=79404248]
-layout_mode = 2
-text = "9999/9999"
-
-[node name="HP Bar" type="ProgressBar" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=2015416386]
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
-value = 100.0
-show_percentage = false
-
-[node name="HP Label" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=2023161383]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
-text = "HP"
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=628250002]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="MP" type="BoxContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer" unique_id=312948554]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1033634078]
-layout_mode = 2
-theme_override_constants/separation = -5
-alignment = 1
-
-[node name="Current MP" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=484819595]
-layout_mode = 2
-text = "9999/9999"
-
-[node name="MP Bar" type="ProgressBar" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=239149095]
-layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
-value = 100.0
-show_percentage = false
-
-[node name="MP Label" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1708377572]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
-text = "MP"
-
-[node name="MarginContainer" type="MarginContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=706223459]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-
-[node name="HSeparator" type="HSeparator" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer" unique_id=1287607159]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="GridContainer" type="GridContainer" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer" unique_id=282070820]
-layout_mode = 2
-theme_override_constants/h_separation = 100
-theme_override_constants/v_separation = 10
-columns = 2
-
-[node name="Label" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=309056977]
-layout_mode = 2
-text = "status_attack"
-
-[node name="Label2" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=710525392]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1388145841]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1089295361]
-layout_mode = 2
-text = "10"
-
-[node name="Label5" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=719664514]
-layout_mode = 2
-text = "status_evasion"
-
-[node name="Label6" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=568615676]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=420872377]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=902585716]
-layout_mode = 2
-text = "10"
-
-[node name="Label9" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1130442417]
-layout_mode = 2
-text = "status_inteligence"
-
-[node name="Label10" type="Label" parent="Stats/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1141029905]
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1141029905]
 layout_mode = 2
 text = "10"
