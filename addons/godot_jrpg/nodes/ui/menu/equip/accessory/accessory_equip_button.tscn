@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c66y0p6585vky"]
+
+[ext_resource type="Script" uid="uid://c4e8i5pcrxf63" path="res://addons/godot_jrpg/nodes/ui/menu/equip/accessory/accessory_equip_button.gd" id="1_7hjdj"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_gytfl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pood"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qagbo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="AccessoryEquipContainer" type="PanelContainer" unique_id=1224675723]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
+
+[node name="AccessoryEquipButton" type="Button" parent="." unique_id=364969890]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("1_7hjdj")
+menu_signals = ExtResource("2_gytfl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=445553998]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="AccessoryEquipQuantity" type="Label" parent="HBoxContainer" unique_id=300775287]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=320901101]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="AccessoryEquipIcon" type="TextureRect" parent="HBoxContainer/HBoxContainer" unique_id=1372155124]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="AccessoryEquipName" type="Label" parent="HBoxContainer/HBoxContainer" unique_id=1118083471]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Common Shoes"

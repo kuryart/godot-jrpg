@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AccessoryType" format=3 uid="uid://cnlpveee5ufx"]
+
+[ext_resource type="Script" uid="uid://bnr74cxwnsy6b" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/types/accessory_type.gd" id="1_3lk8d"]
+
+[resource]
+script = ExtResource("1_3lk8d")
+name = "Gloves"
+metadata/_custom_type_script = "uid://bnr74cxwnsy6b"

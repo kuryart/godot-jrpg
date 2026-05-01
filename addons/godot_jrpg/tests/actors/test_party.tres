@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Party" format=3 uid="uid://v6gnmntcrn3t"]
 
-[ext_resource type="Resource" uid="uid://b0c02wq5ttngw" path="res://addons/godot_jrpg/resources/stuff/test_inventory.tres" id="1_8g0tp"]
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="1_sadef"]
+[ext_resource type="Resource" uid="uid://b0c02wq5ttngw" path="res://addons/godot_jrpg/resources/stuff/inventory.tres" id="1_t61ht"]
 [ext_resource type="Script" uid="uid://bolkcf4dvwgu5" path="res://addons/godot_jrpg/resources/actors/party.gd" id="2_jxybv"]
 [ext_resource type="Resource" uid="uid://xcf0l6c5vwkg" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_1.tres" id="3_78mbn"]
 [ext_resource type="Resource" uid="uid://c0bhjkxrged" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_2.tres" id="4_8ygxl"]
@@ -11,5 +11,5 @@
 [resource]
 script = ExtResource("2_jxybv")
 players = Array[ExtResource("1_sadef")]([ExtResource("3_78mbn"), ExtResource("4_8ygxl"), ExtResource("5_1p5i3"), ExtResource("6_6vggn")])
-inventory = ExtResource("1_8g0tp")
+inventory = ExtResource("1_t61ht")
 metadata/_custom_type_script = "uid://bolkcf4dvwgu5"

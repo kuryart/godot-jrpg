@@ -1,4 +1,4 @@
-class_name Stuff extends Resource
+@abstract class_name Stuff extends Resource
 
 @export var display_name: String
 @export_multiline var description: String

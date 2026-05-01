@@ -48,6 +48,7 @@ func get_stat_by_name(stat_name: StringName) -> Stat:
 ## Maps Stats to its IDs.
 func initialize_stat_map() -> void:
 	stat_map = {
+		## Main stats
 		&"hp": hp,
 		&"mp": mp,
 		&"attack": attack,
@@ -56,7 +57,15 @@ func initialize_stat_map() -> void:
 		&"speed": speed,
 		&"accuracy": accuracy,
 		&"evasion": evasion,
-		&"luck": luck
+		&"luck": luck,
+		# Other stats
+		&"hp_regen": hp_regen,
+		&"mp_regen": mp_regen,
+		&"critical": critical,
+		&"critical_dodge": critical_dodge,
+		&"magical_dodge": magical_dodge,
+		&"reflection": reflection,
+		&"counter_attack": counter_attack,
 	}
 
 ## Returns all stats.

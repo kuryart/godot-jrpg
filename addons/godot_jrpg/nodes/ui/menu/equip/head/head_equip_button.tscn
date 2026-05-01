@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://blqedi40xdp4u"]
+
+[ext_resource type="Script" uid="uid://c13hkeyl6y3gg" path="res://addons/godot_jrpg/nodes/ui/menu/equip/head/head_equip_button.gd" id="1_nqn2e"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_jf6pk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pood"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qagbo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="HeadEquipContainer" type="PanelContainer" unique_id=1067762087]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
+
+[node name="HeadEquipButton" type="Button" parent="." unique_id=1203569039]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("1_nqn2e")
+menu_signals = ExtResource("2_jf6pk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=575840121]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeadEquipQuantity" type="Label" parent="HBoxContainer" unique_id=1877623697]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=1075063600]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="HeadEquipIcon" type="TextureRect" parent="HBoxContainer/HBoxContainer" unique_id=39454796]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="HeadEquipName" type="Label" parent="HBoxContainer/HBoxContainer" unique_id=642668535]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leather Helmet"

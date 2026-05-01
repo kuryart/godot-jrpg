@@ -3,13 +3,20 @@
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="1_60pmn"]
 [ext_resource type="Resource" uid="uid://bnmycf18vlcc5" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/accuracy.tres" id="1_ale8m"]
 [ext_resource type="Resource" uid="uid://b8e8ek0dt5gd7" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/attack.tres" id="2_xe7rt"]
+[ext_resource type="Resource" uid="uid://ckikpifkd0a71" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/counter_attack.tres" id="3_0xnbx"]
 [ext_resource type="Resource" uid="uid://rf5mdumjup6k" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/defense.tres" id="3_7a82s"]
+[ext_resource type="Resource" uid="uid://dvu3tvcnosppr" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/critical.tres" id="4_6r46c"]
 [ext_resource type="Resource" uid="uid://byogchqadd1y" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/evasion.tres" id="4_d1qam"]
+[ext_resource type="Resource" uid="uid://cwjehq5v20lxq" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/critical_dodge.tres" id="5_afxha"]
 [ext_resource type="Resource" uid="uid://cci5bhhtnli2d" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/hp.tres" id="5_re8qk"]
 [ext_resource type="Resource" uid="uid://dxj3vgcilfe31" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/intelligence.tres" id="6_nxvnw"]
 [ext_resource type="Resource" uid="uid://8njr10c1o1yt" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/luck.tres" id="7_i37o7"]
 [ext_resource type="Resource" uid="uid://cr64b3f2rxdun" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/mp.tres" id="8_0xnbx"]
+[ext_resource type="Resource" uid="uid://bnapikt0dfmsx" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/hp_regen.tres" id="9_nyrmi"]
 [ext_resource type="Resource" uid="uid://c30y5nkac2ce3" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/speed.tres" id="10_6r46c"]
+[ext_resource type="Resource" uid="uid://cj02bhk8e52s5" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/magical_dodge.tres" id="12_h0dqp"]
+[ext_resource type="Resource" uid="uid://di3rno4wx76xc" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/mp_regen.tres" id="14_g4lp1"]
+[ext_resource type="Resource" uid="uid://bodkalj2856mi" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/reflection.tres" id="15_w5dg5"]
 
 [resource]
 script = ExtResource("1_60pmn")
@@ -22,4 +29,11 @@ speed = ExtResource("10_6r46c")
 accuracy = ExtResource("1_ale8m")
 evasion = ExtResource("4_d1qam")
 luck = ExtResource("7_i37o7")
+hp_regen = ExtResource("9_nyrmi")
+mp_regen = ExtResource("14_g4lp1")
+critical = ExtResource("4_6r46c")
+critical_dodge = ExtResource("5_afxha")
+magical_dodge = ExtResource("12_h0dqp")
+reflection = ExtResource("15_w5dg5")
+counter_attack = ExtResource("3_0xnbx")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"

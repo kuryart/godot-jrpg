@@ -1,8 +1,5 @@
 [gd_scene format=3 uid="uid://c7cp17ambp815"]
 
-[ext_resource type="Script" uid="uid://ykmmyl5j48ky" path="res://objects/menu/menu_items.gd" id="1_pb265"]
-[ext_resource type="Theme" uid="uid://dpth8apo6i3oy" path="res://data/ui/theme.tres" id="2_lq3e0"]
-
 [node name="MenuItems" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -10,8 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_lq3e0")
-script = ExtResource("1_pb265")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

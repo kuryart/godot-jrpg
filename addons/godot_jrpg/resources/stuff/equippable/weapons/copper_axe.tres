@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://3k7jlv4t21k8"]
+
+[ext_resource type="Script" uid="uid://dc8xx5obav1ec" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/weapon.gd" id="1_8w10i"]
+[ext_resource type="Texture2D" uid="uid://u4f3ejloib3m" path="res://addons/godot_jrpg/assets/sprites/stuff/equippable/weapon/weapon-copper-axe.png" id="1_aomcb"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="2_aomcb"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="3_54uqb"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="4_ouipa"]
+[ext_resource type="Resource" uid="uid://d3mlslh5fvesk" path="res://addons/godot_jrpg/resources/elements/wind.tres" id="5_frg74"]
+[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate_defend.gd" id="6_3kay3"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="7_2klue"]
+[ext_resource type="Resource" uid="uid://baumq2ujtv2p3" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/types/axe.tres" id="8_mkppi"]
+
+[sub_resource type="Resource" id="Resource_54uqb"]
+script = ExtResource("2_aomcb")
+name = "Accuracy"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_ouipa"]
+script = ExtResource("2_aomcb")
+name = "Attack"
+base_value = 5
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_frg74"]
+script = ExtResource("2_aomcb")
+name = "Defense"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_3kay3"]
+script = ExtResource("2_aomcb")
+name = "Evasion"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2klue"]
+script = ExtResource("2_aomcb")
+name = "HP"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_mkppi"]
+script = ExtResource("2_aomcb")
+name = "Intelligence"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_baqxw"]
+script = ExtResource("2_aomcb")
+name = "Luck"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_6qj43"]
+script = ExtResource("2_aomcb")
+name = "MP"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_q63b3"]
+script = ExtResource("2_aomcb")
+name = "Speed"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_rvc0u"]
+script = ExtResource("3_54uqb")
+hp = SubResource("Resource_2klue")
+mp = SubResource("Resource_6qj43")
+attack = SubResource("Resource_ouipa")
+defense = SubResource("Resource_frg74")
+intelligence = SubResource("Resource_mkppi")
+speed = SubResource("Resource_q63b3")
+accuracy = SubResource("Resource_54uqb")
+evasion = SubResource("Resource_3kay3")
+luck = SubResource("Resource_baqxw")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_pcd03"]
+script = ExtResource("6_3kay3")
+element = ExtResource("5_frg74")
+rate = 1.2
+metadata/_custom_type_script = "uid://bj3nxpjiumj8i"
+
+[sub_resource type="Resource" id="Resource_yflhc"]
+script = ExtResource("7_2klue")
+entries = Array[ExtResource("4_ouipa")]([SubResource("Resource_pcd03")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[resource]
+script = ExtResource("1_8w10i")
+weapon_type = ExtResource("8_mkppi")
+traits = SubResource("Resource_yflhc")
+stats_modifiers = SubResource("Resource_rvc0u")
+display_name = "Copper Axe"
+description = "An axe made from copper."
+icon = ExtResource("1_aomcb")
+price = 14
+metadata/_custom_type_script = "uid://dc8xx5obav1ec"

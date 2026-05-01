@@ -2,22 +2,8 @@
 
 [ext_resource type="Script" uid="uid://coq8anpgbky31" path="res://addons/godot_jrpg/resources/formulas/stats/formula_stat_growth_pokemon.gd" id="1_r1qoh"]
 [ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://addons/godot_jrpg/resources/actors/battlers/classes/player_class.gd" id="2_0hyb2"]
-[ext_resource type="Script" uid="uid://ck34vnnmgp4fr" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/accessory.gd" id="3_f3jkn"]
-[ext_resource type="Script" uid="uid://bnr74cxwnsy6b" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/accessory_type.gd" id="3_wijvd"]
-[ext_resource type="Resource" uid="uid://bpcf1ruapju8w" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.tres" id="5_ck0dc"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="6_ggxx1"]
-[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="7_f3jkn"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="9_5vlrj"]
-[ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="10_tu7dj"]
-[ext_resource type="Script" uid="uid://dngvhngdndfxx" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/armor.gd" id="11_na47u"]
-[ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="12_n4et7"]
-[ext_resource type="Script" uid="uid://bur5etll5sgps" path="res://addons/godot_jrpg/resources/stuff/equippable/head/head.gd" id="13_iu6p8"]
-[ext_resource type="Script" uid="uid://pdcs5gv200d5" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.gd" id="14_n61t8"]
-[ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="15_ht7na"]
-[ext_resource type="Script" uid="uid://b634qeky1f75i" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/shield.gd" id="16_3g535"]
-[ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="17_x5gi3"]
-[ext_resource type="Script" uid="uid://dc8xx5obav1ec" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/weapon.gd" id="18_84yyh"]
-[ext_resource type="Script" uid="uid://dm5t5sv617qda" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.gd" id="19_xxv5h"]
 [ext_resource type="Resource" uid="uid://cnmdlwnjvfucb" path="res://addons/godot_jrpg/resources/elements/earth.tres" id="20_cjlir"]
 [ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_on_attack.gd" id="21_wijvd"]
 
@@ -53,84 +39,6 @@ metadata/_custom_type_script = "uid://coq8anpgbky31"
 script = ExtResource("1_r1qoh")
 metadata/_custom_type_script = "uid://coq8anpgbky31"
 
-[sub_resource type="Resource" id="Resource_tq6wt"]
-script = ExtResource("3_wijvd")
-metadata/_custom_type_script = "uid://bnr74cxwnsy6b"
-
-[sub_resource type="Resource" id="Resource_5vlrj"]
-script = ExtResource("7_f3jkn")
-metadata/_custom_type_script = "uid://cuqvw14m0anvs"
-
-[sub_resource type="Resource" id="Resource_tu7dj"]
-script = ExtResource("9_5vlrj")
-entries = Array[ExtResource("6_ggxx1")]([SubResource("Resource_5vlrj")])
-metadata/_custom_type_script = "uid://e4p3e8vukja"
-
-[sub_resource type="Resource" id="Resource_na47u"]
-script = ExtResource("3_f3jkn")
-accessory_type = SubResource("Resource_tq6wt")
-traits = SubResource("Resource_tu7dj")
-stats_modifiers = ExtResource("5_ck0dc")
-display_name = "Accesory test"
-description = "Accesory test description "
-price = 10
-metadata/_custom_type_script = "uid://ck34vnnmgp4fr"
-
-[sub_resource type="Resource" id="Resource_n4et7"]
-script = ExtResource("10_tu7dj")
-item = SubResource("Resource_na47u")
-name = "Accessory"
-metadata/_custom_type_script = "uid://lxtk6udhgpkx"
-
-[sub_resource type="Resource" id="Resource_iu6p8"]
-script = ExtResource("11_na47u")
-metadata/_custom_type_script = "uid://dngvhngdndfxx"
-
-[sub_resource type="Resource" id="Resource_n61t8"]
-script = ExtResource("12_n4et7")
-item = SubResource("Resource_iu6p8")
-name = "Armor"
-metadata/_custom_type_script = "uid://jwdpbp37yjue"
-
-[sub_resource type="Resource" id="Resource_ht7na"]
-script = ExtResource("13_iu6p8")
-metadata/_custom_type_script = "uid://bur5etll5sgps"
-
-[sub_resource type="Resource" id="Resource_3g535"]
-script = ExtResource("14_n61t8")
-item = SubResource("Resource_ht7na")
-name = "Head"
-metadata/_custom_type_script = "uid://pdcs5gv200d5"
-
-[sub_resource type="Resource" id="Resource_x5gi3"]
-script = ExtResource("16_3g535")
-metadata/_custom_type_script = "uid://b634qeky1f75i"
-
-[sub_resource type="Resource" id="Resource_84yyh"]
-script = ExtResource("17_x5gi3")
-item = SubResource("Resource_x5gi3")
-name = "Shield"
-metadata/_custom_type_script = "uid://sty40x7p8w2t"
-
-[sub_resource type="Resource" id="Resource_xxv5h"]
-script = ExtResource("18_84yyh")
-metadata/_custom_type_script = "uid://dc8xx5obav1ec"
-
-[sub_resource type="Resource" id="Resource_cjlir"]
-script = ExtResource("19_xxv5h")
-item = SubResource("Resource_xxv5h")
-name = "Weapon"
-metadata/_custom_type_script = "uid://dm5t5sv617qda"
-
-[sub_resource type="Resource" id="Resource_8a5hb"]
-script = ExtResource("15_ht7na")
-accessory = SubResource("Resource_n4et7")
-armor = SubResource("Resource_n61t8")
-head = SubResource("Resource_3g535")
-shield = SubResource("Resource_84yyh")
-weapon = SubResource("Resource_cjlir")
-metadata/_custom_type_script = "uid://c00chyv6jtl7b"
-
 [sub_resource type="Resource" id="Resource_1omdc"]
 script = ExtResource("1_r1qoh")
 metadata/_custom_type_script = "uid://coq8anpgbky31"
@@ -149,7 +57,6 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 script = ExtResource("2_0hyb2")
 name = "test_class_2"
 description = "test class 2"
-slots = SubResource("Resource_8a5hb")
 traits = SubResource("Resource_a46v8")
 hp_growth = SubResource("Resource_4nhf3")
 mp_growth = SubResource("Resource_vct1q")

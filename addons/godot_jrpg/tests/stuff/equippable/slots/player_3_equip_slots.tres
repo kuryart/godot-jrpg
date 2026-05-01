@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquipmentSlots" format=3 uid="uid://dnawmn4cf7085"]
 
-[ext_resource type="Script" uid="uid://ck34vnnmgp4fr" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/accessory.gd" id="1_2fdag"]
 [ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="2_kru7q"]
+[ext_resource type="Resource" uid="uid://dw3id8v8odu8w" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/types/light.tres" id="2_t7tv2"]
 [ext_resource type="Script" uid="uid://dngvhngdndfxx" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/armor.gd" id="3_uc2th"]
 [ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="4_tyoxp"]
 [ext_resource type="Script" uid="uid://bur5etll5sgps" path="res://addons/godot_jrpg/resources/stuff/equippable/head/head.gd" id="5_diyvi"]
@@ -9,21 +9,18 @@
 [ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="7_73clu"]
 [ext_resource type="Script" uid="uid://b634qeky1f75i" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/shield.gd" id="8_hv5l5"]
 [ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="9_rqkw4"]
-[ext_resource type="Script" uid="uid://dc8xx5obav1ec" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/weapon.gd" id="10_itk3e"]
 [ext_resource type="Script" uid="uid://dm5t5sv617qda" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.gd" id="11_dyhsx"]
-
-[sub_resource type="Resource" id="Resource_olcep"]
-script = ExtResource("1_2fdag")
-metadata/_custom_type_script = "uid://ck34vnnmgp4fr"
 
 [sub_resource type="Resource" id="Resource_qu6jc"]
 script = ExtResource("2_kru7q")
-item = SubResource("Resource_olcep")
 name = "Accessory"
 metadata/_custom_type_script = "uid://lxtk6udhgpkx"
 
 [sub_resource type="Resource" id="Resource_an75e"]
 script = ExtResource("3_uc2th")
+armor_type = ExtResource("2_t7tv2")
+display_name = "Test armor"
+description = "bla bla bla"
 metadata/_custom_type_script = "uid://dngvhngdndfxx"
 
 [sub_resource type="Resource" id="Resource_k250q"]
@@ -52,13 +49,8 @@ item = SubResource("Resource_di585")
 name = "Shield"
 metadata/_custom_type_script = "uid://sty40x7p8w2t"
 
-[sub_resource type="Resource" id="Resource_j1e5x"]
-script = ExtResource("10_itk3e")
-metadata/_custom_type_script = "uid://dc8xx5obav1ec"
-
 [sub_resource type="Resource" id="Resource_lfosc"]
 script = ExtResource("11_dyhsx")
-item = SubResource("Resource_j1e5x")
 name = "Weapon"
 metadata/_custom_type_script = "uid://dm5t5sv617qda"
 

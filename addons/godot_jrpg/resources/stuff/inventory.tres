@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://b0c02wq5ttngw"]
+
+[ext_resource type="Script" uid="uid://d2eq40h3ji510" path="res://addons/godot_jrpg/resources/stuff/equippable/item_equippable.gd" id="1_uy071"]
+[ext_resource type="Resource" uid="uid://css7wcjvbv815" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/common_shoes.tres" id="2_fh0ug"]
+[ext_resource type="Resource" uid="uid://3k7jlv4t21k8" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/copper_axe.tres" id="3_ftty1"]
+[ext_resource type="Resource" uid="uid://cl5fcye8lg7ax" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/leather_armor.tres" id="4_aweom"]
+[ext_resource type="Resource" uid="uid://1bc1tnxtk1kg" path="res://addons/godot_jrpg/resources/stuff/equippable/head/leather_helmet.tres" id="5_kicam"]
+[ext_resource type="Resource" uid="uid://boqo61heykbsk" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/wooden_shield.tres" id="6_qrq8h"]
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="7_lqiap"]
+[ext_resource type="Script" uid="uid://cyifi6o5fq4vo" path="res://addons/godot_jrpg/resources/stuff/inventory.gd" id="8_fhj3n"]
+
+[resource]
+script = ExtResource("8_fhj3n")
+equippables = Dictionary[ExtResource("1_uy071"), int]({
+ExtResource("2_fh0ug"): 2,
+ExtResource("3_ftty1"): 3,
+ExtResource("4_aweom"): 4,
+ExtResource("5_kicam"): 5,
+ExtResource("6_qrq8h"): 1
+})
+metadata/_custom_type_script = "uid://cyifi6o5fq4vo"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AccessoryType" format=3 uid="uid://b1027b4f0dq8i"]
+
+[ext_resource type="Script" uid="uid://bnr74cxwnsy6b" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/types/accessory_type.gd" id="1_5pni3"]
+
+[resource]
+script = ExtResource("1_5pni3")
+name = "Feet"
+metadata/_custom_type_script = "uid://bnr74cxwnsy6b"
