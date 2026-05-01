@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Inventory" format=3 uid="uid://b0c02wq5ttngw"]
-
-[ext_resource type="Script" uid="uid://d2eq40h3ji510" path="res://addons/godot_jrpg/resources/stuff/equippable/item_equippable.gd" id="1_2as0u"]
-[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="2_d76u3"]
-[ext_resource type="Script" uid="uid://cyifi6o5fq4vo" path="res://addons/godot_jrpg/resources/stuff/inventory.gd" id="3_wgkdb"]
-
-[resource]
-script = ExtResource("3_wgkdb")
-metadata/_custom_type_script = "uid://cyifi6o5fq4vo"

@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Head" format=3 uid="uid://1bc1tnxtk1kg"]
+
+[ext_resource type="Script" uid="uid://bur5etll5sgps" path="res://addons/godot_jrpg/resources/stuff/equippable/head/head.gd" id="1_0am83"]
+[ext_resource type="Resource" uid="uid://do5a1utt5nvt2" path="res://addons/godot_jrpg/resources/stuff/equippable/head/types/light.tres" id="1_fppm7"]
+[ext_resource type="Texture2D" uid="uid://cp2tid3sh8of7" path="res://addons/godot_jrpg/assets/sprites/stuff/equippable/head/head-leather-helmet.png" id="2_u1c4u"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_u1c4u"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_xnxnq"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="5_prvp0"]
+[ext_resource type="Script" uid="uid://dfck85v6aerpq" path="res://addons/godot_jrpg/resources/traits/chance_traits/trait_status_chance_attack.gd" id="6_urc0o"]
+[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="7_j7c6g"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="8_vf3ir"]
+
+[sub_resource type="Resource" id="Resource_uobmi"]
+script = ExtResource("3_u1c4u")
+name = "Accuracy"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2j63s"]
+script = ExtResource("3_u1c4u")
+name = "Attack"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_71thm"]
+script = ExtResource("3_u1c4u")
+name = "Defense"
+base_value = 5
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_nsawd"]
+script = ExtResource("3_u1c4u")
+name = "Evasion"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_3d2iy"]
+script = ExtResource("3_u1c4u")
+name = "HP"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_ww256"]
+script = ExtResource("3_u1c4u")
+name = "Intelligence"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_vo32r"]
+script = ExtResource("3_u1c4u")
+name = "Luck"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_fhm25"]
+script = ExtResource("3_u1c4u")
+name = "MP"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_5hm6b"]
+script = ExtResource("3_u1c4u")
+name = "Speed"
+base_value = 2
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_t4dyh"]
+script = ExtResource("4_xnxnq")
+hp = SubResource("Resource_3d2iy")
+mp = SubResource("Resource_fhm25")
+attack = SubResource("Resource_2j63s")
+defense = SubResource("Resource_71thm")
+intelligence = SubResource("Resource_ww256")
+speed = SubResource("Resource_5hm6b")
+accuracy = SubResource("Resource_uobmi")
+evasion = SubResource("Resource_nsawd")
+luck = SubResource("Resource_vo32r")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_mwqjm"]
+script = ExtResource("6_urc0o")
+chance = 10.0
+status = ExtResource("7_j7c6g")
+metadata/_custom_type_script = "uid://dfck85v6aerpq"
+
+[sub_resource type="Resource" id="Resource_gr7mc"]
+script = ExtResource("8_vf3ir")
+entries = Array[ExtResource("5_prvp0")]([SubResource("Resource_mwqjm")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[resource]
+script = ExtResource("1_0am83")
+head_type = ExtResource("1_fppm7")
+traits = SubResource("Resource_gr7mc")
+stats_modifiers = SubResource("Resource_t4dyh")
+display_name = "Leather Helmet"
+description = "A leather helmet."
+icon = ExtResource("2_u1c4u")
+metadata/_custom_type_script = "uid://bur5etll5sgps"

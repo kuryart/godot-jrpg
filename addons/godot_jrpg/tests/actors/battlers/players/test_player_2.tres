@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjsdujeknnms6" path="res://addons/godot_jrpg/resources/controllers/inputs/input_assignment.gd" id="2_7cxlq"]
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="2_uhwwm"]
+[ext_resource type="Resource" uid="uid://dykuw6pyjay65" path="res://addons/godot_jrpg/tests/stuff/equippable/slots/player_2_equip_slots.tres" id="3_6ffq0"]
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="3_7ekjg"]
 [ext_resource type="Texture2D" uid="uid://bu02dmnnugcti" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-2.png" id="3_gn6mu"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_okkc2"]
@@ -87,6 +88,7 @@ script = ExtResource("2_uhwwm")
 face = ExtResource("3_gn6mu")
 player_class = ExtResource("4_3wjiw")
 xp_formula = SubResource("Resource_dyfle")
+equip = ExtResource("3_6ffq0")
 stats = SubResource("Resource_e7fee")
 controller = SubResource("Resource_7ekjg")
 current_hp = 100

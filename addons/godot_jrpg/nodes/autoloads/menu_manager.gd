@@ -49,6 +49,10 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("cancel"):
 		if not stack.is_empty():
 			var top = stack.back()
+
+			if top.has_method("handle_back") and top.handle_back():
+				return
+
 			top.queue_free()
 			get_viewport().set_input_as_handled()
 		else:

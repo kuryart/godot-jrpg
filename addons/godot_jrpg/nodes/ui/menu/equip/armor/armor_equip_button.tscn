@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dmcl4lw3brlsh"]
+
+[ext_resource type="Script" uid="uid://cp0s6f4toe8ce" path="res://addons/godot_jrpg/nodes/ui/menu/equip/armor/armor_equip_button.gd" id="1_ehbvh"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_rmuit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pood"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qagbo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ArmorEquipContainer" type="PanelContainer" unique_id=1837733199]
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
+
+[node name="ArmorEquipButton" type="Button" parent="." unique_id=2078870072]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("1_ehbvh")
+menu_signals = ExtResource("2_rmuit")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1783136755]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ArmorEquipQuantity" type="Label" parent="HBoxContainer" unique_id=905113127]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x2"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=1578906902]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 2
+
+[node name="ArmorEquipIcon" type="TextureRect" parent="HBoxContainer/HBoxContainer" unique_id=1895314771]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+
+[node name="ArmorEquipName" type="Label" parent="HBoxContainer/HBoxContainer" unique_id=435182558]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leather Armor"

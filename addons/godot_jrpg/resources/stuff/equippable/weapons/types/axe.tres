@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="WeaponType" format=3 uid="uid://baumq2ujtv2p3"]
+
+[ext_resource type="Script" uid="uid://b3e4khmkglbj0" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/types/weapon_type.gd" id="1_1t2gg"]
+
+[resource]
+script = ExtResource("1_1t2gg")
+name = "Axe"
+metadata/_custom_type_script = "uid://b3e4khmkglbj0"

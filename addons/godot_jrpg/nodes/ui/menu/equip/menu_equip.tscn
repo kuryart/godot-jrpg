@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://b7rec6sbed7vs"]
 
 [ext_resource type="Script" uid="uid://1ue0dgaxmlwf" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip.gd" id="1_8xy2i"]
-[ext_resource type="Texture2D" uid="uid://bcqbcs5lk7njk" path="res://addons/gd-plug-ui/assets/icons/import_check.png" id="2_f4ej4"]
+[ext_resource type="Script" uid="uid://bi7u8encjoq0i" path="res://addons/godot_jrpg/nodes/ui/menu/equip/weapon/weapon_equipped_button.gd" id="2_4pood"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_qagbo"]
+[ext_resource type="Resource" uid="uid://b5rmkhl73blly" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_3.tres" id="3_iev38"]
+[ext_resource type="Script" uid="uid://b6onpb18nw81" path="res://addons/godot_jrpg/nodes/ui/menu/equip/armor/armor_equipped_button.gd" id="5_i6iul"]
+[ext_resource type="Script" uid="uid://44ita44q8fd5" path="res://addons/godot_jrpg/nodes/ui/menu/equip/accessory/accessory_equipped_button.gd" id="6_iev38"]
+[ext_resource type="Script" uid="uid://xhae2ygb45bg" path="res://addons/godot_jrpg/nodes/ui/menu/equip/head/head_equipped_button.gd" id="7_gypfo"]
+[ext_resource type="Script" uid="uid://flk7qs7q1l6l" path="res://addons/godot_jrpg/nodes/ui/menu/equip/shield/shield_equipped_button.gd" id="8_vydne"]
+[ext_resource type="PackedScene" uid="uid://mxnhv1hko42n" path="res://addons/godot_jrpg/nodes/ui/menu/equip/weapon/weapon_equip_button.tscn" id="9_a08jx"]
+[ext_resource type="PackedScene" uid="uid://dmcl4lw3brlsh" path="res://addons/godot_jrpg/nodes/ui/menu/equip/armor/armor_equip_button.tscn" id="10_ahu3j"]
+[ext_resource type="PackedScene" uid="uid://c66y0p6585vky" path="res://addons/godot_jrpg/nodes/ui/menu/equip/accessory/accessory_equip_button.tscn" id="10_gypfo"]
+[ext_resource type="PackedScene" uid="uid://blqedi40xdp4u" path="res://addons/godot_jrpg/nodes/ui/menu/equip/head/head_equip_button.tscn" id="12_wi6vs"]
+[ext_resource type="PackedScene" uid="uid://16fxr43l5cxt" path="res://addons/godot_jrpg/nodes/ui/menu/equip/shield/shield_equip_button.tscn" id="13_nnb4d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xy2i"]
 bg_color = Color(0.15337178, 0.15337181, 0.15337175, 0.52156866)
@@ -24,6 +35,13 @@ layout_mode = 3
 anchors_preset = 0
 theme = SubResource("Theme_f4ej4")
 script = ExtResource("1_8xy2i")
+menu_signals = ExtResource("2_qagbo")
+player = ExtResource("3_iev38")
+weapon_equip_container = ExtResource("9_a08jx")
+armor_equip_container = ExtResource("10_ahu3j")
+accessory_equip_container = ExtResource("10_gypfo")
+head_equip_container = ExtResource("12_wi6vs")
+shield_equip_container = ExtResource("13_nnb4d")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1747304795]
 layout_mode = 1
@@ -40,12 +58,13 @@ scale = Vector2(0.91291237, 0.9986337)
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1707053653]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1969745437]
+[node name="Messenger" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=1969745437]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/PanelContainer" unique_id=1064329683]
+[node name="MessengerLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Messenger" unique_id=1064329683]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Testando"
 horizontal_alignment = 1
@@ -252,187 +271,232 @@ text = "→"
 layout_mode = 2
 text = "12"
 
-[node name="EquipedPanel" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=265982608]
+[node name="EquippedPanel" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=265982608]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel" unique_id=660769108]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel" unique_id=660769108]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer" unique_id=2083726966]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer" unique_id=2083726966]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="WeaponContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer" unique_id=1555334067]
+[node name="WeaponEquippedContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer" unique_id=1555334067]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
 
-[node name="WeaponButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/WeaponContainer" unique_id=725444909]
+[node name="WeaponEquippedButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/WeaponEquippedContainer" unique_id=725444909]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ArmorEquippedContainer/ArmorEquippedButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("2_4pood")
+menu_signals = ExtResource("2_qagbo")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/WeaponContainer" unique_id=1254190683]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/WeaponEquippedContainer" unique_id=1254190683]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="WeaponLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/WeaponContainer/HBoxContainer" unique_id=252264975]
+[node name="WeaponEquippedLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/WeaponEquippedContainer/HBoxContainer" unique_id=252264975]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1053055, 0.6561091, 1, 1)
 text = "Weapon"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/WeaponContainer/HBoxContainer" unique_id=801668375]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/WeaponEquippedContainer/HBoxContainer" unique_id=801668375]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="WeaponIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/WeaponContainer/HBoxContainer/HBoxContainer" unique_id=15886693]
+[node name="WeaponEquippedIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/WeaponEquippedContainer/HBoxContainer/HBoxContainer" unique_id=15886693]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_f4ej4")
+expand_mode = 1
 
-[node name="WeaponName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/WeaponContainer/HBoxContainer/HBoxContainer" unique_id=1843937996]
+[node name="WeaponEquippedName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/WeaponEquippedContainer/HBoxContainer/HBoxContainer" unique_id=1843937996]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Axe"
 
-[node name="ArmorContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer" unique_id=560723179]
+[node name="ArmorEquippedContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer" unique_id=560723179]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
 
-[node name="ArmorButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ArmorContainer" unique_id=1569647951]
+[node name="ArmorEquippedButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ArmorEquippedContainer" unique_id=1569647951]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../WeaponEquippedContainer/WeaponEquippedButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../AccessoryEquippedContainer/AccessoryEquippedButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("5_i6iul")
+menu_signals = ExtResource("2_qagbo")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ArmorContainer" unique_id=1351545010]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ArmorEquippedContainer" unique_id=1351545010]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ArmorLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ArmorContainer/HBoxContainer" unique_id=935723633]
+[node name="ArmorEquippedLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ArmorEquippedContainer/HBoxContainer" unique_id=935723633]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1053055, 0.6561091, 1, 1)
 text = "Armor"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ArmorContainer/HBoxContainer" unique_id=270763130]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ArmorEquippedContainer/HBoxContainer" unique_id=270763130]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="ArmorIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ArmorContainer/HBoxContainer/HBoxContainer" unique_id=2091368873]
+[node name="ArmorEquippedIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ArmorEquippedContainer/HBoxContainer/HBoxContainer" unique_id=2091368873]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_f4ej4")
+expand_mode = 1
 
-[node name="ArmorName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ArmorContainer/HBoxContainer/HBoxContainer" unique_id=1218681817]
+[node name="ArmorEquippedName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ArmorEquippedContainer/HBoxContainer/HBoxContainer" unique_id=1218681817]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Axe"
 
-[node name="AccessoryContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer" unique_id=2010692907]
+[node name="AccessoryEquippedContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer" unique_id=2010692907]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
 
-[node name="AccessoryButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/AccessoryContainer" unique_id=1583255475]
+[node name="AccessoryEquippedButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/AccessoryEquippedContainer" unique_id=1583255475]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../ArmorEquippedContainer/ArmorEquippedButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../HeadEquippedContainer/HeadEquippedButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("6_iev38")
+menu_signals = ExtResource("2_qagbo")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/AccessoryContainer" unique_id=791644827]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/AccessoryEquippedContainer" unique_id=791644827]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="AccessoryLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/AccessoryContainer/HBoxContainer" unique_id=2141883405]
+[node name="AccessoryEquippedLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/AccessoryEquippedContainer/HBoxContainer" unique_id=2141883405]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1053055, 0.6561091, 1, 1)
 text = "Accessory"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/AccessoryContainer/HBoxContainer" unique_id=2131349621]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/AccessoryEquippedContainer/HBoxContainer" unique_id=2131349621]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="AccessoryIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/AccessoryContainer/HBoxContainer/HBoxContainer" unique_id=1909228119]
+[node name="AccessoryEquippedIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/AccessoryEquippedContainer/HBoxContainer/HBoxContainer" unique_id=1909228119]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_f4ej4")
+expand_mode = 1
 
-[node name="AccessoryName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/AccessoryContainer/HBoxContainer/HBoxContainer" unique_id=2067721312]
+[node name="AccessoryEquippedName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/AccessoryEquippedContainer/HBoxContainer/HBoxContainer" unique_id=2067721312]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Axe"
 
-[node name="HeadContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer" unique_id=139934688]
+[node name="HeadEquippedContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer" unique_id=139934688]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
 
-[node name="HeadButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/HeadContainer" unique_id=1027769733]
+[node name="HeadEquippedButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/HeadEquippedContainer" unique_id=1027769733]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../AccessoryEquippedContainer/AccessoryEquippedButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../ShieldEquippedContainer/ShieldEquippedButton")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("7_gypfo")
+menu_signals = ExtResource("2_qagbo")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/HeadContainer" unique_id=959799773]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/HeadEquippedContainer" unique_id=959799773]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HeadLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/HeadContainer/HBoxContainer" unique_id=549072020]
+[node name="HeadEquippedLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/HeadEquippedContainer/HBoxContainer" unique_id=549072020]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1053055, 0.6561091, 1, 1)
 text = "Head"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/HeadContainer/HBoxContainer" unique_id=1157414546]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/HeadEquippedContainer/HBoxContainer" unique_id=1157414546]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="HeadIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/HeadContainer/HBoxContainer/HBoxContainer" unique_id=1149720583]
+[node name="HeadEquippedIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/HeadEquippedContainer/HBoxContainer/HBoxContainer" unique_id=1149720583]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_f4ej4")
+expand_mode = 1
 
-[node name="HeadName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/HeadContainer/HBoxContainer/HBoxContainer" unique_id=2087673545]
+[node name="HeadEquippedName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/HeadEquippedContainer/HBoxContainer/HBoxContainer" unique_id=2087673545]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Axe"
 
-[node name="ShieldContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer" unique_id=1875326346]
+[node name="ShieldEquippedContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer" unique_id=1875326346]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
 
-[node name="ShieldButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ShieldContainer" unique_id=151659389]
+[node name="ShieldEquippedButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ShieldEquippedContainer" unique_id=151659389]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../HeadEquippedContainer/HeadEquippedButton")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
+script = ExtResource("8_vydne")
+menu_signals = ExtResource("2_qagbo")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ShieldContainer" unique_id=748346047]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ShieldEquippedContainer" unique_id=748346047]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ShieldLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ShieldContainer/HBoxContainer" unique_id=1604510852]
+[node name="ShieldEquippedLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ShieldEquippedContainer/HBoxContainer" unique_id=1604510852]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.1053055, 0.6561091, 1, 1)
 text = "Shield"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ShieldContainer/HBoxContainer" unique_id=1342538115]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ShieldEquippedContainer/HBoxContainer" unique_id=1342538115]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 alignment = 2
 
-[node name="ShieldIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ShieldContainer/HBoxContainer/HBoxContainer" unique_id=839980449]
+[node name="ShieldEquippedIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ShieldEquippedContainer/HBoxContainer/HBoxContainer" unique_id=839980449]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(23, 23)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_f4ej4")
+expand_mode = 1
 
-[node name="ShieldName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipedPanel/MarginContainer/VBoxContainer/ShieldContainer/HBoxContainer/HBoxContainer" unique_id=1759486020]
+[node name="ShieldEquippedName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquippedPanel/MarginContainer/VBoxContainer/ShieldEquippedContainer/HBoxContainer/HBoxContainer" unique_id=1759486020]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Axe"
 
 [node name="EquipPanel" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=688915911]
 layout_mode = 2
@@ -446,65 +510,92 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer" unique_id=842676260]
+[node name="WeaponEquipScroll" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer" unique_id=842676260]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer" unique_id=412403871]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/WeaponEquipScroll" unique_id=906456045]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="WeaponEquipVBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/WeaponEquipScroll/MarginContainer" unique_id=412403871]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="WeaponPanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1410954247]
+[node name="ArmorEquipScroll" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer" unique_id=1786389273]
+unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
 
-[node name="WeaponButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer" unique_id=1855192224]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer" unique_id=417431068]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer/HBoxContainer" unique_id=630072143]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ArmorEquipScroll" unique_id=133318524]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
-alignment = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="WeaponIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer/HBoxContainer/HBoxContainer" unique_id=531023968]
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_f4ej4")
-
-[node name="WeaponName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer/HBoxContainer/HBoxContainer" unique_id=1240264189]
-layout_mode = 2
-text = "Axe"
-
-[node name="WeaponPanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1449918490]
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_4pood")
-
-[node name="WeaponButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer2" unique_id=1232936373]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_qagbo")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer2" unique_id=1410470584]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer2/HBoxContainer" unique_id=1466212455]
+[node name="ArmorEquipVBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ArmorEquipScroll/MarginContainer" unique_id=507341804]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
-alignment = 2
 
-[node name="WeaponIcon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer2/HBoxContainer/HBoxContainer" unique_id=152124606]
+[node name="AccessoryEquipScroll" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer" unique_id=591738928]
+unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("2_f4ej4")
 
-[node name="WeaponName" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ScrollContainer/VBoxContainer/WeaponPanelContainer2/HBoxContainer/HBoxContainer" unique_id=1926863546]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/AccessoryEquipScroll" unique_id=807417476]
 layout_mode = 2
-text = "Axe"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="AccessoryEquipVBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/AccessoryEquipScroll/MarginContainer" unique_id=1680998294]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeadEquipScroll" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer" unique_id=313820033]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/HeadEquipScroll" unique_id=1975473989]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HeadEquipVBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/HeadEquipScroll/MarginContainer" unique_id=1796260988]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShieldEquipScroll" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer" unique_id=1832008126]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ShieldEquipScroll" unique_id=398214239]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ShieldEquipVBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/EquipPanel/MarginContainer/ShieldEquipScroll/MarginContainer" unique_id=1623802539]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

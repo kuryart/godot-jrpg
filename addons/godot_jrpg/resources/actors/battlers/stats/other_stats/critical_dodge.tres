@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Stat" format=3 uid="uid://cwjehq5v20lxq"]
+
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="1_2is2g"]
+
+[resource]
+script = ExtResource("1_2is2g")
+name = "Critical Dodge"
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
