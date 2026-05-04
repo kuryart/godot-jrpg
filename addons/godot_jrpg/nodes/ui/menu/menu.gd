@@ -32,7 +32,8 @@ func connect_signals():
 	menu_signals.open_menu_status_emited.connect(_on_status_button_up)
 	menu_signals.open_menu_save_emited.connect(_on_save_button_up)
 	menu_signals.open_menu_equip_emited.connect(_on_equip_button_up)
-	menu_signals.player_selected.connect(_on_player_selected)
+	menu_signals.open_menu_items_emited.connect(_on_items_button_up)
+	menu_signals.menu_player_selected.connect(_on_player_selected)
 
 func instantiate_players():
 	var players = GameManager.party.players

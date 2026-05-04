@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://xkd2u2br7fvp"]
+
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="1_h64dm"]
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_rtg1s"]
+[ext_resource type="Script" uid="uid://bqnn8fctbndnr" path="res://addons/godot_jrpg/resources/effects/effect_heal.gd" id="2_lvguv"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="3_86rq5"]
+[ext_resource type="Texture2D" uid="uid://df2df35wr46s8" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-potion.png" id="4_sgnjb"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="6_lvguv"]
+
+[sub_resource type="Resource" id="Resource_iv1u5"]
+script = ExtResource("2_lvguv")
+amount = 25
+metadata/_custom_type_script = "uid://bqnn8fctbndnr"
+
+[sub_resource type="Resource" id="Resource_dy64v"]
+script = ExtResource("3_86rq5")
+effects = Array[ExtResource("1_rtg1s")]([SubResource("Resource_iv1u5")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_86rq5"]
+script = ExtResource("6_lvguv")
+side = 1
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_h64dm")
+used_on = 2
+effects = SubResource("Resource_dy64v")
+targets = SubResource("Resource_86rq5")
+display_name = "Health Potion"
+description = "A health potion."
+icon = ExtResource("4_sgnjb")
+price = 15
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

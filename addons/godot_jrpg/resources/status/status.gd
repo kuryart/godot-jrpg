@@ -17,7 +17,7 @@ class_name Status extends Resource
 	"Attack Ally", 
 	"Attack Both") var action_restriction: String = "Nothing"
 ## The traits attached to this status.
-@export var traits: Array[Trait]
+@export var traits: TraitList
 ## The dead state is a special one. It restricts all actions, and don't go away with
 ## turns, damage or steps. You can set a different name for the state in the editor.
 ## You can also create a new state with this flag on, and create something like
@@ -83,19 +83,15 @@ class_name Status extends Resource
 ## The message when the status dissipitates on enemy.
 @export var message_restore_enemy: String
 
+## The icon for the status
+@export var icon: Texture
+
 ## The tick to count the effect duration.
 var tick: int = 0
-
-func apply_effects(actor: Battler):
-	resolve(actor)
 
 func process_duration() -> bool:
 	tick += 1
 	return tick >= duration_max
-
-@warning_ignore("unused_parameter")
-func resolve(actor: Battler):
-	pass
 
 ## Used to show and hide things in the editor.
 func _validate_property(property: Dictionary):

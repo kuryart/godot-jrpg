@@ -7,8 +7,9 @@
 [ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="3_f3mx3"]
 [ext_resource type="PackedScene" uid="uid://b7rec6sbed7vs" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip.tscn" id="3_wa1vw"]
 [ext_resource type="Script" uid="uid://t7g0m11f0vq0" path="res://addons/godot_jrpg/nodes/ui/menu/save/menu_save_button.gd" id="5_0kbj6"]
-[ext_resource type="PackedScene" uid="uid://c5etbfyw0wg85" path="res://addons/godot_jrpg/nodes/ui/menu/players/menu_player.tscn" id="7_ab2m6"]
+[ext_resource type="PackedScene" uid="uid://c5etbfyw0wg85" path="res://addons/godot_jrpg/nodes/ui/menu/players/menu_player_button.tscn" id="7_ab2m6"]
 [ext_resource type="Script" uid="uid://c2rp6orbiomhx" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip_button.gd" id="7_evij6"]
+[ext_resource type="Script" uid="uid://d3glja0myw5m0" path="res://addons/godot_jrpg/nodes/ui/menu/items/menu_items_button.gd" id="7_wa1vw"]
 
 [node name="Menu" type="Control" unique_id=652208107]
 z_index = 99
@@ -58,6 +59,8 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Skills")
 text = "Items"
+script = ExtResource("7_wa1vw")
+menu_signals = ExtResource("3_f3mx3")
 
 [node name="Skills" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1597931563]
 unique_name_in_owner = true

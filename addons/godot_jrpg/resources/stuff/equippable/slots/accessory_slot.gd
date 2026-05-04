@@ -1,3 +1,3 @@
-class_name AccesorySlot extends EquipmentSlot
+class_name AccessorySlot extends EquipmentSlot
 
 @export var item: Accessory

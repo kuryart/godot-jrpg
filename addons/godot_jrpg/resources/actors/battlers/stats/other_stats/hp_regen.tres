@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_ah3ma")
-name = "HP Regen"
+display_name = "HP Regen"
+id = 9
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"

@@ -1,13 +1,14 @@
 class_name ItemButton extends UIButton
 
-@export var item: Item
-@export var id_in_inventory: int
 @export var menu_signals: MenuSignals
+
+var item: Item
+var id_in_inventory: int
+var icon: Texture
 
 func resolve():
 	pass
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	button_up.connect(_on_button_up)
 	focus_entered.connect(_on_focus_entered)

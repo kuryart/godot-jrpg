@@ -8,51 +8,43 @@
 [ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="4_7gtya"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_mwxlf"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="5_mwxlf"]
+[ext_resource type="Resource" uid="uid://b8e8ek0dt5gd7" path="res://addons/godot_jrpg/resources/actors/battlers/stats/main_stats/attack.tres" id="8_h118v"]
 
 [sub_resource type="Resource" id="Resource_4c36d"]
 script = ExtResource("3_7gtya")
-name = "Accuracy"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_f2mod"]
 script = ExtResource("3_7gtya")
-name = "Attack"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_j4iok"]
 script = ExtResource("3_7gtya")
-name = "Defense"
 base_value = 5
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_v8l7g"]
 script = ExtResource("3_7gtya")
-name = "Evasion"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_pa5dn"]
 script = ExtResource("3_7gtya")
-name = "HP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_tv4jd"]
 script = ExtResource("3_7gtya")
-name = "Intelligence"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_hli36"]
 script = ExtResource("3_7gtya")
-name = "Luck"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_urbqr"]
 script = ExtResource("3_7gtya")
-name = "MP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ln3y2"]
 script = ExtResource("3_7gtya")
-name = "Speed"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_8y5wc"]
@@ -70,7 +62,7 @@ metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [sub_resource type="Resource" id="Resource_h118v"]
 script = ExtResource("4_7gtya")
-stat_name = &"defense"
+stat = ExtResource("8_h118v")
 value_multiply = 1.2
 value_add = 5
 metadata/_custom_type_script = "uid://cuqvw14m0anvs"
@@ -83,8 +75,8 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 [resource]
 script = ExtResource("1_478c6")
 armor_type = ExtResource("1_ov2r8")
-traits = SubResource("Resource_kxsr5")
 stats_modifiers = SubResource("Resource_8y5wc")
+traits = SubResource("Resource_kxsr5")
 display_name = "Leather Armor"
 description = "A leather armor."
 icon = ExtResource("2_mwxlf")

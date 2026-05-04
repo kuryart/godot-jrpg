@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_s24a1")
-name = "Magical Dodge"
+display_name = "Skill Dodge"
+id = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"

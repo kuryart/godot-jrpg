@@ -1,20 +1,112 @@
 [gd_resource type="Resource" script_class="EquipmentSlots" format=3 uid="uid://28fcnl7fk5vu"]
 
+[ext_resource type="Script" uid="uid://bnr74cxwnsy6b" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/types/accessory_type.gd" id="1_5fda5"]
 [ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="1_q38c5"]
-[ext_resource type="Resource" uid="uid://css7wcjvbv815" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/common_shoes.tres" id="1_yut2y"]
+[ext_resource type="Script" uid="uid://ck34vnnmgp4fr" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/accessory.gd" id="2_hcm0k"]
 [ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="2_khc0u"]
+[ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_oncrk"]
 [ext_resource type="Resource" uid="uid://cl5fcye8lg7ax" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/leather_armor.tres" id="3_shbyx"]
 [ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="4_36qsy"]
+[ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_qa0d6"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="5_toerv"]
 [ext_resource type="Resource" uid="uid://1bc1tnxtk1kg" path="res://addons/godot_jrpg/resources/stuff/equippable/head/leather_helmet.tres" id="5_w04s7"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="6_1h8x1"]
 [ext_resource type="Script" uid="uid://pdcs5gv200d5" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.gd" id="6_8q7vp"]
+[ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_of_attack.gd" id="7_tvjne"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="8_8gkfh"]
 [ext_resource type="Resource" uid="uid://boqo61heykbsk" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/wooden_shield.tres" id="8_70e1g"]
 [ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="9_gbrp3"]
 [ext_resource type="Resource" uid="uid://3k7jlv4t21k8" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/copper_axe.tres" id="10_2n2vn"]
 [ext_resource type="Script" uid="uid://dm5t5sv617qda" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.gd" id="11_88jxk"]
 
-[sub_resource type="Resource" id="Resource_qu6jc"]
+[sub_resource type="Resource" id="Resource_ujyyb"]
+script = ExtResource("1_5fda5")
+name = "Feet"
+metadata/_custom_type_script = "uid://bnr74cxwnsy6b"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jjp36"]
+load_path = "res://.godot/imported/accessory-shoes.png-6b2a32cb4a9e0c718bed2a14d765be29.ctex"
+
+[sub_resource type="Resource" id="Resource_6g6h2"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_781rd"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_uobp7"]
+script = ExtResource("3_oncrk")
+base_value = 5
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2knd6"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_k3ci8"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_uo0dj"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_nakyj"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_4lprc"]
+script = ExtResource("3_oncrk")
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_1iqn1"]
+script = ExtResource("3_oncrk")
+base_value = 2
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_2c4mp"]
+script = ExtResource("4_qa0d6")
+hp = SubResource("Resource_k3ci8")
+mp = SubResource("Resource_4lprc")
+attack = SubResource("Resource_781rd")
+defense = SubResource("Resource_uobp7")
+intelligence = SubResource("Resource_uo0dj")
+speed = SubResource("Resource_1iqn1")
+accuracy = SubResource("Resource_6g6h2")
+evasion = SubResource("Resource_2knd6")
+luck = SubResource("Resource_nakyj")
+metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
+
+[sub_resource type="Resource" id="Resource_a60oo"]
+script = ExtResource("6_1h8x1")
+name = "Earth"
+metadata/_custom_type_script = "uid://x086btbocuul"
+
+[sub_resource type="Resource" id="Resource_xwkrd"]
+script = ExtResource("7_tvjne")
+element = SubResource("Resource_a60oo")
+metadata/_custom_type_script = "uid://dv7c0njyh764x"
+
+[sub_resource type="Resource" id="Resource_5758u"]
+script = ExtResource("8_8gkfh")
+entries = Array[ExtResource("5_toerv")]([SubResource("Resource_xwkrd")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[sub_resource type="Resource" id="Resource_cy8xu"]
+script = ExtResource("2_hcm0k")
+accessory_type = SubResource("Resource_ujyyb")
+stats_modifiers = SubResource("Resource_2c4mp")
+traits = SubResource("Resource_5758u")
+display_name = "Common Shoes"
+description = "Just regular shoes."
+icon = SubResource("CompressedTexture2D_jjp36")
+price = 10
+metadata/_custom_type_script = "uid://ck34vnnmgp4fr"
+
+[sub_resource type="Resource" id="Resource_q00c2"]
 script = ExtResource("2_khc0u")
-item = ExtResource("1_yut2y")
+item = SubResource("Resource_cy8xu")
 name = "Accessory"
 metadata/_custom_type_script = "uid://lxtk6udhgpkx"
 
@@ -44,7 +136,7 @@ metadata/_custom_type_script = "uid://dm5t5sv617qda"
 
 [resource]
 script = ExtResource("1_q38c5")
-accessory = SubResource("Resource_qu6jc")
+accessory = SubResource("Resource_q00c2")
 armor = SubResource("Resource_k250q")
 head = SubResource("Resource_m86p1")
 shield = SubResource("Resource_qa7jd")

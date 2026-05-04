@@ -47,3 +47,26 @@ func update_base_stats():
 		var growth_formula = player_class.get(stat_name + "_growth")
 		param.base_stat_value = stat.base_value
 		stat.level_growth_value = growth_formula.calculate(param)
+
+func change_equipment(slot: EquipmentSlot, new_item: ItemEquippable) -> ItemEquippable:
+	var old_item = null
+
+	if slot is WeaponSlot:
+			old_item = equip.weapon.item
+			equip.weapon.item = new_item
+	elif slot is ArmorSlot:
+			old_item = equip.armor.item
+			equip.armor.item = new_item
+	elif slot is AccessorySlot:
+			old_item = equip.accessory.item
+			equip.accessory.item = new_item
+	elif slot is HeadSlot:
+			old_item = equip.head.item
+			equip.head.item = new_item
+	elif slot is ShieldSlot:
+			old_item = equip.shield.item
+			equip.shield.item = new_item
+
+	trait_aggregator.refresh()
+	
+	return old_item

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SFX" format=3 uid="uid://c8n6ex642wvef"]
+
+[ext_resource type="Script" uid="uid://bv8reig1fhqiw" path="res://addons/godot_jrpg/resources/audio/sfx/sfx.gd" id="1_xc21b"]
+[ext_resource type="AudioStream" uid="uid://b1tqre6cgtkc4" path="res://addons/godot_jrpg/assets/audio/sfx/ui/cancel.wav" id="2_npm6p"]
+
+[resource]
+script = ExtResource("1_xc21b")
+stream = ExtResource("2_npm6p")
+metadata/_custom_type_script = "uid://bv8reig1fhqiw"

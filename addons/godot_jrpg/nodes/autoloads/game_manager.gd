@@ -6,10 +6,15 @@ var last_game_state: GameStates = GameStates.INTRO
 
 enum Languages {EN,PT,ES}
 @export var language: Languages = Languages.PT
+
 enum Difficulties {HARD, NIGHTMARE, HELL}
 @export var difficulty: Difficulties = Difficulties.HARD
 
 @export var party: Party
+
+var steps_walked: int = 0
+## The time played in seconds
+var time_played: int = 0
 
 var can_open_menu: bool = false
 

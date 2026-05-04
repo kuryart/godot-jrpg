@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cyg643b7arrft"]
 
 [ext_resource type="Script" uid="uid://cd1t17gwxtoft" path="res://addons/godot_jrpg/nodes/ui/menu/items/item_button.gd" id="1_wbgn7"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_dqj4j"]
 
 [node name="ItemButton" type="Button" unique_id=765523746]
+size_flags_horizontal = 3
 script = ExtResource("1_wbgn7")
+menu_signals = ExtResource("2_dqj4j")

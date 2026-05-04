@@ -13,6 +13,7 @@ class_name TitleMenu extends Control
 var menu: Node
 
 func _ready() -> void:
+	GameManager.change_game_state(GameManager.GameStates.TITLE)
 	UI.set_ui_lock(true)
 	await Fade.fade_in(4.0).finished
 	UI.set_ui_lock(false)

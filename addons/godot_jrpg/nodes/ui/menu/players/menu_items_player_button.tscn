@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://bbity22e88l20"]
+
+[ext_resource type="Script" uid="uid://c7kp54e7nor23" path="res://addons/godot_jrpg/nodes/ui/menu/players/menu_items_player_button.gd" id="1_ucc3s"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_beefm"]
+[ext_resource type="Texture2D" uid="uid://bgsxxjqb5374h" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-1.png" id="3_wj68q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ora5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wa1vw"]
+bg_color = Color(0.764706, 0.25098, 0.262745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32snh"]
+bg_color = Color(0.494118, 0.611765, 0.847059, 1)
+
+[node name="Player1" type="PanelContainer" unique_id=1857697736]
+custom_minimum_size = Vector2(200, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ora5")
+
+[node name="Button" type="Button" parent="." unique_id=2043593775]
+layout_mode = 2
+script = ExtResource("1_ucc3s")
+menu_signals = ExtResource("2_beefm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=506419974]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Face" type="TextureRect" parent="HBoxContainer" unique_id=165385478]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_wj68q")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1443225155]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=1446192157]
+layout_mode = 2
+text = "Player 1"
+
+[node name="Level" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=661443311]
+layout_mode = 2
+text = "Lv.1"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=2068316109]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+
+[node name="Stats" type="VBoxContainer" parent="HBoxContainer" unique_id=1785504690]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HP" type="BoxContainer" parent="HBoxContainer/Stats" unique_id=1170605351]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Stats/HP" unique_id=1381763902]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current HP" type="Label" parent="HBoxContainer/Stats/HP/VBoxContainer" unique_id=1472772934]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="HP Bar" type="ProgressBar" parent="HBoxContainer/Stats/HP/VBoxContainer" unique_id=1305309761]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_wa1vw")
+value = 100.0
+show_percentage = false
+
+[node name="HP Label" type="Label" parent="HBoxContainer/Stats/HP" unique_id=2095112999]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
+text = "HP"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Stats/HP" unique_id=2037161384]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+
+[node name="MP" type="BoxContainer" parent="HBoxContainer/Stats" unique_id=1310755967]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Stats/MP" unique_id=1822018216]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Current MP" type="Label" parent="HBoxContainer/Stats/MP/VBoxContainer" unique_id=1889259712]
+layout_mode = 2
+text = "9999/9999"
+
+[node name="MP Bar" type="ProgressBar" parent="HBoxContainer/Stats/MP/VBoxContainer" unique_id=1754572283]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_32snh")
+value = 100.0
+show_percentage = false
+
+[node name="MP Label" type="Label" parent="HBoxContainer/Stats/MP" unique_id=1333205538]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
+text = "MP"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Stats/MP" unique_id=1188196393]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://byw2gxjcoeyeg"]
+
+[ext_resource type="Script" uid="uid://bxdeifqilfcgc" path="res://addons/godot_jrpg/tests/scenes/trait_test.gd" id="1_rw6ug"]
+
+[node name="TraitTest" type="Node" unique_id=1887070312]
+script = ExtResource("1_rw6ug")

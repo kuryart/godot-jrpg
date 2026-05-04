@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_ddhl6")
-name = "Evasion"
+display_name = "Evasion"
+id = 7
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
