@@ -20,6 +20,9 @@
 [ext_resource type="Resource" uid="uid://3k7jlv4t21k8" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/copper_axe.tres" id="12_srytj"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="13_nqs0a"]
 [ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="15_g3a0n"]
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="17_blvwq"]
+[ext_resource type="Resource" uid="uid://dg0jk4jhur2id" path="res://addons/godot_jrpg/resources/skills/heal.tres" id="18_srytj"]
+[ext_resource type="Resource" uid="uid://kfjt3gjup8dd" path="res://addons/godot_jrpg/resources/skills/fireball.tres" id="19_cmjly"]
 [ext_resource type="Script" uid="uid://pdcs5gv200d5" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.gd" id="22_4gi66"]
 [ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="23_1457k"]
 [ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="26_waerv"]
@@ -219,6 +222,7 @@ controller = SubResource("Resource_nf7ob")
 current_hp = 70
 current_mp = 30
 traits = SubResource("Resource_8ednr")
+skills = Array[ExtResource("17_blvwq")]([ExtResource("18_srytj"), ExtResource("19_cmjly")])
 name = "player1"
 description = "A description."
 metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

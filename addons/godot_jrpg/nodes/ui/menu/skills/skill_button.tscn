@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cxrd7dc55w10j"]
+
+[ext_resource type="Script" uid="uid://bclncvv1j7c2b" path="res://addons/godot_jrpg/nodes/ui/menu/skills/skill_button.gd" id="1_ijc4c"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_s7c2n"]
+
+[node name="SkillButton" type="Button" unique_id=1264695011]
+script = ExtResource("1_ijc4c")
+menu_signals = ExtResource("2_s7c2n")

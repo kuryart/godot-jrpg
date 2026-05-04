@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://kfjt3gjup8dd"]
+
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_44h3l"]
+[ext_resource type="Script" uid="uid://dm1jesd4d00ue" path="res://addons/godot_jrpg/resources/formulas/skill_damage/formula_skill_damage_rpg_maker.gd" id="1_d0ngp"]
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="1_ecjv0"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="2_begl1"]
+[ext_resource type="Script" uid="uid://bkqt5xivjwcxk" path="res://addons/godot_jrpg/resources/effects/effect_status_add.gd" id="3_2jtir"]
+[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="4_u4omu"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="7_w3mn3"]
+
+[sub_resource type="Resource" id="Resource_geou8"]
+script = ExtResource("1_d0ngp")
+base_damage = 300
+metadata/_custom_type_script = "uid://dm1jesd4d00ue"
+
+[sub_resource type="Resource" id="Resource_d0ngp"]
+script = ExtResource("3_2jtir")
+status = ExtResource("4_u4omu")
+metadata/_custom_type_script = "uid://bkqt5xivjwcxk"
+
+[sub_resource type="Resource" id="Resource_2jtir"]
+script = ExtResource("2_begl1")
+effects = Array[ExtResource("1_44h3l")]([SubResource("Resource_d0ngp")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_hgtpm"]
+script = ExtResource("7_w3mn3")
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_ecjv0")
+display_name = "Fireball"
+description = "A fireball that can cause burning."
+used_on = 1
+effects = SubResource("Resource_2jtir")
+targets = SubResource("Resource_hgtpm")
+damage = SubResource("Resource_geou8")
+message = "casted"
+mp_cost = 20
+metadata/_custom_type_script = "uid://kyffs4we46du"
