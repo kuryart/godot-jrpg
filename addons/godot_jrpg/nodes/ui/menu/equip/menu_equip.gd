@@ -588,7 +588,7 @@ func _on_shield_equip_button_up(new_shield: Shield):
 		back_to_slot_selection()
 		return
 	
-	var slot = WeaponSlot.new()
+	var slot = ShieldSlot.new()
 	var removed_item = player.change_equipment(slot, new_shield)
 
 	if removed_item != null:
