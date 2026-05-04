@@ -51,15 +51,28 @@ func collect_and_sort_traits() -> Dictionary:
 
 func prepare_sources() -> void:
 	if battler is Player:
-		sources = [
-			battler.player_class.traits,
-			battler.equip.weapon.item.traits,
-			battler.equip.armor.item.traits,
-			battler.equip.accessory.item.traits,
-			battler.equip.head.item.traits,
-			battler.equip.shield.item.traits
-		]
-	sources.append(battler.traits)
+		#sources = [
+			#battler.player_class.traits,
+			#battler.equip.weapon.item.traits,
+			#battler.equip.armor.item.traits,
+			#battler.equip.accessory.item.traits,
+			#battler.equip.head.item.traits,
+			#battler.equip.shield.item.traits
+		#]
+		if battler.player_class.traits:
+			sources.append(battler.player_class.traits)
+		if battler.equip.weapon.item:
+			sources.append(battler.equip.weapon.item.traits)
+		if battler.equip.armor.item:
+			sources.append(battler.equip.armor.item.traits)
+		if battler.equip.accessory.item:
+			sources.append(battler.equip.accessory.item.traits)
+		if battler.equip.head.item:
+			sources.append(battler.equip.head.item.traits)
+		if battler.equip.shield.item:
+			sources.append(battler.equip.shield.item.traits)
+		if battler.traits:
+			sources.append(battler.traits)
 	for s in battler.status:
 		sources.append(s.traits)
 
