@@ -2,17 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c2dn57lnxpyh0" path="res://addons/godot_jrpg/nodes/battle/battle_player_ui.gd" id="1_v45wu"]
 [ext_resource type="Script" uid="uid://bjn8a8svw8sat" path="res://addons/godot_jrpg/nodes/ui/bars/bar_label.gd" id="2_1trru"]
+[ext_resource type="PackedScene" uid="uid://csw3607cy8owl" path="res://addons/godot_jrpg/nodes/ui/bars/stat_bar.tscn" id="2_y6nk4"]
 [ext_resource type="Script" uid="uid://bcujvgam7focj" path="res://addons/godot_jrpg/nodes/ui/bars/bar.gd" id="3_6ka35"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v45wu"]
 bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.54901963)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnojh"]
-bg_color = Color(0.79607844, 0, 0.15686275, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -49,38 +43,8 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "BattlePlayer"
 
-[node name="HP" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1707026979]
+[node name="HP" parent="VBoxContainer/HBoxContainer" unique_id=329409598 instance=ExtResource("2_y6nk4")]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HP" unique_id=694445330]
-layout_mode = 2
-
-[node name="CurrentHP" type="Label" parent="VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=835238501]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1"
-horizontal_alignment = 2
-script = ExtResource("2_1trru")
-
-[node name="HPBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1687198805]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(43, 3)
-layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_v45wu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_fnojh")
-value = 85.17
-fill_mode = 1
-show_percentage = false
-script = ExtResource("3_6ka35")
-
-[node name="HPLabel" type="Label" parent="VBoxContainer/HBoxContainer/HP" unique_id=104581077]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.79607844, 0, 0.15686275, 1)
-text = "HP"
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HP" unique_id=1492837398]
-layout_mode = 2
-theme_override_constants/margin_left = 8
 
 [node name="MP" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1912345093]
 layout_mode = 2

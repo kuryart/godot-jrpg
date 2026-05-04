@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://pwpqnggbxhst"]
+
+[node name="StatusIcon" type="TextureRect" unique_id=1370333614]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1

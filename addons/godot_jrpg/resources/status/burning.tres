@@ -2,20 +2,10 @@
 
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="1_r6iaj"]
 [ext_resource type="Texture2D" uid="uid://8lt86p51mtl1" path="res://addons/godot_jrpg/assets/sprites/status/status-burning.png" id="1_rkiud"]
-[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="2_2m2o0"]
-[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="4_axi28"]
-[ext_resource type="Resource" uid="uid://bnapikt0dfmsx" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/hp_regen.tres" id="5_axi28"]
-
-[sub_resource type="Resource" id="Resource_nj77g"]
-script = ExtResource("4_axi28")
-stat = ExtResource("5_axi28")
-value_multiply = -0.1
-metadata/_custom_type_script = "uid://cuqvw14m0anvs"
 
 [resource]
 script = ExtResource("1_r6iaj")
 name = "Burning"
-traits = Array[ExtResource("2_2m2o0")]([SubResource("Resource_nj77g")])
 end_in = "Upkeep"
 duration_min = 3
 duration_max = 5
