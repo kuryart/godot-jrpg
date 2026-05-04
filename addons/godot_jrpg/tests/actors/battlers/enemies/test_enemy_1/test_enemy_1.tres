@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c0cnc6567nkft" path="res://addons/godot_jrpg/resources/controllers/brains/brain_dumb.gd" id="1_48ydv"]
 [ext_resource type="Script" uid="uid://bpmohnsv7yfs6" path="res://addons/godot_jrpg/resources/controllers/enemy_ai_controller.gd" id="1_yhfdy"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="2_vmhau"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_omfch"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="3_w6an3"]
 [ext_resource type="Texture2D" uid="uid://ck4la48vgpefh" path="res://addons/godot_jrpg/assets/sprites/actors/enemies/enemy-ghost.png" id="4_fkgf5"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="4_k2p5p"]

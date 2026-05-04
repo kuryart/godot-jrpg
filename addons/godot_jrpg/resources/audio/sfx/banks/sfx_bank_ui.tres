@@ -4,10 +4,12 @@
 [ext_resource type="Resource" uid="uid://bjagqv44h4i64" path="res://addons/godot_jrpg/resources/audio/sfx/ui/select.tres" id="2_8epme"]
 [ext_resource type="Resource" uid="uid://chr3rr5i45n03" path="res://addons/godot_jrpg/resources/audio/sfx/ui/cursor.tres" id="3_jwoaq"]
 [ext_resource type="Script" uid="uid://c6r3atglrl1ya" path="res://addons/godot_jrpg/resources/audio/sfx/banks/sfx_bank.gd" id="4_74qg8"]
+[ext_resource type="Resource" uid="uid://c8n6ex642wvef" path="res://addons/godot_jrpg/resources/audio/sfx/ui/cancel.tres" id="4_jdtuq"]
 
 [resource]
 script = ExtResource("4_74qg8")
 bank = Dictionary[String, ExtResource("1_m01ok")]({
+"cancel": ExtResource("4_jdtuq"),
 "cursor": ExtResource("3_jwoaq"),
 "select": ExtResource("2_8epme")
 })

@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_j5trr")
-name = "MP Regen"
+display_name = "MP Regen"
+id = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"

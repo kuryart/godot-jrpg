@@ -1,85 +1,200 @@
 [gd_resource type="Resource" script_class="Player" format=3 uid="uid://xcf0l6c5vwkg"]
 
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_5djld"]
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="2_6i2qp"]
 [ext_resource type="Texture2D" uid="uid://bgsxxjqb5374h" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-1.png" id="2_k5m06"]
-[ext_resource type="Resource" uid="uid://28fcnl7fk5vu" path="res://addons/godot_jrpg/tests/stuff/equippable/slots/player_1_equip_slots.tres" id="2_u4pjs"]
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="2_yohbo"]
+[ext_resource type="Resource" uid="uid://css7wcjvbv815" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/common_shoes.tres" id="3_fsba0"]
 [ext_resource type="Resource" uid="uid://c6cmww8puraic" path="res://addons/godot_jrpg/tests/actors/battlers/classes/test_battler_class_1.tres" id="3_txp2h"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_u4h65"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_dmcd4"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://addons/godot_jrpg/resources/formulas/xp/formula_xp_pokemon.gd" id="5_nbwjj"]
+[ext_resource type="Resource" uid="uid://cl5fcye8lg7ax" path="res://addons/godot_jrpg/resources/stuff/equippable/armors/leather_armor.tres" id="5_qrtct"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="6_sn8uf"]
+[ext_resource type="Resource" uid="uid://1bc1tnxtk1kg" path="res://addons/godot_jrpg/resources/stuff/equippable/head/leather_helmet.tres" id="7_w4qnw"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_5djld"]
 [ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="9_k5m06"]
+[ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="10_bc1gx"]
+[ext_resource type="Resource" uid="uid://boqo61heykbsk" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/wooden_shield.tres" id="10_blvwq"]
 [ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate_defend.gd" id="10_k5m06"]
+[ext_resource type="Resource" uid="uid://3k7jlv4t21k8" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/copper_axe.tres" id="12_srytj"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="13_nqs0a"]
+[ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="15_g3a0n"]
+[ext_resource type="Script" uid="uid://pdcs5gv200d5" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/head_slot.gd" id="22_4gi66"]
+[ext_resource type="Script" uid="uid://c00chyv6jtl7b" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/equipment_slots.gd" id="23_1457k"]
+[ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="26_waerv"]
+[ext_resource type="Script" uid="uid://dm5t5sv617qda" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.gd" id="30_6w6bm"]
+[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="34_lm88f"]
 
 [sub_resource type="Resource" id="Resource_nf7ob"]
 script = ExtResource("2_yohbo")
 metadata/_custom_type_script = "uid://cwt6qegyo50wf"
 
+[sub_resource type="Resource" id="Resource_2qj24"]
+script = ExtResource("10_bc1gx")
+item = ExtResource("3_fsba0")
+name = "Accessory"
+metadata/_custom_type_script = "uid://lxtk6udhgpkx"
+
+[sub_resource type="Resource" id="Resource_b7qml"]
+script = ExtResource("15_g3a0n")
+item = ExtResource("5_qrtct")
+name = "Armor"
+metadata/_custom_type_script = "uid://jwdpbp37yjue"
+
+[sub_resource type="Resource" id="Resource_4pomd"]
+script = ExtResource("22_4gi66")
+item = ExtResource("7_w4qnw")
+name = "Head"
+metadata/_custom_type_script = "uid://pdcs5gv200d5"
+
+[sub_resource type="Resource" id="Resource_k56m8"]
+script = ExtResource("26_waerv")
+item = ExtResource("10_blvwq")
+name = "Shield"
+metadata/_custom_type_script = "uid://sty40x7p8w2t"
+
+[sub_resource type="Resource" id="Resource_4xlfg"]
+script = ExtResource("30_6w6bm")
+item = ExtResource("12_srytj")
+name = "Weapon"
+metadata/_custom_type_script = "uid://dm5t5sv617qda"
+
+[sub_resource type="Resource" id="Resource_pkksl"]
+script = ExtResource("23_1457k")
+accessory = SubResource("Resource_2qj24")
+armor = SubResource("Resource_b7qml")
+head = SubResource("Resource_4pomd")
+shield = SubResource("Resource_k56m8")
+weapon = SubResource("Resource_4xlfg")
+metadata/_custom_type_script = "uid://c00chyv6jtl7b"
+
 [sub_resource type="Resource" id="Resource_5djld"]
 script = ExtResource("3_u4h65")
+display_name = "Accuracy"
+id = 6
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_r4fbl"]
 script = ExtResource("3_u4h65")
+display_name = "Attack"
+id = 2
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_wx43h"]
 script = ExtResource("3_u4h65")
-base_value = 10
+display_name = "Counter-Attack"
+id = 15
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_afqr4"]
 script = ExtResource("3_u4h65")
-base_value = 10
+display_name = "Critical"
+id = 11
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_q81us"]
 script = ExtResource("3_u4h65")
-base_value = 100
+display_name = "Critical Dodge"
+id = 12
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_nqs0a"]
 script = ExtResource("3_u4h65")
+display_name = "Defense"
+id = 3
 base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_pyc5i"]
+script = ExtResource("3_u4h65")
+display_name = "Evasion"
+id = 7
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_krbav"]
 script = ExtResource("3_u4h65")
-base_value = 10
+display_name = "HP"
+base_value = 100
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_8r64l"]
 script = ExtResource("3_u4h65")
-base_value = 50
+display_name = "HP Regen"
+id = 9
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_fsba0"]
 script = ExtResource("3_u4h65")
+display_name = "Intelligence"
+id = 4
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_qrtct"]
+script = ExtResource("3_u4h65")
+display_name = "Luck"
+id = 8
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_w4qnw"]
+script = ExtResource("3_u4h65")
+display_name = "Skill Dodge"
+id = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_blvwq"]
+script = ExtResource("3_u4h65")
+display_name = "MP"
+id = 1
+base_value = 50
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_srytj"]
+script = ExtResource("3_u4h65")
+display_name = "MP Regen"
+id = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_cmjly"]
+script = ExtResource("3_u4h65")
+display_name = "Skill Reflection"
+id = 14
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_y6v6p"]
+script = ExtResource("3_u4h65")
+display_name = "Speed"
+id = 5
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_1n2lh"]
 script = ExtResource("4_dmcd4")
-hp = SubResource("Resource_q81us")
-mp = SubResource("Resource_8r64l")
+hp = SubResource("Resource_krbav")
+mp = SubResource("Resource_blvwq")
 attack = SubResource("Resource_r4fbl")
-defense = SubResource("Resource_wx43h")
-intelligence = SubResource("Resource_nqs0a")
-speed = SubResource("Resource_fsba0")
+defense = SubResource("Resource_nqs0a")
+intelligence = SubResource("Resource_fsba0")
+speed = SubResource("Resource_y6v6p")
 accuracy = SubResource("Resource_5djld")
-evasion = SubResource("Resource_afqr4")
-luck = SubResource("Resource_krbav")
+evasion = SubResource("Resource_pyc5i")
+luck = SubResource("Resource_qrtct")
+hp_regen = SubResource("Resource_8r64l")
+mp_regen = SubResource("Resource_srytj")
+critical = SubResource("Resource_afqr4")
+critical_dodge = SubResource("Resource_q81us")
+magical_dodge = SubResource("Resource_w4qnw")
+reflection = SubResource("Resource_cmjly")
+counter_attack = SubResource("Resource_wx43h")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [sub_resource type="Resource" id="Resource_wfock"]
 script = ExtResource("10_k5m06")
 element = ExtResource("9_k5m06")
-rate = 1.2
 metadata/_custom_type_script = "uid://bj3nxpjiumj8i"
 
 [sub_resource type="Resource" id="Resource_8ednr"]
@@ -96,10 +211,11 @@ script = ExtResource("2_6i2qp")
 face = ExtResource("2_k5m06")
 player_class = ExtResource("3_txp2h")
 xp_formula = SubResource("Resource_dyfle")
-equip = ExtResource("2_u4pjs")
-stats = SubResource("Resource_qrtct")
+equip = SubResource("Resource_pkksl")
+stats = SubResource("Resource_1n2lh")
+status = Array[ExtResource("6_sn8uf")]([ExtResource("34_lm88f")])
 controller = SubResource("Resource_nf7ob")
-current_hp = 100
+current_hp = 70
 current_mp = 50
 traits = SubResource("Resource_8ednr")
 name = "player1"

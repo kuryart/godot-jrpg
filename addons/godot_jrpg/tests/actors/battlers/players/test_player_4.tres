@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b1gwysomqpsg7" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-4.png" id="3_5qgge"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_14h8m"]
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="3_16738"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_l4djw"]
 [ext_resource type="Resource" uid="uid://ct1yibljovrhd" path="res://addons/godot_jrpg/tests/stuff/equippable/slots/player_4_equip_slots.tres" id="3_n5x3g"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_o8cr6"]
 [ext_resource type="Resource" uid="uid://chpnhsj7w1tj4" path="res://addons/godot_jrpg/tests/actors/battlers/classes/test_battler_class_4.tres" id="4_ye0my"]
@@ -21,59 +22,135 @@ script = ExtResource("3_16738")
 input_assignment = SubResource("Resource_wy5kb")
 metadata/_custom_type_script = "uid://cwt6qegyo50wf"
 
-[sub_resource type="Resource" id="Resource_7aeq3"]
+[sub_resource type="Resource" id="Resource_sgdjk"]
 script = ExtResource("3_14h8m")
+display_name = "Accuracy"
+id = 6
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_wrkiq"]
+[sub_resource type="Resource" id="Resource_oeixl"]
 script = ExtResource("3_14h8m")
-base_value = 10
+display_name = "Attack"
+id = 2
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_2p28r"]
+[sub_resource type="Resource" id="Resource_k11ed"]
 script = ExtResource("3_14h8m")
-base_value = 10
+display_name = "Counter-Attack"
+id = 15
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_wi0tq"]
+[sub_resource type="Resource" id="Resource_ijjyb"]
 script = ExtResource("3_14h8m")
+display_name = "Critical"
+id = 11
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_s1pwp"]
+[sub_resource type="Resource" id="Resource_kt5rn"]
 script = ExtResource("3_14h8m")
-base_value = 100
+display_name = "Critical Dodge"
+id = 12
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_gf1c3"]
+[sub_resource type="Resource" id="Resource_5vfcs"]
 script = ExtResource("3_14h8m")
-base_value = 10
+display_name = "Defense"
+id = 3
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_2a2gb"]
+[sub_resource type="Resource" id="Resource_y4abp"]
 script = ExtResource("3_14h8m")
+display_name = "Evasion"
+id = 7
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_5gbj5"]
+[sub_resource type="Resource" id="Resource_ytk5l"]
 script = ExtResource("3_14h8m")
-base_value = 50
+display_name = "HP"
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_2hriq"]
+[sub_resource type="Resource" id="Resource_c1gyj"]
 script = ExtResource("3_14h8m")
-base_value = 10
+display_name = "HP Regen"
+id = 9
+base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_e7fee"]
+[sub_resource type="Resource" id="Resource_hdhjk"]
+script = ExtResource("3_14h8m")
+display_name = "Intelligence"
+id = 4
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_t0whr"]
+script = ExtResource("3_14h8m")
+display_name = "Luck"
+id = 8
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_appbg"]
+script = ExtResource("3_14h8m")
+display_name = "Skill Dodge"
+id = 13
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_h337e"]
+script = ExtResource("3_14h8m")
+display_name = "MP"
+id = 1
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_3rw0s"]
+script = ExtResource("3_14h8m")
+display_name = "MP Regen"
+id = 10
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_8qv68"]
+script = ExtResource("3_14h8m")
+display_name = "Skill Reflection"
+id = 14
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_6lw8r"]
+script = ExtResource("3_14h8m")
+display_name = "Speed"
+id = 5
+base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_g4a0v"]
 script = ExtResource("4_o8cr6")
-hp = SubResource("Resource_s1pwp")
-mp = SubResource("Resource_5gbj5")
-attack = SubResource("Resource_wrkiq")
-defense = SubResource("Resource_2p28r")
-intelligence = SubResource("Resource_gf1c3")
-speed = SubResource("Resource_2hriq")
-accuracy = SubResource("Resource_7aeq3")
-evasion = SubResource("Resource_wi0tq")
-luck = SubResource("Resource_2a2gb")
+hp = SubResource("Resource_ytk5l")
+mp = SubResource("Resource_h337e")
+attack = SubResource("Resource_oeixl")
+defense = SubResource("Resource_5vfcs")
+intelligence = SubResource("Resource_hdhjk")
+speed = SubResource("Resource_6lw8r")
+accuracy = SubResource("Resource_sgdjk")
+evasion = SubResource("Resource_y4abp")
+luck = SubResource("Resource_t0whr")
+hp_regen = SubResource("Resource_c1gyj")
+mp_regen = SubResource("Resource_3rw0s")
+critical = SubResource("Resource_ijjyb")
+critical_dodge = SubResource("Resource_kt5rn")
+magical_dodge = SubResource("Resource_appbg")
+reflection = SubResource("Resource_8qv68")
+counter_attack = SubResource("Resource_k11ed")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [sub_resource type="Resource" id="Resource_dyfle"]
@@ -86,7 +163,7 @@ face = ExtResource("3_5qgge")
 player_class = ExtResource("4_ye0my")
 xp_formula = SubResource("Resource_dyfle")
 equip = ExtResource("3_n5x3g")
-stats = SubResource("Resource_e7fee")
+stats = SubResource("Resource_g4a0v")
 controller = SubResource("Resource_16738")
 current_hp = 100
 current_mp = 50

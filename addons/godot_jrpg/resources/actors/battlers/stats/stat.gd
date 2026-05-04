@@ -1,10 +1,16 @@
 class_name Stat extends Resource
 
-@export var name: String
+@export var display_name: String = "Stat"
+@export var id: ID
 @export var base_value: int = 0:
 	set(v):
 		base_value = v
 		is_dirty = true
+enum ID {
+	HP, MP, ATTACK, DEFENSE, INTELLIGENCE, SPEED, ACCURACY, EVASION,
+	LUCK, HP_REGEN, MP_REGEN, CRITICAL, CRITICAL_DODGE, MAGICAL_DODGE,
+	REFLECTION, COUNTER_ATTACK
+}
 
 var level_growth_value: int = 0:
 	set(v):

@@ -508,28 +508,36 @@ func _on_shield_equip_button_entered(shield: Shield):
 # - Button up -
 func _on_weapon_equip_button_up(new_weapon: Weapon):
 	var old_weapon = player.equip.weapon.item
+	if old_weapon == new_weapon:
+		back_to_slot_selection()
+		return
+	
+	var slot = WeaponSlot.new()
+	var removed_item = player.change_equipment(slot, new_weapon)
 
-	if old_weapon != null:
-		GameManager.party.inventory.add_item(old_weapon, 1)
-
-	player.equip.weapon.item = new_weapon
-
+	if removed_item != null:
+		GameManager.party.inventory.add_item(removed_item, 1)
 	if new_weapon != null:
 		GameManager.party.inventory.remove_item(new_weapon, 1)
 
 	populate_equipped_buttons()
 	clear_equip_lists()
-	populate_equip_buttons()	
+	populate_equip_buttons()
 	back_to_slot_selection()
 	
 func _on_armor_equip_button_up(new_armor: Armor):
 	var old_armor = player.equip.armor.item
+	if old_armor == new_armor:
+		back_to_slot_selection()
+		return
+	
+	var slot = ArmorSlot.new()
+	var removed_item = player.change_equipment(slot, new_armor)
 
-	if old_armor != null:
-		GameManager.party.inventory.add_item(old_armor, 1)
-		
-	player.equip.armor.item = new_armor
-	GameManager.party.inventory.remove_item(new_armor, 1)
+	if removed_item != null:
+		GameManager.party.inventory.add_item(removed_item, 1)
+	if new_armor != null:
+		GameManager.party.inventory.remove_item(new_armor, 1)
 
 	populate_equipped_buttons()
 	clear_equip_lists()
@@ -538,12 +546,17 @@ func _on_armor_equip_button_up(new_armor: Armor):
 	
 func _on_accessory_equip_button_up(new_accessory: Accessory):
 	var old_accessory = player.equip.accessory.item
+	if old_accessory == new_accessory:
+		back_to_slot_selection()
+		return
+	
+	var slot = AccessorySlot.new()
+	var removed_item = player.change_equipment(slot, new_accessory)
 
-	if old_accessory != null:
-		GameManager.party.inventory.add_item(old_accessory, 1)
-		
-	player.equip.accessory.item = new_accessory
-	GameManager.party.inventory.remove_item(new_accessory, 1)
+	if removed_item != null:
+		GameManager.party.inventory.add_item(removed_item, 1)
+	if new_accessory != null:
+		GameManager.party.inventory.remove_item(new_accessory, 1)
 
 	populate_equipped_buttons()
 	clear_equip_lists()
@@ -552,12 +565,17 @@ func _on_accessory_equip_button_up(new_accessory: Accessory):
 	
 func _on_head_equip_button_up(new_head: Head):
 	var old_head = player.equip.head.item
+	if old_head == new_head:
+		back_to_slot_selection()
+		return
+	
+	var slot = HeadSlot.new()
+	var removed_item = player.change_equipment(slot, new_head)
 
-	if old_head != null:
-		GameManager.party.inventory.add_item(old_head, 1)
-		
-	player.equip.head.item = new_head
-	GameManager.party.inventory.remove_item(new_head, 1)
+	if removed_item != null:
+		GameManager.party.inventory.add_item(removed_item, 1)
+	if new_head != null:
+		GameManager.party.inventory.remove_item(new_head, 1)
 
 	populate_equipped_buttons()
 	clear_equip_lists()
@@ -566,12 +584,17 @@ func _on_head_equip_button_up(new_head: Head):
 	
 func _on_shield_equip_button_up(new_shield: Shield):
 	var old_shield = player.equip.shield.item
+	if old_shield == new_shield:
+		back_to_slot_selection()
+		return
+	
+	var slot = WeaponSlot.new()
+	var removed_item = player.change_equipment(slot, new_shield)
 
-	if old_shield != null:
-		GameManager.party.inventory.add_item(old_shield, 1)
-		
-	player.equip.shield.item = new_shield
-	GameManager.party.inventory.remove_item(new_shield, 1)
+	if removed_item != null:
+		GameManager.party.inventory.add_item(removed_item, 1)
+	if new_shield != null:
+		GameManager.party.inventory.remove_item(new_shield, 1)
 
 	populate_equipped_buttons()
 	clear_equip_lists()

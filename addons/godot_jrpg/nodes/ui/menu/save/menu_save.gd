@@ -1,5 +1,5 @@
 # Menu Save
-extends Control
+class_name MenuSave extends Control
 
 @onready var options_list = %OptionsList
 

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://di6yaysurqocs" path="res://addons/godot_jrpg/nodes/director/director.gd" id="1_xxdyr"]
 [ext_resource type="Resource" uid="uid://biw2y7wsqeuhy" path="res://addons/godot_jrpg/resources/events/event_signals.tres" id="2_4u2wq"]
-[ext_resource type="Resource" uid="uid://v6gnmntcrn3t" path="res://addons/godot_jrpg/tests/actors/test_party.tres" id="3_756xr"]
 [ext_resource type="PackedScene" uid="uid://cym3qtfsj8s75" path="res://addons/godot_jrpg/nodes/ui/splash_screen/splash_screen.tscn" id="3_tditk"]
 [ext_resource type="PackedScene" uid="uid://cb74nrxym2kse" path="res://addons/godot_jrpg/nodes/maps/map_0001.tscn" id="5_o8flq"]
 [ext_resource type="PackedScene" uid="uid://bgyg5l0h0l00g" path="res://addons/godot_jrpg/nodes/battle/battle.tscn" id="6_55iuj"]
@@ -12,8 +11,8 @@
 
 [node name="Director" type="Node" unique_id=895651955]
 script = ExtResource("1_xxdyr")
+is_testing = false
 event_signals = ExtResource("2_4u2wq")
-party = ExtResource("3_756xr")
 splash_screen = ExtResource("3_tditk")
 map = ExtResource("5_o8flq")
 battle = ExtResource("6_55iuj")

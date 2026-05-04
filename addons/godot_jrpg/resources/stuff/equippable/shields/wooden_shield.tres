@@ -7,88 +7,72 @@
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="5_6asud"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="6_durh1"]
 [ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="7_4cqhp"]
-[ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_on_attack.gd" id="8_x1qmn"]
+[ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_of_attack.gd" id="8_x1qmn"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="9_yratv"]
 
 [sub_resource type="Resource" id="Resource_ou02n"]
 script = ExtResource("4_lm2d4")
-name = "Accuracy"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_hq2lq"]
 script = ExtResource("4_lm2d4")
-name = "Attack"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_lyyf7"]
 script = ExtResource("4_lm2d4")
-name = "Counter Attack"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ffop5"]
 script = ExtResource("4_lm2d4")
-name = "Critical"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_n4dx2"]
 script = ExtResource("4_lm2d4")
-name = "Critical Dodge"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_dng3o"]
 script = ExtResource("4_lm2d4")
-name = "Defense"
 base_value = 5
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_eawe7"]
 script = ExtResource("4_lm2d4")
-name = "Evasion"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_lqie6"]
 script = ExtResource("4_lm2d4")
-name = "HP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ws4wt"]
 script = ExtResource("4_lm2d4")
-name = "HP Regen"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_l1el8"]
 script = ExtResource("4_lm2d4")
-name = "Intelligence"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_mugw5"]
 script = ExtResource("4_lm2d4")
-name = "Luck"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_wd8wu"]
 script = ExtResource("4_lm2d4")
-name = "Magical Dodge"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_sde72"]
 script = ExtResource("4_lm2d4")
-name = "MP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_kisa4"]
 script = ExtResource("4_lm2d4")
-name = "MP Regen"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_mp503"]
 script = ExtResource("4_lm2d4")
-name = "Reflection"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_kdukr"]
 script = ExtResource("4_lm2d4")
-name = "Speed"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ojym7"]
@@ -124,8 +108,8 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 [resource]
 script = ExtResource("1_u6q8c")
 shield_type = ExtResource("3_vbe52")
-traits = SubResource("Resource_eet15")
 stats_modifiers = SubResource("Resource_ojym7")
+traits = SubResource("Resource_eet15")
 display_name = "Wooden Shield"
 description = "A wooden shield."
 icon = ExtResource("1_rhxpm")

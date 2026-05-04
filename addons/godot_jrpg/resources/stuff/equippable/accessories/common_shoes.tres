@@ -7,53 +7,44 @@
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="5_sihdh"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="5_sj2wp"]
 [ext_resource type="Resource" uid="uid://cnmdlwnjvfucb" path="res://addons/godot_jrpg/resources/elements/earth.tres" id="6_0wuo0"]
-[ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_on_attack.gd" id="7_ofec6"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="8_5nsto"]
+[ext_resource type="Script" uid="uid://dv7c0njyh764x" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_element_of_attack.gd" id="8_31csc"]
 
 [sub_resource type="Resource" id="Resource_6kdob"]
 script = ExtResource("4_31csc")
-name = "Accuracy"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_sihdh"]
 script = ExtResource("4_31csc")
-name = "Attack"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_0wuo0"]
 script = ExtResource("4_31csc")
-name = "Defense"
 base_value = 5
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ofec6"]
 script = ExtResource("4_31csc")
-name = "Evasion"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_5nsto"]
 script = ExtResource("4_31csc")
-name = "HP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_622ya"]
 script = ExtResource("4_31csc")
-name = "Intelligence"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_061d0"]
 script = ExtResource("4_31csc")
-name = "Luck"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_rmnwu"]
 script = ExtResource("4_31csc")
-name = "MP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_dhwol"]
 script = ExtResource("4_31csc")
-name = "Speed"
 base_value = 2
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
@@ -71,7 +62,7 @@ luck = SubResource("Resource_061d0")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [sub_resource type="Resource" id="Resource_ko14l"]
-script = ExtResource("7_ofec6")
+script = ExtResource("8_31csc")
 element = ExtResource("6_0wuo0")
 metadata/_custom_type_script = "uid://dv7c0njyh764x"
 
@@ -83,8 +74,8 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 [resource]
 script = ExtResource("3_sj2wp")
 accessory_type = ExtResource("1_8v1hm")
-traits = SubResource("Resource_wj0mo")
 stats_modifiers = SubResource("Resource_8jbev")
+traits = SubResource("Resource_wj0mo")
 display_name = "Common Shoes"
 description = "Just regular shoes."
 icon = ExtResource("2_31csc")

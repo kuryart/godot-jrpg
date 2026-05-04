@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://coq8anpgbky31" path="res://addons/godot_jrpg/resources/formulas/stats/formula_stat_growth_pokemon.gd" id="1_0pq37"]
 [ext_resource type="Script" uid="uid://dacbahk8dn11p" path="res://addons/godot_jrpg/resources/actors/battlers/classes/player_class.gd" id="2_7hskb"]
+[ext_resource type="Resource" uid="uid://ckikpifkd0a71" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/counter_attack.tres" id="5_xmgsp"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="14_ttriy"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="15_nc6vj"]
 [ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="15_rgvu4"]
@@ -44,6 +45,7 @@ metadata/_custom_type_script = "uid://coq8anpgbky31"
 
 [sub_resource type="Resource" id="Resource_ttriy"]
 script = ExtResource("15_rgvu4")
+stat = ExtResource("5_xmgsp")
 value_multiply = 1.2
 value_add = 15
 metadata/_custom_type_script = "uid://cuqvw14m0anvs"

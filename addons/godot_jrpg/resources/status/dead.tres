@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://bhccddi8p1iq3"]
+
+[ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="1_eaump"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="2_gcq6y"]
+[ext_resource type="Script" uid="uid://blsdm7gdk1cog" path="res://addons/godot_jrpg/resources/traits/object_traits/trait_no_xp.gd" id="3_gcq6y"]
+
+[sub_resource type="Resource" id="Resource_2e8o5"]
+script = ExtResource("3_gcq6y")
+metadata/_custom_type_script = "uid://blsdm7gdk1cog"
+
+[resource]
+script = ExtResource("1_eaump")
+name = "Dead"
+resolve_in = "Nothing"
+action_restriction = "Can't act"
+traits = Array[ExtResource("2_gcq6y")]([SubResource("Resource_2e8o5")])
+is_dead_state = true
+end_in = "Nothing"
+message_ally_affected = "is dead"
+message_enemy_affected = "is dead"
+message_restore_ally = "revived"
+message_restore_enemy = "revived"
+metadata/_custom_type_script = "uid://qpouciwxr7ym"

@@ -39,7 +39,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_jrpg/plugin.cfg")
 
 [input]
 

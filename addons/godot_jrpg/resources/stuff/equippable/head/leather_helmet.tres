@@ -12,48 +12,39 @@
 
 [sub_resource type="Resource" id="Resource_uobmi"]
 script = ExtResource("3_u1c4u")
-name = "Accuracy"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_2j63s"]
 script = ExtResource("3_u1c4u")
-name = "Attack"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_71thm"]
 script = ExtResource("3_u1c4u")
-name = "Defense"
 base_value = 5
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_nsawd"]
 script = ExtResource("3_u1c4u")
-name = "Evasion"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_3d2iy"]
 script = ExtResource("3_u1c4u")
-name = "HP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ww256"]
 script = ExtResource("3_u1c4u")
-name = "Intelligence"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_vo32r"]
 script = ExtResource("3_u1c4u")
-name = "Luck"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_fhm25"]
 script = ExtResource("3_u1c4u")
-name = "MP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_5hm6b"]
 script = ExtResource("3_u1c4u")
-name = "Speed"
 base_value = 2
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
@@ -84,8 +75,8 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 [resource]
 script = ExtResource("1_0am83")
 head_type = ExtResource("1_fppm7")
-traits = SubResource("Resource_gr7mc")
 stats_modifiers = SubResource("Resource_t4dyh")
+traits = SubResource("Resource_gr7mc")
 display_name = "Leather Helmet"
 description = "A leather helmet."
 icon = ExtResource("2_u1c4u")

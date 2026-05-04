@@ -12,48 +12,39 @@
 
 [sub_resource type="Resource" id="Resource_54uqb"]
 script = ExtResource("2_aomcb")
-name = "Accuracy"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ouipa"]
 script = ExtResource("2_aomcb")
-name = "Attack"
 base_value = 5
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_frg74"]
 script = ExtResource("2_aomcb")
-name = "Defense"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_3kay3"]
 script = ExtResource("2_aomcb")
-name = "Evasion"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_2klue"]
 script = ExtResource("2_aomcb")
-name = "HP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_mkppi"]
 script = ExtResource("2_aomcb")
-name = "Intelligence"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_baqxw"]
 script = ExtResource("2_aomcb")
-name = "Luck"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_6qj43"]
 script = ExtResource("2_aomcb")
-name = "MP"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_q63b3"]
 script = ExtResource("2_aomcb")
-name = "Speed"
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_rvc0u"]
@@ -72,7 +63,6 @@ metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 [sub_resource type="Resource" id="Resource_pcd03"]
 script = ExtResource("6_3kay3")
 element = ExtResource("5_frg74")
-rate = 1.2
 metadata/_custom_type_script = "uid://bj3nxpjiumj8i"
 
 [sub_resource type="Resource" id="Resource_yflhc"]
@@ -83,8 +73,8 @@ metadata/_custom_type_script = "uid://e4p3e8vukja"
 [resource]
 script = ExtResource("1_8w10i")
 weapon_type = ExtResource("8_mkppi")
-traits = SubResource("Resource_yflhc")
 stats_modifiers = SubResource("Resource_rvc0u")
+traits = SubResource("Resource_yflhc")
 display_name = "Copper Axe"
 description = "An axe made from copper."
 icon = ExtResource("1_aomcb")

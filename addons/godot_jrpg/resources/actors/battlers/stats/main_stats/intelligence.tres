@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_3x51l")
-name = "Intelligence"
+display_name = "Intelligence"
+id = 4
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"

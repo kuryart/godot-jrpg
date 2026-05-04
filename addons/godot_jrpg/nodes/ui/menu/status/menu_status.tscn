@@ -2,9 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://bgsxxjqb5374h" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-1.png" id="1_dy0y1"]
 [ext_resource type="Script" uid="uid://c7ky1iwx7lyhq" path="res://addons/godot_jrpg/nodes/ui/menu/status/menu_status.gd" id="1_li2ur"]
-[ext_resource type="Texture2D" uid="uid://bu02dmnnugcti" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-2.png" id="2_ftvnt"]
-[ext_resource type="Texture2D" uid="uid://b0574t1qowx6l" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-3.png" id="3_x3dth"]
-[ext_resource type="Texture2D" uid="uid://b1gwysomqpsg7" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-4.png" id="4_6fu7a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnq6g"]
 bg_color = Color(0.764706, 0.25098, 0.262745, 1)
@@ -15,13 +12,7 @@ bg_color = Color(0.494118, 0.611765, 0.847059, 1)
 [node name="StatusMenu" type="Control" unique_id=1685748811]
 z_index = 99
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -640.0
-offset_bottom = -352.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_li2ur")
 
@@ -31,16 +22,15 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -6.1035156e-05
-offset_right = 1402.1062
-offset_bottom = 704.96326
+offset_right = 1280.0
+offset_bottom = 704.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.91291237, 0.9986337)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1653306553]
 layout_mode = 0
 offset_right = 1280.0
-offset_bottom = 616.0
+offset_bottom = 704.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -51,534 +41,606 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1808888843]
+[node name="PlayerContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1808888843]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="FacePlayer1" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1657134046]
+[node name="FacePlayer" type="TextureRect" parent="MarginContainer/HBoxContainer/PlayerContainer" unique_id=1657134046]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_dy0y1")
-expand_mode = 5
+expand_mode = 4
+stretch_mode = 5
 
-[node name="NamePlayer1" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1914665886]
+[node name="NamePlayer" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer" unique_id=1914665886]
 layout_mode = 2
 text = "Player1"
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1843271385]
+[node name="StatsContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PlayerContainer" unique_id=1843271385]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=2033492680]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer" unique_id=2033492680]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1219554050]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer" unique_id=1219554050]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2047272054]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer" unique_id=2047272054]
 layout_mode = 2
 
-[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1795205585]
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1795205585]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1714426230]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1714426230]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=970674662]
+[node name="CurrentHP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=970674662]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=69368323]
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=69368323]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
 value = 100.0
 show_percentage = false
 
-[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=740779707]
+[node name="HPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=740779707]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
 text = "HP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1837282549]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1837282549]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=104505719]
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=104505719]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1601784200]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1601784200]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1442800036]
+[node name="CurrentMP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1442800036]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1370863035]
+[node name="MPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1370863035]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
 value = 100.0
 show_percentage = false
 
-[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1945271579]
+[node name="MPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1945271579]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
 text = "MP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=131630224]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=131630224]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=713590043]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer" unique_id=713590043]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=78123777]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer" unique_id=78123777]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1512223023]
+[node name="AttackLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1512223023]
 layout_mode = 2
-text = "status_attack"
+text = "Attack"
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=870742509]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=764685933]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1902592185]
+[node name="AttackValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=870742509]
 layout_mode = 2
 text = "10"
 
-[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1243633670]
+[node name="DefenseLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=764685933]
 layout_mode = 2
-text = "status_evasion"
+text = "Defense"
 
-[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=988398527]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1487444480]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=562561550]
+[node name="DefenseValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1902592185]
 layout_mode = 2
 text = "10"
 
-[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1293773364]
+[node name="IntelligenceLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1243633670]
 layout_mode = 2
-text = "status_inteligence"
+text = "Intelligence"
 
-[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=437531075]
+[node name="IntelligenceValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=988398527]
 layout_mode = 2
 text = "10"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1652962847]
+[node name="SpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1487444480]
 layout_mode = 2
+text = "Speed"
 
-[node name="FacePlayer2" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=327066068]
+[node name="SpeedValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=562561550]
+layout_mode = 2
+text = "10"
+
+[node name="AccuracyLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1293773364]
+layout_mode = 2
+text = "Accuracy"
+
+[node name="AccuracyValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=437531075]
+layout_mode = 2
+text = "10"
+
+[node name="EvasionLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1499340210]
+layout_mode = 2
+text = "Evasion"
+
+[node name="EvasionValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1287713252]
+layout_mode = 2
+text = "10"
+
+[node name="LuckLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1003585173]
+layout_mode = 2
+text = "Luck"
+
+[node name="LuckValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=2112474266]
+layout_mode = 2
+text = "10"
+
+[node name="PlayerContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=849923994]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FacePlayer" type="TextureRect" parent="MarginContainer/HBoxContainer/PlayerContainer2" unique_id=67555448]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_ftvnt")
-expand_mode = 3
+texture = ExtResource("1_dy0y1")
+expand_mode = 4
+stretch_mode = 5
 
-[node name="NamePlayer2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=944952440]
+[node name="NamePlayer" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2" unique_id=1478166378]
 layout_mode = 2
-text = "Player2"
+text = "Player1"
 
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2" unique_id=517109002]
+[node name="StatsContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2" unique_id=674422171]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2" unique_id=852012018]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer" unique_id=2006731170]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer" unique_id=1680693559]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer" unique_id=1415252133]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer" unique_id=546152444]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer" unique_id=1688809207]
 layout_mode = 2
 
-[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1952553789]
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=234807721]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1526564913]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1706293459]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1849224843]
+[node name="CurrentHP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=822470265]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1902140776]
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=317430336]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
 value = 100.0
 show_percentage = false
 
-[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=994977388]
+[node name="HPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1644218267]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
 text = "HP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1511159085]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=453510733]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1320943232]
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=364370107]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1990212955]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1626036720]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=979915896]
+[node name="CurrentMP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=760381647]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=180505309]
+[node name="MPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=122631469]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
 value = 100.0
 show_percentage = false
 
-[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1095910248]
+[node name="MPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=818214535]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
 text = "MP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=287950263]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1560061021]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer" unique_id=78031653]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer" unique_id=1736102216]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1424432493]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer" unique_id=873386944]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1403585127]
+[node name="AttackLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1155945268]
 layout_mode = 2
-text = "status_attack"
+text = "Attack"
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=928963509]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=747780854]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1532658674]
+[node name="AttackValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1856441099]
 layout_mode = 2
 text = "10"
 
-[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1767880989]
+[node name="DefenseLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=739952013]
 layout_mode = 2
-text = "status_evasion"
+text = "Defense"
 
-[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=2138267834]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1593811529]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=1049889262]
+[node name="DefenseValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1418514255]
 layout_mode = 2
 text = "10"
 
-[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=604749874]
+[node name="IntelligenceLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1200434842]
 layout_mode = 2
-text = "status_inteligence"
+text = "Intelligence"
 
-[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer2/MarginContainer/VBoxContainer/GridContainer" unique_id=571323697]
+[node name="IntelligenceValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1617786393]
 layout_mode = 2
 text = "10"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1397038486]
+[node name="SpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=902751303]
 layout_mode = 2
+text = "Speed"
 
-[node name="FacePlayer3" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=1549055825]
+[node name="SpeedValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=642309632]
+layout_mode = 2
+text = "10"
+
+[node name="AccuracyLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1672231358]
+layout_mode = 2
+text = "Accuracy"
+
+[node name="AccuracyValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=530798858]
+layout_mode = 2
+text = "10"
+
+[node name="EvasionLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1985855324]
+layout_mode = 2
+text = "Evasion"
+
+[node name="EvasionValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1997165364]
+layout_mode = 2
+text = "10"
+
+[node name="LuckLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1789941555]
+layout_mode = 2
+text = "Luck"
+
+[node name="LuckValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer2/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1067640335]
+layout_mode = 2
+text = "10"
+
+[node name="PlayerContainer3" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1187159256]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FacePlayer" type="TextureRect" parent="MarginContainer/HBoxContainer/PlayerContainer3" unique_id=181393583]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("3_x3dth")
-expand_mode = 3
+texture = ExtResource("1_dy0y1")
+expand_mode = 4
+stretch_mode = 5
 
-[node name="NamePlayer3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=2082960063]
+[node name="NamePlayer" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3" unique_id=371450155]
 layout_mode = 2
-text = "Player3"
+text = "Player1"
 
-[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3" unique_id=749638587]
+[node name="StatsContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3" unique_id=273075661]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3" unique_id=1620419181]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer" unique_id=1317575075]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer" unique_id=1266415207]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer" unique_id=1804417424]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer" unique_id=1695563360]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer" unique_id=1513682775]
 layout_mode = 2
 
-[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1475722545]
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2068892901]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=575316643]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1132399480]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1616694422]
+[node name="CurrentHP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1041991333]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=356021148]
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=579282724]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
 value = 100.0
 show_percentage = false
 
-[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=315417385]
+[node name="HPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1850488128]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
 text = "HP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=657093518]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=255714350]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1309291376]
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=356149879]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=139673104]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=576704152]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1211624578]
+[node name="CurrentMP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=888097687]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=1629862496]
+[node name="MPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=368427747]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
 value = 100.0
 show_percentage = false
 
-[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=961591388]
+[node name="MPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=105789428]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
 text = "MP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1830615697]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1426462392]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer" unique_id=371037393]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer" unique_id=757127869]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer" unique_id=783946983]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer" unique_id=1260225945]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1038856982]
+[node name="AttackLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=250777816]
 layout_mode = 2
-text = "status_attack"
+text = "Attack"
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=737602196]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=912574591]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1475595963]
+[node name="AttackValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=897431288]
 layout_mode = 2
 text = "10"
 
-[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1593772477]
+[node name="DefenseLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1357911298]
 layout_mode = 2
-text = "status_evasion"
+text = "Defense"
 
-[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1443367072]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=792670504]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=1799825404]
+[node name="DefenseValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1600041615]
 layout_mode = 2
 text = "10"
 
-[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=121955680]
+[node name="IntelligenceLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1800397564]
 layout_mode = 2
-text = "status_inteligence"
+text = "Intelligence"
 
-[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer3/PanelContainer3/MarginContainer/VBoxContainer/GridContainer" unique_id=901223205]
+[node name="IntelligenceValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1518518305]
 layout_mode = 2
 text = "10"
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1748563558]
+[node name="SpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1976658819]
 layout_mode = 2
+text = "Speed"
 
-[node name="FacePlayer4" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer4" unique_id=643062597]
+[node name="SpeedValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1564266874]
+layout_mode = 2
+text = "10"
+
+[node name="AccuracyLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1487233529]
+layout_mode = 2
+text = "Accuracy"
+
+[node name="AccuracyValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1065824656]
+layout_mode = 2
+text = "10"
+
+[node name="EvasionLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=885022736]
+layout_mode = 2
+text = "Evasion"
+
+[node name="EvasionValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1097793632]
+layout_mode = 2
+text = "10"
+
+[node name="LuckLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1770483044]
+layout_mode = 2
+text = "Luck"
+
+[node name="LuckValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer3/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1607420136]
+layout_mode = 2
+text = "10"
+
+[node name="PlayerContainer4" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=417311059]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FacePlayer" type="TextureRect" parent="MarginContainer/HBoxContainer/PlayerContainer4" unique_id=1958958733]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("4_6fu7a")
-expand_mode = 3
+texture = ExtResource("1_dy0y1")
+expand_mode = 4
+stretch_mode = 5
 
-[node name="NamePlayer4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4" unique_id=1301418581]
+[node name="NamePlayer" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4" unique_id=702941135]
 layout_mode = 2
-text = "Player4"
+text = "Player1"
 
-[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4" unique_id=621555713]
+[node name="StatsContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4" unique_id=797751797]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4" unique_id=845708000]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer" unique_id=303512922]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer" unique_id=80046611]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer" unique_id=1690532260]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer" unique_id=141575346]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer" unique_id=1723442474]
 layout_mode = 2
 
-[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer" unique_id=507305595]
+[node name="HP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1713973693]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=1245322920]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=2068431908]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current HP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=79404248]
+[node name="CurrentHP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1867576709]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="HP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=2015416386]
+[node name="HPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP/VBoxContainer" unique_id=1704355344]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_rnq6g")
 value = 100.0
 show_percentage = false
 
-[node name="HP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=2023161383]
+[node name="HPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=371894150]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.764706, 0.25098, 0.262745, 1)
 text = "HP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=628250002]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/HP" unique_id=2028947622]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer" unique_id=312948554]
+[node name="MP" type="BoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=794183261]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1033634078]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1027358622]
 layout_mode = 2
 theme_override_constants/separation = -5
 alignment = 1
 
-[node name="Current MP" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=484819595]
+[node name="CurrentMP" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=972060671]
 layout_mode = 2
 text = "9999/9999"
 
-[node name="MP Bar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=239149095]
+[node name="MPBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP/VBoxContainer" unique_id=54742584]
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_nb8qd")
 value = 100.0
 show_percentage = false
 
-[node name="MP Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1708377572]
+[node name="MPLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1530942938]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.494118, 0.611765, 0.847059, 1)
 text = "MP"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=706223459]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/HBoxContainer/MP" unique_id=1081387461]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer" unique_id=1287607159]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer" unique_id=795672676]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer" unique_id=282070820]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer" unique_id=1768030308]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=309056977]
+[node name="AttackLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1980542226]
 layout_mode = 2
-text = "status_attack"
+text = "Attack"
 
-[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=710525392]
-layout_mode = 2
-text = "10"
-
-[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1388145841]
-layout_mode = 2
-text = "status_armor"
-
-[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1089295361]
+[node name="AttackValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=142007601]
 layout_mode = 2
 text = "10"
 
-[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=719664514]
+[node name="DefenseLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1618025640]
 layout_mode = 2
-text = "status_evasion"
+text = "Defense"
 
-[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=568615676]
-layout_mode = 2
-text = "10"
-
-[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=420872377]
-layout_mode = 2
-text = "status_speed"
-
-[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=902585716]
+[node name="DefenseValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1225832469]
 layout_mode = 2
 text = "10"
 
-[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1130442417]
+[node name="IntelligenceLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=465536912]
 layout_mode = 2
-text = "status_inteligence"
+text = "Intelligence"
 
-[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer4/PanelContainer4/MarginContainer/VBoxContainer/GridContainer" unique_id=1141029905]
+[node name="IntelligenceValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1944363343]
+layout_mode = 2
+text = "10"
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=179109748]
+layout_mode = 2
+text = "Speed"
+
+[node name="SpeedValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=949782256]
+layout_mode = 2
+text = "10"
+
+[node name="AccuracyLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1993952228]
+layout_mode = 2
+text = "Accuracy"
+
+[node name="AccuracyValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1472634102]
+layout_mode = 2
+text = "10"
+
+[node name="EvasionLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1995090086]
+layout_mode = 2
+text = "Evasion"
+
+[node name="EvasionValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=2094966042]
+layout_mode = 2
+text = "10"
+
+[node name="LuckLabel" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1570209693]
+layout_mode = 2
+text = "Luck"
+
+[node name="LuckValue" type="Label" parent="MarginContainer/HBoxContainer/PlayerContainer4/StatsContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=892078650]
 layout_mode = 2
 text = "10"

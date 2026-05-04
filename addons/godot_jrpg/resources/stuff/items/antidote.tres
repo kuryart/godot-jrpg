@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dr0kmau6w3q6y"]
+
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="1_bbcoo"]
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_g3gey"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="2_mx5yw"]
+[ext_resource type="Script" uid="uid://0tfjrmoovjpd" path="res://addons/godot_jrpg/resources/effects/effect_status_cure.gd" id="2_pro5f"]
+[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="3_u8udh"]
+[ext_resource type="Texture2D" uid="uid://cbvkiyfrfedmb" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-antidote.png" id="5_5d8is"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="7_u8udh"]
+
+[sub_resource type="Resource" id="Resource_0jcuy"]
+script = ExtResource("2_pro5f")
+status = ExtResource("3_u8udh")
+metadata/_custom_type_script = "uid://0tfjrmoovjpd"
+
+[sub_resource type="Resource" id="Resource_ftb4x"]
+script = ExtResource("2_mx5yw")
+effects = Array[ExtResource("1_g3gey")]([SubResource("Resource_0jcuy")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_5d8is"]
+script = ExtResource("7_u8udh")
+side = 1
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_bbcoo")
+used_on = 2
+effects = SubResource("Resource_ftb4x")
+targets = SubResource("Resource_5d8is")
+display_name = "Antidote"
+description = "An antidote."
+icon = ExtResource("5_5d8is")
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

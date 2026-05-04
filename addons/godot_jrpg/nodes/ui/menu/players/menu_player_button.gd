@@ -8,4 +8,4 @@ func _ready() -> void:
 	button_up.connect(_on_button_up)
 	
 func _on_button_up():
-	menu_signals.player_selected.emit(player)
+	menu_signals.menu_player_selected.emit(player)

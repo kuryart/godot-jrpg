@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ditlt3nlgb7w0"
-path="res://.godot/imported/cursor_move.wav-a01729eced0f2b43682eb83db3ea714c.sample"
+path="res://.godot/imported/cursor_move.wav-3ce6ff984c617071f86c73971a4c01d1.sample"
 
 [deps]
 
-source_file="res://addons/godot_jrpg/assets/audio/sfx/cursor_move.wav"
-dest_files=["res://.godot/imported/cursor_move.wav-a01729eced0f2b43682eb83db3ea714c.sample"]
+source_file="res://addons/godot_jrpg/assets/audio/sfx/ui/cursor_move.wav"
+dest_files=["res://.godot/imported/cursor_move.wav-3ce6ff984c617071f86c73971a4c01d1.sample"]
 
 [params]
 

@@ -53,50 +53,53 @@ func prepare_sources() -> void:
 	if battler is Player:
 		sources = [
 			battler.player_class.traits,
-			battler.player_class.slots.weapon.item.traits,
-			battler.player_class.slots.armor.item.traits,
-			battler.player_class.slots.accessory.item.traits,
-			battler.player_class.slots.head.item.traits,
-			battler.player_class.slots.shield.item.traits
+			battler.equip.weapon.item.traits,
+			battler.equip.armor.item.traits,
+			battler.equip.accessory.item.traits,
+			battler.equip.head.item.traits,
+			battler.equip.shield.item.traits
 		]
 	sources.append(battler.traits)
 	for s in battler.status:
 		sources.append(s.traits)
 
 func stat_calc() -> void:
-	var list = traits_by_type.get(Trait.TYPE.STAT)
+	var list = traits_by_type.get(Trait.TYPE.STAT, [])
 	for _trait in list:
 		if _trait is TraitStat:
-			var stat_name = _trait.stat_name
-			var current_multiplier = stat_multipliers.get(stat_name, 1.0)
-			var current_sum = stat_sums.get(stat_name, 0)
-			stat_multipliers[stat_name] = current_multiplier * _trait.value_multiply
-			stat_sums[stat_name] = current_sum + _trait.value_add
-			
+			var s_id = _trait.stat.id
+			var current_multiplier = stat_multipliers.get(s_id, 1.0)
+			var current_sum = stat_sums.get(s_id, 0)
+			stat_multipliers[s_id] = current_multiplier * _trait.value_multiply
+			stat_sums[s_id] = current_sum + _trait.value_add
+
 func damage_dealt_calc() -> void:
 	var list = traits_by_type.get(Trait.TYPE.DAMAGE_DEALT, [])
 	for _trait in list:
-		var type = _trait.damage_type
-		var current_mult = damage_dealt_multipliers.get(type, 1.0)
-		var current_sum = damage_dealt_sums.get(type, 0.0)
-		damage_dealt_multipliers[type] = current_mult * _trait.value_multiply
-		damage_dealt_sums[type] = current_sum + _trait.value_add
+		if _trait is TraitElementRateAttack:
+			var type = _trait.damage_type
+			var current_mult = damage_dealt_multipliers.get(type, 1.0)
+			var current_sum = damage_dealt_sums.get(type, 0.0)
+			damage_dealt_multipliers[type] = current_mult * _trait.value_multiply
+			damage_dealt_sums[type] = current_sum + _trait.value_add
 
 func damage_received_calc() -> void:
 	var list = traits_by_type.get(Trait.TYPE.DAMAGE_RECEIVED, [])
 	for _trait in list:
-		var type = _trait.damage_type
-		var current_mult = damage_received_multipliers.get(type, 1.0)
-		var current_sum = damage_received_sums.get(type, 0.0)
-		damage_received_multipliers[type] = current_mult * _trait.value_multiply
-		damage_received_sums[type] = current_sum + _trait.value_add
+		if _trait is TraitElementRateDefend:
+			var type = _trait.element 
+			var current_mult = damage_received_multipliers.get(type, 1.0)
+			var current_sum = damage_received_sums.get(type, 0.0)
+			
+			damage_received_multipliers[type] = current_mult * _trait.multiplier
+			damage_received_sums[type] = current_sum + _trait.sum
 
 #---------------
 #--- FACADES ---
 #---------------
-func get_stat_modified(stat_name: StringName, base_value: float) -> float:
-	var sum = stat_sums.get(stat_name, 0.0)
-	var mult = stat_multipliers.get(stat_name, 1.0)
+func get_stat_modified(s_id: Stat.ID, base_value: float) -> float:
+	var sum = stat_sums.get(s_id, 0.0)
+	var mult = stat_multipliers.get(s_id, 1.0)
 	return (base_value + sum) * mult
 
 func get_damage_dealt_modified(type: StringName, base_damage: float) -> float:

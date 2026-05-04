@@ -5,19 +5,16 @@ static var instance: Director
 @export var is_testing: bool = true
 @export var event_signals: EventSignals
 
-@export var party: Party
-@export var steps_walked: int = 0
-
-# Cenas
+# Scenes
 @export_category("Scenes")
-# Cenas Reais
+# Real scenes
 @export_group("Real Scenes")
 @export var splash_screen: PackedScene
 @export var title_menu: PackedScene
 @export var map: PackedScene
 @export var battle: PackedScene
 @export_group("Test Scenes")
-# Cenas de Teste (Mocks)
+# Test scenes
 @export var test_splash_screen: PackedScene
 @export var test_title_menu: PackedScene
 @export var test_map: PackedScene
@@ -30,9 +27,11 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if is_testing:
-		print("[Director] Modo de teste ativado")
+		print("[Director] Test mode activated")
+		run_test_flow()
+	else:
+		print("[Director] Starting game")
 		run_flow()
-		#run_test_flow()
 
 func run_flow():
 	var flow = CommandList.new()

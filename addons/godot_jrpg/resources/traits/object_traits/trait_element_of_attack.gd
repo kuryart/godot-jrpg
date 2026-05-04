@@ -1,9 +1,6 @@
-class_name TraitElementOnAttack extends TraitObject
+class_name TraitElementOfAttack extends TraitObject
 
 @export var element: Element
-
-func apply() -> Element:
-	return element
 
 func _to_string() -> String:
 	var element_name = element.name if element else "None"

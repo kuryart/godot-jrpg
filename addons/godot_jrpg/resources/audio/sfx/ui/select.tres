@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SFX" format=3 uid="uid://bjagqv44h4i64"]
 
 [ext_resource type="Script" uid="uid://bv8reig1fhqiw" path="res://addons/godot_jrpg/resources/audio/sfx/sfx.gd" id="1_cp458"]
-[ext_resource type="AudioStream" uid="uid://c0l2mnakyxfif" path="res://addons/godot_jrpg/assets/audio/sfx/select.wav" id="2_bybxf"]
+[ext_resource type="AudioStream" uid="uid://c0l2mnakyxfif" path="res://addons/godot_jrpg/assets/audio/sfx/ui/select.wav" id="2_bybxf"]
 
 [resource]
 script = ExtResource("1_cp458")

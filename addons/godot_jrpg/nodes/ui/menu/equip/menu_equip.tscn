@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://1ue0dgaxmlwf" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip.gd" id="1_8xy2i"]
 [ext_resource type="Script" uid="uid://bi7u8encjoq0i" path="res://addons/godot_jrpg/nodes/ui/menu/equip/weapon/weapon_equipped_button.gd" id="2_4pood"]
 [ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_qagbo"]
-[ext_resource type="Resource" uid="uid://b5rmkhl73blly" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_3.tres" id="3_iev38"]
+[ext_resource type="Resource" uid="uid://xcf0l6c5vwkg" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_1.tres" id="3_a08jx"]
 [ext_resource type="Script" uid="uid://b6onpb18nw81" path="res://addons/godot_jrpg/nodes/ui/menu/equip/armor/armor_equipped_button.gd" id="5_i6iul"]
 [ext_resource type="Script" uid="uid://44ita44q8fd5" path="res://addons/godot_jrpg/nodes/ui/menu/equip/accessory/accessory_equipped_button.gd" id="6_iev38"]
 [ext_resource type="Script" uid="uid://xhae2ygb45bg" path="res://addons/godot_jrpg/nodes/ui/menu/equip/head/head_equipped_button.gd" id="7_gypfo"]
@@ -36,7 +36,7 @@ anchors_preset = 0
 theme = SubResource("Theme_f4ej4")
 script = ExtResource("1_8xy2i")
 menu_signals = ExtResource("2_qagbo")
-player = ExtResource("3_iev38")
+player = ExtResource("3_a08jx")
 weapon_equip_container = ExtResource("9_a08jx")
 armor_equip_container = ExtResource("10_ahu3j")
 accessory_equip_container = ExtResource("10_gypfo")
