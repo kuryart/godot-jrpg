@@ -112,6 +112,7 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 script = ExtResource("3_u4h65")
 display_name = "Evasion"
 id = 7
+base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_krbav"]
@@ -216,7 +217,7 @@ stats = SubResource("Resource_1n2lh")
 status = Array[ExtResource("6_sn8uf")]([ExtResource("34_lm88f")])
 controller = SubResource("Resource_nf7ob")
 current_hp = 70
-current_mp = 50
+current_mp = 30
 traits = SubResource("Resource_8ednr")
 name = "player1"
 description = "A description."
