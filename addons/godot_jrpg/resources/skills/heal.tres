@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://dg0jk4jhur2id"]
+
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="1_ay4wr"]
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_qxn0g"]
+[ext_resource type="Script" uid="uid://bqnn8fctbndnr" path="res://addons/godot_jrpg/resources/effects/effect_heal.gd" id="2_iide7"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="3_gsfo2"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="5_f2s10"]
+
+[sub_resource type="Resource" id="Resource_xv2jn"]
+script = ExtResource("2_iide7")
+metadata/_custom_type_script = "uid://bqnn8fctbndnr"
+
+[sub_resource type="Resource" id="Resource_1ub4i"]
+script = ExtResource("3_gsfo2")
+effects = Array[ExtResource("1_qxn0g")]([SubResource("Resource_xv2jn")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_a4cyn"]
+script = ExtResource("5_f2s10")
+side = 1
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_ay4wr")
+display_name = "Heal"
+description = "Heals one ally."
+used_on = 2
+effects = SubResource("Resource_1ub4i")
+targets = SubResource("Resource_a4cyn")
+message = "healed"
+mp_cost = 10
+metadata/_custom_type_script = "uid://kyffs4we46du"

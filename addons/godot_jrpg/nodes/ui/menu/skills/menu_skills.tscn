@@ -1,35 +1,98 @@
 [gd_scene format=3 uid="uid://dtjni76nvmilg"]
 
-[ext_resource type="Script" uid="uid://b77ixoljirr5u" path="res://objects/menu/menu_skills.gd" id="1_5qqe7"]
-[ext_resource type="Theme" uid="uid://dpth8apo6i3oy" path="res://data/ui/theme.tres" id="1_wp08o"]
+[ext_resource type="Script" uid="uid://c5riy2e2lcdtm" path="res://addons/godot_jrpg/nodes/ui/menu/skills/menu_skills.gd" id="1_3uvcp"]
+[ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_8i58q"]
+[ext_resource type="PackedScene" uid="uid://cxrd7dc55w10j" path="res://addons/godot_jrpg/nodes/ui/menu/skills/skill_button.tscn" id="3_kbbal"]
+[ext_resource type="PackedScene" uid="uid://cj4fc7fekwmep" path="res://addons/godot_jrpg/nodes/ui/menu/players/menu_skills_player_button.tscn" id="4_8i58q"]
+[ext_resource type="Resource" uid="uid://xcf0l6c5vwkg" path="res://addons/godot_jrpg/tests/actors/battlers/players/test_player_1.tres" id="5_tgggf"]
 
-[node name="MenuSkills" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3a138"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he2cm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sipo2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="MenuSkills" type="Control" unique_id=1615798963]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_5qqe7")
+anchors_preset = 0
+script = ExtResource("1_3uvcp")
+menu_signals = ExtResource("2_8i58q")
+skill_button = ExtResource("3_kbbal")
+player_button = ExtResource("4_8i58q")
+caster = ExtResource("5_tgggf")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -6.1035156e-05
-offset_right = 122.1062
-offset_bottom = 0.98516846
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.91291237, 0.9986337)
-theme = ExtResource("1_wp08o")
-
-[node name="Label" type="Label" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=247118745]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 282.0
-offset_right = 692.0
-offset_bottom = 349.0
-theme_override_font_sizes/font_size = 48
-text = "Skills"
+offset_right = 640.0
+offset_bottom = 352.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=423118724]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1303801299]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillDescriptionPanel" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=732197524]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+theme_override_styles/panel = SubResource("StyleBoxFlat_3a138")
+
+[node name="SkillDescription" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/SkillDescriptionPanel" unique_id=1510243980]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0.1, 0.1)
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Skills" type="PanelContainer" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1942558628]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_he2cm")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/Skills" unique_id=1028719329]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="SkillsGrid" type="GridContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/Skills/MarginContainer" unique_id=1278973792]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath(".")
+columns = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer" unique_id=518086364]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_sipo2")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/PanelContainer" unique_id=2111821121]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Players" type="VBoxContainer" parent="PanelContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=980481153]
+unique_name_in_owner = true
+layout_mode = 2

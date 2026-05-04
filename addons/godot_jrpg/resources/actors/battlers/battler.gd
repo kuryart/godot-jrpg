@@ -24,6 +24,9 @@ class_name Battler extends Actor
 @export var traits: TraitList
 ## The battler elements. This can alter damage when used with traits. 
 @export var elements: Array[Element]
+## The list of skill of the player
+@export var skills: Array[Skill]
+
 ## The class used to collect all traits in player, class, status, equip, etc.
 var trait_aggregator: TraitAggregator
 

@@ -12,7 +12,7 @@ class_name Menu extends Control
 
 @export var menu_signals: MenuSignals
 
-enum MENU_STATES {MENU, EQUIP, STATUS}
+enum MENU_STATES {MENU, EQUIP, STATUS, SKILLS}
 var menu_state
 
 var menu: Control
@@ -53,8 +53,9 @@ func open_menu_items():
 	menu = menu_items_scene.instantiate()
 	get_tree().root.add_child(menu)
 
-func open_menu_skills():
+func open_menu_skills(player: Player):
 	menu = menu_skills_scene.instantiate()
+	menu.player = player
 	get_tree().root.add_child(menu)
 
 func open_menu_equip(player: Player):
@@ -76,7 +77,8 @@ func _on_items_button_up():
 	open_menu_items()
 	
 func _on_skills_button_up():
-	open_menu_skills()
+	menu_state = MENU_STATES.SKILLS
+	go_to_players_menu()
 	
 func _on_equip_button_up():
 	menu_state = MENU_STATES.EQUIP
@@ -94,3 +96,5 @@ func _on_player_selected(player: Player):
 		open_menu_equip(player)
 	elif menu_state == MENU_STATES.STATUS:
 		open_menu_status(player)
+	elif menu_state == MENU_STATES.SKILLS:
+		open_menu_skills(player)

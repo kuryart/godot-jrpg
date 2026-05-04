@@ -19,6 +19,11 @@ signal item_clicked
 signal item_changed
 signal menu_items_player_selected(player: Player)
 
+# --- Skills menu ---
+signal skill_clicked
+signal skill_changed
+signal menu_skills_player_selected(player: Player)
+
 # --- Equip menu ---
 # -- Equipped buttons --
 # - Focus entered -
