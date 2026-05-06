@@ -6,3 +6,4 @@
 [node name="GameManager" type="Node" unique_id=525089218]
 script = ExtResource("1_ulwfa")
 party = ExtResource("2_lkkkd")
+money_name = "money"

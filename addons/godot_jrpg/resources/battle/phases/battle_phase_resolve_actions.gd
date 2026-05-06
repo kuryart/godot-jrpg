@@ -20,15 +20,27 @@ func resolve(engine: BattleEngine):
 		if not can_actor_act(action): continue
 		if not validate_targets(action, engine): continue
 		resolve_pre_action_effects()
-		engine.validate_deaths()
-		
+		await engine.validate_deaths()
+		if engine.check_battle_end():
+			return
+		if not validate_targets(action, engine): 
+			print("[BattlePhaseResolveActions] %s's Attack failed because there's no target alive." % action.actor.name)
+			continue
 		# --- Action ---
 		engine.battle_signals.change_player_face_emited.emit(action)
 		await action.resolve(engine)
-		
+		await engine.validate_deaths()
+		if engine.check_battle_end():
+			return
 		# --- Post-action ---
-	
+		await engine.validate_deaths()
+		await engine.get_tree().create_timer(1.0).timeout
+		if engine.check_battle_end():
+			return
 	end()
+	engine.change_turn()
+	engine.change_phase(BattlePhaseSelection.new())
+
 
 ## Checks if player can act, id est, if player is dead or stunned.
 func can_actor_act(action: BattleAction) -> bool:
@@ -40,7 +52,7 @@ func can_actor_act(action: BattleAction) -> bool:
 ## First we check if target is alive. If it is dead, we try to find an alternative target. Then we set
 ## this alternative target in place of the old target if we found it, or removes the old target from 
 ## the list if we don't find it. Finally, we return if the targets list is empty or not.
-func validate_targets(action: BattleAction, engine: BattleEngine):
+func validate_targets(action: BattleAction, engine: BattleEngine) -> bool:
 	for i in range(action.targets.size() - 1, -1, -1):
 		var target = action.targets[i]
 		
@@ -48,7 +60,7 @@ func validate_targets(action: BattleAction, engine: BattleEngine):
 			var new_target = get_alternative_target(target, engine)
 			if new_target:
 				action.targets[i] = new_target
-				print("[BattlePhaseResolveActions] Target ", target.data.name, " is dead. Redirecting to ", new_target.data.name)
+				print("[BattlePhaseResolveActions] Target ", target.name, " is dead. Redirecting to ", new_target.name)
 			else:
 				action.targets.remove_at(i)
 	
@@ -67,4 +79,8 @@ func get_alternative_target(target: Battler, engine: BattleEngine) -> Battler:
 
 ## Resolves the effects that happens before an action is resolved.
 func resolve_pre_action_effects():
+	pass
+
+## Resolves the effects that happens after an action is resolved.
+func resolve_post_action_effects():
 	pass

@@ -7,10 +7,12 @@
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="3_16738"]
 [ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_l4djw"]
 [ext_resource type="Resource" uid="uid://ct1yibljovrhd" path="res://addons/godot_jrpg/tests/stuff/equippable/slots/player_4_equip_slots.tres" id="3_n5x3g"]
+[ext_resource type="Resource" uid="uid://bhccddi8p1iq3" path="res://addons/godot_jrpg/resources/status/dead.tres" id="3_oeixl"]
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="4_o8cr6"]
 [ext_resource type="Resource" uid="uid://chpnhsj7w1tj4" path="res://addons/godot_jrpg/tests/actors/battlers/classes/test_battler_class_4.tres" id="4_ye0my"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://addons/godot_jrpg/resources/formulas/xp/formula_xp_pokemon.gd" id="5_8aw43"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="6_7aeq3"]
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="9_k11ed"]
 
 [sub_resource type="Resource" id="Resource_wy5kb"]
 script = ExtResource("2_7aeq3")

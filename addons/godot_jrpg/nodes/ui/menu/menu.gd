@@ -33,6 +33,7 @@ func connect_signals():
 	menu_signals.open_menu_save_emited.connect(_on_save_button_up)
 	menu_signals.open_menu_equip_emited.connect(_on_equip_button_up)
 	menu_signals.open_menu_items_emited.connect(_on_items_button_up)
+	menu_signals.open_menu_skills_emited.connect(_on_skills_button_up)
 	menu_signals.menu_player_selected.connect(_on_player_selected)
 
 func instantiate_players():
@@ -55,7 +56,7 @@ func open_menu_items():
 
 func open_menu_skills(player: Player):
 	menu = menu_skills_scene.instantiate()
-	menu.player = player
+	menu.caster = player
 	get_tree().root.add_child(menu)
 
 func open_menu_equip(player: Player):

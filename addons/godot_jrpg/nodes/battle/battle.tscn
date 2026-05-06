@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgyg5l0h0l00g"]
 
-[ext_resource type="Script" uid="uid://k7luinj2i6yw" path="res://addons/godot_jrpg/tests/battle/test_battle.gd" id="1_72ttr"]
+[ext_resource type="Script" uid="uid://l4wan6e53aw0" path="res://addons/godot_jrpg/nodes/battle/battle.gd" id="1_waeis"]
 [ext_resource type="Script" uid="uid://n2b7ojicu1g0" path="res://addons/godot_jrpg/nodes/battle/battle_engine.gd" id="2_85q1k"]
 [ext_resource type="Script" uid="uid://dh2xmelh50nrm" path="res://addons/godot_jrpg/resources/formulas/damage/formula_damage_rpg_maker.gd" id="3_lci8g"]
 [ext_resource type="Resource" uid="uid://creqo0s1k7tlr" path="res://addons/godot_jrpg/resources/battle/battle_signals.tres" id="4_nterj"]
@@ -45,7 +45,7 @@ _data = {
 }
 
 [node name="Battle" type="Node" unique_id=1635175538]
-script = ExtResource("1_72ttr")
+script = ExtResource("1_waeis")
 
 [node name="BattleEngine" type="Node" parent="." unique_id=237790622 node_paths=PackedStringArray("battle_ui")]
 script = ExtResource("2_85q1k")
@@ -266,8 +266,11 @@ offset_top = 16.0
 offset_right = 944.0
 offset_bottom = 72.0
 
-[node name="Messenger" type="RichTextLabel" parent="BattleUI/Messenger" unique_id=1485600197]
+[node name="MessengerLabel" type="RichTextLabel" parent="BattleUI/Messenger" unique_id=1485600197]
+unique_name_in_owner = true
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]
 

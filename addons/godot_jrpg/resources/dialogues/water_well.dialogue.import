@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://br6oi3lw1ysvn"
+path="res://.godot/imported/water_well.dialogue-7250bd1e64a22723a18296f891445090.tres"
+
+[deps]
+
+source_file="res://addons/godot_jrpg/resources/dialogues/water_well.dialogue"
+dest_files=["res://.godot/imported/water_well.dialogue-7250bd1e64a22723a18296f891445090.tres"]
+
+[params]
+
+defaults=true

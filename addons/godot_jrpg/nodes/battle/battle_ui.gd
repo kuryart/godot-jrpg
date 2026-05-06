@@ -36,6 +36,8 @@ class_name BattleUI extends Control
 @onready var menu_selection_options: VBoxContainer = %MenuSelectionOptions
 ## The UI for the panel which shows battle messages.
 @onready var messenger: PanelContainer = %Messenger
+## The UI for the label which shows battle messages.
+@onready var messenger_label: RichTextLabel = %MessengerLabel
 ## The UI for the character's face. 
 @onready var face: BattleFace = %Face
 
@@ -74,6 +76,7 @@ func setup_ui():
 	battle_signals.battler_damaged.connect(_on_battler_damaged)
 	battle_signals.player_changed.connect(_on_player_changed)
 	battle_signals.change_player_face_emited.connect(_on_change_player_face_emited)
+	battle_signals.battler_died.connect(_on_battler_died)
 	# --- Focus ---
 	battle_signals.request_player_focus_emited.connect(_on_request_player_focus_emited)
 	battle_signals.define_focus_neighbors_emited.connect(_on_define_focus_neighbors_emited)
@@ -94,6 +97,8 @@ func setup_ui():
 	battle_signals.fight_button_entered.connect(_on_fight_button_entered)
 	battle_signals.run_button_entered.connect(_on_run_button_entered)
 	# --- Handle cancel ---
+	# --- Messenger ---
+	battle_signals.message_emited.connect(_on_message_emited)
 
 ## Helper function to wait for node is ready.  
 func wait_ready():
@@ -153,6 +158,16 @@ func _on_player_changed(player: Player):
 func _on_change_player_face_emited(action: BattleAction):
 	var first_target = action.targets[0]
 	face.texture = first_target.face if action.actor is Enemy else action.actor.face
+
+## Used when a battler is defeated.
+func _on_battler_died(battler: Battler):
+	await wait_ready()
+	if battler is Enemy:
+		var enemy_ui = enemies[battler as Enemy]
+		enemy_ui.die()
+	elif battler is Player:
+		var player_ui = players[battler as Player]
+		player_ui.die()
 
 # --- Focus ---
 ## Define the focus neighbors for enemies for the first time.
@@ -264,3 +279,8 @@ func _on_fight_button_entered():
 ## Used to change the face panel to the run icon image.
 func _on_run_button_entered():
 	face.texture = face.icon_run
+
+## Used to pass messages to messenger.
+func _on_message_emited(message: String):
+	await wait_ready()
+	messenger_label.text = message

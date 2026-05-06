@@ -43,6 +43,18 @@ func select_attack():
 	engine.action_pool.append(action)
 	engine.battle_signals.enemy_selected.emit()
 
+func die():
+	await fade_out()
+	visible = false
+	process_mode = PROCESS_MODE_DISABLED
+	focus_mode = FOCUS_NONE
+
+func fade_out():
+	self.get_node("AnimationPlayer").stop()
+	var tween = self.create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 2.0).set_trans(Tween.TRANS_SINE)
+	await tween.finished
+
 func _on_focus_entered():
 	animation_player.play("flash")
 

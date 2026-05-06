@@ -4,5 +4,6 @@
 [ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="2_s7c2n"]
 
 [node name="SkillButton" type="Button" unique_id=1264695011]
+size_flags_horizontal = 3
 script = ExtResource("1_ijc4c")
 menu_signals = ExtResource("2_s7c2n")

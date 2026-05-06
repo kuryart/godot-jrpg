@@ -10,7 +10,7 @@ class_name Battle extends Node
 signal battle_finished
 
 func _enter_tree() -> void:
-	print("[Battle] Starting test.")
+	print("[Battle] Starting battle.")
 
 ## It receives [BattleSettings] from a [CommandStartBattle]; await for [InputManager] 
 ## to setup; reference [BattleEngine] and [BattleUI] and initialize the battle engine 

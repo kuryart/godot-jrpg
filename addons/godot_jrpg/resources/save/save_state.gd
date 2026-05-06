@@ -3,18 +3,22 @@ class_name SaveState extends Resource
 const SAVE_GAME_PATH:= "user://saves/save_game.tres"
 
 @export var party: Party
-#@export var switches: SwitchesDatabase
-#@export var game_data: GameData
-@export var current_scene_name: String
-@export var current_scene_path: String
+@export var switches: Dictionary[String, Switch]
+#@export var current_scene_name: String
+#@export var current_scene_path: String
 @export var current_time: String
 @export var elapsed_time: String
+@export var game_state: GameManager.GameStates
+@export var last_game_state: GameManager.GameStates
+@export var language: GameManager.Languages
+@export var difficulty: GameManager.Difficulties
 
 func write_save(path: String) -> void:
 	var directory_path := path.get_base_dir()
 	if not DirAccess.dir_exists_absolute(directory_path):
 		DirAccess.make_dir_recursive_absolute(directory_path)
-
+	
+	print(path)
 	ResourceSaver.save(self, path)
 
 func load_save() -> Resource:

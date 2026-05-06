@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="2_kipje"]
 [ext_resource type="Script" uid="uid://bjsdujeknnms6" path="res://addons/godot_jrpg/resources/controllers/inputs/input_assignment.gd" id="2_pxb88"]
 [ext_resource type="Texture2D" uid="uid://b0574t1qowx6l" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-3.png" id="3_1f7kl"]
+[ext_resource type="Resource" uid="uid://bhccddi8p1iq3" path="res://addons/godot_jrpg/resources/status/dead.tres" id="3_dys4l"]
 [ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_hqdmi"]
 [ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="3_v07i3"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_w6dso"]
@@ -11,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://bgwhrdfs2uqxf" path="res://addons/godot_jrpg/tests/actors/battlers/classes/test_battler_class_3.tres" id="4_ws3vo"]
 [ext_resource type="Script" uid="uid://ds4qg0x2vjt4y" path="res://addons/godot_jrpg/resources/formulas/xp/formula_xp_pokemon.gd" id="5_h56vd"]
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="6_pxb88"]
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="9_y0yly"]
 
 [sub_resource type="Resource" id="Resource_16odd"]
 script = ExtResource("2_pxb88")

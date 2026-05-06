@@ -2,6 +2,9 @@
 ## It's like a battler character sheet with logic.
 class_name Battler extends Actor
 
+## This only exists because Godot has a bug with global names.
+const TraitAggregatorScript = preload("uid://jpeqi1pb7q3t")
+
 ## The battler stats.
 @export var stats: Stats
 ## The battler current status.
@@ -26,6 +29,8 @@ class_name Battler extends Actor
 @export var elements: Array[Element]
 ## The list of skill of the player
 @export var skills: Array[Skill]
+## The dead status used to check if the battler died.
+@export var dead_status: Status = preload("uid://bhccddi8p1iq3")
 
 ## The class used to collect all traits in player, class, status, equip, etc.
 var trait_aggregator: TraitAggregator
@@ -36,7 +41,7 @@ signal hp_changed
 signal mp_changed
 
 func _init() -> void:
-	trait_aggregator = TraitAggregator.new(self)
+	trait_aggregator = TraitAggregatorScript.new(self)
 
 ## Adds a status to battler.
 func add_status(_status: Status) -> void:
@@ -74,8 +79,16 @@ func is_alive() -> bool:
 
 ## Checks if battler is stunned.
 func is_stunned() -> bool:
-	#return status.any(func(s): return s is StatusFrozen or s is StatusParalyzed)
-	return false
+	return status.any(func(s: Status): return s.action_restriction == s.ACTION_RESTRICTIONS.CANT_ACT)
+
+func can_attack_enemy() -> bool:
+	return not status.any(func(s: Status): return s.action_restriction == s.ACTION_RESTRICTIONS.ATTACK_FOE)
+
+func can_attack_ally() -> bool:
+	return not status.any(func(s: Status): return s.action_restriction == s.ACTION_RESTRICTIONS.ATTACK_ALLY)
+
+func can_attack_both_enemy_and_ally() -> bool:
+	return not status.any(func(s: Status): return s.action_restriction == s.ACTION_RESTRICTIONS.ATTACK_ALLY)
 
 ## Makes the battler take damage
 func take_damage(damage: int) -> void:
@@ -84,7 +97,7 @@ func take_damage(damage: int) -> void:
 
 ## Kills the battler
 func die() -> void:
-	pass
+	status.append(dead_status)
 
 # --- Get stats methods ---
 # -- Main stats --

@@ -19,6 +19,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4ora5")
 
 [node name="Button" type="Button" parent="." unique_id=2043593775]
 layout_mode = 2
+focus_neighbor_left = NodePath(".")
 script = ExtResource("1_ucc3s")
 menu_signals = ExtResource("2_beefm")
 
