@@ -5,17 +5,13 @@ class_name Status extends Resource
 ## The status name.
 @export var name: String
 ## When the status effects are resolved.
-@export_enum("Nothing",
-	"Upkeep", 
-	"Clean Up", 
-	"Pre-Action", 
-	"Post-Action") var resolve_in: String = "Upkeep"
+enum RESOLVE_IN {UPKEEP, CLEANUP, PRE_ACTION, POST_ACTION}
+## When the status effects are resolved.
+@export var resolve_in: RESOLVE_IN
 ## Does this status restricts target actions?
-@export_enum("Nothing", 
-	"Can't act", 
-	"Attack Foe", 
-	"Attack Ally", 
-	"Attack Both") var action_restriction: String = "Nothing"
+enum ACTION_RESTRICTIONS {NOTHING, CANT_ACT, ATTACK_FOE, ATTACK_ALLY, ATTACK_BOTH}
+## Does this status restricts target actions?
+@export var action_restriction: ACTION_RESTRICTIONS
 ## The traits attached to this status.
 @export var traits: TraitList
 ## The dead state is a special one. It restricts all actions, and don't go away with

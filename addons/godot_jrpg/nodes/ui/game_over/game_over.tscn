@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dt4asa3fn4vxc"]
+
+[ext_resource type="Texture2D" uid="uid://pfa0fjv78anb" path="res://addons/godot_jrpg/assets/sprites/game_over/game_over.jpg" id="1_emde0"]
+[ext_resource type="Script" uid="uid://djq6xvuoc4d66" path="res://addons/godot_jrpg/nodes/ui/game_over/game_over.gd" id="1_faq2p"]
+
+[node name="GameOver" type="Control" unique_id=62690076]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_faq2p")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1940523230]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_emde0")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=695040418]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 112.0
+offset_right = 440.0
+offset_bottom = 176.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 42
+text = "Game Over"

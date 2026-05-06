@@ -20,6 +20,9 @@ func setup(_engine: BattleEngine, _player: Player):
 	current_hp_label.setup(player.current_hp, player.hp_changed)
 	current_mp_label.setup(player.current_mp, player.mp_changed)
 
+func die():
+	pass
+
 func _on_button_up():
 	super()
 	engine.battle_signals.player_selected.emit()

@@ -29,7 +29,8 @@ func list_saves() -> void:
 		var date_str = format_save_date(saves[i]["time"])
 		
 		var btn_res = load(saves[i]["path"]) as SaveState
-		btn.text = "%s [%s]" % ["Save" + str(i + 1), date_str] + " - " + btn_res.current_scene_name
+		#btn.text = "%s [%s]" % ["Save" + str(i + 1), date_str] + " - " + btn_res.current_scene_name
+		btn.text = "%s [%s]" % ["Save" + str(i + 1), date_str] + " - " + "btn_res.current_scene_name"
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		
 		btn.pressed.connect(func(): _on_save_selected(saves[i]["path"]))

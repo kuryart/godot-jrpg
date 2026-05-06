@@ -14,6 +14,7 @@ func resolve(engine: BattleEngine):
 	instantiate_players(engine)
 	hide_menus(engine.battle_ui)
 	drop_enemies_focus(engine.battle_ui)
+	show_enemies_appeared_message(engine.battle_ui)
 	connect_signals(engine)
 	for i in range(engine.battlers.size()):
 		print("[BattlePhaseInit] Battle Actors: ", engine.battlers[i].name)
@@ -47,7 +48,7 @@ func define_leader(engine: BattleEngine) -> void:
 
 func setup_enemies(engine: BattleEngine) -> void:
 	for i in range(engine.battle_settings.enemies.size()):
-		var enemy: Enemy = engine.battle_settings.enemies[i].enemy.duplicate()
+		var enemy: Enemy = engine.battle_settings.enemies[i].enemy.duplicate(true)
 		var ctrl: EnemyController = enemy.controller
 		ctrl.setup(engine, null, null)
 		engine.add_battle_battler(enemy)
@@ -68,6 +69,27 @@ func set_background(engine: BattleEngine):
 func instantiate_enemies(engine: BattleEngine):
 	var enemies_settings: Array[EnemySettings] = engine.battle_settings.enemies
 	var enemies: Array[Enemy] = engine.enemies
+
+	var name_counts: Dictionary = {}
+	for enemy in enemies:
+		var base_name = enemy.name 
+		if name_counts.has(base_name):
+			name_counts[base_name] += 1
+		else:
+			name_counts[base_name] = 1
+
+	var name_indices: Dictionary = {}
+	for enemy in enemies:
+		var base_name = enemy.name
+		if name_counts[base_name] > 1:
+			if not name_indices.has(base_name):
+				name_indices[base_name] = 0
+
+			var suffix = String.chr(65 + name_indices[base_name])
+
+			enemy.name = base_name + " " + suffix
+			name_indices[base_name] += 1
+
 	var ui: BattleUI = engine.battle_ui
 	ui.battle_signals.instantiate_enemies_emited.emit(enemies_settings, enemies, engine)
 
@@ -86,6 +108,9 @@ func hide_menus(ui: BattleUI):
 
 func drop_enemies_focus(ui: BattleUI):
 	ui.battle_signals.enemies_focus_mode_changed.emit(Control.FOCUS_NONE)
+
+func show_enemies_appeared_message(ui: BattleUI):
+	ui.battle_signals.message_emited.emit("Enemies appeared!")
 
 func connect_signals(engine: BattleEngine):
 	engine.battle_signals.enemy_selected.connect(engine._on_enemy_selected)

@@ -15,11 +15,13 @@ signal player_changed(player: Player)
 signal player_damaged
 signal player_selected
 signal select_enemy_emited
+signal battler_died(battler: Battler)
 # --- Buttons ---
 signal attack_button_up
 signal fight_button_entered
 signal fight_button_up
 signal run_button_entered
+signal run_button_up
 # --- Focus ---
 signal define_focus_neighbors_emited
 signal enemies_focus_mode_changed(mode: Control.FocusMode)
@@ -37,3 +39,5 @@ signal toggle_menu_selection_emited(on: bool)
 signal toggle_menu_skills_emited(on: bool)
 signal toggle_messenger_emited(on: bool)
 # --- Handle cancel ---
+# --- Messenger ---
+signal message_emited(message: String)

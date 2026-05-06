@@ -1,4 +1,4 @@
 class_name FormulaXPPokemon extends FormulaXP
 
 func calculate(param: FormulaXPParameter):
-	return (4 * pow(param.level, 3)) / 5
+	return int((4.0 * pow(float(param.level), 3.0)) / 5.0)

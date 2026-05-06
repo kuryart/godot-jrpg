@@ -75,8 +75,7 @@ The project is structured in:
 
 - [ ] Save/load system;
 - [x] Map scene system (we barely have battle system);
-- [ ] Menus system;
-	- [x] Base for menu system;
+- [x] Menus system;
 - [ ] Use item in battle;
 - [ ] Use skill in battle;
 - [ ] Defend in battle;
@@ -85,7 +84,7 @@ The project is structured in:
 	- [ ] Integrate traits in gameplay;
 - [ ] Victory system;
 - [ ] Game over system;
-- [ ] Equip system;
+- [x] Equip system;
 - [ ] Develop AI system:
 	- [ ] Create headless simulation to export data to Jupyter Notebook;
 	- [ ] Create integration with Godot RL Agents plugin;
@@ -113,6 +112,8 @@ This addon uses third-party plugins. You can install all at once using [gd-plug]
 - For the battle background: [Nidhoggn](https://opengameart.org/users/nidhoggn) under CC0  [license](https://creativecommons.org/publicdomain/zero/1.0/)
 - For the battle enemies: [CharlesGabriel](http://cgartsenal.blogspot.com/) under CC-BY 3.0 [license](https://creativecommons.org/licenses/by/3.0/)
 - For the players faces: [CharlesGabriel](http://cgartsenal.blogspot.com/) under CC-BY 3.0 [license](https://creativecommons.org/licenses/by/3.0/)
+- For the icons: [Lorc](http://www.reddit.com/user/Lorc) under CC-BY 3.0 [license](https://creativecommons.org/licenses/by/3.0/)
+- For the game over background: [Ironthunder](https://opengameart.org/users/ironthunder) under CC-BY 3.0 [license](https://creativecommons.org/licenses/by/3.0/)
 
 ### Addons
 

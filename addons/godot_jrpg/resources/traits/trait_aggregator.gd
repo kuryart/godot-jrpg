@@ -23,6 +23,7 @@ func refresh():
 	stat_calc()
 	damage_dealt_calc()
 	damage_received_calc()
+	flags_calc()
 
 func clear_cache() -> void:
 	traits_by_type.clear()
@@ -51,14 +52,6 @@ func collect_and_sort_traits() -> Dictionary:
 
 func prepare_sources() -> void:
 	if battler is Player:
-		#sources = [
-			#battler.player_class.traits,
-			#battler.equip.weapon.item.traits,
-			#battler.equip.armor.item.traits,
-			#battler.equip.accessory.item.traits,
-			#battler.equip.head.item.traits,
-			#battler.equip.shield.item.traits
-		#]
 		if battler.player_class.traits:
 			sources.append(battler.player_class.traits)
 		if battler.equip.weapon.item:
@@ -107,6 +100,13 @@ func damage_received_calc() -> void:
 			damage_received_multipliers[type] = current_mult * _trait.multiplier
 			damage_received_sums[type] = current_sum + _trait.sum
 
+func flags_calc() -> void:
+	var list = traits_by_type.get(Trait.TYPE.FLAG, []) 
+	
+	for _trait in list:
+		var trait_class = _trait.get_script()
+		flags[trait_class] = true
+
 #---------------
 #--- FACADES ---
 #---------------
@@ -124,3 +124,14 @@ func get_damage_received_modified(type: StringName, base_damage: float) -> float
 	var sum = damage_received_sums.get(type, 0.0)
 	var mult = damage_received_multipliers.get(type, 1.0)
 	return (base_damage + sum) * mult
+
+func has_flag(trait_class: Script) -> bool:
+	return flags.has(trait_class)
+
+func has_trait(trait_name: String) -> bool:
+	for type_key in traits_by_type.keys():
+		for t: Trait in traits_by_type[type_key]:
+			var script = t.get_script()
+			if script != null and script.get_global_name() == trait_name:
+				return true
+	return false

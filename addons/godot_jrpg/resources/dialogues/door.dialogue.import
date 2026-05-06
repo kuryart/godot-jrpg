@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://cyaollbsyg54m"
+path="res://.godot/imported/door.dialogue-e710606f8fb7b1bb4600f24de100e7f2.tres"
+
+[deps]
+
+source_file="res://addons/godot_jrpg/resources/dialogues/door.dialogue"
+dest_files=["res://.godot/imported/door.dialogue-e710606f8fb7b1bb4600f24de100e7f2.tres"]
+
+[params]
+
+defaults=true

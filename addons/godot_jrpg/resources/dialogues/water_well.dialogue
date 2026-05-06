@@ -1,0 +1,9 @@
+~ start
+Water well: This is a sample dialogue. Do you like it?
+- Yes
+	Water well: nice!
+- No
+	Water well: ok.
+Water well: To learn more about how to use it, please see the documentation for Dialogue Manager 3 in github. 
+Also wishlist nathanhoad's game, Bravest Coconut, on Steam.
+=> END

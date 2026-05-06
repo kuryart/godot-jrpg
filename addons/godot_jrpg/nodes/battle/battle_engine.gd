@@ -94,7 +94,7 @@ func change_phase(phase: BattlePhase):
 
 ## This function changes the turn.
 func change_turn():
-	current_turn = 1
+	current_turn += 1
 	battle_signals.players_focus_mode_changed.emit(Control.FOCUS_ALL)
 	battle_signals.menu_fight_focus_mode_changed.emit(Control.FOCUS_ALL)
 	change_to_player(get_first_alive_player())
@@ -134,6 +134,23 @@ func calc_action_order():
 
 	for action in action_pool:
 		print("[BattleActionOrder] Actor: ", action.actor.name, " | Speed: ", action.actor.stats.speed.get_value(), " | Action: ", action.resource_name)
+
+## Verifies if the battle ended (victory or game over)
+func check_battle_end() -> bool:
+	var alive_players = players.filter(func(p): return is_instance_valid(p) and p.is_alive() and p.current_hp > 0)
+	var alive_enemies = enemies.filter(func(e): return is_instance_valid(e) and e.is_alive() and e.current_hp > 0)
+	
+	if alive_players.is_empty():
+		print("[BattleEngine] Game Over!")
+		change_phase(BattlePhaseGameOver.new())
+		return true
+		
+	if alive_enemies.is_empty():
+		print("[BattleEngine] Victory!")
+		change_phase(BattlePhaseVictory.new())
+		return true
+		
+	return false
 
 # --- Battlers methods ---
 ## Adds a batller to the arena.
@@ -218,7 +235,7 @@ func manage_enemies_decisions():
 
 ## Gets a list of dead battlers and checks if it's empty. If the list is empty, 
 ## return. Else, it [method process_battler_death] and [method refresh_battle_state].
-func validate_deaths() -> void:
+func validate_deaths():
 	var dead_list = get_dead_battlers()
 	
 	if dead_list.is_empty():
@@ -232,9 +249,19 @@ func get_dead_battlers() -> Array[Battler]:
 	return battlers.filter(func(b): return b.current_hp <= 0 and b.is_alive())
 
 ## Executes the battler's death.
-func process_battler_death(targets: Array[Battler]) -> void:
+func process_battler_death(targets: Array[Battler]):
 	for battler in targets:
+		clear_focus()
+		battle_signals.toggle_messenger_emited.emit(true)
+
+		var death_text = "%s defeated!" % battler.name 
+		battle_signals.message_emited.emit(death_text)
+		battle_signals.battler_died.emit(battler)
+		
 		await battler.die()
+		await get_tree().create_timer(2.0).timeout
+
+		battle_signals.toggle_messenger_emited.emit(false)
 
 ## Refresh enemy state, i.e., update enemy focus neighbors and move focus to next 
 ## enemy.

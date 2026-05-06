@@ -6,10 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://c7cp17ambp815" path="res://addons/godot_jrpg/nodes/ui/menu/items/menu_items.tscn" id="2_jjnjm"]
 [ext_resource type="Resource" uid="uid://bjcik50rg61bm" path="res://addons/godot_jrpg/nodes/ui/menu/menu_signals.tres" id="3_f3mx3"]
 [ext_resource type="PackedScene" uid="uid://b7rec6sbed7vs" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip.tscn" id="3_wa1vw"]
+[ext_resource type="PackedScene" uid="uid://dtjni76nvmilg" path="res://addons/godot_jrpg/nodes/ui/menu/skills/menu_skills.tscn" id="3_wjwok"]
 [ext_resource type="Script" uid="uid://t7g0m11f0vq0" path="res://addons/godot_jrpg/nodes/ui/menu/save/menu_save_button.gd" id="5_0kbj6"]
+[ext_resource type="PackedScene" uid="uid://qjstunvul8a5" path="res://addons/godot_jrpg/nodes/ui/menu/save/menu_save.tscn" id="6_ksgt8"]
 [ext_resource type="PackedScene" uid="uid://c5etbfyw0wg85" path="res://addons/godot_jrpg/nodes/ui/menu/players/menu_player_button.tscn" id="7_ab2m6"]
 [ext_resource type="Script" uid="uid://c2rp6orbiomhx" path="res://addons/godot_jrpg/nodes/ui/menu/equip/menu_equip_button.gd" id="7_evij6"]
 [ext_resource type="Script" uid="uid://d3glja0myw5m0" path="res://addons/godot_jrpg/nodes/ui/menu/items/menu_items_button.gd" id="7_wa1vw"]
+[ext_resource type="Script" uid="uid://wwpu71oaxd0r" path="res://addons/godot_jrpg/nodes/ui/menu/skills/menu_skills_button.gd" id="8_32snh"]
+[ext_resource type="Script" uid="uid://dlbt5bgahjnx7" path="res://addons/godot_jrpg/nodes/ui/menu/exit/menu_exit.gd" id="12_32snh"]
 
 [node name="Menu" type="Control" unique_id=652208107]
 z_index = 99
@@ -17,8 +21,10 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hvec1")
 menu_items_scene = ExtResource("2_jjnjm")
+menu_skills_scene = ExtResource("3_wjwok")
 menu_equip_scene = ExtResource("3_wa1vw")
 menu_status_scene = ExtResource("2_f3mx3")
+menu_save_scene = ExtResource("6_ksgt8")
 menu_player_scene = ExtResource("7_ab2m6")
 menu_signals = ExtResource("3_f3mx3")
 
@@ -71,6 +77,8 @@ focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Equip")
 text = "Skills
 "
+script = ExtResource("8_32snh")
+menu_signals = ExtResource("3_f3mx3")
 
 [node name="Equip" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1275821431]
 unique_name_in_owner = true
@@ -114,6 +122,7 @@ focus_neighbor_top = NodePath("../Save")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Exit"
+script = ExtResource("12_32snh")
 
 [node name="RightMenu" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=135680054]
 layout_mode = 2

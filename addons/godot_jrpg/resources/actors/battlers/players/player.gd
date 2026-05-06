@@ -25,16 +25,20 @@ func add_xp(amount: int):
 ## Checks if the player leveled up by earning xp.
 func check_level_up():
 	var xp_formula_param = FormulaXPParameter.new()
-	xp_formula_param.level = level
-	var required = xp_formula.calculate(xp_formula_param)
-	
+	xp_formula_param.level = level + 1 
+	var required = int(xp_formula.calculate(xp_formula_param))
+	if required <= 0:
+		required = 1
 	while xp >= required:
 		level += 1
 		xp -= required
 		update_base_stats()
 		leveled_up.emit(level)
-		print("[Battler] %s subiu para o nível %d!" % [name, level])
-		required = xp_formula.get_value(level + 1)
+		print("[Battler] %s level up to level %d!" % [name, level])
+		xp_formula_param.level = level + 1
+		required = int(xp_formula.calculate(xp_formula_param))
+		if required <= 0:
+			required = 1
 
 ## Updates the stats when the battler level up. It uses a [FormulaStatGrowthParameter] 
 ## to give flexibility to the rules for updating stats. Learn more at [Formula] and [StatGrowth].

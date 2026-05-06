@@ -5,5 +5,4 @@ func _plugging():
 	plug("imjp94/gd-plug-ui")
 	plug("KoBeWi/Godot-Universal-Fade")
 	plug("ramokz/phantom-camera")
-	plug("AlecSouthward/switch-manager")
 	plug("derkork/godot-safe-resource-loader")
