@@ -6,7 +6,6 @@
 class_name Battle extends Node
 
 ## Used to inform that the battle finished.
-@warning_ignore("unused_signal")
 signal battle_finished
 
 func _enter_tree() -> void:
@@ -20,3 +19,8 @@ func initialize(settings: BattleSettings):
 	var engine: BattleEngine = $BattleEngine
 	var ui: BattleUI = $BattleUI
 	engine.initialize(settings, ui)
+	engine.battle_signals.inner_battle_ended.connect(_on_inner_battle_ended)
+
+func _on_inner_battle_ended():
+	print("[Battle]: Battle finished.")
+	battle_finished.emit()

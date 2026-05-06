@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dd53k56tr5isn" path="res://addons/godot_jrpg/nodes/ui/menu/save/menu_save.gd" id="1_sanlb"]
 
 [node name="MenuSave" type="Control" unique_id=4742242]
+z_index = 99
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +32,7 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
-text = "save_save_which_game"
+text = "Save Game"
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=750723485]
 layout_mode = 2

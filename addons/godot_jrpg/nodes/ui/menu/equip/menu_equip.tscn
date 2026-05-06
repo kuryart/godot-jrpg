@@ -31,6 +31,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MenuEquip" type="Control" unique_id=653413658]
+z_index = 99
 layout_mode = 3
 anchors_preset = 0
 theme = SubResource("Theme_f4ej4")

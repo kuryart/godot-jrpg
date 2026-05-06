@@ -18,7 +18,11 @@
 [node name="Menu" type="Control" unique_id=652208107]
 z_index = 99
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_hvec1")
 menu_items_scene = ExtResource("2_jjnjm")
 menu_skills_scene = ExtResource("3_wjwok")
@@ -28,36 +32,32 @@ menu_save_scene = ExtResource("6_ksgt8")
 menu_player_scene = ExtResource("7_ab2m6")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=678495828]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 112.0
-offset_top = 16.0
-offset_right = 539.0
-offset_bottom = 348.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1355958637]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 352.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=863715493]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=678495828]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="LeftMenu" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=580522819]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer" unique_id=863715493]
+layout_mode = 2
+
+[node name="LeftMenu" type="MarginContainer" parent="CenterContainer/PanelContainer/HBoxContainer" unique_id=580522819]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Options" type="VBoxContainer" parent="PanelContainer/HBoxContainer/LeftMenu" unique_id=2099767871]
+[node name="Options" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu" unique_id=2099767871]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="Items" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=310509440]
+[node name="Items" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=310509440]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -68,7 +68,7 @@ text = "Items"
 script = ExtResource("7_wa1vw")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Skills" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1597931563]
+[node name="Skills" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1597931563]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -80,7 +80,7 @@ text = "Skills
 script = ExtResource("8_32snh")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Equip" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1275821431]
+[node name="Equip" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1275821431]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -92,7 +92,7 @@ text = "Equip
 script = ExtResource("7_evij6")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Status" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=117994084]
+[node name="Status" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=117994084]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -103,7 +103,7 @@ text = "Status"
 script = ExtResource("1_hutda")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Save" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1669263171]
+[node name="Save" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=1669263171]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -114,7 +114,7 @@ text = "Save"
 script = ExtResource("5_0kbj6")
 menu_signals = ExtResource("3_f3mx3")
 
-[node name="Exit" type="Button" parent="PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=574676852]
+[node name="Exit" type="Button" parent="CenterContainer/PanelContainer/HBoxContainer/LeftMenu/Options" unique_id=574676852]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
@@ -124,10 +124,10 @@ focus_neighbor_bottom = NodePath(".")
 text = "Exit"
 script = ExtResource("12_32snh")
 
-[node name="RightMenu" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=135680054]
+[node name="RightMenu" type="MarginContainer" parent="CenterContainer/PanelContainer/HBoxContainer" unique_id=135680054]
 layout_mode = 2
 
-[node name="Players" type="VBoxContainer" parent="PanelContainer/HBoxContainer/RightMenu" unique_id=1010908341]
+[node name="Players" type="VBoxContainer" parent="CenterContainer/PanelContainer/HBoxContainer/RightMenu" unique_id=1010908341]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1

@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://br6oi3lw1ysvn" path="res://addons/godot_jrpg/resources/dialogues/water_well.dialogue" id="11_ow71e"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="11_wevp0"]
 [ext_resource type="Script" uid="uid://yfu2j3v86cuv" path="res://addons/godot_jrpg/nodes/events/event_buses/map_0001/battle.gd" id="12_7yq6e"]
+[ext_resource type="Texture2D" uid="uid://brhbd8gpogneg" path="res://addons/UniversalFade/Patterns/Radial.png" id="12_ow71e"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="12_qx3w4"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_7yq6e"]
 
@@ -215,6 +216,7 @@ shape = SubResource("RectangleShape2D_ow71e")
 [node name="EventBus" type="Node" parent="Events/Battle" unique_id=1572852176]
 script = ExtResource("12_7yq6e")
 battle_settings = ExtResource("9_wa8n0")
+fade_pattern = ExtResource("12_ow71e")
 
 [node name="Collisions" type="Node2D" parent="." unique_id=2097686841]
 
@@ -274,7 +276,7 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=485362803]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(112, 112)
+position = Vector2(320, 176)
 process_callback = 0
 limit_left = 0
 limit_top = 0
@@ -284,7 +286,9 @@ limit_bottom = 544
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=730708657]
 process_priority = 300
 process_physics_priority = 300
+physics_interpolation_mode = 1
 script = ExtResource("11_wevp0")
+interpolation_mode = 2
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1462547694 node_paths=PackedStringArray("follow_target")]
@@ -293,11 +297,10 @@ top_level = true
 position = Vector2(112, 112)
 script = ExtResource("12_qx3w4")
 follow_mode = 2
-follow_target = NodePath("")
+follow_target = NodePath("../Player")
 snap_to_pixel = true
 tween_resource = SubResource("Resource_ow71e")
 follow_damping = true
-follow_damping_value = Vector2(0, 0)
 limit_left = 0
 limit_top = 0
 limit_target = NodePath("../Collisions/StaticBody2D/WorldLimits")

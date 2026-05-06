@@ -118,6 +118,9 @@ var last_focused_slot: Control
 
 func _ready() -> void:
 	MenuManager.register_menu(self)
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 	connect_signals()
 	hide_scrolls()
 	populate_equipped_buttons()

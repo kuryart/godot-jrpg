@@ -18,6 +18,9 @@ enum States {
 var current_state = States.SKILL_SELECTION
 
 func _ready() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 	menu_signals.skill_clicked.connect(_on_skill_clicked)
 	menu_signals.skill_changed.connect(_on_skill_changed)
 	menu_signals.menu_skills_player_selected.connect(_on_player_selected)

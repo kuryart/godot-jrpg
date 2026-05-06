@@ -11,7 +11,7 @@ class_name TraitElementRateAttack extends TraitValue
 @export var rate: float = 1.0
 
 func _init() -> void:
-	type = TYPE.DAMAGE_RECEIVED
+	type = TYPE.DAMAGE_DEALT
 
 func _to_string() -> String:
 	var element_name = element.name if element else "None"

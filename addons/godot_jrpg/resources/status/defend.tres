@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://cr3yqta634fq3"]
+
+[ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="1_l54qq"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="2_ajove"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="3_3o1vx"]
+[ext_resource type="Script" uid="uid://chlf53ncfevyi" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_damage_received.gd" id="3_hmqpk"]
+
+[sub_resource type="Resource" id="Resource_32yum"]
+script = ExtResource("3_hmqpk")
+rate = 0.5
+metadata/_custom_type_script = "uid://chlf53ncfevyi"
+
+[sub_resource type="Resource" id="Resource_hmqpk"]
+script = ExtResource("3_3o1vx")
+entries = Array[ExtResource("2_ajove")]([SubResource("Resource_32yum")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[resource]
+script = ExtResource("1_l54qq")
+name = "Defend"
+action_restriction = 1
+traits = SubResource("Resource_hmqpk")
+metadata/_custom_type_script = "uid://qpouciwxr7ym"

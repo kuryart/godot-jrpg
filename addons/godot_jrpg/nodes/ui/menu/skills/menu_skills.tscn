@@ -28,6 +28,7 @@ border_width_right = 2
 border_width_bottom = 2
 
 [node name="MenuSkills" type="Control" unique_id=1615798963]
+z_index = 99
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3uvcp")
