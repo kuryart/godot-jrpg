@@ -14,5 +14,5 @@ class_name TraitStat extends TraitValue
 func _init() -> void:
 	type = TYPE.STAT
 
-#func _to_string() -> String:
-	#return "[Trait:STAT | %s x%.2f +%d]" % [stat.display_name, value_multiply, value_add]
+func _to_string() -> String:
+	return "[Trait:STAT | %s x%.2f +%d]" % [stat.display_name, value_multiply, value_add]

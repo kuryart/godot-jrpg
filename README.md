@@ -82,8 +82,8 @@ The project is structured in:
 - [ ] Develop traits:
 	- [x] Create traits system base;
 	- [ ] Integrate traits in gameplay;
-- [ ] Victory system;
-- [ ] Game over system;
+- [x] Victory system;
+- [x] Game over system;
 - [x] Equip system;
 - [ ] Develop AI system:
 	- [ ] Create headless simulation to export data to Jupyter Notebook;

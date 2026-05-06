@@ -27,6 +27,7 @@ border_width_right = 2
 border_width_bottom = 2
 
 [node name="MenuItems" type="Control" unique_id=1791622537]
+z_index = 99
 layout_mode = 3
 anchors_preset = 0
 offset_right = 3.0

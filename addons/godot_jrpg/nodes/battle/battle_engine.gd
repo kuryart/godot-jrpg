@@ -300,12 +300,19 @@ func calculate_physical_damage(attacker: Battler, defender: Battler) -> int:
 	var param = FormulaDamageParameter.new()
 	param.attacker = attacker
 	param.defender = defender
-	var damage = physical_formula.calculate(param)
+	var damage: float = float(physical_formula.calculate(param))
+	damage = attacker.trait_aggregator.get_damage_dealt_modified(&"all", damage)
+	damage = defender.trait_aggregator.get_damage_received_modified(&"all", damage)
+	if not attacker.elements.is_empty():
+		for el in attacker.elements:
+			var elem_name = StringName(el.name)
+			damage = attacker.trait_aggregator.get_damage_dealt_modified(elem_name, damage)
+			damage = defender.trait_aggregator.get_damage_received_modified(elem_name, damage)
 	if is_attack_critical(attacker, defender):
-		damage = calculate_critical_damage(damage)
+		var crit_damage = calculate_critical_damage(int(damage))
+		damage = float(crit_damage)
 		print("[BattleEngine] ", attacker.name, " dealt critical damage to ", defender.name)
-	
-	return damage
+	return int(max(damage, 0))
 
 ## Calculate the critical damage.
 func calculate_critical_damage(damage: int) -> int:

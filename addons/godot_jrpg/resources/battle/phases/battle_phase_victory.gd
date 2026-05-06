@@ -53,6 +53,7 @@ func resolve(engine: BattleEngine):
 	engine.battle_signals.toggle_messenger_emited.emit(false)
 	
 	print("[BattlePhaseVictory] Battle finished.")
-	# call battle_finished, change scene
+	engine.battle_signals.toggle_messenger_emited.emit(false)
+	engine.battle_signals.inner_battle_ended.emit()
 	
 	end()

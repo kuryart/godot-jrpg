@@ -18,11 +18,15 @@ var steps_walked: int = 0
 ## The time played in seconds
 var time_played: int = 0
 var can_open_menu: bool = false
+var can_act: bool = true
 
 func change_game_state(state: GameStates):
 	last_game_state = game_state
 	game_state = state
 	match_game_state()
+
+func get_back_to_last_game_state():
+	change_game_state(last_game_state)
 
 func match_game_state():
 	match game_state:
@@ -32,16 +36,20 @@ func match_game_state():
 			can_open_menu = false
 		GameStates.MAP:
 			can_open_menu = true
+			can_act = true
 		GameStates.MAP_ACT:
 			can_open_menu = false
+			can_act = false
 		GameStates.MENU:
 			can_open_menu = false
+			can_act = false
 		GameStates.BATTLE:
 			can_open_menu = false
 		GameStates.BATTLE_ACT:
 			can_open_menu = false
 		GameStates.DIALOGUE:
 			can_open_menu = false
+			can_act = false
 		GameStates.GAME_OVER:
 			can_open_menu = false
 

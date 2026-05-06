@@ -10,5 +10,7 @@ static func create(_dialogue: DialogueResource) -> CommandStartDialogue:
 
 func resolve():
 	print("[CommandStartDialogue]: Starting dialoogue.")
-	await DialogueManager.show_dialogue_balloon(dialogue)
+	GameManager.change_game_state(GameManager.GameStates.DIALOGUE)
+	await DialogueManager.show_dialogue_balloon(dialogue).tree_exited
+	GameManager.get_back_to_last_game_state()
 	finished.emit()

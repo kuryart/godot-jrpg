@@ -55,6 +55,7 @@ func _input(event: InputEvent):
 
 			top.queue_free()
 			get_viewport().set_input_as_handled()
+			GameManager.get_back_to_last_game_state()
 		else:
 			open_main_menu()
 			GameManager.change_game_state(GameManager.GameStates.MENU)

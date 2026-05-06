@@ -3,7 +3,6 @@ class_name Director extends Node
 static var instance: Director
 
 @export var is_testing: bool = true
-@export var event_signals: EventSignals
 
 # Scenes
 @export_category("Scenes")

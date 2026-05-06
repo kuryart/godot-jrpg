@@ -18,6 +18,9 @@ enum States {
 var current_state = States.ITEM_SELECTION
 
 func _ready() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 	menu_signals.item_clicked.connect(_on_item_clicked)
 	menu_signals.item_changed.connect(_on_item_changed)
 	menu_signals.menu_items_player_selected.connect(_on_player_selected)

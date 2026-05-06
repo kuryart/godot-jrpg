@@ -41,3 +41,5 @@ signal toggle_messenger_emited(on: bool)
 # --- Handle cancel ---
 # --- Messenger ---
 signal message_emited(message: String)
+# --- Battle ended ---
+signal inner_battle_ended

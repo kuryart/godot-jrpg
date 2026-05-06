@@ -8,6 +8,9 @@ class_name MenuSave extends Control
 
 func _ready() -> void:
 	MenuManager.register_menu(self)
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 	list_saves()
 
 func _exit_tree():

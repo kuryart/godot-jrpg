@@ -12,9 +12,9 @@ static func create(_sfx: SFX, _vol: float = 0.0, _pitch: float = 1.0, _wait: boo
 	cmd.is_wait = _wait
 	return cmd
 
-## Resolve coisas
+## Play SFX
 func resolve():
 	print("[CommandPlaySFX] Starting SFX.")
 	Audio.play_sfx(sfx)
-	print("[CommandStartBattle] Finished SFX.")
+	print("[CommandPlaySFX] Finished SFX.")
 	finished.emit()
