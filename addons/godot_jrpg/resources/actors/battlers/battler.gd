@@ -43,6 +43,15 @@ signal mp_changed
 func _init() -> void:
 	trait_aggregator = TraitAggregatorScript.new(self)
 
+func _ready() -> void:
+	var unique_status: Array[Status] = []
+	for s in status:
+		if s != null:
+			var clone = s.duplicate(true)
+			clone.tick = 0
+			unique_status.append(clone)
+	status = unique_status
+
 ## Adds a status to battler.
 func add_status(_status: Status) -> void:
 	var new_status = _status.duplicate()
@@ -66,11 +75,11 @@ func remove_status(status_to_remove: Status) -> bool:
 func update_status() -> void:
 	var expired: Array[Status] = []
 	for s in status:
-		s.apply_effects(self)
 		if s.process_duration():
 			expired.append(s)
 	for s in expired:
 		remove_status(s)
+		trait_aggregator.refresh()
 
 ## Checks if battler is alive.
 func is_alive() -> bool:
@@ -97,7 +106,9 @@ func take_damage(damage: int) -> void:
 
 ## Kills the battler
 func die() -> void:
+	status.clear()
 	status.append(dead_status)
+	trait_aggregator.refresh()
 
 # --- Get stats methods ---
 # -- Main stats --

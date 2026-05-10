@@ -4,6 +4,9 @@
 ## and enemies.
 class_name BattlePhaseResolveActions extends BattlePhase
 
+var defense_status: Status = preload("uid://cr3yqta634fq3")
+var battle_signals: BattleSignals = preload("uid://creqo0s1k7tlr")
+
 func _init() -> void:
 	resource_name = "ResolveActions"
 
@@ -16,10 +19,16 @@ func resolve(engine: BattleEngine):
 	engine.calc_action_order()	
 	
 	for action in engine.action_pool:
+		if action is BattleActionDefend:
+			action.actor.add_status(defense_status)
+
+	battle_signals.status_refreshed.emit(engine)
+	await engine.get_tree().create_timer(1.5).timeout
+	
+	for action in engine.action_pool:
 		# --- Pre-action ---
 		if not can_actor_act(action): continue
 		if not validate_targets(action, engine): continue
-		resolve_pre_action_effects()
 		await engine.validate_deaths()
 		if engine.check_battle_end():
 			return
@@ -38,9 +47,7 @@ func resolve(engine: BattleEngine):
 		if engine.check_battle_end():
 			return
 	end()
-	engine.change_turn()
-	engine.change_phase(BattlePhaseSelection.new())
-
+	engine.change_phase((BattlePhaseUpkeep.new()))
 
 ## Checks if player can act, id est, if player is dead or stunned.
 func can_actor_act(action: BattleAction) -> bool:
@@ -76,11 +83,3 @@ func get_alternative_target(target: Battler, engine: BattleEngine) -> Battler:
 		return engine.get_first_alive_player()
 		
 	return null
-
-## Resolves the effects that happens before an action is resolved.
-func resolve_pre_action_effects():
-	pass
-
-## Resolves the effects that happens after an action is resolved.
-func resolve_post_action_effects():
-	pass

@@ -15,6 +15,7 @@ func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: Battler)
 	engine.battle_signals.fight_button_up.connect(_on_fight_button_up)
 	engine.battle_signals.player_selected.connect(_on_player_selected)
 	engine.battle_signals.attack_button_up.connect(_on_attack_button_up)
+	engine.battle_signals.defend_button_up.connect(_on_defend_button_up)
 
 func _on_action_pressed():
 	if engine.current_phase is BattlePhaseInit and engine.leader == actor and engine.current_phase.is_finished:
@@ -35,3 +36,7 @@ func _on_player_selected():
 func _on_attack_button_up():
 	if engine.current_phase is BattlePhaseFight:
 		BattleInputAttack.new().resolve(engine)
+
+func _on_defend_button_up():
+	if engine.current_phase is BattlePhaseFight:
+		BattleInputDefend.new().resolve(engine)

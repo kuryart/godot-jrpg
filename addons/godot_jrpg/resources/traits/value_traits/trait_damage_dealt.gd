@@ -6,10 +6,9 @@ class_name TraitDamageDealt extends TraitValue
 ## 0.5 = Weak (50%)
 ## 2.0 = Strong (200%)
 ## 0.0 = No damage (0%)
-@export var rate: float = 1.0
-
-func _init() -> void:
-	type = TYPE.DAMAGE_DEALT
+@export var multiplier: float = 1.0
+## Damage amount to be sum
+@export var sum: int = 0
 
 func _to_string() -> String:
-	return "[Trait:DAMAGE DEALT MULTIPLIER | %s]" % rate
+	return "[Trait:DAMAGE DEALT | Multiplier %s, Sum %s]" % [multiplier, sum]
