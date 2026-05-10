@@ -12,9 +12,6 @@ class_name TraitElementRateDefend extends TraitValue
 ## This is added or subtracted from the defense.
 @export var sum: int = 0
 
-func _init() -> void:
-	type = TYPE.DAMAGE_RECEIVED
-
 func _to_string() -> String:
 	var element_name = element.name if element else "None"
 	return "[Trait:RESISTANCE | %s x%.2f +%d]" % [element_name, multiplier, sum]

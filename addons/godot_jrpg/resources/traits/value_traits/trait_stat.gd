@@ -8,11 +8,8 @@ class_name TraitStat extends TraitValue
 ## 1.0 = 100% (No change)
 ## 1.2 = 120% (20% bonus)
 ## 0.8 = 80% (20% penalty)
-@export var value_multiply: float = 1.0
-@export var value_add: int = 0
-
-func _init() -> void:
-	type = TYPE.STAT
+@export var multiplier: float = 1.0
+@export var sum: int = 0
 
 func _to_string() -> String:
-	return "[Trait:STAT | %s x%.2f +%d]" % [stat.display_name, value_multiply, value_add]
+	return "[Trait:STAT | %s x%.2f +%d]" % [stat.display_name, multiplier, sum]

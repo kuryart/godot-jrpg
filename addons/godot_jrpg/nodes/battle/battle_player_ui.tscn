@@ -49,12 +49,24 @@ offset_right = 323.0
 offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=887217082]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 
 [node name="Name" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1143588304]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "BattlePlayer"
+
+[node name="StatusContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=315956754]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=127241550]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
 
 [node name="HP" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=329409598]
 layout_mode = 2
@@ -88,6 +100,11 @@ text = "HP"
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HP" unique_id=429205564]
 layout_mode = 2
 theme_override_constants/margin_left = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer" unique_id=63572269]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
 
 [node name="MP" type="BoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1912345093]
 layout_mode = 2

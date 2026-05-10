@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_r6iaj")
 name = "Burning"
-end_in = "Upkeep"
+icon = ExtResource("1_rkiud")
 duration_min = 3
 duration_max = 5
 steps = 10
@@ -16,5 +16,4 @@ message_continuous_effect_ally = "burns..."
 message_continuous_effect_enemy = "burns..."
 message_restore_ally = "is no longer burning!"
 message_restore_enemy = "is no longer burning!"
-icon = ExtResource("1_rkiud")
 metadata/_custom_type_script = "uid://qpouciwxr7ym"

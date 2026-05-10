@@ -48,6 +48,8 @@ class_name BattleUI extends Control
 @export var enemy_scene: PackedScene
 ## The player scene to be instantiated.
 @export var player_scene: PackedScene
+## The status icon used to inform the players status
+@export var status_icon: PackedScene
 
 ## A dictionary to retain the players' UIs. Each key is a [Player], and each 
 ## value is a [BattlePlayerUI]
@@ -99,10 +101,26 @@ func setup_ui():
 	# --- Handle cancel ---
 	# --- Messenger ---
 	battle_signals.message_emited.connect(_on_message_emited)
+	# --- Status refreshed
+	battle_signals.status_refreshed.connect(_on_status_refreshed)
 
 ## Helper function to wait for node is ready.  
 func wait_ready():
 	if not is_node_ready(): await ready
+
+## Used to refresh the status icons.
+func refresh_status():
+	for player_ui: BattlePlayerUI in players_options.get_children():
+		var status_container = player_ui.get_node("%StatusContainer")
+		for status_ui: TextureRect in status_container.get_children():
+			status_ui.queue_free()
+	
+	for player_ui: BattlePlayerUI in players_options.get_children():
+		var status_container = player_ui.get_node("%StatusContainer")
+		for s in player_ui.player.status:
+			var status_icon_ui = status_icon.instantiate() as TextureRect
+			status_icon_ui.texture = s.icon
+			status_container.add_child(status_icon_ui)
 
 # === CONNECTED METHODS ===
 # --- Background ---
@@ -132,6 +150,11 @@ func _on_instantiate_players_emited(engine: BattleEngine, _players: Array[Player
 		player_ui.setup(engine, player)
 		players[player] = player_ui
 		players_options.add_child(player_ui)
+		for s in player.status:
+			var status_icon_ui = status_icon.instantiate() as TextureRect
+			var status_container = player_ui.get_node("%StatusContainer")
+			status_icon_ui.texture = s.icon
+			status_container.add_child(status_icon_ui)
 
 ## Used when the game asks for enemy selection.
 func _on_select_enemy_emited():
@@ -167,7 +190,12 @@ func _on_battler_died(battler: Battler):
 		enemy_ui.die()
 	elif battler is Player:
 		var player_ui = players[battler as Player]
+		refresh_status()
 		player_ui.die()
+
+## Used to refresh rhe status icons.
+func _on_status_refreshed(engine: BattleEngine):
+	refresh_status()
 
 # --- Focus ---
 ## Define the focus neighbors for enemies for the first time.
@@ -280,6 +308,7 @@ func _on_fight_button_entered():
 func _on_run_button_entered():
 	face.texture = face.icon_run
 
+# --- Messenger ---
 ## Used to pass messages to messenger.
 func _on_message_emited(message: String):
 	await wait_ready()

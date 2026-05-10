@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cd1q62ehqum85"]
+
+[ext_resource type="Texture2D" uid="uid://8lt86p51mtl1" path="res://addons/godot_jrpg/assets/sprites/status/status-burning.png" id="1_8x853"]
+
+[node name="StatusIcon" type="TextureRect" unique_id=1112138156]
+custom_minimum_size = Vector2(32, 32)
+texture = ExtResource("1_8x853")
+expand_mode = 1

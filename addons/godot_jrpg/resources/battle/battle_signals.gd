@@ -18,6 +18,7 @@ signal select_enemy_emited
 signal battler_died(battler: Battler)
 # --- Buttons ---
 signal attack_button_up
+signal defend_button_up
 signal fight_button_entered
 signal fight_button_up
 signal run_button_entered
@@ -41,5 +42,7 @@ signal toggle_messenger_emited(on: bool)
 # --- Handle cancel ---
 # --- Messenger ---
 signal message_emited(message: String)
+# --- Status refreshed ---
+signal status_refreshed(engine: BattleEngine)
 # --- Battle ended ---
 signal inner_battle_ended

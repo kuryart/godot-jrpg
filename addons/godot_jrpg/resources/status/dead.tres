@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Status" format=3 uid="uid://bhccddi8p1iq3"]
 
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="1_eaump"]
+[ext_resource type="Texture2D" uid="uid://c40gjdycp1se1" path="res://addons/godot_jrpg/assets/sprites/status/status-dead.png" id="1_qaqc0"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="2_2e8o5"]
 [ext_resource type="Script" uid="uid://blsdm7gdk1cog" path="res://addons/godot_jrpg/resources/traits/flag_traits/trait_no_xp.gd" id="3_2e8o5"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="4_hhtgj"]
@@ -21,6 +22,7 @@ name = "Dead"
 action_restriction = 1
 traits = SubResource("Resource_preve")
 is_dead_state = true
+icon = ExtResource("1_qaqc0")
 end_in = "Nothing"
 message_ally_affected = "is dead"
 message_enemy_affected = "is dead"
