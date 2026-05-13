@@ -19,6 +19,7 @@ signal battler_died(battler: Battler)
 # --- Buttons ---
 signal attack_button_up
 signal defend_button_up
+signal items_button_up
 signal fight_button_entered
 signal fight_button_up
 signal run_button_entered
@@ -39,6 +40,12 @@ signal toggle_menu_items_emited(on: bool)
 signal toggle_menu_selection_emited(on: bool)
 signal toggle_menu_skills_emited(on: bool)
 signal toggle_messenger_emited(on: bool)
+# --- Items menu ---
+signal item_clicked(item: Item, id_in_inventory: int)
+signal item_changed(item: Item)
+signal battle_items_player_selected
+signal item_used_on_all_enemies(item: Item)
+signal item_requires_enemy_target(item: Item)
 # --- Handle cancel ---
 # --- Messenger ---
 signal message_emited(message: String)

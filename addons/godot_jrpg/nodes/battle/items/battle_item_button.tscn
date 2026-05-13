@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bnqu8635adojv"]
+
+[ext_resource type="Script" uid="uid://dudktm7p56a6" path="res://addons/godot_jrpg/nodes/battle/items/battle_item_button.gd" id="1_x7phr"]
+[ext_resource type="Resource" uid="uid://creqo0s1k7tlr" path="res://addons/godot_jrpg/resources/battle/battle_signals.tres" id="2_74kw3"]
+
+[node name="ItemButton" type="Button" unique_id=765523746]
+size_flags_horizontal = 3
+script = ExtResource("1_x7phr")
+battle_signals = ExtResource("2_74kw3")

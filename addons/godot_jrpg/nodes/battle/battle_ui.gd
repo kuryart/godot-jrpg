@@ -98,6 +98,7 @@ func setup_ui():
 	# --- Buttons ---
 	battle_signals.fight_button_entered.connect(_on_fight_button_entered)
 	battle_signals.run_button_entered.connect(_on_run_button_entered)
+	battle_signals.items_button_up.connect(_on_toggle_menu_items_emited)
 	# --- Handle cancel ---
 	# --- Messenger ---
 	battle_signals.message_emited.connect(_on_message_emited)

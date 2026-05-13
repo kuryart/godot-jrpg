@@ -192,9 +192,9 @@ func get_critical_dodge() -> int:
 	return int(final_val)
 
 ## Get the magical dodge chance rate from the battler
-func get_magical_dodge() -> int:
-	var base_val = float(stats.magical_dodge.get_value())
-	var final_val = trait_aggregator.get_stat_modified(Stat.ID.MAGICAL_DODGE, base_val)
+func get_effect_dodge() -> int:
+	var base_val = float(stats.effect_dodge.get_value())
+	var final_val = trait_aggregator.get_stat_modified(Stat.ID.EFFECT_DODGE, base_val)
 	return int(final_val)
 
 ## Get the reflection (skill) chance rate from the battler

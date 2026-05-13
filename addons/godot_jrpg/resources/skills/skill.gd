@@ -7,7 +7,7 @@ enum USED_ON {MAP, BATTLE, BOTH}
 @export var used_on: USED_ON
 @export var effects: EffectList
 @export var targets: Target
-@export var damage: FormulaSkillDamage
+@export var damage: FormulaEffectDamage
 @export var message: String
 @export var icon: Texture
 @export var mp_cost: int

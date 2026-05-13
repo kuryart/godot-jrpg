@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="4_k2p5p"]
 [ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="5_cywwm"]
 [ext_resource type="Script" uid="uid://cviawg5mw3b8" path="res://addons/godot_jrpg/resources/stuff/loot/loot.gd" id="5_tfxke"]
-[ext_resource type="Resource" uid="uid://dr0kmau6w3q6y" path="res://addons/godot_jrpg/resources/stuff/items/antidote.tres" id="6_i87i4"]
+[ext_resource type="Resource" uid="uid://dr0kmau6w3q6y" path="res://addons/godot_jrpg/resources/stuff/items/venom.tres" id="6_i87i4"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_jgrbp"]
 [ext_resource type="Script" uid="uid://dfck85v6aerpq" path="res://addons/godot_jrpg/resources/traits/chance_traits/trait_status_chance_attack.gd" id="9_fkgf5"]
 [ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="10_fkgf5"]

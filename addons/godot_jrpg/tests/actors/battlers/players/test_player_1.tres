@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="9_k5m06"]
 [ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="10_bc1gx"]
 [ext_resource type="Resource" uid="uid://boqo61heykbsk" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/wooden_shield.tres" id="10_blvwq"]
-[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate_defend.gd" id="10_k5m06"]
+[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_damage_received.gd" id="10_k5m06"]
 [ext_resource type="Resource" uid="uid://3k7jlv4t21k8" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/copper_axe.tres" id="12_srytj"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="13_nqs0a"]
 [ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="15_g3a0n"]
@@ -145,12 +145,6 @@ id = 8
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_w4qnw"]
-script = ExtResource("3_u4h65")
-display_name = "Skill Dodge"
-id = 13
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
 [sub_resource type="Resource" id="Resource_blvwq"]
 script = ExtResource("3_u4h65")
 display_name = "MP"
@@ -192,7 +186,6 @@ hp_regen = SubResource("Resource_8r64l")
 mp_regen = SubResource("Resource_srytj")
 critical = SubResource("Resource_afqr4")
 critical_dodge = SubResource("Resource_q81us")
-magical_dodge = SubResource("Resource_w4qnw")
 reflection = SubResource("Resource_cmjly")
 counter_attack = SubResource("Resource_wx43h")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"

@@ -118,7 +118,7 @@ func use_items_in_all_players(item: Item):
 func apply_items_effect(item: Item, target: Player):
 	item.use(target)
 	if item.effects != null:
-		for effect in item.effects.effects:
+		for effect in item.effects.entries:
 			effect.apply(target)
 
 func consume_item_and_update_ui(item: Item):

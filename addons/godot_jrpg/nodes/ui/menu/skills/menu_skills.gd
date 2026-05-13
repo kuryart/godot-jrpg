@@ -148,7 +148,7 @@ func use_skill_in_all_players(skill: Skill):
 func apply_skill_effect(skill: Skill, target: Player):
 	skill.use(target)
 	if skill.effects != null:
-		for effect in skill.effects.effects:
+		for effect in skill.effects.entries:
 			effect.apply(target)
 
 func consume_mp_and_update_ui(skill: Skill):

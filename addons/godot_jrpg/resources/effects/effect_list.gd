@@ -1,3 +1,3 @@
-class_name EffectList extends Resource
+@abstract class_name EffectList extends Resource
 
-@export var effects: Array[Effect]
+@export var entries: Array[Effect]

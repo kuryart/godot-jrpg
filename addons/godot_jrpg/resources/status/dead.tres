@@ -8,7 +8,6 @@
 
 [sub_resource type="Resource" id="Resource_rmlcl"]
 script = ExtResource("3_2e8o5")
-flag_name = null
 metadata/_custom_type_script = "uid://blsdm7gdk1cog"
 
 [sub_resource type="Resource" id="Resource_preve"]
@@ -23,7 +22,6 @@ action_restriction = 1
 traits = SubResource("Resource_preve")
 is_dead_state = true
 icon = ExtResource("1_qaqc0")
-end_in = "Nothing"
 message_ally_affected = "is dead"
 message_enemy_affected = "is dead"
 message_restore_ally = "revived"

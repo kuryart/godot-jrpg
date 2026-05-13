@@ -24,6 +24,10 @@ func change_game_state(state: GameStates):
 	last_game_state = game_state
 	game_state = state
 	match_game_state()
+	print("[GameManager] Current game state: ", game_state)
+	print("[GameManager] Last game state: ", last_game_state)
+	print("[GameManager] Can open menu: ", can_open_menu)
+	print("[GameManager] Can act: ", can_act)
 
 func get_back_to_last_game_state():
 	change_game_state(last_game_state)

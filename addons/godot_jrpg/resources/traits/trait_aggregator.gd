@@ -48,7 +48,7 @@ func get_sources():
 #---------------
 #--- FACADES ---
 #---------------
-func get_stat_modified(target_stat_id: Stat.ID, base_value: float) -> float:
+func get_stat_modified(target_stat_id: Stat.ID, base_value: float) -> int:
 	var sum: int = 0
 	var mult: float = 1.0
 	
@@ -60,31 +60,31 @@ func get_stat_modified(target_stat_id: Stat.ID, base_value: float) -> float:
 				
 	return int((base_value + sum) * mult)
 
-func get_elemental_damage_dealt_modified(target_element: Element, base_damage: float) -> float:
+func get_elemental_damage_dealt_modified(target_element: Element, base_damage: float) -> int:
 	var sum: int = 0
 	var mult: float = 1.0
 	
 	for _trait in all_traits.entries:
-		if _trait is TraitElementRateAttack:
+		if _trait is TraitElementDamageDealt:
 			if _trait.element.name == target_element.name:
 				sum += _trait.sum
 				mult *= _trait.multiplier
 				
 	return max(int((base_damage + sum) * mult), 1)
 
-func get_elemental_damage_received_modified(target_element: Element, base_damage: float) -> float:
+func get_elemental_damage_received_modified(target_element: Element, base_damage: float) -> int:
 	var sum: int = 0
 	var mult: float = 1.0
 	
 	for _trait in all_traits.entries:
-		if _trait is TraitElementRateDefend:
+		if _trait is TraitElementDamageReceived:
 			if _trait.element.name == target_element.name:
 				sum += _trait.sum
 				mult *= _trait.multiplier
 				
 	return max(int((base_damage - sum) * mult), 1)
 
-func get_damage_dealt_modified(base_damage: float) -> float:
+func get_damage_dealt_modified(base_damage: float) -> int:
 	var sum: int = 0
 	var mult: float = 1.0
 	
@@ -95,7 +95,7 @@ func get_damage_dealt_modified(base_damage: float) -> float:
 				
 	return max(int((base_damage + sum) * mult), 1)
 
-func get_damage_received_modified(base_damage: float) -> float:
+func get_damage_received_modified(base_damage: float) -> int:
 	var sum: int = 0
 	var mult: float = 1.0
 	
@@ -127,3 +127,49 @@ func get_status_chance_on_defend() -> Dictionary[Status, float]:
 				status_with_chance[_trait.status] = _trait.chance
 				
 	return status_with_chance
+
+func get_effect_elemental_damage_dealt_modified(target_element: Element, base_damage: float) -> int:
+	var sum: int = 0
+	var mult: float = 1.0
+	
+	for _trait in all_traits.entries:
+		if _trait is TraitEffectElementDamageDealt:
+			if _trait.element.name == target_element.name:
+				sum += _trait.sum
+				mult *= _trait.multiplier
+				
+	return max(int((base_damage + sum) * mult), 1)
+
+func get_effect_elemental_damage_received_modified(target_element: Element, base_damage: float) -> int:
+	var sum: int = 0
+	var mult: float = 1.0
+	
+	for _trait in all_traits.entries:
+		if _trait is TraitEffectElementDamageReceived:
+			if _trait.element.name == target_element.name:
+				sum += _trait.sum
+				mult *= _trait.multiplier
+				
+	return max(int((base_damage - sum) * mult), 1)
+
+func get_effect_damage_dealt_modified(base_damage: float) -> int:
+	var sum: int = 0
+	var mult: float = 1.0
+	
+	for _trait in all_traits.entries:
+		if _trait is TraitEffectDamageDealt:
+			sum += _trait.sum
+			mult *= _trait.multiplier
+				
+	return max(int((base_damage + sum) * mult), 1)
+
+func get_effect_damage_received_modified(base_damage: float) -> int:
+	var sum: int = 0
+	var mult: float = 1.0
+	
+	for _trait in all_traits.entries:
+		if _trait is TraitEffectDamageReceived:
+			sum += _trait.sum
+			mult *= _trait.multiplier
+
+	return max(int((base_damage - sum) * mult), 1)

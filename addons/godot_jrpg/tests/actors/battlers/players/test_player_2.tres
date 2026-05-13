@@ -100,13 +100,6 @@ id = 8
 base_value = 11
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_3kg1e"]
-script = ExtResource("3_okkc2")
-display_name = "Skill Dodge"
-id = 13
-base_value = 11
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
 [sub_resource type="Resource" id="Resource_l7vki"]
 script = ExtResource("3_okkc2")
 display_name = "MP"
@@ -150,7 +143,6 @@ hp_regen = SubResource("Resource_whn3p")
 mp_regen = SubResource("Resource_n887q")
 critical = SubResource("Resource_3wwrp")
 critical_dodge = SubResource("Resource_wb4u2")
-magical_dodge = SubResource("Resource_3kg1e")
 reflection = SubResource("Resource_gma0b")
 counter_attack = SubResource("Resource_jsw2x")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"

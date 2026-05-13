@@ -7,7 +7,7 @@
 ## [br]2. Usage in simulation and reinforcement learning (RL) agents.
 ##
 ## [br][br] The battle engine uses the State design pattern with the [BattlePhase] class to manage the battle
-## phases, like [BattlePhaseAttack], [BattlePhaseItemTarget], [BattlePhaseUpkeep], etc., so the phases
+## phases, like [BattlePhaseAttackTarget], [BattlePhaseCleanUp], [BattlePhaseUpkeep], etc., so the phases
 ## can carry logic too (again to decoupling and to maintain the Single Responsabillity Principle).
 ##
 ## [br][br] The core for the battle system is the [member action_pool]. When any battler chooses an
@@ -66,6 +66,7 @@ var battle_log: Array[Dictionary] = []
 
 # --- Initialization methods ---
 func _ready() -> void:
+	GameManager.change_game_state(GameManager.GameStates.BATTLE)
 	change_phase(BattlePhaseInit.new())
 	if leader.controller is PlayerNPCController:
 		leader.controller.think()
@@ -318,17 +319,38 @@ func is_attack_missed(attacker: Battler, defender: Battler) -> bool:
 	var chance = hit_chance_formula.calculate(param)
 	return not randf() <= chance
 
+## Checks if the effect missed.
+func is_effect_missed(effect: Effect, attacker: Battler, defender: Battler) -> bool:
+	var param = FormulaEffectChanceParameter.new()
+	param.attacker = attacker
+	param.defender = defender
+
+	var chance = effect.chance_formula.calculate(param)
+	return not randf() <= chance
+
+## Checks if the effect dealt critical damage.
+func is_effect_critical(effect: Effect, attacker: Battler, defender: Battler) -> bool:
+	var param = FormulaEffectCriticalChanceParameter.new()
+	param.attacker = attacker
+	param.defender = defender
+
+	var chance = effect.critical_chance_formula.calculate(param)
+	return randf() <= chance
+
 # --- Signals methods ---
 ## Connected to `enemy_selected` signal. It changes to next player, ends target
-## selection phases, which are [BattlePhaseAttack], [BattlePhaseItemTarget] and
-## [BattlePhaseSkillTarget]. If any target is ended, it change phase to
-## [BattlePhasePlayers].
+## selection phases, which are attack, items and skills phases. If any target is ended, 
+## it change phase to [BattlePhasePlayers].
 func _on_enemy_selected():
 	change_to_next_player()
-	if current_phase is BattlePhaseAttack or \
+	if current_phase is BattlePhaseAttackTarget or \
 	current_phase is BattlePhaseItemTarget or \
 	current_phase is BattlePhaseSkillTarget:
 		current_phase.end()
 	else:
 		return
 	await change_phase(BattlePhasePlayers.new())
+
+## Connected to item_clicked signal. It starts the [BattlePhaseItemPlayerSelect].
+func _on_item_clicked(item: Item, id_in_inventory: int):
+	await change_phase(BattlePhaseItemTarget.new(item))

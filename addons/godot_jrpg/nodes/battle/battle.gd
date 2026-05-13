@@ -13,7 +13,7 @@ func _enter_tree() -> void:
 
 ## It receives [BattleSettings] from a [CommandStartBattle]; await for [InputManager] 
 ## to setup; reference [BattleEngine] and [BattleUI] and initialize the battle engine 
-## with battle settings and battle UI. 
+## with battle settings and battle UI.
 func initialize(settings: BattleSettings):
 	await InputManager.input_setup_complete
 	var engine: BattleEngine = $BattleEngine
