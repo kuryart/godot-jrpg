@@ -26,7 +26,7 @@ func setup(_enemy: Enemy, _enemy_settings: EnemySettings, _engine: BattleEngine)
 
 func get_attacked():
 	#Audio.play_hit_sound()
-	engine.battle_signals.enemy_damaged
+	engine.battle_signals.enemy_damaged.emit(self)
 	animation_player.stop()
 	material.shader = shaders["damage"]
 	material.set_shader_parameter("flash_color", Color.RED)

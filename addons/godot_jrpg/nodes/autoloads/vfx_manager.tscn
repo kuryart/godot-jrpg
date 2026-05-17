@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgkr7tsoxq5kj"]
 
 [ext_resource type="Script" uid="uid://c5sgw7fassi2i" path="res://addons/godot_jrpg/nodes/autoloads/vfx_manager.gd" id="1_we4t1"]
+[ext_resource type="Resource" uid="uid://df62y1mwgiwyo" path="res://addons/godot_jrpg/resources/vfx/banks/vfx_bank_battle.tres" id="2_oclr8"]
 
 [sub_resource type="Environment" id="Environment_ftbpp"]
 background_mode = 3
@@ -10,13 +11,20 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 2.0
 
 [node name="VFXManager" type="SubViewportContainer" unique_id=1593084131]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 script = ExtResource("1_we4t1")
+vfx_bank_battle = ExtResource("2_oclr8")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1422920574]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(640, 352)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1184892155]

@@ -193,6 +193,7 @@ func _on_battler_damaged(battler: Battler):
 		var enemy = enemies[battler as Enemy]
 		await enemy.get_attacked()
 	elif battler is Player:
+		battle_signals.player_damaged.emit(face)
 		await face.get_attacked()
 
 ## Used to change the face UI based on player changed.
