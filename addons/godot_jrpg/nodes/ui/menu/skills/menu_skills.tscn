@@ -29,8 +29,14 @@ border_width_bottom = 2
 
 [node name="MenuSkills" type="Control" unique_id=1615798963]
 z_index = 99
+custom_minimum_size = Vector2(6.383, 0)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.1915
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3uvcp")
 menu_signals = ExtResource("2_8i58q")
 skill_button = ExtResource("3_kbbal")
@@ -39,7 +45,7 @@ caster = ExtResource("5_tgggf")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=247118745]
 layout_mode = 0
-offset_right = 640.0
+offset_right = 643.1915
 offset_bottom = 352.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=423118724]

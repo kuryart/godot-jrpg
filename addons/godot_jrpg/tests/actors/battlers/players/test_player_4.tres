@@ -83,14 +83,13 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 [sub_resource type="Resource" id="Resource_ytk5l"]
 script = ExtResource("3_14h8m")
 display_name = "HP"
-base_value = 13
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_c1gyj"]
 script = ExtResource("3_14h8m")
 display_name = "HP Regen"
 id = 9
-base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_hdhjk"]
@@ -111,14 +110,13 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 script = ExtResource("3_14h8m")
 display_name = "MP"
 id = 1
-base_value = 13
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_3rw0s"]
 script = ExtResource("3_14h8m")
 display_name = "MP Regen"
 id = 10
-base_value = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_8qv68"]
@@ -167,8 +165,8 @@ xp_formula = SubResource("Resource_dyfle")
 equip = ExtResource("3_n5x3g")
 stats = SubResource("Resource_g4a0v")
 controller = SubResource("Resource_16738")
-current_hp = 100
-current_mp = 50
+current_hp = 1000
+current_mp = 1000
 name = "player4"
 description = "A description."
 metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

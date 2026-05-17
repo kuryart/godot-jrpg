@@ -29,8 +29,11 @@ border_width_bottom = 2
 [node name="MenuItems" type="Control" unique_id=1791622537]
 z_index = 99
 layout_mode = 3
-anchors_preset = 0
-offset_right = 3.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_4dqmi")
 menu_signals = ExtResource("2_kkkyp")
 item_button = ExtResource("3_ngwtv")

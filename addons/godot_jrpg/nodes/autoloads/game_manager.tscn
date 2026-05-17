@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://xy1isg75nsgg" path="res://addons/godot_jrpg/nodes/autoloads/game_manager.gd" id="1_ulwfa"]
 [ext_resource type="Resource" uid="uid://v6gnmntcrn3t" path="res://addons/godot_jrpg/tests/actors/test_party.tres" id="2_lkkkd"]
+[ext_resource type="PackedScene" uid="uid://b2pew1f2eadnt" path="res://addons/godot_jrpg/nodes/maps/player.tscn" id="3_387cn"]
 
 [node name="GameManager" type="Node" unique_id=525089218]
 script = ExtResource("1_ulwfa")
 party = ExtResource("2_lkkkd")
 money_name = "money"
+map_player = ExtResource("3_387cn")

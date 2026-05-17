@@ -8,13 +8,16 @@ class_name MenuSave extends Control
 
 func _ready() -> void:
 	MenuManager.register_menu(self)
-	var cam = get_viewport().get_camera_2d()
-	if cam:
-		global_position = cam.get_screen_center_position() - (size / 2.0)
+	call_deferred("center_on_screen")
 	list_saves()
 
 func _exit_tree():
 	MenuManager.unregister_menu(self)
+
+func center_on_screen() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 
 func list_saves() -> void:
 	# 1. Clear panel
@@ -32,8 +35,8 @@ func list_saves() -> void:
 		var date_str = format_save_date(saves[i]["time"])
 		
 		var btn_res = load(saves[i]["path"]) as SaveState
-		#btn.text = "%s [%s]" % ["Save" + str(i + 1), date_str] + " - " + btn_res.current_scene_name
-		btn.text = "%s [%s]" % ["Save" + str(i + 1), date_str] + " - " + "btn_res.current_scene_name"
+		var scene_name = btn_res.current_scene_path.get_file().get_basename() if btn_res and btn_res.current_scene_path != "" else "---"
+		btn.text = "%s [%s] - %s" % ["Save" + str(i + 1), date_str, scene_name]
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		
 		btn.pressed.connect(func(): _on_save_selected(saves[i]["path"]))

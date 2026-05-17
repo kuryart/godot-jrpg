@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
 
 [resource]
 script = ExtResource("1_ix2j1")
-used_on = 2
+used_on = 1
 effects = SubResource("Resource_jjtu5")
 targets = SubResource("Resource_hn5e8")
 display_name = "Missiles"

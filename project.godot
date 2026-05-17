@@ -42,6 +42,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
+[global_group]
+
+Player=""
+
 [input]
 
 ui_accept={

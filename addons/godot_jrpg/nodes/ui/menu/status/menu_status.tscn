@@ -37,22 +37,28 @@ corner_radius_bottom_left = 1
 [node name="StatusMenu" type="Control" unique_id=1685748811]
 z_index = 99
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 352.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_li2ur")
 player = ExtResource("2_li2ur")
 status_icon = ExtResource("3_p3x7g")
 
 [node name="Panel" type="Panel" parent="." unique_id=2019179005]
-layout_mode = 0
-offset_left = 368.0
-offset_right = 944.0
+layout_mode = 1
+offset_left = 352.0
+offset_right = 928.0
 offset_bottom = 704.0
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1653306553]
-layout_mode = 0
-offset_left = 480.0
-offset_right = 832.0
+layout_mode = 1
+offset_left = 464.0
+offset_right = 816.0
 offset_bottom = 704.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20

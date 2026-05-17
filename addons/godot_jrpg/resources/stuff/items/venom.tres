@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
 
 [resource]
 script = ExtResource("5_73fo4")
-used_on = 2
+used_on = 1
 effects = SubResource("Resource_ftb4x")
 targets = SubResource("Resource_5d8is")
 display_name = "Venom"

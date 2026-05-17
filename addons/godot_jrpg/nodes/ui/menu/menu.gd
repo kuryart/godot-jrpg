@@ -33,6 +33,13 @@ func _ready() -> void:
 func _exit_tree():
 	MenuManager.unregister_menu(self)
 
+func handle_back() -> bool:
+	if menu_state != MENU_STATES.MENU:
+		menu_state = MENU_STATES.MENU
+		first_button.grab_focus()
+		return true
+	return false
+
 func connect_signals():
 	menu_signals.open_menu_status_emitted.connect(_on_status_button_up)
 	menu_signals.open_menu_save_emitted.connect(_on_save_button_up)

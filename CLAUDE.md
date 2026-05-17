@@ -118,3 +118,4 @@ Map events use `Event` nodes with an `EventBus` child. Triggering an event runs 
 
 ### Other instructions
 - Avoid solving problems with `await get_tree().process_frame`.
+- Use methods in the form `_method` (with underline) only for methods connected to a signal, like `_on_signal_emmited`.

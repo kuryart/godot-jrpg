@@ -18,9 +18,7 @@ enum States {
 var current_state = States.ITEM_SELECTION
 
 func _ready() -> void:
-	var cam = get_viewport().get_camera_2d()
-	if cam:
-		global_position = cam.get_screen_center_position() - (size / 2.0)
+	call_deferred("center_on_screen")
 	menu_signals.item_clicked.connect(_on_item_clicked)
 	menu_signals.item_changed.connect(_on_item_changed)
 	menu_signals.menu_items_player_selected.connect(_on_player_selected)
@@ -37,6 +35,22 @@ func _ready() -> void:
 	
 func _exit_tree():
 	MenuManager.unregister_menu(self)
+
+func handle_back() -> bool:
+	if current_state == States.PLAYER_SELECTION:
+		current_state = States.ITEM_SELECTION
+		if item_to_use != null:
+			var btn = get_button_for_item(item_to_use)
+			if btn:
+				btn.grab_focus()
+			item_to_use = null
+		return true
+	return false
+
+func center_on_screen() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 
 # ==========================================
 # BUILD AND UI
@@ -116,35 +130,23 @@ func use_items_in_all_players(item: Item):
 # CONSUME AND EFFECTS
 # ==========================================
 func apply_items_effect(item: Item, target: Player):
-	item.use(target)
-	if item.effects != null:
-		for effect in item.effects.entries:
-			effect.apply(target)
+	item.apply_effects(target)
 
 func consume_item_and_update_ui(item: Item):
 	current_state = States.ITEM_SELECTION
-	if not item.is_consumable:
-		var btn = get_button_for_item(item)
-		if btn: btn.grab_focus()
-		item_to_use = null
-		return
+	item_to_use = null
+	item.consume()
 
-	inventory.items[item] -= 1
-	
-	if inventory.items[item] <= 0:
-		inventory.items.erase(item)
-		item_to_use = null
-
+	if not inventory.items.has(item):
 		await refresh_item_list()
 		if items_grid.get_child_count() > 0:
 			items_grid.get_child(0).grab_focus()
 	else:
 		var btn = get_button_for_item(item)
 		if btn:
-			btn.text = tr(item.display_name) + " x" + str(inventory.items[item])
+			if item.is_consumable:
+				btn.text = tr(item.display_name) + " x" + str(inventory.items[item])
 			btn.grab_focus()
-		
-		item_to_use = null
 
 # ==========================================
 # CONNECTED METHODS

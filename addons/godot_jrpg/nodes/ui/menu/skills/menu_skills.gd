@@ -18,9 +18,7 @@ enum States {
 var current_state = States.SKILL_SELECTION
 
 func _ready() -> void:
-	var cam = get_viewport().get_camera_2d()
-	if cam:
-		global_position = cam.get_screen_center_position() - (size / 2.0)
+	call_deferred("center_on_screen")
 	menu_signals.skill_clicked.connect(_on_skill_clicked)
 	menu_signals.skill_changed.connect(_on_skill_changed)
 	menu_signals.menu_skills_player_selected.connect(_on_player_selected)
@@ -37,6 +35,11 @@ func _ready() -> void:
 	
 func _exit_tree():
 	MenuManager.unregister_menu(self)
+
+func center_on_screen() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 
 # ==========================================
 # BUILD AND UI
@@ -146,14 +149,11 @@ func use_skill_in_all_players(skill: Skill):
 # CONSUME AND EFFECTS
 # ==========================================
 func apply_skill_effect(skill: Skill, target: Player):
-	skill.use(target)
-	if skill.effects != null:
-		for effect in skill.effects.entries:
-			effect.apply(target)
+	skill.apply_effects(target, caster)
 
 func consume_mp_and_update_ui(skill: Skill):
 	current_state = States.SKILL_SELECTION
-	caster.current_mp -= skill.mp_cost
+	skill.pay_cost(caster)
 
 	var btn = get_button_for_skill(skill)
 	if btn: 

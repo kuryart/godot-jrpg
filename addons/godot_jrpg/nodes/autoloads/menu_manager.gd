@@ -47,7 +47,6 @@ func open_main_menu():
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("cancel"):
-		if !GameManager.can_open_menu: return
 		if not stack.is_empty():
 			var top = stack.back()
 
@@ -56,8 +55,8 @@ func _input(event: InputEvent):
 
 			top.queue_free()
 			get_viewport().set_input_as_handled()
-			GameManager.get_back_to_last_game_state()
 		else:
+			if !GameManager.can_open_menu: return
 			open_main_menu()
 			GameManager.change_game_state(GameManager.GameStates.MENU)
 			get_viewport().set_input_as_handled()
