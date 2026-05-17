@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="3_86rq5"]
 [ext_resource type="Texture2D" uid="uid://df2df35wr46s8" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-potion.png" id="4_sgnjb"]
 [ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="6_lvguv"]
+[ext_resource type="Resource" path="res://addons/godot_jrpg/resources/vfx/vfx_heal.tres" id="8_sgnjb"]
 
 [sub_resource type="Resource" id="Resource_sgnjb"]
 script = ExtResource("2_lvguv")
@@ -27,6 +28,7 @@ script = ExtResource("1_h64dm")
 used_on = 2
 effects = SubResource("Resource_dy64v")
 targets = SubResource("Resource_86rq5")
+vfx = ExtResource("8_sgnjb")
 display_name = "Health Potion"
 description = "A health potion."
 icon = ExtResource("4_sgnjb")

@@ -1,4 +1,4 @@
-extends Node
+extends EventBus
 
 @export var battle_settings: BattleSettings
 @export var fade_pattern: Texture2D

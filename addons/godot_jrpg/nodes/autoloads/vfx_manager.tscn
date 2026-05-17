@@ -10,26 +10,42 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 2.0
 
-[node name="VFXManager" type="SubViewportContainer" unique_id=1593084131]
+[node name="VFXManager" type="Node" unique_id=1593084131]
+script = ExtResource("1_we4t1")
+vfx_bank_battle = ExtResource("2_oclr8")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2011223344]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 stretch = true
-script = ExtResource("1_we4t1")
-vfx_bank_battle = ExtResource("2_oclr8")
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=1422920574]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1422920574]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(640, 352)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1184892155]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1184892155]
 unique_name_in_owner = true
 projection = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport" unique_id=211444801]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=211444801]
 environment = SubResource("Environment_ftbpp")
+
+[node name="ScreenFlashRect" type="ColorRect" parent="." unique_id=338412901]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenFlashPlayer" type="AnimationPlayer" parent="ScreenFlashRect" unique_id=338412902]
+unique_name_in_owner = true

@@ -24,6 +24,8 @@ enum USED_ON {
 ## The targets for the item. It can be, one or all; and enemies, or allies, or both. See [Target] for more
 ## information.
 @export var targets: Target
+## Optional VFX played on each target when the item is used in battle.
+@export var vfx: VFX
 
 ## Apply effect for a single target.
 func apply_effects(target: Battler, attacker: Battler = null, engine: BattleEngine = null) -> void:

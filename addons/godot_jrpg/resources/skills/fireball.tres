@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bkqt5xivjwcxk" path="res://addons/godot_jrpg/resources/effects/effect_status_add.gd" id="8_mx6vu"]
 [ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="9_qbd3l"]
 [ext_resource type="Texture2D" uid="uid://brts0pejjblwh" path="res://addons/godot_jrpg/assets/sprites/skills/skill-fireball.png" id="11_ec7tg"]
+[ext_resource type="Resource" uid="uid://dcl8bbjqdrt6r" path="res://addons/godot_jrpg/resources/vfx/vfx_hit.tres" id="14_hgtpm"]
 
 [sub_resource type="Resource" id="Resource_mx6vu"]
 script = ExtResource("2_u4omu")
@@ -61,4 +62,5 @@ targets = SubResource("Resource_hgtpm")
 message = "casted"
 icon = ExtResource("11_ec7tg")
 mp_cost = 20
+vfx = ExtResource("14_hgtpm")
 metadata/_custom_type_script = "uid://kyffs4we46du"

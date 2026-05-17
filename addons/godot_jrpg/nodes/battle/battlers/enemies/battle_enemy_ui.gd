@@ -67,6 +67,16 @@ func flash() -> void:
 func stop_flash() -> void:
 	animation_player.stop()
 
+func play_target_flash(battler_flash: BattlerFlash) -> void:
+	if not battler_flash or not battler_flash.animation: return
+	material.set_shader_parameter("flash_color", battler_flash.color)
+	var lib := animation_player.get_animation_library(&"")
+	var anim_name := &"_flash"
+	if lib.has_animation(anim_name):
+		lib.remove_animation(anim_name)
+	lib.add_animation(anim_name, battler_flash.animation)
+	animation_player.play(anim_name)
+
 func _on_focus_entered():
 	animation_player.play("flash")
 

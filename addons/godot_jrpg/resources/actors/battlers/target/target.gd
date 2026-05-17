@@ -29,3 +29,11 @@ static func is_target_scope_one(scope: Target.Scope):
 
 static func is_target_scope_all(scope: Target.Scope):
 	return scope == Target.Scope.ALL
+
+## Returns a human-readable label for an all-scope message (e.g. "all enemies").
+static func all_label(side: Target.Side) -> String:
+	match side:
+		Side.ENEMIES: return "all enemies"
+		Side.ALLIES: return "all allies"
+		Side.BOTH, Side.EVERYONE: return "everyone"
+		_: return "all targets"

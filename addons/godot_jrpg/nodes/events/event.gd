@@ -1,4 +1,5 @@
-class_name Event extends Node
+@tool
+class_name Event extends GridEntity
 
 @onready var event_bus: = $EventBus
 

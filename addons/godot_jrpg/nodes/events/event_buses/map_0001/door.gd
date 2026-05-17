@@ -1,4 +1,4 @@
-extends Node
+extends EventBus
 
 @export var dialogue: DialogueResource
 

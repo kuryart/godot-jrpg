@@ -33,3 +33,21 @@ func cancel_sound() -> void:
 	is_sound_canceled = true
 	await get_tree().process_frame
 	is_sound_canceled = false
+
+## Play spatial sound effect at specific position in the 2D world.
+## Good for quick events in the map.
+func play_sfx_2d(sfx: SFX, global_pos: Vector2, parent: Node = null) -> void:
+	var sfx_player := AudioStreamPlayer2D.new()
+	sfx_player.stream = sfx.stream
+	sfx_player.bus = sfx.bus
+	sfx_player.volume_db = sfx.volume_db
+	sfx_player.pitch_scale = sfx.pitch_scale
+	sfx_player.global_position = global_pos
+	if parent == null:
+		parent = get_tree().current_scene
+		
+	parent.add_child(sfx_player)
+	
+	sfx_player.play()
+
+	sfx_player.finished.connect(sfx_player.queue_free)

@@ -3,10 +3,12 @@
 [ext_resource type="Script" uid="uid://diobl2lg54y6d" path="res://addons/godot_jrpg/resources/vfx/vfx.gd" id="1_031m0"]
 [ext_resource type="Script" uid="uid://bihtri0usrs8t" path="res://addons/godot_jrpg/resources/vfx/banks/vfx_bank.gd" id="2_3cxh6"]
 [ext_resource type="Resource" uid="uid://dcl8bbjqdrt6r" path="res://addons/godot_jrpg/resources/vfx/vfx_hit.tres" id="2_ba30f"]
+[ext_resource type="Resource" uid="uid://bv2h6jk4bm5gq" path="res://addons/godot_jrpg/resources/vfx/vfx_heal.tres" id="3_heal"]
 
 [resource]
 script = ExtResource("2_3cxh6")
 bank = Dictionary[String, ExtResource("1_031m0")]({
-"hit": ExtResource("2_ba30f")
+"hit": ExtResource("2_ba30f"),
+"heal": ExtResource("3_heal")
 })
 metadata/_custom_type_script = "uid://bihtri0usrs8t"
