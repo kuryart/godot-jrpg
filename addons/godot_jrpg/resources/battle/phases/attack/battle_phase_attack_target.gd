@@ -5,3 +5,6 @@ func _init() -> void:
 
 func resolve(engine: BattleEngine):
 	engine.select_enemy()
+
+func handle_cancel(engine: BattleEngine):
+	BattleInputFightMenu.new().resolve(engine)

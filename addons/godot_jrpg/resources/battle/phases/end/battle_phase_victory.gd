@@ -6,8 +6,8 @@ func _init() -> void:
 func resolve(engine: BattleEngine):
 	await engine.get_tree().create_timer(1.5).timeout
 	engine.clear_focus()
-	engine.battle_signals.toggle_messenger_emited.emit(true)
-	engine.battle_signals.message_emited.emit("Victory!")
+	engine.battle_signals.toggle_messenger_emitted.emit(true)
+	engine.battle_signals.message_emitted.emit("Victory!")
 	await engine.get_tree().create_timer(1.5).timeout
 	
 	var total_xp: int = 0
@@ -26,34 +26,34 @@ func resolve(engine: BattleEngine):
 
 	if total_money > 0:
 		party.add_money(total_money)
-		engine.battle_signals.message_emited.emit("Earned %d %s." % [total_money, GameManager.money_name])
+		engine.battle_signals.message_emitted.emit("Earned %d %s." % [total_money, GameManager.money_name])
 		await engine.get_tree().create_timer(1.5).timeout
 	
 	if total_xp > 0:
-		engine.battle_signals.message_emited.emit("Party earned %d XP." % total_xp)
+		engine.battle_signals.message_emitted.emit("Party earned %d XP." % total_xp)
 		await engine.get_tree().create_timer(1.5).timeout
 		
 		for player in engine.players:
-			var can_gain_xp = not player.trait_aggregator.has_flag(TraitNoXp)
+			var can_gain_xp = not player.trait_aggregator.has_trait_no_xp()
 			
 			if can_gain_xp:
 				var old_level = player.level
 				player.add_xp(total_xp)
 				if player.level > old_level:
-					engine.battle_signals.message_emited.emit("%s reached level %d!" % [player.name, player.level])
+					engine.battle_signals.message_emitted.emit("%s reached level %d!" % [player.name, player.level])
 					await engine.get_tree().create_timer(1.5).timeout
 
 	if not dropped_items.is_empty():
 		for item in dropped_items:
 			party.inventory.add_item(item, 1)
 			
-			engine.battle_signals.message_emited.emit("Found: %s!" % item.display_name)
+			engine.battle_signals.message_emitted.emit("Found: %s!" % item.display_name)
 			await engine.get_tree().create_timer(1.0).timeout
 
-	engine.battle_signals.toggle_messenger_emited.emit(false)
+	engine.battle_signals.toggle_messenger_emitted.emit(false)
 	
 	print("[BattlePhaseVictory] Battle finished.")
-	engine.battle_signals.toggle_messenger_emited.emit(false)
+	engine.battle_signals.toggle_messenger_emitted.emit(false)
 	engine.battle_signals.inner_battle_ended.emit()
 	
 	end()

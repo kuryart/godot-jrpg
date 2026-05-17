@@ -36,7 +36,7 @@ func resolve(engine: BattleEngine):
 			print("[BattlePhaseResolveActions] %s's Attack failed because there's no target alive." % action.actor.name)
 			continue
 		# --- Action ---
-		engine.battle_signals.change_player_face_emited.emit(action)
+		engine.battle_signals.change_player_face_emitted.emit(action)
 		await action.resolve(engine)
 		await engine.validate_deaths()
 		if engine.check_battle_end():

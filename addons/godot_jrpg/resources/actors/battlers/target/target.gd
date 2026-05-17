@@ -28,4 +28,4 @@ static func is_target_scope_one(scope: Target.Scope):
 	return scope == Target.Scope.ONE
 
 static func is_target_scope_all(scope: Target.Scope):
-	return scope == Target.Scope.ONE
+	return scope == Target.Scope.ALL

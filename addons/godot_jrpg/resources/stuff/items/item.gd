@@ -25,7 +25,24 @@ enum USED_ON {
 ## information.
 @export var targets: Target
 
-## Executes the effects for the item.
-@warning_ignore("unused_parameter")
-func use(target):
+## Apply effect for a single target.
+func apply_effects(target: Battler, attacker: Battler = null, engine: BattleEngine = null) -> void:
 	print("[ItemUsable] Executing effect of: ", display_name)
+
+	if effects != null and effects.entries != null:
+		for effect in effects.entries:
+			if effect != null:
+				effect.apply(target, attacker, engine)
+
+## Consume the item, removing it from inventory.
+func consume() -> void:
+	if not is_consumable:
+		return
+	
+	var inventory: Inventory = GameManager.party.inventory
+	
+	if inventory.items.has(self):
+		inventory.items[self] -= 1
+		
+		if inventory.items[self] <= 0:
+			inventory.items.erase(self)

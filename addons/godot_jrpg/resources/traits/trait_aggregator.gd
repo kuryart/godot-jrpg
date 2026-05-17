@@ -173,3 +173,9 @@ func get_effect_damage_received_modified(base_damage: float) -> int:
 			mult *= _trait.multiplier
 
 	return max(int((base_damage - sum) * mult), 1)
+
+func has_trait_no_xp() -> bool:
+	for _trait in all_traits.entries:
+		if _trait is TraitNoXp:
+			return true
+	return false

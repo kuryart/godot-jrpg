@@ -2,11 +2,20 @@
 
 [ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="1_ay4wr"]
 [ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_qxn0g"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_gsfo2"]
+[ext_resource type="Script" uid="uid://bqnn8fctbndnr" path="res://addons/godot_jrpg/resources/effects/effect_heal.gd" id="3_f2s10"]
 [ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="3_gsfo2"]
-[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="5_f2s10"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="5_f2s10"]
+[ext_resource type="Texture2D" uid="uid://boydya8pklxd8" path="res://addons/godot_jrpg/assets/sprites/skills/skill-heal.png" id="5_xv2jn"]
+
+[sub_resource type="Resource" id="Resource_qyiq1"]
+script = ExtResource("3_f2s10")
+amount = 40
+metadata/_custom_type_script = "uid://bqnn8fctbndnr"
 
 [sub_resource type="Resource" id="Resource_1ub4i"]
 script = ExtResource("3_gsfo2")
+entries = Array[ExtResource("1_qxn0g")]([SubResource("Resource_qyiq1")])
 metadata/_custom_type_script = "uid://dt05mo88hqdmw"
 
 [sub_resource type="Resource" id="Resource_a4cyn"]
@@ -22,5 +31,6 @@ used_on = 2
 effects = SubResource("Resource_1ub4i")
 targets = SubResource("Resource_a4cyn")
 message = "healed"
+icon = ExtResource("5_xv2jn")
 mp_cost = 10
 metadata/_custom_type_script = "uid://kyffs4we46du"

@@ -5,7 +5,7 @@ class_name BattlePhase extends Resource
 ## Flag to know if the phase is finished.
 var is_finished: bool = false
 
-## Signal emited when the phase is finished.
+## Signal emitted when the phase is finished.
 @warning_ignore("unused_signal")
 signal finished
 

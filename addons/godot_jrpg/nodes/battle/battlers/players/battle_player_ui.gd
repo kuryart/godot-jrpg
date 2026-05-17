@@ -4,6 +4,7 @@ class_name BattlePlayerUI extends BattleBattlerUI
 @onready var mp_bar: Bar = get_node("%MPBar")
 @onready var current_hp_label: BarLabel = get_node("%CurrentHP")
 @onready var current_mp_label: BarLabel = get_node("%CurrentMP")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var engine: BattleEngine
 var player: Player
@@ -20,12 +21,19 @@ func setup(_engine: BattleEngine, _player: Player):
 	current_hp_label.setup(player.current_hp, player.hp_changed)
 	current_mp_label.setup(player.current_mp, player.mp_changed)
 
+func flash() -> void:
+	if not is_node_ready(): await ready
+	animation_player.play("flash")
+
+func stop_flash() -> void:
+	animation_player.stop()
+
 func die():
 	pass
 
 func _on_button_up():
 	super()
-	engine.battle_signals.player_selected.emit()
+	engine.battle_signals.player_selected.emit(player)
 
 func _on_focus_entered():
 	engine.battle_signals.player_changed.emit(player)

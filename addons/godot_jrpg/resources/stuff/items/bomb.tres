@@ -1,24 +1,54 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://d3dfoc2kselyy"]
 
 [ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_ufl7q"]
+[ext_resource type="Script" uid="uid://b6ofka062hcd0" path="res://addons/godot_jrpg/resources/formulas/effect_damage/formula_effect_damage_rpg_maker.gd" id="2_8nuwm"]
+[ext_resource type="Script" uid="uid://dsabjlwc355ao" path="res://addons/godot_jrpg/resources/formulas/effect_chance/formula_effect_chance_never_miss.gd" id="2_kra01"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_kra01"]
+[ext_resource type="Script" uid="uid://dit3bpnj8dj25" path="res://addons/godot_jrpg/resources/formulas/effect_critical_chance/formula_effect_critical_chance_basic.gd" id="3_slt0y"]
 [ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="4_1ij68"]
+[ext_resource type="Script" uid="uid://be5bac0p75k8g" path="res://addons/godot_jrpg/resources/effects/effect_damage.gd" id="4_slt0y"]
 [ext_resource type="Texture2D" uid="uid://dyedqlvkrmck" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-bomb.png" id="5_ufl7q"]
 [ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="6_6snhq"]
-[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="7_q2akk"]
+[ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="6_q2akk"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="7_q2akk"]
+
+[sub_resource type="Resource" id="Resource_1ij68"]
+script = ExtResource("2_kra01")
+metadata/_custom_type_script = "uid://dsabjlwc355ao"
+
+[sub_resource type="Resource" id="Resource_004tu"]
+script = ExtResource("3_slt0y")
+metadata/_custom_type_script = "uid://dit3bpnj8dj25"
+
+[sub_resource type="Resource" id="Resource_6snhq"]
+script = ExtResource("2_8nuwm")
+metadata/_custom_type_script = "uid://b6ofka062hcd0"
+
+[sub_resource type="Resource" id="Resource_q2akk"]
+script = ExtResource("4_slt0y")
+damage_formula = SubResource("Resource_6snhq")
+chance_formula = SubResource("Resource_1ij68")
+critical_chance_formula = SubResource("Resource_004tu")
+is_critical = true
+elements = Array[ExtResource("3_kra01")]([ExtResource("6_q2akk")])
+metadata/_custom_type_script = "uid://be5bac0p75k8g"
 
 [sub_resource type="Resource" id="Resource_ftb4x"]
 script = ExtResource("4_1ij68")
+entries = Array[ExtResource("1_ufl7q")]([SubResource("Resource_q2akk")])
 metadata/_custom_type_script = "uid://dt05mo88hqdmw"
 
 [sub_resource type="Resource" id="Resource_5d8is"]
 script = ExtResource("7_q2akk")
+scope = 1
 metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
 
 [resource]
 script = ExtResource("6_6snhq")
+used_on = 2
 effects = SubResource("Resource_ftb4x")
 targets = SubResource("Resource_5d8is")
-display_name = "Bom"
+display_name = "Bomb"
 description = "Use on an enemy,"
 icon = ExtResource("5_ufl7q")
 metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

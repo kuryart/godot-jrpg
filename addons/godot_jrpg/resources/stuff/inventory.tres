@@ -11,13 +11,19 @@
 [ext_resource type="Script" uid="uid://cyifi6o5fq4vo" path="res://addons/godot_jrpg/resources/stuff/inventory.gd" id="8_fhj3n"]
 [ext_resource type="Resource" uid="uid://c32xi2tbpwyvo" path="res://addons/godot_jrpg/resources/stuff/items/medicines.tres" id="9_kicam"]
 [ext_resource type="Resource" uid="uid://xkd2u2br7fvp" path="res://addons/godot_jrpg/resources/stuff/items/health_potion.tres" id="10_qrq8h"]
+[ext_resource type="Resource" uid="uid://drr6bb2oayaut" path="res://addons/godot_jrpg/resources/stuff/items/missiles.tres" id="11_qrq8h"]
+[ext_resource type="Resource" uid="uid://d3dfoc2kselyy" path="res://addons/godot_jrpg/resources/stuff/items/bomb.tres" id="12_lqiap"]
+[ext_resource type="Resource" uid="uid://dq853pqdcx7s1" path="res://addons/godot_jrpg/resources/stuff/items/curative.tres" id="13_lqiap"]
 
 [resource]
 script = ExtResource("8_fhj3n")
 items = Dictionary[ExtResource("7_lqiap"), int]({
 ExtResource("8_aweom"): 3,
 ExtResource("9_kicam"): 2,
-ExtResource("10_qrq8h"): 4
+ExtResource("10_qrq8h"): 4,
+ExtResource("11_qrq8h"): 2,
+ExtResource("12_lqiap"): 3,
+ExtResource("13_lqiap"): 5
 })
 equippables = Dictionary[ExtResource("1_uy071"), int]({
 ExtResource("2_fh0ug"): 2,

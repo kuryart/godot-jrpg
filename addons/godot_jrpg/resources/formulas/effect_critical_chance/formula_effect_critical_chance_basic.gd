@@ -1,4 +1,4 @@
-@abstract class_name FormulaEffectCriticalChanceBasic extends FormulaEffectCriticalChance
+class_name FormulaEffectCriticalChanceBasic extends FormulaEffectCriticalChance
 
 @warning_ignore("unused_parameter")
 func calculate(param: FormulaEffectCriticalChanceParameter) -> float:

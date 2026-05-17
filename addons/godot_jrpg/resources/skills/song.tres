@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://b7mhouv1py3hg"]
+
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="1_ia4vh"]
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_irxgw"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_sf7c7"]
+[ext_resource type="Script" uid="uid://dp281065k4vlo" path="res://addons/godot_jrpg/resources/effects/effect_stat_modifier.gd" id="3_onrkp"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="4_dt2e1"]
+[ext_resource type="Texture2D" uid="uid://bcl8shu3g6vfo" path="res://addons/godot_jrpg/assets/sprites/skills/skill-song.png" id="5_nx22p"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="7_fsc64"]
+
+[sub_resource type="Resource" id="Resource_s4j4n"]
+script = ExtResource("3_onrkp")
+value_multiply = 1.2
+duration = 3
+metadata/_custom_type_script = "uid://dp281065k4vlo"
+
+[sub_resource type="Resource" id="Resource_kkf3n"]
+script = ExtResource("4_dt2e1")
+entries = Array[ExtResource("1_irxgw")]([SubResource("Resource_s4j4n")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_hh18e"]
+script = ExtResource("7_fsc64")
+side = 1
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_ia4vh")
+display_name = "Song"
+description = "A song so beautiful it raises attack."
+used_on = 1
+effects = SubResource("Resource_kkf3n")
+targets = SubResource("Resource_hh18e")
+message = "sang"
+icon = ExtResource("5_nx22p")
+mp_cost = 20
+metadata/_custom_type_script = "uid://kyffs4we46du"

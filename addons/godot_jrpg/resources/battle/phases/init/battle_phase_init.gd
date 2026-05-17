@@ -64,7 +64,7 @@ func setup_ui(engine: BattleEngine):
 func set_background(engine: BattleEngine):
 	var settings: BattleSettings = engine.battle_settings
 	var ui: BattleUI = engine.battle_ui
-	ui.battle_signals.set_background_emited.emit(settings)
+	ui.battle_signals.set_background_emitted.emit(settings)
 
 func instantiate_enemies(engine: BattleEngine):
 	var enemies_settings: Array[EnemySettings] = engine.battle_settings.enemies
@@ -91,27 +91,35 @@ func instantiate_enemies(engine: BattleEngine):
 			name_indices[base_name] += 1
 
 	var ui: BattleUI = engine.battle_ui
-	ui.battle_signals.instantiate_enemies_emited.emit(enemies_settings, enemies, engine)
+	ui.battle_signals.instantiate_enemies_emitted.emit(enemies_settings, enemies, engine)
 
 func define_focus_neighbors(ui: BattleUI):
-	ui.battle_signals.define_focus_neighbors_emited.emit()
+	ui.battle_signals.define_focus_neighbors_emitted.emit()
 
 func instantiate_players(engine: BattleEngine):
 	var players: Array[Player] = engine.players
 	var ui: BattleUI = engine.battle_ui
-	ui.battle_signals.instantiate_players_emited.emit(engine, players)
+	ui.battle_signals.instantiate_players_emitted.emit(engine, players)
 
 func hide_menus(ui: BattleUI):
-	ui.battle_signals.toggle_menu_bottom_emited.emit(false)
-	ui.battle_signals.toggle_menu_items_emited.emit(false)
-	ui.battle_signals.toggle_menu_skills_emited.emit(false)
+	ui.battle_signals.toggle_menu_bottom_emitted.emit(false)
+	ui.battle_signals.toggle_menu_items_emitted.emit(false)
+	ui.battle_signals.toggle_menu_skills_emitted.emit(false)
 
 func drop_enemies_focus(ui: BattleUI):
 	ui.battle_signals.enemies_focus_mode_changed.emit(Control.FOCUS_NONE)
 
 func show_enemies_appeared_message(ui: BattleUI):
-	ui.battle_signals.message_emited.emit("Enemies appeared!")
+	ui.battle_signals.message_emitted.emit("Enemies appeared!")
 
 func connect_signals(engine: BattleEngine):
 	engine.battle_signals.enemy_selected.connect(engine._on_enemy_selected)
 	engine.battle_signals.item_clicked.connect(engine._on_item_clicked)
+	engine.battle_signals.skill_clicked.connect(engine._on_skill_clicked)
+	engine.battle_signals.all_allies_confirmed_emitted.connect(engine._on_all_allies_confirmed)
+	engine.battle_signals.all_enemies_confirmed_emitted.connect(engine._on_all_enemies_confirmed)
+	engine.battle_signals.self_target_confirmed_emitted.connect(engine._on_self_target_confirmed)
+	engine.battle_signals.all_skill_allies_confirmed_emitted.connect(engine._on_all_skill_allies_confirmed)
+	engine.battle_signals.all_skill_enemies_confirmed_emitted.connect(engine._on_all_skill_enemies_confirmed)
+	engine.battle_signals.self_skill_target_confirmed_emitted.connect(engine._on_self_skill_target_confirmed)
+	engine.battle_signals.player_select_ended.connect(engine._on_player_select_ended)

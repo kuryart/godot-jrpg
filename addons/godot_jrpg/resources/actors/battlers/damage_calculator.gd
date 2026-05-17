@@ -57,7 +57,9 @@ func calculate_effect_damage(effect: Effect, attacker: Battler, defender: Battle
 	var damage: float = float(effect.damage_formula.calculate(param))
 	damage = get_effect_modified_damage(effect, attacker, defender, damage)
 	damage = get_effect_elemental_damage(effect, attacker, defender, damage)
-	damage = get_effect_critical_damage(effect, attacker, defender, damage, engine)
+	if effect is EffectDamage:
+		if effect.is_critical and effect.critical_chance_formula != null and engine.is_effect_critical(effect, attacker, defender):
+			damage = get_effect_critical_damage(effect, attacker, defender, damage, engine)
 	return int(max(damage, 0))
 
 ## Calculate the critical damage for an effect.

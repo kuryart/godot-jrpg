@@ -5,5 +5,5 @@ func _init() -> void:
 
 func resolve(engine: BattleEngine):
 	engine.change_turn()
-	engine.battle_signals.toggle_menu_bottom_emited.emit(true)
+	engine.battle_signals.toggle_menu_bottom_emitted.emit(true)
 	end()

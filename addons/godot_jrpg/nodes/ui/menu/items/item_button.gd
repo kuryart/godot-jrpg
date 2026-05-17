@@ -3,7 +3,6 @@ class_name ItemButton extends UIButton
 @export var menu_signals: MenuSignals
 
 var item: Item
-var id_in_inventory: int
 var icon: Texture
 
 func resolve():
@@ -14,7 +13,7 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 
 func _on_button_up():
-	menu_signals.item_clicked.emit(item, id_in_inventory)
+	menu_signals.item_clicked.emit(item)
 
 func _on_focus_entered():
 	menu_signals.item_changed.emit(item)

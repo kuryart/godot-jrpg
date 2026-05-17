@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b52fwi82lyqqe"
-path="res://.godot/imported/item-medicine.png-3758bdd0aa7a5db2fd90973bbd9daa1f.ctex"
+uid="uid://bcl8shu3g6vfo"
+path="res://.godot/imported/skill-song.png-849ae47a6eeeb32c936598cb011f1f1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/godot_jrpg/assets/sprites/stuff/items/item-medicine.png"
-dest_files=["res://.godot/imported/item-medicine.png-3758bdd0aa7a5db2fd90973bbd9daa1f.ctex"]
+source_file="res://addons/godot_jrpg/assets/sprites/skills/skill-song.png"
+dest_files=["res://.godot/imported/skill-song.png-849ae47a6eeeb32c936598cb011f1f1f.ctex"]
 
 [params]
 

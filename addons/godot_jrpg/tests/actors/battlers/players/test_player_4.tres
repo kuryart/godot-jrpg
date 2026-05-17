@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Player" format=3 uid="uid://bk0otfxgmtbe5"]
 
-[ext_resource type="Script" uid="uid://bjsdujeknnms6" path="res://addons/godot_jrpg/resources/controllers/inputs/input_assignment.gd" id="2_7aeq3"]
+[ext_resource type="Script" uid="uid://bjsdujeknnms6" path="res://addons/godot_jrpg/resources/actors/battlers/controllers/inputs/input_assignment.gd" id="2_7aeq3"]
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="2_24rt2"]
 [ext_resource type="Texture2D" uid="uid://b1gwysomqpsg7" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-4.png" id="3_5qgge"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_14h8m"]
-[ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="3_16738"]
+[ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/actors/battlers/controllers/player_manual_controller.gd" id="3_16738"]
 [ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_l4djw"]
 [ext_resource type="Resource" uid="uid://ct1yibljovrhd" path="res://addons/godot_jrpg/tests/stuff/equippable/slots/player_4_equip_slots.tres" id="3_n5x3g"]
 [ext_resource type="Resource" uid="uid://bhccddi8p1iq3" path="res://addons/godot_jrpg/resources/status/dead.tres" id="3_oeixl"]
@@ -64,6 +64,13 @@ script = ExtResource("3_14h8m")
 display_name = "Defense"
 id = 3
 base_value = 13
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_appbg"]
+script = ExtResource("3_14h8m")
+display_name = "Effect dodge"
+id = 13
+base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_y4abp"]
@@ -143,6 +150,7 @@ hp_regen = SubResource("Resource_c1gyj")
 mp_regen = SubResource("Resource_3rw0s")
 critical = SubResource("Resource_ijjyb")
 critical_dodge = SubResource("Resource_kt5rn")
+effect_dodge = SubResource("Resource_appbg")
 reflection = SubResource("Resource_8qv68")
 counter_attack = SubResource("Resource_k11ed")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"

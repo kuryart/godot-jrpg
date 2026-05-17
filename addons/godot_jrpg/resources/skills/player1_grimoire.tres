@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Grimoire" format=3 uid="uid://mf7lb5efh6bt"]
+
+[ext_resource type="Script" uid="uid://ceb6xqp5odndy" path="res://addons/godot_jrpg/resources/skills/grimoire.gd" id="1_a3p55"]
+[ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="2_4lke8"]
+[ext_resource type="Resource" uid="uid://kfjt3gjup8dd" path="res://addons/godot_jrpg/resources/skills/fireball.tres" id="3_ckyi7"]
+[ext_resource type="Resource" uid="uid://dg0jk4jhur2id" path="res://addons/godot_jrpg/resources/skills/heal.tres" id="4_lyav8"]
+[ext_resource type="Resource" uid="uid://b7mhouv1py3hg" path="res://addons/godot_jrpg/resources/skills/song.tres" id="5_rni14"]
+[ext_resource type="Resource" uid="uid://b01d8f23047ri" path="res://addons/godot_jrpg/resources/skills/chemistry.tres" id="6_5y4jn"]
+
+[resource]
+script = ExtResource("1_a3p55")
+skills = Array[ExtResource("2_4lke8")]([ExtResource("3_ckyi7"), ExtResource("4_lyav8"), ExtResource("5_rni14"), ExtResource("6_5y4jn")])

@@ -20,12 +20,14 @@
 [ext_resource type="PackedScene" uid="uid://bnqu8635adojv" path="res://addons/godot_jrpg/nodes/battle/items/battle_item_button.tscn" id="15_l0f1s"]
 [ext_resource type="Script" uid="uid://bl6jqa5yko7s8" path="res://addons/godot_jrpg/nodes/battle/selection_menu/battle_run_button.gd" id="16_cpmal"]
 [ext_resource type="Material" uid="uid://c03324vpjatgx" path="res://addons/godot_jrpg/resources/materials/battler.tres" id="17_fxdbb"]
+[ext_resource type="PackedScene" uid="uid://bdfdgtsjw34x8" path="res://addons/godot_jrpg/nodes/battle/skills/battle_skill_button.tscn" id="17_i0o3d"]
 [ext_resource type="Script" uid="uid://bln7l8stikpbw" path="res://addons/godot_jrpg/nodes/battle/fight_menu/battle_defend_button.gd" id="17_kynrm"]
 [ext_resource type="Script" uid="uid://b0oq5vat5comf" path="res://addons/godot_jrpg/nodes/battle/battlers/players/battle_face.gd" id="17_uw4g8"]
 [ext_resource type="Texture2D" uid="uid://du576w5wphuyr" path="res://addons/godot_jrpg/assets/sprites/battle/ui/icon-sword.png" id="19_cagfm"]
 [ext_resource type="Animation" uid="uid://dvtxa8chfd46o" path="res://addons/godot_jrpg/resources/animations/damage.res" id="19_uoapb"]
 [ext_resource type="Texture2D" uid="uid://bmmvef1tpe86n" path="res://addons/godot_jrpg/assets/sprites/battle/ui/icon-run.png" id="20_cpmal"]
-[ext_resource type="Script" uid="uid://dn6f255ve8erm" path="res://addons/godot_jrpg/nodes/battle/fight_menu/battle_items_button.gd" id="20_grijr"]
+[ext_resource type="Script" uid="uid://qrnwoftv2fvm" path="res://addons/godot_jrpg/nodes/battle/players_menu/battle_menu_players.gd" id="21_l0f1s"]
+[ext_resource type="Script" uid="uid://dm6otfu7t0hq3" path="res://addons/godot_jrpg/nodes/battle/fight_menu/battle_skills_button.gd" id="22_tihi7"]
 [ext_resource type="Script" uid="uid://t4cbxo4nowao" path="res://addons/godot_jrpg/nodes/battle/battle_vfx.gd" id="23_3ewcx"]
 
 [sub_resource type="Resource" id="Resource_3ewcx"]
@@ -49,6 +51,22 @@ script = ExtResource("9_7phmr")
 physical_damage_formula = SubResource("Resource_l0f1s")
 critical_damage_formula = SubResource("Resource_grijr")
 metadata/_custom_type_script = "uid://coo8scojac4j4"
+
+[sub_resource type="GDScript" id="GDScript_grijr"]
+script/source = "class_name BattleItemsButton extends UIButton
+
+@export var battle_signals: BattleSignals = preload(\"uid://creqo0s1k7tlr\")
+
+var item: Item
+
+func _ready():
+	button_up.connect(_on_button_up)
+	
+func _on_button_up():
+	super()
+	battle_signals.items_button_up.emit()
+	battle_signals.toggle_menu_items_emitted.emit(true)
+"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_56x7e"]
 _data = {
@@ -91,6 +109,7 @@ anchors_preset = 0
 
 [node name="MenuItems" type="PanelContainer" parent="BattleUI" unique_id=12032347]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 256.0
 offset_top = 218.0
@@ -118,20 +137,26 @@ columns = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_left = 304.0
-offset_top = 230.0
-offset_right = 954.0
-offset_bottom = 524.0
+offset_left = 256.0
+offset_top = 218.0
+offset_right = 1024.0
+offset_bottom = 512.0
 script = ExtResource("11_3ra5b")
+battle_signals = ExtResource("4_nterj")
+skill_button = ExtResource("17_i0o3d")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BattleUI/MenuSkills" unique_id=1191767434]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuSkills/ScrollContainer" unique_id=1968755713]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="SkillsGrid" type="GridContainer" parent="BattleUI/MenuSkills/ScrollContainer/MarginContainer" unique_id=531496894]
+unique_name_in_owner = true
 layout_mode = 2
+columns = 2
 
 [node name="MenuBottom" type="PanelContainer" parent="BattleUI" unique_id=953539049]
 unique_name_in_owner = true
@@ -237,7 +262,7 @@ focus_neighbor_top = NodePath("../Defend")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../Skills")
 text = "Items"
-script = ExtResource("20_grijr")
+script = SubResource("GDScript_grijr")
 
 [node name="Skills" type="Button" parent="BattleUI/MenuBottom/HBoxContainer/MenuFight/ScrollContainer/MarginContainer/MenuFightOptions" unique_id=1249186778]
 layout_mode = 2
@@ -246,10 +271,12 @@ focus_neighbor_top = NodePath("../Items")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 text = "Skills"
+script = ExtResource("22_tihi7")
 
 [node name="MenuPlayers" type="PanelContainer" parent="BattleUI/MenuBottom/HBoxContainer" unique_id=669055748]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("21_l0f1s")
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleUI/MenuBottom/HBoxContainer/MenuPlayers" unique_id=467431801]
 layout_mode = 2

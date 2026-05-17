@@ -46,6 +46,9 @@ func select_enemy_for_attack():
 func select_enemy_for_item():
 	pass
 
+func select_enemy_for_skill():
+	pass
+
 func die():
 	await fade_out()
 	visible = false
@@ -58,6 +61,12 @@ func fade_out():
 	tween.tween_property(self, "modulate:a", 0.0, 2.0).set_trans(Tween.TRANS_SINE)
 	await tween.finished
 
+func flash() -> void:
+	animation_player.play("flash")
+
+func stop_flash() -> void:
+	animation_player.stop()
+
 func _on_focus_entered():
 	animation_player.play("flash")
 
@@ -66,12 +75,15 @@ func _on_focus_exited():
 	animation_player.stop()
 
 func _on_button_up():
-	if engine.current_phase is BattlePhaseAttackTarget:
-		select_enemy_for_attack()
-	elif engine.current_phase is BattlePhaseItemTarget:
-		#stop_highlight_all()
-		#selected_item()
-		pass
-	elif engine.current_phase is BattlePhaseSkillTarget:
-		#selected_skill()
-		pass
+	super()
+	engine.battle_signals.enemy_button_up.emit(enemy)
+	#if engine.current_phase is BattlePhaseAttackTarget:
+		#select_enemy_for_attack()
+	#elif engine.current_phase is BattlePhaseItemTarget:
+		##stop_highlight_all()
+		#select_enemy_for_item()
+		#pass
+	#elif engine.current_phase is BattlePhaseSkillTarget:
+		##stop_highlight_all()
+		#select_enemy_for_skill()
+		#pass

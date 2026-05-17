@@ -12,3 +12,6 @@ func resolve(engine: BattleEngine):
 	
 func set_player(_player: Player):
 	player = _player
+
+func handle_cancel(engine: BattleEngine):
+	BattleInputPlayersMenu.new().resolve(engine)

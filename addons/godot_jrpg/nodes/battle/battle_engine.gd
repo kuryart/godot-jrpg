@@ -70,6 +70,10 @@ func _ready() -> void:
 	change_phase(BattlePhaseInit.new())
 	if leader.controller is PlayerNPCController:
 		leader.controller.think()
+	call_deferred(&"_emit_engine_initialized")
+
+func _emit_engine_initialized() -> void:
+	battle_signals.engine_initialized.emit(self)
 
 ## Initialize essential objects ([BattleSettings] and [BattleUI]). Called by
 ## [Battle].
@@ -98,7 +102,7 @@ func change_turn():
 	battle_signals.menu_fight_focus_mode_changed.emit(Control.FOCUS_ALL)
 	change_to_player(get_first_alive_player())
 	action_pool.clear()
-	battle_signals.toggle_messenger_emited.emit(false)
+	battle_signals.toggle_messenger_emitted.emit(false)
 
 ## This function removes focus from all elements (enemies, players and menus).
 ## It's used when the player can't interact with anything, like when the enemy is
@@ -146,6 +150,21 @@ func check_battle_end() -> bool:
 
 	return false
 
+## Counts how many items of this specific type are already in the action queue.
+func get_queued_item_count(target_item: Item) -> int:
+	var count: int = 0
+	for action in action_pool:
+		if action is BattleActionItem and action.data.get_data() == target_item:
+			count += 1
+	return count
+
+## Removes all actions from the pool that belong to the given player.
+func remove_player_action(player: Player) -> void:
+	for i in range(action_pool.size() - 1, -1, -1):
+		if action_pool[i].actor == player:
+			print("[BattleEngine] Removed action ", action_pool[i].resource_name, " for ", player.name)
+			action_pool.remove_at(i)
+
 # --- Battlers methods ---
 ## Adds a batller to the arena.
 func add_battle_battler(actor: Battler):
@@ -159,14 +178,14 @@ func add_battle_battler(actor: Battler):
 ## Change the current player to a target player.
 func change_to_player(player: Player):
 	current_player = player
-	battle_signals.request_player_focus_emited.emit(player)
+	battle_signals.request_player_focus_emitted.emit(player)
 
 ## Change the current batller to a target battler.
 func change_to_battler(battler: Battler):
 	current_battler = battler
 
 ## Change to the next player. If there's no player to change to, it ends the
-## [BattlePhasePlayers] and starts the BattlePhaseUpkeep].
+## [BattlePhasePlayers] and starts the BattlePhaseResolveActions].
 func change_to_next_player():
 	var next_player = get_next_player()
 
@@ -212,8 +231,8 @@ func get_first_alive_enemy() -> Enemy:
 
 ## It emits two signals to warns an enemy needs to be selected.
 func select_enemy():
-	battle_signals.update_enemy_focus_neighbor_emited.emit()
-	battle_signals.select_enemy_emited.emit()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	battle_signals.select_enemy_emitted.emit()
 
 ## Manages the enemies decisions that will be added to [member action_pool]
 func manage_enemies_decisions():
@@ -246,20 +265,20 @@ func get_dead_battlers() -> Array[Battler]:
 func process_battler_death(targets: Array[Battler]):
 	for battler in targets:
 		clear_focus()
-		battle_signals.toggle_messenger_emited.emit(true)
+		battle_signals.toggle_messenger_emitted.emit(true)
 
 		var death_text = "%s defeated!" % battler.name
-		battle_signals.message_emited.emit(death_text)
+		battle_signals.message_emitted.emit(death_text)
 		await battler.die()
 		battle_signals.battler_died.emit(battler)
 		await get_tree().create_timer(2.0).timeout
 
-		battle_signals.toggle_messenger_emited.emit(false)
+		battle_signals.toggle_messenger_emitted.emit(false)
 
 ## Refresh enemy state, i.e., update enemy focus neighbors and move focus to next
 ## enemy.
 func refresh_enemy_state() -> void:
-	battle_signals.update_enemy_focus_neighbor_emited.emit()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
 	move_focus_to_next_enemy()
 
 ## Move the focus to the next alive enemy.
@@ -281,19 +300,25 @@ func process_status_duration():
 # --- Menus methods ---
 ## It shall go to the selection menu.
 func go_to_selection_menu():
-	battle_signals.toggle_menu_fight_emited.emit(false)
-	battle_signals.toggle_menu_selection_emited.emit(true)
-	battle_signals.select_menu_selection_option_emited.emit(0)
+	battle_signals.toggle_menu_fight_emitted.emit(false)
+	battle_signals.toggle_menu_selection_emitted.emit(true)
+	battle_signals.select_menu_selection_option_emitted.emit(0)
 
 ## It shall go to the players menu.
 func go_to_players_menu():
-	battle_signals.toggle_menu_selection_emited.emit(false)
-	battle_signals.toggle_menu_fight_emited.emit(true)
+	battle_signals.toggle_menu_selection_emitted.emit(false)
+	battle_signals.toggle_menu_fight_emitted.emit(true)
+	battle_signals.menu_fight_focus_mode_changed.emit(Control.FOCUS_NONE)
+	battle_signals.players_focus_mode_changed.emit(Control.FOCUS_ALL)
 	change_to_player(current_player)
 
 ## It shall go to the fight menu.
 func go_to_fight_menu():
-	battle_signals.select_menu_fight_option_emited.emit(0)
+	battle_signals.toggle_menu_items_emitted.emit(false)
+	battle_signals.toggle_menu_skills_emitted.emit(false)
+	battle_signals.enemies_focus_mode_changed.emit(Control.FOCUS_NONE)
+	battle_signals.menu_fight_focus_mode_changed.emit(Control.FOCUS_ALL)
+	battle_signals.select_menu_fight_option_emitted.emit(0)
 
 # --- Attack methods ---
 ## Calculate the physical damage.
@@ -351,6 +376,75 @@ func _on_enemy_selected():
 		return
 	await change_phase(BattlePhasePlayers.new())
 
+func _on_player_select_ended():
+	current_phase.end()
+	change_to_next_player()
+	await change_phase(BattlePhasePlayers.new())
+
 ## Connected to item_clicked signal. It starts the [BattlePhaseItemPlayerSelect].
-func _on_item_clicked(item: Item, id_in_inventory: int):
+func _on_item_clicked(item: Item):
 	await change_phase(BattlePhaseItemTarget.new(item))
+
+## Connected to skill_clicked signal. It starts the [BattlePhaseSkillTarget].
+func _on_skill_clicked(skill: Skill):
+	await change_phase(BattlePhaseSkillTarget.new(skill))
+
+## Connected to self_target_confirmed_emitted. Creates item action targeting the current battler.
+func _on_self_target_confirmed():
+	var phase := current_phase as BattlePhaseItemTarget
+	var targets: Array[Battler] = [current_battler]
+	var data = BattleActionDataItem.new(phase.item)
+	action_pool.append(BattleActionItem.new(current_battler, targets, data))
+	battle_signals.enemy_selected.emit()
+
+## Connected to all_enemies_confirmed_emitted. Creates item action for all alive enemies.
+func _on_all_enemies_confirmed():
+	var phase := current_phase as BattlePhaseItemTarget
+	var alive_enemies: Array[Battler] = []
+	for e in enemies:
+		if e.is_alive():
+			alive_enemies.append(e)
+	var data = BattleActionDataItem.new(phase.item)
+	action_pool.append(BattleActionItem.new(current_battler, alive_enemies, data))
+	battle_signals.enemy_selected.emit()
+
+## Connected to all_skill_allies_confirmed_emitted. Creates skill action for all alive allies.
+func _on_all_skill_allies_confirmed():
+	var phase := current_phase as BattlePhaseSkillTarget
+	var alive_allies: Array[Battler] = []
+	for p in players:
+		if p.is_alive():
+			alive_allies.append(p)
+	var data = BattleActionDataSkill.new(phase.skill)
+	action_pool.append(BattleActionSkill.new(current_battler, alive_allies, data))
+	battle_signals.enemy_selected.emit()
+
+## Connected to all_skill_enemies_confirmed_emitted. Creates skill action for all alive enemies.
+func _on_all_skill_enemies_confirmed():
+	var phase := current_phase as BattlePhaseSkillTarget
+	var alive_enemies: Array[Battler] = []
+	for e in enemies:
+		if e.is_alive():
+			alive_enemies.append(e)
+	var data = BattleActionDataSkill.new(phase.skill)
+	action_pool.append(BattleActionSkill.new(current_battler, alive_enemies, data))
+	battle_signals.enemy_selected.emit()
+
+## Connected to self_skill_target_confirmed_emitted. Creates skill action targeting the current battler.
+func _on_self_skill_target_confirmed():
+	var phase := current_phase as BattlePhaseSkillTarget
+	var targets: Array[Battler] = [current_battler]
+	var data = BattleActionDataSkill.new(phase.skill)
+	action_pool.append(BattleActionSkill.new(current_battler, targets, data))
+	battle_signals.enemy_selected.emit()
+
+## Connected to all_allies_confirmed_emitted. Creates item action for all alive allies.
+func _on_all_allies_confirmed():
+	var phase := current_phase as BattlePhaseItemTarget
+	var alive_allies: Array[Battler] = []
+	for p in players:
+		if p.is_alive():
+			alive_allies.append(p)
+	var data = BattleActionDataItem.new(phase.item)
+	action_pool.append(BattleActionItem.new(current_battler, alive_allies, data))
+	battle_signals.enemy_selected.emit()

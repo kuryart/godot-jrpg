@@ -1,4 +1,4 @@
-class_name FormulaEffectChanceBasic extends Formula
+class_name FormulaEffectChanceBasic extends FormulaEffectChance
 
 @warning_ignore("unused_parameter")
 func calculate(param: FormulaEffectChanceParameter) -> float:

@@ -29,6 +29,8 @@ const TraitAggregatorScript = preload("uid://jpeqi1pb7q3t")
 @export var elements: Array[Element]
 ## The list of skill of the player
 @export var skills: Array[Skill]
+## The grimoire containing skills available to this battler.
+@export var grimoire: Grimoire
 ## The dead status used to check if the battler died.
 @export var dead_status: Status = preload("uid://bhccddi8p1iq3")
 

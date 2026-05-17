@@ -35,32 +35,34 @@ Godot JRPG is a framework for building 2D JRPGs (Japanese Role Playing Games) in
 
 If you have any question, you can:
 
-- Read the documentation (work-in-progress);
+- Read the [documentation](godot_jrpg/docs/README.md) (work-in-progress);
 - Press F1 in Godot and search for the class name (work-in-progress).
 
 ## Structure
 
 The project is structured in: 
 
-- [Assets](assets/README.md)
-- [Editor](editor/README)
-- [Nodes](nodes/README.md)
-- [Resources](resources/README.md)
-- [Tests](tests/README.md)
+- Assets
+- Docs
+- Editor
+- Nodes
+- Resources
+- Tests
 
 ## Already have features
 
 - Skeleton for a battle system
 - Map system
-- Skeleton for menu system
+- Almost complete menu system
 - Splash screen
 - Main menu
-- Skeleton for traits system
+- Some traits for the traits system
 - Flexible formulas for damage, hit chance, critical chance and critical damage, so you can create your own calculations
 - Flexible formulas for leveling and stats growth, so you can create your own calculations
 - Skeleton for database editor, to create enemies, players, classes, skills, items, status, etc.
 - Resources and nodes which can help building the game
-- More skeletons for status, items, skills, etc.
+- Equipment system
+- Status system
 
 ## Planned features
 
@@ -73,15 +75,17 @@ The project is structured in:
 
 ## Goals
 
-- [ ] Save/load system;
+- [x] Save system;
+- [ ] Load system;
 - [x] Map scene system (we barely have battle system);
 - [x] Menus system;
 - [ ] Use item in battle;
 - [ ] Use skill in battle;
-- [ ] Defend in battle;
+- [x] Defend in battle;
 - [ ] Develop traits:
 	- [x] Create traits system base;
-	- [ ] Integrate traits in gameplay;
+	- [x] Integrate traits in gameplay;
+	- [ ] Create all basic traits;
 - [x] Victory system;
 - [x] Game over system;
 - [x] Equip system;
@@ -101,7 +105,6 @@ This addon uses third-party plugins. You can install all at once using [gd-plug]
 - [gd-plug - Plugin Manager](https://godotengine.org/asset-library/asset/962)
 - [gd-plug-ui - Plugin Manager UI](https://godotengine.org/asset-library/asset/1926)
 - [Universal Fade](https://godotengine.org/asset-library/asset/1454)
-- [Switch Manager](https://godotengine.org/asset-library/asset/2634)
 
 ## Credits
 
@@ -122,5 +125,4 @@ This addon uses third-party plugins. You can install all at once using [gd-plug]
 - [imjp94/gd-plug](https://github.com/imjp94/gd-plug)
 - [imjp94/gd-plug-ui](https://github.com/imjp94/gd-plug-ui)
 - [KoBeWi/Godot-Universal-Fade](https://github.com/KoBeWi/Godot-Universal-Fade)
-- [AlecSouthward/switch-manager](https://github.com/AlecSouthward/switch-manager) 
 - [ramokz/phantom-camera](https://github.com/ramokz/phantom-camera) 
