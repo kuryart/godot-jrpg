@@ -1,3 +1,5 @@
+## A list of effects.
 class_name EffectList extends Resource
 
-@export var effects: Array[Effect]
+## The entries of the list of effects.
+@export var entries: Array[Effect]

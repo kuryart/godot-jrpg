@@ -39,7 +39,7 @@ func unregister_menu(menu: Control):
 			last_focus.grab_focus.call_deferred()
 
 func open_main_menu():
-	if !GameManager.can_open_menu: return
+	#if !GameManager.can_open_menu: return
 	
 	var menu_instance = menu_scene.instantiate()
 	get_tree().root.add_child(menu_instance)
@@ -47,6 +47,7 @@ func open_main_menu():
 
 func _input(event: InputEvent):
 	if event.is_action_pressed("cancel"):
+		if !GameManager.can_open_menu: return
 		if not stack.is_empty():
 			var top = stack.back()
 

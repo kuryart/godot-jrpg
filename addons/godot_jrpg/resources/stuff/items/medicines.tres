@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c32xi2tbpwyvo"]
+
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_2mw2v"]
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="1_2s2j5"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_ujsdb"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="3_axqij"]
+[ext_resource type="Script" uid="uid://bqnn8fctbndnr" path="res://addons/godot_jrpg/resources/effects/effect_heal.gd" id="3_c317o"]
+[ext_resource type="Texture2D" uid="uid://b52fwi82lyqqe" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-medicines.png" id="5_7aj7p"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="6_di71o"]
+
+[sub_resource type="Resource" id="Resource_kn6vd"]
+script = ExtResource("3_c317o")
+amount = 15
+metadata/_custom_type_script = "uid://bqnn8fctbndnr"
+
+[sub_resource type="Resource" id="Resource_5e7q6"]
+script = ExtResource("3_axqij")
+entries = Array[ExtResource("1_2mw2v")]([SubResource("Resource_kn6vd")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_axqij"]
+script = ExtResource("6_di71o")
+scope = 1
+side = 1
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_2s2j5")
+used_on = 2
+effects = SubResource("Resource_5e7q6")
+targets = SubResource("Resource_axqij")
+display_name = "Medicines"
+description = "Used to heal all party."
+icon = ExtResource("5_7aj7p")
+price = 14
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

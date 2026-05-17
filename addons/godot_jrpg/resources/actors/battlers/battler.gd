@@ -29,6 +29,8 @@ const TraitAggregatorScript = preload("uid://jpeqi1pb7q3t")
 @export var elements: Array[Element]
 ## The list of skill of the player
 @export var skills: Array[Skill]
+## The grimoire containing skills available to this battler.
+@export var grimoire: Grimoire
 ## The dead status used to check if the battler died.
 @export var dead_status: Status = preload("uid://bhccddi8p1iq3")
 
@@ -192,9 +194,9 @@ func get_critical_dodge() -> int:
 	return int(final_val)
 
 ## Get the magical dodge chance rate from the battler
-func get_magical_dodge() -> int:
-	var base_val = float(stats.magical_dodge.get_value())
-	var final_val = trait_aggregator.get_stat_modified(Stat.ID.MAGICAL_DODGE, base_val)
+func get_effect_dodge() -> int:
+	var base_val = float(stats.effect_dodge.get_value())
+	var final_val = trait_aggregator.get_stat_modified(Stat.ID.EFFECT_DODGE, base_val)
 	return int(final_val)
 
 ## Get the reflection (skill) chance rate from the battler

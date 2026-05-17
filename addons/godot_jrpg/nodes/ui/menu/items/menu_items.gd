@@ -118,7 +118,7 @@ func use_items_in_all_players(item: Item):
 func apply_items_effect(item: Item, target: Player):
 	item.use(target)
 	if item.effects != null:
-		for effect in item.effects.effects:
+		for effect in item.effects.entries:
 			effect.apply(target)
 
 func consume_item_and_update_ui(item: Item):
@@ -147,24 +147,6 @@ func consume_item_and_update_ui(item: Item):
 		item_to_use = null
 
 # ==========================================
-# CANCEL ACTION
-# ==========================================
-func handle_back() -> bool:
-	if current_state == States.PLAYER_SELECTION:
-		cancel_player_selection()
-		return true
-	
-	return false
-
-func cancel_player_selection():
-	current_state = States.ITEM_SELECTION
-	if item_to_use != null:
-		var btn = get_button_for_item(item_to_use)
-		if btn: 
-			btn.grab_focus()
-		item_to_use = null
-		
-# ==========================================
 # CONNECTED METHODS
 # ==========================================
 func _on_item_changed(item):
@@ -176,7 +158,7 @@ func _on_player_selected(target: Player):
 	apply_items_effect(item_to_use, target)
 	consume_item_and_update_ui(item_to_use)
 
-func _on_item_clicked(item: Item, _id_in_inventory: int):
+func _on_item_clicked(item: Item):
 	if inventory.items.is_empty() or not inventory.items.has(item): return
 
 	if item.used_on == Item.USED_ON.BATTLE:

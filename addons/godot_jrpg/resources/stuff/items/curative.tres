@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dq853pqdcx7s1"]
+
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_4xjn4"]
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="1_7mmar"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_on3mw"]
+[ext_resource type="Script" uid="uid://bqnn8fctbndnr" path="res://addons/godot_jrpg/resources/effects/effect_heal.gd" id="3_6r2hl"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="4_78l32"]
+[ext_resource type="Texture2D" uid="uid://cyef7hhpihe5g" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item_curative.png" id="5_tqns2"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="7_ygrk6"]
+
+[sub_resource type="Resource" id="Resource_agx4t"]
+script = ExtResource("3_6r2hl")
+amount = 15
+metadata/_custom_type_script = "uid://bqnn8fctbndnr"
+
+[sub_resource type="Resource" id="Resource_umfw4"]
+script = ExtResource("4_78l32")
+entries = Array[ExtResource("1_4xjn4")]([SubResource("Resource_agx4t")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_wwkj3"]
+script = ExtResource("7_ygrk6")
+side = 3
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_7mmar")
+used_on = 2
+effects = SubResource("Resource_umfw4")
+targets = SubResource("Resource_wwkj3")
+display_name = "Curative"
+description = "Heals self."
+icon = ExtResource("5_tqns2")
+price = 13
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

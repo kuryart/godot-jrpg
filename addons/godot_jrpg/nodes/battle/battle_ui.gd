@@ -40,6 +40,8 @@ class_name BattleUI extends Control
 @onready var messenger_label: RichTextLabel = %MessengerLabel
 ## The UI for the character's face. 
 @onready var face: BattleFace = %Face
+## The grid for the items menu.
+@onready var items_grid: GridContainer = %ItemsGrid
 
 ## This resource is shared with engine objects to share common battle signals. Just
 ## be sure to reference the right .tres.
@@ -54,9 +56,11 @@ class_name BattleUI extends Control
 ## A dictionary to retain the players' UIs. Each key is a [Player], and each 
 ## value is a [BattlePlayerUI]
 var players: Dictionary[Player, BattlePlayerUI]
-## A dictionary to retain the enemies' UIs. Each key is a [Enemy], and each 
+## A dictionary to retain the enemies' UIs. Each key is a [Enemy], and each
 ## value is a [BattleEnemyUI].
 var enemies: Dictionary[Enemy, BattleEnemyUI]
+## Tracks the current active player, updated via player_changed signal.
+var current_player: Player
 
 func _ready() -> void:
 	if DisplayServer.get_name() == "headless":
@@ -70,37 +74,55 @@ func _ready() -> void:
 func setup_ui():
 	# === CONNECTIONS ===
 	# --- Background ---
-	battle_signals.set_background_emited.connect(_on_set_background_emited)
+	battle_signals.set_background_emitted.connect(_on_set_background_emitted)
 	# --- Actors ---
-	battle_signals.instantiate_enemies_emited.connect(_on_instantiate_enemies_emited)
-	battle_signals.instantiate_players_emited.connect(_on_instantiate_players_emited)
-	battle_signals.select_enemy_emited.connect(_on_select_enemy_emited)
+	battle_signals.instantiate_enemies_emitted.connect(_on_instantiate_enemies_emitted)
+	battle_signals.instantiate_players_emitted.connect(_on_instantiate_players_emitted)
+	battle_signals.select_enemy_emitted.connect(_on_select_enemy_emitted)
 	battle_signals.battler_damaged.connect(_on_battler_damaged)
 	battle_signals.player_changed.connect(_on_player_changed)
-	battle_signals.change_player_face_emited.connect(_on_change_player_face_emited)
+	battle_signals.change_player_face_emitted.connect(_on_change_player_face_emitted)
 	battle_signals.battler_died.connect(_on_battler_died)
+	battle_signals.player_select_ended.connect(_on_player_select_ended)
 	# --- Focus ---
-	battle_signals.request_player_focus_emited.connect(_on_request_player_focus_emited)
-	battle_signals.define_focus_neighbors_emited.connect(_on_define_focus_neighbors_emited)
-	battle_signals.select_menu_selection_option_emited.connect(_on_select_menu_selection_option_emited)
+	battle_signals.request_player_focus_emitted.connect(_on_request_player_focus_emitted)
+	battle_signals.define_focus_neighbors_emitted.connect(_on_define_focus_neighbors_emitted)
+	battle_signals.select_menu_selection_option_emitted.connect(_on_select_menu_selection_option_emitted)
 	battle_signals.enemies_focus_mode_changed.connect(_on_enemies_focus_mode_changed)
 	battle_signals.players_focus_mode_changed.connect(_on_players_focus_mode_changed)
 	battle_signals.menu_fight_focus_mode_changed.connect(_on_menu_fight_focus_mode_changed)
-	battle_signals.select_menu_fight_option_emited.connect(_on_select_menu_fight_option_emited)
-	battle_signals.update_enemy_focus_neighbor_emited.connect(_on_update_enemy_focus_neighbor_emited)
+	battle_signals.select_menu_fight_option_emitted.connect(_on_select_menu_fight_option_emitted)
+	battle_signals.update_enemy_focus_neighbor_emitted.connect(_on_update_enemy_focus_neighbor_emitted)
 	# --- Toggle menu ---
-	battle_signals.toggle_menu_bottom_emited.connect(_on_toggle_menu_bottom_emited)
-	battle_signals.toggle_menu_items_emited.connect(_on_toggle_menu_items_emited)
-	battle_signals.toggle_menu_skills_emited.connect(_on_toggle_menu_skills_emited)
-	battle_signals.toggle_messenger_emited.connect(_on_toggle_messenger_emited)
-	battle_signals.toggle_menu_fight_emited.connect(_on_toggle_menu_fight_emited)
-	battle_signals.toggle_menu_selection_emited.connect(_on_toggle_menu_selection_emited)
+	battle_signals.toggle_menu_bottom_emitted.connect(_on_toggle_menu_bottom_emitted)
+	battle_signals.toggle_menu_items_emitted.connect(_on_toggle_menu_items_emitted)
+	battle_signals.toggle_menu_skills_emitted.connect(_on_toggle_menu_skills_emitted)
+	battle_signals.toggle_messenger_emitted.connect(_on_toggle_messenger_emitted)
+	battle_signals.toggle_menu_fight_emitted.connect(_on_toggle_menu_fight_emitted)
+	battle_signals.toggle_menu_selection_emitted.connect(_on_toggle_menu_selection_emitted)
 	# --- Buttons ---
 	battle_signals.fight_button_entered.connect(_on_fight_button_entered)
 	battle_signals.run_button_entered.connect(_on_run_button_entered)
+	# --- Item target selection ---
+	battle_signals.go_to_players_menu_emitted.connect(_on_go_to_players_menu_emitted)
+	battle_signals.select_item_target_all_allies_emitted.connect(_on_select_item_target_all_allies_emitted)
+	battle_signals.select_item_target_one_enemy_emitted.connect(_on_select_item_target_one_enemy_emitted)
+	battle_signals.select_item_target_all_enemies_emitted.connect(_on_select_item_target_all_enemies_emitted)
+	battle_signals.all_allies_confirmed_emitted.connect(_on_all_allies_confirmed_emitted)
+	battle_signals.all_enemies_confirmed_emitted.connect(_on_all_enemies_confirmed_emitted)
+	battle_signals.select_item_target_self_emitted.connect(_on_select_item_target_self_emitted)
+	battle_signals.self_target_confirmed_emitted.connect(_on_self_target_confirmed_emitted)
+	# --- Skill target selection ---
+	battle_signals.select_skill_target_all_allies_emitted.connect(_on_select_skill_target_all_allies_emitted)
+	battle_signals.select_skill_target_one_enemy_emitted.connect(_on_select_skill_target_one_enemy_emitted)
+	battle_signals.select_skill_target_all_enemies_emitted.connect(_on_select_skill_target_all_enemies_emitted)
+	battle_signals.all_skill_allies_confirmed_emitted.connect(_on_all_skill_allies_confirmed_emitted)
+	battle_signals.all_skill_enemies_confirmed_emitted.connect(_on_all_skill_enemies_confirmed_emitted)
+	battle_signals.select_skill_target_self_emitted.connect(_on_select_skill_target_self_emitted)
+	battle_signals.self_skill_target_confirmed_emitted.connect(_on_self_skill_target_confirmed_emitted)
 	# --- Handle cancel ---
 	# --- Messenger ---
-	battle_signals.message_emited.connect(_on_message_emited)
+	battle_signals.message_emitted.connect(_on_message_emitted)
 	# --- Status refreshed
 	battle_signals.status_refreshed.connect(_on_status_refreshed)
 
@@ -125,14 +147,14 @@ func refresh_status():
 # === CONNECTED METHODS ===
 # --- Background ---
 ## Used to set background.
-func _on_set_background_emited(settings: BattleSettings):
+func _on_set_background_emitted(settings: BattleSettings):
 	await wait_ready()
 	background.texture = settings.background
 	background.size = settings.background_size
 
 # --- Actors ---
 ## Used to instantiate enemies.
-func _on_instantiate_enemies_emited(enemies_settings: Array[EnemySettings], _enemies: Array[Enemy], engine: BattleEngine):
+func _on_instantiate_enemies_emitted(enemies_settings: Array[EnemySettings], _enemies: Array[Enemy], engine: BattleEngine):
 	await wait_ready()
 	for i in range(_enemies.size()):
 		var enemy_ui = enemy_scene.instantiate() as BattleEnemyUI
@@ -143,7 +165,7 @@ func _on_instantiate_enemies_emited(enemies_settings: Array[EnemySettings], _ene
 		enemies_options.add_child(enemy_ui)
 
 ## Used to instantiate players. We insert a [Player] into a [BattlePlayerUI].
-func _on_instantiate_players_emited(engine: BattleEngine, _players: Array[Player]):
+func _on_instantiate_players_emitted(engine: BattleEngine, _players: Array[Player]):
 	await wait_ready()
 	for player in _players:
 		var player_ui = player_scene.instantiate() as BattlePlayerUI
@@ -157,7 +179,7 @@ func _on_instantiate_players_emited(engine: BattleEngine, _players: Array[Player
 			status_container.add_child(status_icon_ui)
 
 ## Used when the game asks for enemy selection.
-func _on_select_enemy_emited():
+func _on_select_enemy_emitted():
 	await wait_ready()
 	var enemies_array: Array[Enemy] = enemies.keys()
 	var enemies_alive: Array[Enemy] = enemies_array.filter(func(enemy: Enemy): return enemy.is_alive())
@@ -175,10 +197,11 @@ func _on_battler_damaged(battler: Battler):
 
 ## Used to change the face UI based on player changed.
 func _on_player_changed(player: Player):
+	current_player = player
 	face.texture = player.face
 
 ## Used to change the face UI based on player being the target or the actor of an action.
-func _on_change_player_face_emited(action: BattleAction):
+func _on_change_player_face_emitted(action: BattleAction):
 	var first_target = action.targets[0]
 	face.texture = first_target.face if action.actor is Enemy else action.actor.face
 
@@ -193,13 +216,25 @@ func _on_battler_died(battler: Battler):
 		refresh_status()
 		player_ui.die()
 
-## Used to refresh rhe status icons.
+## Used to refresh the status icons.
 func _on_status_refreshed(engine: BattleEngine):
 	refresh_status()
 
+func _on_player_select_ended() -> void:
+	var children = players_options.get_children()
+	var count = children.size()
+	
+	for i in range(count):
+		var player_ui = children[i] as BattlePlayerUI
+		var path = player_ui.get_path()
+		player_ui.focus_neighbor_left = path
+		player_ui.focus_neighbor_right = path
+		player_ui.focus_neighbor_top = path
+		player_ui.focus_neighbor_bottom = path
+
 # --- Focus ---
 ## Define the focus neighbors for enemies for the first time.
-func _on_define_focus_neighbors_emited():
+func _on_define_focus_neighbors_emitted():
 	await wait_ready()
 	var enemies_array_children = enemies_options.get_children()
 	var enemies_array_size: int = enemies_array_children.size()
@@ -214,11 +249,13 @@ func _on_define_focus_neighbors_emited():
 		if j > enemies_array_size - 1: j = 0
 		enemy.focus_neighbor_right = enemies_array_children[j].get_path()
 
-## Used when the enemies focus mode was changed. 
+## Used when the enemies focus mode was changed.
 func _on_enemies_focus_mode_changed(mode: Control.FocusMode):
 	await wait_ready()
 	for enemy in enemies_options.get_children():
 		enemy.focus_mode = mode
+		if mode == Control.FOCUS_NONE:
+			(enemy as BattleEnemyUI).stop_flash()
 
 ## Used when the players focus mode was changed. 
 func _on_players_focus_mode_changed(mode: Control.FocusMode):
@@ -233,24 +270,24 @@ func _on_menu_fight_focus_mode_changed(mode: Control.FocusMode):
 		option.focus_mode = mode
 
 ## Used when the player focus is requested.
-func _on_request_player_focus_emited(player: Player):
+func _on_request_player_focus_emitted(player: Player):
 	await wait_ready()
 	var player_ui = players[player]
 	player_ui.grab_focus()
 
 ## Used when and option from selection menu is selected (fight or run).
-func _on_select_menu_selection_option_emited(id: int):
+func _on_select_menu_selection_option_emitted(id: int):
 	await wait_ready()
 	menu_selection_options.get_children()[id].grab_focus()
 
 ## Used when and option from fight menu is selected (attack, defend, items, skills).
-func _on_select_menu_fight_option_emited(id: int):
+func _on_select_menu_fight_option_emitted(id: int):
 	await wait_ready()
 	menu_fight_options.get_children()[id].grab_focus()
 
 ## Used to update the enemy focus when an enemy dies, for example, creating a 
 ## cyclical enemy selection.
-func _on_update_enemy_focus_neighbor_emited():
+func _on_update_enemy_focus_neighbor_emitted():
 	await wait_ready()
 	var enemies_array: Array[BattleEnemyUI] = enemies.values()
 	var active_enemies: Array[BattleEnemyUI] = enemies_array.filter(func(enemy: BattleEnemyUI): return enemy.enemy.is_alive())
@@ -270,32 +307,43 @@ func _on_update_enemy_focus_neighbor_emited():
 
 # --- Toggle menus ---
 ## Used to toggle skills menu on or off.
-func _on_toggle_menu_skills_emited(on: bool):
+func _on_toggle_menu_skills_emitted(on: bool):
 	await wait_ready()
-	menu_skills.show() if on else menu_skills.hide()
+	if on:
+		menu_skills.show()
+		await menu_skills.rebuild_menu()
+		menu_skills.focus_first()
+	else:
+		menu_skills.hide()
 
 ## Used to toggle items menu on or off.
-func _on_toggle_menu_items_emited(on: bool):
+func _on_toggle_menu_items_emitted(on: bool):
 	await wait_ready()
-	menu_items.show() if on else menu_items.hide()
+	if on:
+		menu_items.show()
+		menu_items.refresh_item_list()
+	else:
+		menu_items.hide()
+		var first_button: Button = menu_fight_options.get_child(0)
+		first_button.grab_focus()
 
 ## Used to toggle bottom menu on or off.
-func _on_toggle_menu_bottom_emited(on: bool):
+func _on_toggle_menu_bottom_emitted(on: bool):
 	await wait_ready()
 	menu_bottom.show() if on else menu_bottom.hide()
 
 ## Used to toggle mesenger menu on or off.
-func _on_toggle_messenger_emited(on: bool):
+func _on_toggle_messenger_emitted(on: bool):
 	await wait_ready()
 	messenger.show() if on else messenger.hide()
 
 ## Used to toggle fight menu on or off.
-func _on_toggle_menu_fight_emited(on: bool):
+func _on_toggle_menu_fight_emitted(on: bool):
 	await wait_ready()
 	menu_fight.show() if on else menu_fight.hide()
 
 ## Used to toggle selection menu on or off.
-func _on_toggle_menu_selection_emited(on: bool):
+func _on_toggle_menu_selection_emitted(on: bool):
 	await wait_ready()
 	menu_selection.show() if on else menu_selection.hide()
 	
@@ -308,8 +356,130 @@ func _on_fight_button_entered():
 func _on_run_button_entered():
 	face.texture = face.icon_run
 
+# --- Item target player selection ---
+## Flashes all alive enemies in loop. Waits for action button to confirm.
+func _on_select_item_target_all_enemies_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	for enemy_ui in enemies.values():
+		if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+			(enemy_ui as BattleEnemyUI).flash()
+
+## Flashes current player UI in loop. Waits for action button to confirm.
+func _on_select_item_target_self_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	var player_ui = players.get(current_player)
+	if player_ui:
+		player_ui.flash()
+
+## Stops current player flash when self target is confirmed.
+func _on_self_target_confirmed_emitted():
+	await wait_ready()
+	var player_ui = players.get(current_player)
+	if player_ui:
+		player_ui.stop_flash()
+
+## Stops all enemy flash animations when all-enemies action is confirmed.
+func _on_all_enemies_confirmed_emitted():
+	await wait_ready()
+	for enemy_ui in enemies.values():
+		(enemy_ui as BattleEnemyUI).stop_flash()
+
+## Hides items menu and enables enemy selection with existing flash animation.
+func _on_select_item_target_one_enemy_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	battle_signals.select_enemy_emitted.emit()
+
+## Starts looping flash on all alive player name labels. Waits for action button.
+func _on_select_item_target_all_allies_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.flash()
+
+## Stops all flash animations when all-allies action is confirmed.
+func _on_all_allies_confirmed_emitted():
+	await wait_ready()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui:
+			bpui.stop_flash()
+
+## Hides items/skills menu and enables player buttons as selectable targets.
+func _on_go_to_players_menu_emitted():
+	await wait_ready()
+	menu_items.hide()
+	menu_skills.hide()
+	for player_ui in players_options.get_children():
+		var bpui := player_ui as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.focus_mode = Control.FOCUS_ALL
+	var alive: Array = players_options.get_children().filter(
+		func(p): return p is BattlePlayerUI and (p as BattlePlayerUI).player.is_alive())
+	if not alive.is_empty():
+		(alive[0] as BattlePlayerUI).grab_focus()
+
+# --- Skill target player selection ---
+## Flashes all alive enemies in loop. Waits for action button to confirm.
+func _on_select_skill_target_all_enemies_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	for enemy_ui in enemies.values():
+		if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+			(enemy_ui as BattleEnemyUI).flash()
+
+## Flashes current player UI in loop. Waits for action button to confirm.
+func _on_select_skill_target_self_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	var player_ui = players.get(current_player)
+	if player_ui:
+		player_ui.flash()
+
+## Stops current player flash when self skill target is confirmed.
+func _on_self_skill_target_confirmed_emitted():
+	await wait_ready()
+	var player_ui = players.get(current_player)
+	if player_ui:
+		player_ui.stop_flash()
+
+## Stops all enemy flash animations when all-enemies skill action is confirmed.
+func _on_all_skill_enemies_confirmed_emitted():
+	await wait_ready()
+	for enemy_ui in enemies.values():
+		(enemy_ui as BattleEnemyUI).stop_flash()
+
+## Hides skills menu and enables enemy selection with existing flash animation.
+func _on_select_skill_target_one_enemy_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	battle_signals.select_enemy_emitted.emit()
+
+## Starts looping flash on all alive player name labels. Waits for action button.
+func _on_select_skill_target_all_allies_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.flash()
+
+## Stops all player flash animations when all-allies skill action is confirmed.
+func _on_all_skill_allies_confirmed_emitted():
+	await wait_ready()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui:
+			bpui.stop_flash()
+
 # --- Messenger ---
 ## Used to pass messages to messenger.
-func _on_message_emited(message: String):
+func _on_message_emitted(message: String):
 	await wait_ready()
 	messenger_label.text = message

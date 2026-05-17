@@ -14,7 +14,7 @@ class_name Player extends Battler
 ## The character equipment
 @export var equip: EquipmentSlots
 
-## Signal emited when player level up.
+## Signal emitted when player level up.
 signal leveled_up(new_level: int)
 
 ## Adds an amount of xp to player.

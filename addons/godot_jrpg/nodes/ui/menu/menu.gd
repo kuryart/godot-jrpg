@@ -34,11 +34,11 @@ func _exit_tree():
 	MenuManager.unregister_menu(self)
 
 func connect_signals():
-	menu_signals.open_menu_status_emited.connect(_on_status_button_up)
-	menu_signals.open_menu_save_emited.connect(_on_save_button_up)
-	menu_signals.open_menu_equip_emited.connect(_on_equip_button_up)
-	menu_signals.open_menu_items_emited.connect(_on_items_button_up)
-	menu_signals.open_menu_skills_emited.connect(_on_skills_button_up)
+	menu_signals.open_menu_status_emitted.connect(_on_status_button_up)
+	menu_signals.open_menu_save_emitted.connect(_on_save_button_up)
+	menu_signals.open_menu_equip_emitted.connect(_on_equip_button_up)
+	menu_signals.open_menu_items_emitted.connect(_on_items_button_up)
+	menu_signals.open_menu_skills_emitted.connect(_on_skills_button_up)
 	menu_signals.menu_player_selected.connect(_on_player_selected)
 
 func instantiate_players():

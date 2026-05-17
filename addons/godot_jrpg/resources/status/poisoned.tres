@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Status" format=3 uid="uid://dpg6cw7dmte3r"]
+
+[ext_resource type="Texture2D" uid="uid://bryl610uehjbu" path="res://addons/godot_jrpg/assets/sprites/status/status-poisoned.png" id="1_pm7um"]
+[ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="2_cax4p"]
+[ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="3_buplw"]
+[ext_resource type="Script" uid="uid://cuqvw14m0anvs" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_stat.gd" id="4_7rnm1"]
+[ext_resource type="Resource" uid="uid://bnapikt0dfmsx" path="res://addons/godot_jrpg/resources/actors/battlers/stats/other_stats/hp_regen.tres" id="5_jk8cd"]
+[ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="6_dtxuw"]
+
+[sub_resource type="Resource" id="Resource_l86v0"]
+script = ExtResource("4_7rnm1")
+stat = ExtResource("5_jk8cd")
+multiplier = -0.2
+metadata/_custom_type_script = "uid://cuqvw14m0anvs"
+
+[sub_resource type="Resource" id="Resource_6uqpx"]
+script = ExtResource("6_dtxuw")
+entries = Array[ExtResource("3_buplw")]([SubResource("Resource_l86v0")])
+metadata/_custom_type_script = "uid://e4p3e8vukja"
+
+[resource]
+script = ExtResource("2_cax4p")
+name = "Poisoned"
+traits = SubResource("Resource_6uqpx")
+icon = ExtResource("1_pm7um")
+duration_min = 3
+duration_max = 5
+steps = 10
+message_ally_affected = "is burning!"
+message_enemy_affected = "is burning!"
+message_continuous_effect_ally = "burns..."
+message_continuous_effect_enemy = "burns..."
+message_restore_ally = "is no longer burning!"
+message_restore_enemy = "is no longer burning!"
+metadata/_custom_type_script = "uid://qpouciwxr7ym"

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dtd4ygp60xnpt" path="res://addons/godot_jrpg/resources/actors/battlers/players/player.gd" id="2_6i2qp"]
 [ext_resource type="Texture2D" uid="uid://bgsxxjqb5374h" path="res://addons/godot_jrpg/assets/sprites/actors/players/faces/face-player-1.png" id="2_k5m06"]
 [ext_resource type="Resource" uid="uid://bhccddi8p1iq3" path="res://addons/godot_jrpg/resources/status/dead.tres" id="2_srytj"]
-[ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/controllers/player_manual_controller.gd" id="2_yohbo"]
+[ext_resource type="Script" uid="uid://cwt6qegyo50wf" path="res://addons/godot_jrpg/resources/actors/battlers/controllers/player_manual_controller.gd" id="2_yohbo"]
 [ext_resource type="Resource" uid="uid://css7wcjvbv815" path="res://addons/godot_jrpg/resources/stuff/equippable/accessories/common_shoes.tres" id="3_fsba0"]
 [ext_resource type="Resource" uid="uid://c6cmww8puraic" path="res://addons/godot_jrpg/tests/actors/battlers/classes/test_battler_class_1.tres" id="3_txp2h"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="3_u4h65"]
@@ -17,7 +17,7 @@
 [ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="9_k5m06"]
 [ext_resource type="Script" uid="uid://lxtk6udhgpkx" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/accessory_slot.gd" id="10_bc1gx"]
 [ext_resource type="Resource" uid="uid://boqo61heykbsk" path="res://addons/godot_jrpg/resources/stuff/equippable/shields/wooden_shield.tres" id="10_blvwq"]
-[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate_defend.gd" id="10_k5m06"]
+[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_damage_received.gd" id="10_k5m06"]
 [ext_resource type="Resource" uid="uid://3k7jlv4t21k8" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/copper_axe.tres" id="12_srytj"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="13_nqs0a"]
 [ext_resource type="Script" uid="uid://jwdpbp37yjue" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/armor_slot.gd" id="15_g3a0n"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://sty40x7p8w2t" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/shield_slot.gd" id="26_waerv"]
 [ext_resource type="Script" uid="uid://dm5t5sv617qda" path="res://addons/godot_jrpg/resources/stuff/equippable/slots/weapon_slot.gd" id="30_6w6bm"]
 [ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="34_lm88f"]
+[ext_resource type="Resource" uid="uid://mf7lb5efh6bt" path="res://addons/godot_jrpg/resources/skills/player1_grimoire.tres" id="35_grm1"]
 
 [sub_resource type="Resource" id="Resource_nf7ob"]
 script = ExtResource("2_yohbo")
@@ -112,6 +113,13 @@ id = 3
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
+[sub_resource type="Resource" id="Resource_2uum8"]
+script = ExtResource("3_u4h65")
+display_name = "Effect dodge"
+id = 13
+base_value = 15
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
 [sub_resource type="Resource" id="Resource_pyc5i"]
 script = ExtResource("3_u4h65")
 display_name = "Evasion"
@@ -143,12 +151,6 @@ script = ExtResource("3_u4h65")
 display_name = "Luck"
 id = 8
 base_value = 10
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_w4qnw"]
-script = ExtResource("3_u4h65")
-display_name = "Skill Dodge"
-id = 13
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_blvwq"]
@@ -192,7 +194,7 @@ hp_regen = SubResource("Resource_8r64l")
 mp_regen = SubResource("Resource_srytj")
 critical = SubResource("Resource_afqr4")
 critical_dodge = SubResource("Resource_q81us")
-magical_dodge = SubResource("Resource_w4qnw")
+effect_dodge = SubResource("Resource_2uum8")
 reflection = SubResource("Resource_cmjly")
 counter_attack = SubResource("Resource_wx43h")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
@@ -224,6 +226,7 @@ current_hp = 100
 current_mp = 30
 traits = SubResource("Resource_8ednr")
 skills = Array[ExtResource("17_blvwq")]([ExtResource("18_srytj"), ExtResource("19_cmjly")])
+grimoire = ExtResource("35_grm1")
 name = "player1"
 description = "A description."
 metadata/_custom_type_script = "uid://dtd4ygp60xnpt"

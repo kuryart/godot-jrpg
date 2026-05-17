@@ -1,1 +1,1 @@
-class_name FormulaParameter extends Resource
+@abstract class_name FormulaParameter extends Resource

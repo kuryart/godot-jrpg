@@ -7,7 +7,8 @@ func _init(_actor: Battler = null, _targets: Array[Battler] = [], _data: BattleA
 @warning_ignore("unused_parameter")
 func resolve(engine: BattleEngine):
 	super(engine)
-	var item = data.get_data()
-	
+	var item: Item = data.get_data()
+
 	for target in targets:
-		item.use(target)
+		item.apply_effects(target, actor, engine)
+	item.consume()

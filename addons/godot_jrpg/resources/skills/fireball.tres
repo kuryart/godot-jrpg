@@ -1,26 +1,50 @@
 [gd_resource type="Resource" script_class="Skill" format=3 uid="uid://kfjt3gjup8dd"]
 
 [ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_44h3l"]
-[ext_resource type="Script" uid="uid://dm1jesd4d00ue" path="res://addons/godot_jrpg/resources/formulas/skill_damage/formula_skill_damage_rpg_maker.gd" id="1_d0ngp"]
 [ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="1_ecjv0"]
 [ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="2_begl1"]
-[ext_resource type="Script" uid="uid://bkqt5xivjwcxk" path="res://addons/godot_jrpg/resources/effects/effect_status_add.gd" id="3_2jtir"]
-[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="4_u4omu"]
-[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/target/target.gd" id="7_w3mn3"]
+[ext_resource type="Script" uid="uid://dsabjlwc355ao" path="res://addons/godot_jrpg/resources/formulas/effect_chance/formula_effect_chance_never_miss.gd" id="2_u4omu"]
+[ext_resource type="Script" uid="uid://dit3bpnj8dj25" path="res://addons/godot_jrpg/resources/formulas/effect_critical_chance/formula_effect_critical_chance_basic.gd" id="3_w3mn3"]
+[ext_resource type="Script" uid="uid://b6ofka062hcd0" path="res://addons/godot_jrpg/resources/formulas/effect_damage/formula_effect_damage_rpg_maker.gd" id="4_geou8"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="5_mtqdq"]
+[ext_resource type="Script" uid="uid://be5bac0p75k8g" path="res://addons/godot_jrpg/resources/effects/effect_damage.gd" id="6_cnr6g"]
+[ext_resource type="Resource" uid="uid://dimvgsvpff3v0" path="res://addons/godot_jrpg/resources/elements/fire.tres" id="6_hgtpm"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="7_w3mn3"]
+[ext_resource type="Script" uid="uid://bkqt5xivjwcxk" path="res://addons/godot_jrpg/resources/effects/effect_status_add.gd" id="8_mx6vu"]
+[ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="9_qbd3l"]
+[ext_resource type="Texture2D" uid="uid://brts0pejjblwh" path="res://addons/godot_jrpg/assets/sprites/skills/skill-fireball.png" id="11_ec7tg"]
 
-[sub_resource type="Resource" id="Resource_geou8"]
-script = ExtResource("1_d0ngp")
-base_damage = 300
-metadata/_custom_type_script = "uid://dm1jesd4d00ue"
+[sub_resource type="Resource" id="Resource_mx6vu"]
+script = ExtResource("2_u4omu")
+metadata/_custom_type_script = "uid://dsabjlwc355ao"
 
-[sub_resource type="Resource" id="Resource_d0ngp"]
-script = ExtResource("3_2jtir")
-status = ExtResource("4_u4omu")
+[sub_resource type="Resource" id="Resource_qbd3l"]
+script = ExtResource("3_w3mn3")
+metadata/_custom_type_script = "uid://dit3bpnj8dj25"
+
+[sub_resource type="Resource" id="Resource_ec7tg"]
+script = ExtResource("4_geou8")
+base_damage = 15
+metadata/_custom_type_script = "uid://b6ofka062hcd0"
+
+[sub_resource type="Resource" id="Resource_ok20f"]
+script = ExtResource("6_cnr6g")
+damage_formula = SubResource("Resource_ec7tg")
+chance_formula = SubResource("Resource_mx6vu")
+critical_chance_formula = SubResource("Resource_qbd3l")
+is_critical = true
+elements = Array[ExtResource("5_mtqdq")]([ExtResource("6_hgtpm")])
+metadata/_custom_type_script = "uid://be5bac0p75k8g"
+
+[sub_resource type="Resource" id="Resource_36yvg"]
+script = ExtResource("8_mx6vu")
+status = ExtResource("9_qbd3l")
+elements = Array[ExtResource("5_mtqdq")]([ExtResource("6_hgtpm")])
 metadata/_custom_type_script = "uid://bkqt5xivjwcxk"
 
 [sub_resource type="Resource" id="Resource_2jtir"]
 script = ExtResource("2_begl1")
-effects = Array[ExtResource("1_44h3l")]([SubResource("Resource_d0ngp")])
+entries = Array[ExtResource("1_44h3l")]([SubResource("Resource_ok20f"), SubResource("Resource_36yvg")])
 metadata/_custom_type_script = "uid://dt05mo88hqdmw"
 
 [sub_resource type="Resource" id="Resource_hgtpm"]
@@ -34,7 +58,7 @@ description = "A fireball that can cause burning."
 used_on = 1
 effects = SubResource("Resource_2jtir")
 targets = SubResource("Resource_hgtpm")
-damage = SubResource("Resource_geou8")
 message = "casted"
+icon = ExtResource("11_ec7tg")
 mp_cost = 20
 metadata/_custom_type_script = "uid://kyffs4we46du"

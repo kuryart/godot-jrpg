@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Enemy" format=3 uid="uid://boliaxia5nxax"]
 
 [ext_resource type="Script" uid="uid://fonb13nkm4yv" path="res://addons/godot_jrpg/resources/actors/battlers/enemies/enemy.gd" id="1_6s3k7"]
-[ext_resource type="Script" uid="uid://c0cnc6567nkft" path="res://addons/godot_jrpg/resources/controllers/brains/brain_dumb.gd" id="1_48ydv"]
-[ext_resource type="Script" uid="uid://bpmohnsv7yfs6" path="res://addons/godot_jrpg/resources/controllers/enemy_ai_controller.gd" id="1_yhfdy"]
+[ext_resource type="Script" uid="uid://c0cnc6567nkft" path="res://addons/godot_jrpg/resources/actors/battlers/controllers/brains/brain_dumb.gd" id="1_48ydv"]
+[ext_resource type="Script" uid="uid://bpmohnsv7yfs6" path="res://addons/godot_jrpg/resources/actors/battlers/controllers/enemy_ai_controller.gd" id="1_yhfdy"]
 [ext_resource type="Script" uid="uid://whk3qgx1yqyp" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stat.gd" id="2_vmhau"]
 [ext_resource type="Resource" uid="uid://bhccddi8p1iq3" path="res://addons/godot_jrpg/resources/status/dead.tres" id="3_i87i4"]
 [ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="3_omfch"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://qpouciwxr7ym" path="res://addons/godot_jrpg/resources/status/status.gd" id="4_k2p5p"]
 [ext_resource type="Script" uid="uid://kyffs4we46du" path="res://addons/godot_jrpg/resources/skills/skill.gd" id="5_cywwm"]
 [ext_resource type="Script" uid="uid://cviawg5mw3b8" path="res://addons/godot_jrpg/resources/stuff/loot/loot.gd" id="5_tfxke"]
-[ext_resource type="Resource" uid="uid://dr0kmau6w3q6y" path="res://addons/godot_jrpg/resources/stuff/items/antidote.tres" id="6_i87i4"]
+[ext_resource type="Resource" uid="uid://dr0kmau6w3q6y" path="res://addons/godot_jrpg/resources/stuff/items/venom.tres" id="6_i87i4"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="8_jgrbp"]
 [ext_resource type="Script" uid="uid://dfck85v6aerpq" path="res://addons/godot_jrpg/resources/traits/chance_traits/trait_status_chance_attack.gd" id="9_fkgf5"]
 [ext_resource type="Resource" uid="uid://cef5smra746qk" path="res://addons/godot_jrpg/resources/status/burning.tres" id="10_fkgf5"]
@@ -32,62 +32,131 @@ item = ExtResource("6_i87i4")
 chance = 1.0
 metadata/_custom_type_script = "uid://cviawg5mw3b8"
 
-[sub_resource type="Resource" id="Resource_cywwm"]
-script = ExtResource("2_vmhau")
-base_value = 10
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_qjwl1"]
-script = ExtResource("2_vmhau")
-base_value = 10
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
-[sub_resource type="Resource" id="Resource_bkfwp"]
-script = ExtResource("2_vmhau")
-base_value = 10
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
 [sub_resource type="Resource" id="Resource_i87i4"]
 script = ExtResource("2_vmhau")
+display_name = "Accuracy"
+id = 6
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_tfxke"]
 script = ExtResource("2_vmhau")
-base_value = 100
+display_name = "Attack"
+id = 2
+base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_1v1w1"]
 script = ExtResource("2_vmhau")
-base_value = 10
+display_name = "Counter-Attack"
+id = 15
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_amcxx"]
 script = ExtResource("2_vmhau")
+display_name = "Critical"
+id = 11
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_ppbf5"]
 script = ExtResource("2_vmhau")
+display_name = "Critical Dodge"
+id = 12
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_gh4b0"]
 script = ExtResource("2_vmhau")
+display_name = "Defense"
+id = 3
 base_value = 10
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_84mw0"]
+script = ExtResource("2_vmhau")
+display_name = "Skill Dodge"
+id = 13
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_5thub"]
+script = ExtResource("2_vmhau")
+display_name = "Evasion"
+id = 7
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_vlr1o"]
+script = ExtResource("2_vmhau")
+display_name = "HP"
+base_value = 100
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_48jrh"]
+script = ExtResource("2_vmhau")
+display_name = "HP Regen"
+id = 9
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_wkmxh"]
+script = ExtResource("2_vmhau")
+display_name = "Intelligence"
+id = 4
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_pxjr1"]
+script = ExtResource("2_vmhau")
+display_name = "Luck"
+id = 8
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_mcv0h"]
+script = ExtResource("2_vmhau")
+display_name = "MP"
+id = 1
+base_value = 50
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_b0n0i"]
+script = ExtResource("2_vmhau")
+display_name = "MP Regen"
+id = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_654cr"]
+script = ExtResource("2_vmhau")
+display_name = "Skill Reflection"
+id = 14
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_ywnv2"]
+script = ExtResource("2_vmhau")
+display_name = "Speed"
+id = 5
+base_value = 10
+metadata/_custom_type_script = "uid://whk3qgx1yqyp"
+
+[sub_resource type="Resource" id="Resource_r3y62"]
 script = ExtResource("3_w6an3")
-hp = SubResource("Resource_tfxke")
-mp = SubResource("Resource_ppbf5")
-attack = SubResource("Resource_qjwl1")
-defense = SubResource("Resource_bkfwp")
-intelligence = SubResource("Resource_1v1w1")
-speed = SubResource("Resource_gh4b0")
-accuracy = SubResource("Resource_cywwm")
-evasion = SubResource("Resource_i87i4")
-luck = SubResource("Resource_amcxx")
+hp = SubResource("Resource_vlr1o")
+mp = SubResource("Resource_mcv0h")
+attack = SubResource("Resource_tfxke")
+defense = SubResource("Resource_gh4b0")
+intelligence = SubResource("Resource_wkmxh")
+speed = SubResource("Resource_ywnv2")
+accuracy = SubResource("Resource_i87i4")
+evasion = SubResource("Resource_5thub")
+luck = SubResource("Resource_pxjr1")
+hp_regen = SubResource("Resource_48jrh")
+mp_regen = SubResource("Resource_b0n0i")
+critical = SubResource("Resource_amcxx")
+critical_dodge = SubResource("Resource_ppbf5")
+effect_dodge = SubResource("Resource_84mw0")
+reflection = SubResource("Resource_654cr")
+counter_attack = SubResource("Resource_1v1w1")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 
 [sub_resource type="Resource" id="Resource_omfch"]
@@ -107,7 +176,7 @@ sprite = ExtResource("4_fkgf5")
 loot = Array[ExtResource("5_tfxke")]([SubResource("Resource_2kmfs")])
 money = 5
 xp = 100
-stats = SubResource("Resource_84mw0")
+stats = SubResource("Resource_r3y62")
 controller = SubResource("Resource_yfqnd")
 current_hp = 1
 current_mp = 12

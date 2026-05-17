@@ -8,6 +8,8 @@ class_name PlayerClass extends Resource
 @export_multiline var description: String
 ## The list of traits for the class
 @export var traits: TraitList
+## The grimoire containing skills available to this class.
+@export var grimoire: Grimoire
 
 @export_group("Growth Methods")
 ## The progression by level for hp.

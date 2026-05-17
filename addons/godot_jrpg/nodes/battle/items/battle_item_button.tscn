@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bnqu8635adojv"]
+
+[ext_resource type="Script" uid="uid://dudktm7p56a6" path="res://addons/godot_jrpg/nodes/battle/items/battle_item_button.gd" id="1_x7phr"]
+
+[node name="ItemButton" type="Button" unique_id=765523746]
+size_flags_horizontal = 3
+script = ExtResource("1_x7phr")

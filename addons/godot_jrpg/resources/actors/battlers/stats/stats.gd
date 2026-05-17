@@ -1,3 +1,10 @@
+## This class holds all stats for a battler. 
+##
+## You can simply use the resource already created in resources/actors/battlers/stats/stats.tres to 
+## quickly set all stats for a battler, but remember to duplicate the resource, otherwise it will be 
+## shared by two or more battlers, which is not the expected behaviour. You can create new stats and
+## place them here, but you will have to implement the logic for it in the game. You can also remove
+## a stat, but this can break the system - if you know what you're doing, go ahead.
 class_name Stats extends Resource
 
 @export_group("Main Stats")
@@ -21,19 +28,19 @@ class_name Stats extends Resource
 @export var luck: Stat
 
 @export_group("Other Stats")
-## The hp regeneration rate
+## The hp regeneration rate. This stat is a percentage. Values greater than 100 will be considered 100.
 @export var hp_regen: Stat
-## The mp regeneration rate
+## The mp regeneration rate. This stat is a percentage. Values greater than 100 will be considered 100.
 @export var mp_regen: Stat
-## The critical chance rate
+## The critical chance rate. This stat is a percentage. Values greater than 100 will be considered 100.
 @export var critical: Stat
-## The critical dodge chance rate
+## The critical dodge chance rate. This stat is a percentage. Values greater than 100 will be considered 100.
 @export var critical_dodge: Stat
-## The magical dodge chance rate
-@export var magical_dodge: Stat
-## The reflection (skill) chance rate
+## The magical dodge chance rate. This stat is a percentage. Values greater than 100 will be considered 100.
+@export var effect_dodge: Stat
+## The reflection (skill) chance rate. This stat is a percentage. Values greater than 100 will be considered 100.
 @export var reflection: Stat
-## The counter-attack (attack) chance rate
+## The counter-attack (attack) chance rate. This stat is a percentage. Values greater than 100 will be considered 100.
 @export var counter_attack: Stat
 
 ## Internal cache for searches by name.
@@ -63,7 +70,7 @@ func initialize_stat_map() -> void:
 		&"mp_regen": mp_regen,
 		&"critical": critical,
 		&"critical_dodge": critical_dodge,
-		&"magical_dodge": magical_dodge,
+		&"effect_dodge": effect_dodge,
 		&"reflection": reflection,
 		&"counter_attack": counter_attack,
 	}

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bgy4kuc1fk1nh" path="res://addons/godot_jrpg/resources/actors/battlers/stats/stats.gd" id="3_54uqb"]
 [ext_resource type="Script" uid="uid://bquvjaspk3x0y" path="res://addons/godot_jrpg/resources/traits/trait.gd" id="4_ouipa"]
 [ext_resource type="Resource" uid="uid://d3mlslh5fvesk" path="res://addons/godot_jrpg/resources/elements/wind.tres" id="5_frg74"]
-[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_rate_defend.gd" id="6_3kay3"]
+[ext_resource type="Script" uid="uid://bj3nxpjiumj8i" path="res://addons/godot_jrpg/resources/traits/value_traits/trait_element_damage_received.gd" id="6_3kay3"]
 [ext_resource type="Script" uid="uid://e4p3e8vukja" path="res://addons/godot_jrpg/resources/traits/trait_list.gd" id="7_2klue"]
 [ext_resource type="Resource" uid="uid://baumq2ujtv2p3" path="res://addons/godot_jrpg/resources/stuff/equippable/weapons/types/axe.tres" id="8_mkppi"]
 

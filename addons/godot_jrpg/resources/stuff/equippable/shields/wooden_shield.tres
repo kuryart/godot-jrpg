@@ -55,10 +55,6 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 script = ExtResource("4_lm2d4")
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
-[sub_resource type="Resource" id="Resource_wd8wu"]
-script = ExtResource("4_lm2d4")
-metadata/_custom_type_script = "uid://whk3qgx1yqyp"
-
 [sub_resource type="Resource" id="Resource_sde72"]
 script = ExtResource("4_lm2d4")
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
@@ -90,7 +86,6 @@ hp_regen = SubResource("Resource_ws4wt")
 mp_regen = SubResource("Resource_kisa4")
 critical = SubResource("Resource_ffop5")
 critical_dodge = SubResource("Resource_n4dx2")
-magical_dodge = SubResource("Resource_wd8wu")
 reflection = SubResource("Resource_mp503")
 counter_attack = SubResource("Resource_lyyf7")
 metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"

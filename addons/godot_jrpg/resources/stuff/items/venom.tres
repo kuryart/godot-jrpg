@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dr0kmau6w3q6y"]
+
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_nny8o"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="3_65hjj"]
+[ext_resource type="Texture2D" uid="uid://c82dgdtufyxev" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-venom.png" id="5_65hjj"]
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="5_73fo4"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="6_bfkqo"]
+
+[sub_resource type="Resource" id="Resource_ftb4x"]
+script = ExtResource("3_65hjj")
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_5d8is"]
+script = ExtResource("6_bfkqo")
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("5_73fo4")
+used_on = 2
+effects = SubResource("Resource_ftb4x")
+targets = SubResource("Resource_5d8is")
+display_name = "Venom"
+description = "Use on an enemy,"
+icon = ExtResource("5_65hjj")
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

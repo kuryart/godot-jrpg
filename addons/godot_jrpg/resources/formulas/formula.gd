@@ -1,1 +1,1 @@
-class_name Formula extends Resource
+@abstract class_name Formula extends Resource

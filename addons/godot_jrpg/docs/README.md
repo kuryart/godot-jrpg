@@ -1,0 +1,577 @@
+# Godot JRPG Framework - Official Documentation
+
+## 1. Core Philosophy and Base Architecture
+
+The framework was designed to unite the ease of use of RPG Maker with modern software engineering standards and the flexibility of Godot. The goal is to allow high scalability, prevention of spaghetti code, and native support for headless execution (such as test simulations and training Machine Learning agents via Reinforcement Learning).
+
+### 1.1. Separation of Concerns (Adapted MVC)
+
+The system follows a strict separation between the Business Logic (Engine) and the Presentation Layer (UI).
+
+- **Model/Logic (`BattleEngine`, `TraitAggregator`, etc.):** Executes calculations, manages action queues, and alters states. It has no dependencies on visual nodes (`Control`, `Sprite2D`).
+    
+- **View (`BattleUI`, `BattleMenuItems`, etc.):** The interface is strictly "dumb". It does not calculate damage, alter inventories, or heal characters. Its sole role is to read data to draw the screen and capture physical interactions from the player.
+    
+- **Decoupled Communication (`BattleSignals`, `MenuSignals`):** To prevent the Engine from needing to know the UI (and vice versa), we use the Event Bus pattern. A global signal `Resource` (`battle_signals.tres`) is injected into both. The UI listens to Engine changes, and the Engine listens to UI commands.
+    
+
+### 1.2. Data-Driven Design
+
+Instead of programming specific logic through complex node inheritance, the framework actively uses native Godot Resources to inject behavior.
+
+- Entities like `Item`, `Skill`, `Status`, and `Target` are `.tres` files.
+    
+- **Benefit:** New items or spells, even with exotic behaviors (e.g., "Attack that hits all enemies and consumes the inventory"), can be created entirely through the Inspector by composing `Traits` and `Effects`, without the need to write new class scripts.
+    
+
+### 1.3. Stateless Recalculation
+
+Mathematical modifications in the game (buffs, nerfs, equipment) do not directly alter the characters' base stats.
+
+- The system destroys and rebuilds the mathematical modifier tree (`TraitAggregator`) from scratch whenever a state change occurs (e.g., equipping a sword or a poison expiring).
+    
+- **Benefit:** Eliminates floating-point mathematical bugs and makes it impossible for ghost modifiers to persist in memory.
+    
+
+---
+
+## 2. Battle Engine and State Machine
+
+The `BattleEngine` is the orchestrator of combat. It operates completely isolated and agnostic to the interface, focusing strictly on managing the math, the participants, and the chronological order of events. To prevent this class from becoming an unreadable and hard-to-maintain monolith, the battle flow is dictated through the State Pattern.
+
+### 2.1. The State Pattern and Battle Phases (`BattlePhase`)
+
+Instead of relying on complex conditionals (e.g., `if player_turn: ...`), each stage of combat is an autonomous class that inherits from `BattlePhase` (e.g., `BattlePhaseSelection`, `BattlePhaseResolveActions`).
+
+- **Responsibility Encapsulation:** Each phase holds its own logic in the `resolve(engine: BattleEngine)` method. It accesses the engine's state, emits necessary signals (like toggling UI blocks on or off), and autonomously defines what the next phase will be.
+    
+- **Clean Transitions:** The transition occurs via the asynchronous `engine.change_phase(new_phase)` method. This clears old instances from memory and ensures that only one logical block dominates the game rules at any given time.
+    
+
+### 2.2. Separation Between Planning and Execution (`action_pool`)
+
+A pillar of this architecture is the prohibition of immediate effect resolution. The framework uses a processing queue, the `action_pool`, composed of `BattleAction` objects (e.g., `BattleActionAttack`, `BattleActionItem`).
+
+- **Command Construction:** During Planning Phases (e.g., choosing an item and selecting a target), the system does not subtract items or alter health points. Instead, it builds a `BattleAction` instance containing the Actor, the Targets, and the Entity used (`Item` or `Skill`) and adds it to the `action_pool`.
+    
+- **Global Resolution:** When all participants have entered their commands, the architecture enters `BattlePhaseResolveActions`. Here, enemy decisions are computed, and all actions in the pool are sorted by speed and executed chronologically (`effects.apply()`).
+    
+
+### 2.3. Turn Lifecycle (Core Loop)
+
+The ecosystem cyclically transitions through a rigorous flow:
+
+1. **`BattlePhaseInit`:** Initial combat setup, scenario initialization, and entity distribution.
+    
+2. **`BattlePhaseSelection`:** Macro intention menu (Fight or Flee).
+    
+3. **`BattlePhasePlayers`:** Iterates through living party members able to act, setting the current Actor.
+    
+4. **`BattlePhaseFight`:** Battle actions menu (Attack, Defend, Items, Skills).
+    
+5. **`BattlePhaseItemSelect`, `BattlePhaseSkillSelect`:** Phases responsible for handling item or skill selection in their respective menus.
+    
+6. **Target Routing (`BattlePhaseItemTarget`, `BattlePhaseSkillTarget`):** Phase responsible for handling target selection. Finalizes the intent and pushes the `BattleAction` to the pool.
+    
+7. **`BattlePhaseResolveActions`:** The mathematical climax. Speed sorting, validation of living targets (dynamic redirection if the original target died), and damage/healing calculation.
+    
+8. **`BattlePhaseUpkeep`:** Turn closure maintenance phase. Processes `Status` durations (like residual poison damage), checks for late deaths, and advances the global turn counter. The cycle restarts at phase 2.
+    
+9. **`BattlePhaseVictory`, `BattlePhaseGameOver`:** Final phases that conclude the battle.
+    
+
+---
+
+## 3. Input and Controller System (Command Pattern and AI/RL)
+
+In traditional games, it's common for the user interface (UI) or keyboard to directly alter the battle state (e.g., `if Input.is_action_pressed("attack"): engine.attack()`). Our framework prohibits this approach. To support ultra-fast simulations (headless) and agent training via Reinforcement Learning, whoever is playing must be completely isolated from what is happening. This is solved by combining the Command pattern with the `Controllers` abstraction.
+
+### 3.1. The Command Pattern (`BattleInput`)
+
+No UI button or AI script directly tampers with the `BattleEngine`. Instead, they instantiate and resolve "Commands" (`Inputs`).
+
+- **Base Abstraction:** Every game action inherits from `BattleInput` and has a standardized `resolve(engine: BattleEngine)` method.
+    
+- **Specialized Classes:** We have commands like `BattleInputAttack`, `BattleInputItems`, or `BattleInputEnemySelected`.
+    
+- **How it works:** If the player wants to attack, the system creates a `BattleInputAttack.new()`. Upon calling `.resolve(engine)`, the Input itself tells the engine to switch to the enemy targeting phase. The engine simply obeys, without needing to know who sent the order.
+    
+
+### 3.2. Actors, Controllers, and "Brain"
+
+Every entity participating in the battle (`Battler`) has an attached `Controller`. The Controller is responsible for deciding which `BattleInput` will be instantiated on that character's turn. In short, there are 4 types of controllers: manual (controlled by a player), AI Headless (does not use UI, used to run massive headless battle simulations to export data to Jupyter, for example), AI UI (uses UI, used for enemies or NPCs with auto-battle), and AI RL (used with Godot RL Agents to create agents that learn to play the game). This architecture allows for a variety of pluggable controllers. Examples:
+
+- **`PlayerManualController`:** Listens to Graphic Interface (UI) signals and physical user keyboard/gamepad mapping. It translates mouse clicks or gamepad buttons into `BattleInputs`.
+    
+- **`EnemyAIController`:** Local Artificial Intelligence logic (Behavior Tree or Finite State Machine) that autonomously decides whether the enemy will attack or use a potion.
+    
+- **`PlayerNPCController`:** A variation for game-controlled allies (the famous "Auto-Battle" mode from classic JRPGs).
+    
+- **`RLController` (Player and Enemy):** Controllers designed for Godot RL Agents.
+    
+
+There are also `Brain` objects, which define the behavior of the local Artificial Intelligence (Behavior Tree or Finite State Machine).
+
+### 3.3. Practical Advantages and Headless Execution
+
+The union of the Command Pattern with Controllers provides three superpowers to the framework:
+
+- **Dynamic Auto-Battle:** To make a player character fight autonomously, simply swap their `PlayerManualController` for a `PlayerNPCController` at runtime. Not a single line in the engine needs to change.
+    
+- **Invisible Execution (Headless Mode):** Since the Engine only reacts to `BattleInputs`, we can disable the `visuals_enabled` property of the `BattleEngine`. Without instantiating textures, shaders, or health bars, the game can execute and resolve tens of thousands of turns per second in the background, making it the perfect environment to train Machine Learning models.
+    
+- **Safe Replayability:** Since actions are objects (`Inputs`), it would be trivial to store the sequence of commands in a JSON file. This would allow for rebuilding and exactly reproducing an entire battle step-by-step in the future (a native battle Replay system).
+    
+
+---
+
+## 4. Attribute System and Modifiers (`TraitAggregator`)
+
+In RPGs, calculating stats and damage is often a massive source of bugs (like stats not returning to normal after a debuff expires or infinite bonus stacking). The framework solves this by delegating all modifier math to an isolated class called `TraitAggregator`, which uses an architecture based on clean recalculation and Facade Pattern access. This is inspired by the pattern implemented from RPG Maker VX Ace onwards. `Traits`, in short, are features of an object, be it a battler, character class, status, equipment, skill, or item.
+
+### 4.1. The Stateless Recalculation Principle
+
+The framework abandons the traditional practice of adding and subtracting values in real-time (e.g., `hp_max += 50` when equipping armor, and `hp_max -= 50` when unequipping). This classic approach leads to floating-point bugs and corrupted "orphan" variables. Instead, we use Stateless Recalculation:
+
+- Whenever a character's state changes (equipment is altered, class changes, or a `Status` is inflicted/removed), the system calls the `refresh()` function.
+    
+- `refresh()` invokes `clear_cache()`, which summarily destroys all of the character's mathematical memories (clearing dictionaries and resetting multipliers to 1.0).
+    
+- Then, the aggregator scans everything currently equipped/active in that exact frame and rebuilds the math tree from scratch. This guarantees 100% mathematical precision without leaving "garbage" in memory.
+    
+
+### 4.2. Dynamic Source Collection
+
+The `get_sources()` function is the system's data funnel. The `TraitAggregator` doesn't need to know how a sword works; it only checks if the `Battler` has properties containing `Traits`. Sources include:
+
+- The `Battler` itself.
+    
+- The Character Class (`player_class.traits`).
+    
+- Current Equipment (Weapons, Armor, Accessories, Headgear, Shields).
+    
+- Active Statuses (Poison, Defense, Buffs).
+    
+- Innate traits of the entity itself (Race or Enemy Passives).
+    
+- Passive Skills.
+    
+- Passive Items.
+    
+
+All `Traits` collected from these sources go into a large generic dictionary (`all_traits`).
+
+### 4.3. Dynamic (On-Demand) Evaluation and Unified List
+
+To simplify memory management and eliminate the need to maintain multiple dictionaries and state variables (which caused cache fragmentation), the architecture consolidated modifier storage into a single unified list: `all_traits`.
+
+- **Single List as the Source of Truth:** During `refresh()`, instead of pre-separating and mathematically calculating traits according to their types and keys (fire, ice, status), the aggregator simply scans all valid sources (classes, equipment, status) and stacks the raw trait resources directly into the `all_traits.entries` array.
+    
+- **On-Demand Calculation:** The math happens lazily (lazy evaluation), only at the exact moment the Engine needs the information. If the `DamageCalculator` wants to know the modifications for an elemental attack, it calls the facade (e.g., `get_effect_elemental_damage_dealt_modified()`). This function iterates over `all_traits.entries`, dynamically filters objects by their corresponding Trait class (`_trait is TraitEffectElementDamageDealt`), compares the element property, and resolves multiplication (`*=`) and addition (`+=`) into local variables.
+    
+- **Practical Advantages:** This approach is far superior for framework scalability. By isolating the calculation within the function that requests it, we eliminate the risk of forgetting to clear a dictionary in `clear_cache()`. Furthermore, if a new exotic trait type is created in the future, no new state variables will need to be created in the aggregator; simply add the new Trait in Godot and create a facade that knows how to filter it in the unified list.
+    
+
+### 4.4. Cumulative Multiplication (Balancing)
+
+To handle the stacking of Buffs and Debuffs, the mathematical logic for multipliers uses cumulative multiplication (`*=`) instead of addition.
+
+- If a character uses the "Defend" action (Damage x0.5) and wears a "Magic Shield" (Damage x0.8), the actual calculation is `1.0 * 0.5 * 0.8 = 0.4` (Damage reduced to 40%).
+    
+- This automatically generates diminishing returns, mathematically preventing the player from taking 0% damage or achieving "accidental immortality" by stacking multiple defenses.
+    
+
+### 4.5. Read Facades
+
+The `BattleEngine` and `DamageCalculator` never read the aggregator's raw variables. The `TraitAggregator` exposes perfectly encapsulated Facade methods, such as `get_stat_modified()` and `get_damage_received_modified()`. These methods take the base value provided by the Engine and internally apply the sums (`sum`) and multiplications (`mult`), returning only the exact, final, clean number for the damage calculation pipeline.
+
+### 4.6. References
+
+To better understand the origin of the traits concept, refer to the following link.
+
+---
+
+## 5. Damage Pipeline and Target Routing
+
+Resolving an offensive or support action in RPGs involves two critical steps: calculating the exact value (Damage/Healing) and applying that value to the correct target. The framework solves these challenges by separating the math into a linear Pipeline and using Data-Driven target routing.
+
+### 5.1. The Damage Calculation Pipeline (`DamageCalculator`)
+
+To prevent the `BattleEngine` from turning into a monolith of mathematical formulas, all damage logic was extracted to the `DamageCalculator`. This system works like an assembly line (Pipeline). Instead of calculating everything at once, the damage value passes through sequential filters:
+
+1. **Base Damage:** Calculated through the `FormulaDamage` resource (which accesses the raw `Stats` of the attacker and defender).
+    
+2. **Global Modifiers:** The value passes through the `TraitAggregator` to apply general bonuses (e.g., 50% reduction for defending).
+    
+3. **Elemental Modifiers:** If the attack has an element (e.g., Fire), the system cross-references this information with the defender's resistances.
+    
+4. **Critical Modifiers:** Finally, it checks the probability of critical damage. If it's a critical hit, the `FormulaCriticalDamage` multiplies the final value.
+    
+
+- **Architectural Advantage:** If a mechanic like "Extra damage for attacking from behind" is introduced in the future, you just add another step to this assembly line without needing to alter character classes or the core engine.
+    
+
+### 5.2. Data-Driven Target Routing
+
+The framework solves the "Class Explosion" problem (creating dozens of files for each target type) by delegating selection rules to the `Target` resource. Every `Item` or `Skill` has a `Target` resource with two properties:
+
+- **Scope:** `ONE` (Single target) or `ALL` (Multiple targets).
+    
+- **Side:** `ENEMIES`, `ALLIES`, `BOTH`, `SELF`, or `EVERYONE` (All Battlers simultaneously).
+    
+
+To maintain 100% strict typing and ensure correct autocomplete without resorting to dynamic variables (like `Variant`), the engine divides routing into three dedicated Phases: `BattlePhaseAttackTarget`, `BattlePhaseItemTarget`, and `BattlePhaseSkillTarget`.
+
+- When the phase begins, it reads the `Target` resource attached to the action.
+    
+- If it's a potion (`ALLIES`, `ONE`), the phase emits a signal for the `BattleUI` to focus the cursor on the player panel.
+    
+- If it's a bomb (`ENEMIES`, `ALL`), it emits a signal to focus on all enemies simultaneously.
+    
+
+### 5.3. Application Responsibility (Effective MVC Pattern)
+
+One of the biggest causes of bugs in RPGs is allowing the User Interface (UI) to alter entity health or subtract items from the inventory at the moment of the click. Our framework strictly prohibits this.
+
+- **The Item is Smart:** The healing logic and quantity consumption live inside the `Item` class itself (via the `apply_effects()` and `consume()` methods).
+    
+- **Delegation to the Queue:** When the player selects a target in the UI, the interface merely emits the signal confirming the target. The `BattleEngine` captures this intent, creates a `BattleActionItem`, and places it in the Action Queue (`action_pool`).
+    
+- **Isolated Resolution:** The item is only consumed and the target is only healed (or harmed) at the exact moment the action reaches the top of the chronological queue, during `BattlePhaseResolveActions`. This ensures that battle speed order is respected and animations run in sync with the numbers.
+    
+
+---
+
+## 6. Global Systems (`GameManager`, `MenuManager`, and Exploration)
+
+While the `BattleEngine` manages combat micro-state, the ecosystem outside of battle (exploration, interactions, pauses) is orchestrated by Autoloads (Singletons) that ensure the game doesn't enter an invalid state. The global architecture is split into general game state management, interface navigation via a "Stack", and data persistence.
+
+### 6.1. Global State Manager (`GameManager`)
+
+In RPGs, it's fatal to allow the user to open the pause menu while an important dialog is playing, or for a map transition to occur mid-battle. The `GameManager` solves this by acting as the game's "Source of Truth".
+
+- **The Global State Machine (`GameStates`):** The game is always in a strict state (`MAP`, `MAP_ACT`, `MENU`, `BATTLE`, `DIALOGUE`, etc.).
+    
+- **Action Locks (Boolean Locks):** Whenever the `change_game_state()` function is called, the manager evaluates a `match` to automatically lock or unlock global properties.
+    
+    - If the state is `MAP`, the variables `can_act` (ability to walk/interact) and `can_open_menu` are set to `true`.
+        
+    - If the state changes to `BATTLE` or `DIALOGUE`, the `GameManager` sets `can_open_menu = false` and `can_act = false`, physically preventing exploration inputs from interfering with the current scene.
+        
+
+### 6.2. Stack-Based Navigation (`MenuManager`)
+
+Interface screen management (Inventory, Equipment, Options) uses the Stack Pattern (Last-In, First-Out), ensuring that overlapping menus work fluidly without rigid dependencies.
+
+- **Stack (`Register`):** When a menu opens, it calls `MenuManager.register_menu(self)`. The manager saves the current focus (so the user doesn't lose their selection on the previous screen), disables processing for the underlying menu (`PROCESS_MODE_DISABLED`), and hides it. This prevents buttons on a lower menu from being accidentally clicked.
+    
+- **Unstack (`Unregister`):** When the user presses "Cancel" (`ui_cancel`), the manager removes the top menu from the stack, reactivates and shows the previous menu, and automatically restores focus to the button where the user originally was.
+    
+- **Auto Return:** If the stack becomes completely empty (the player closed the main menu), the `MenuManager` itself notifies the `GameManager` to force a return to the exploration state (`GameStates.MAP`).
+    
+
+### 6.3. Data Persistence (`SaveState` and Load)
+
+The save system uses Godot's Resource files (Data-Driven architecture) to bundle all persistent variables into a single capsule before writing to disk.
+
+- **Direct Extraction:** The `save_game()` function in `GameManager` doesn't need to traverse the node tree. It simply creates a `SaveState` instance and injects the `party` (which already contains inventory, characters, and equipped levels), the `switches` (which track events and quest flags), and playtime.
+    
+- **Safe Loading:** To prevent malicious code injection or data corruption when reading a save file altered by the player, loading uses a `SafeResourceLoader` (or strict integrity checks) to load the `SaveState` back into memory, injecting it back into the `GameManager`.
+    
+
+---
+
+## 7. Stats System and Extensibility
+
+The framework's stat system was designed not to lock the developer into a rigid set of Tabletop RPG rules. It uses a modular Resource-based architecture, separating the mathematical value from its visual representation, allowing the creation of entirely new mechanics without rewriting the engine's core.
+
+### 7.1. Logic and Presentation Separation (Display Names)
+
+Each individual stat is an instance of the `Stat` class. This class holds the raw numerical value but also stores a `display_name` property.
+
+- **Visual Customization:** The User Interface (UI) never hardcodes names like "HP" or "MP" in the script. It reads the `display_name` directly from the Resource.
+    
+- **Practical Benefit:** The developer can rename HP to "Health", "Vitality", "Energy", or "Hull Integrity" just by editing the field in the Inspector. The battle engine will mechanically continue treating it as the internal identifier `ID.HP`, ensuring damage and death calculations work flawlessly while the UI reflects the game's theme.
+    
+
+### 7.2. Extensibility: Creating New Stats
+
+The aggregator resource `Stats` (which holds all attributes for a `Battler`) acts as a configurable repository. Although the framework comes with a predefined set (Attack, Defense, Intelligence, Speed, etc.), it's highly malleable. If game design requires specific stats, the developer can simply extend the `stats.gd` script and add new exports:
+
+GDScript
+
+```
+@export var magic_defense: Stat
+@export var charisma: Stat
+```
+
+After mapping these new stats in the internal dictionary (`initialize_stat_map`), they officially exist in the entity's ecosystem and can receive modifiers, buffs, and equipment just like any native stat.
+
+### 7.3. Dynamic Formulas and New Mechanics
+
+The true strength of customizable stats reveals itself in their integration with the Formula system (`FormulaDamage`, `FormulaEffectDamage`, etc.). Damage calculation is not hardcoded into the `BattleEngine`; it is resolved via injectable Formula Resources.
+
+- **The Default Pattern:** By default, the framework might use Intelligence vs. Intelligence to calculate spell damage.
+    
+- **Expansion:** By creating the custom `Magic Defense` stat (as cited in 7.2), the developer can create a new formula in the Inspector (`FormulaEffectDamage`). Inside the `calculate()` method of this new formula, the code cross-references the exact data design demands:
+    
+
+GDScript
+
+```
+var magic_atk = param.attacker.stats.intelligence.get_value()
+var magic_def = param.defender.stats.magic_defense.get_value()
+return (magic_atk * 2) - magic_def
+```
+
+This allows entirely exclusive mechanics (like damage based on Speed, or skills dealing damage based on the user's Defense) to be implemented and balanced through simple formula scripts without touching the engine's vital gears.
+
+### 7.4. Performance and Cache System (Dirty Flag)
+
+Since stats (`Stat`) can undergo dozens of temporary alterations via `StatModifier` (percentage bonuses, flat additions, equipment multipliers), calculating the final value every frame or every attack would cause unwanted slowdown in massive Headless executions. The framework solves this using the Dirty Flag pattern:
+
+- The `Stat` class saves its last processed value in the `cached_value` variable.
+    
+- Whenever the engine requests a stat's value (`get_value()`), it returns the cached memory instantly.
+    
+- Only if the stat has undergone a real modification (leveled up, received a buff, the constructor triggered `is_dirty = true`), the `calculate_final_value()` function performs the dense math (base + growth + sum of all modifiers), updates the cache, and deactivates the dirty flag.
+    
+
+### 7.5. Stat Evolution and Growth (`StatGrowth`)
+
+The framework does not enforce fixed or linear stat gains upon leveling up. Progression calculation is injectable and dictated by the `StatGrowth` abstraction, ensuring total freedom for the game designer to shape the game's power curve.
+
+- **Mathematical Formulas or Visual Curves:** Since the system delegates the calculation to the `calculate(param: FormulaStatGrowthParameter)` method, the developer has two main approaches:
+    
+    1. **Native Curves:** You can use Godot's native `Curve` resource to visually draw a stat's progression (e.g., slow growth early on and exponential at the end).
+        
+    2. **Complex Formulas:** You can program precise mathematical equations. A practical example supported by the architecture is replicating the exact Pokémon stat formula (`FormulaStatGrowthPokemon`), which calculates growth in real-time by crossing the level with Effort Values (`stat_exp`), Individual Values (`dv`), and the species' base value.
+        
+- **The Golden Rule for New Stats:** The system's flexibility demands responsibility. When creating a new custom stat (like the `Magic Defense` mentioned in 7.2), it will spawn with a static base value. The developer **must** work in a class extending `StatGrowth` (or configure the corresponding curve in the Class/Character Inspector) to feed the `level_growth_value` variable of this new stat. Without this, the stat exists but will remain frozen at level 1 forever.
+    
+
+---
+
+## 8. Item, Equipment, and Skill System
+
+In many traditional RPGs, healing items, equipment, and spells are programmed as completely isolated systems. In our framework, they share the same Data-Driven architectural DNA. This reduces code duplication and allows for complex combinations (e.g., a sword that casts a fireball when used as an item).
+
+### 8.1. Flexible Item Anatomy
+
+The `Item` class (which inherits from the base entity class `Stuff`) doesn't have its behavior hardcoded directly into the script. Instead, it's a "shell" that gains utility through slot-in Resources:
+
+- **Active Items (What it does):** If the item has an `EffectList`, it is an Active item. When used, it iterates through its effects (Healing, Damage, Apply Status) and applies them to the target.
+    
+- **Passive Items (What it grants):** If the item has a `TraitList`, it is a Passive item. When equipped, its modifiers will be read by the `TraitAggregator`.
+    
+- **Hybrids:** If it has both, it's an item that grants passive stats while equipped, but can also be actively "used" in battle (e.g., The classic "Fire Staff" that casts free spells when used via the item menu).
+    
+- **Usage Context (`USED_ON`):** The item knows exactly where it is allowed to exist: only on the Map, only in Battle, or Both.
+    
+
+### 8.2. Equipment as Trait Injectors
+
+The equipment system (Weapon, Armor, Accessory, etc.) is highly integrated with the Stateless Recalculation philosophy explained in Chapter 4.
+
+- Equipment doesn't directly add strength to the character's HP or Attack.
+    
+- Instead, `battler.equip` holds instances of Passive Items.
+    
+- When the battle engine (or menu) requests a recalculation, the `TraitAggregator`'s `get_sources()` function reads, for example, `battler.equip.weapon.item.traits`. The weapon's modifiers enter the mathematical funnel and are processed on-demand.
+    
+- **Benefit:** Unequipping a weapon does not require an "attribute subtraction" function. The item simply stops being in the slot, the `TraitAggregator` clears the cache, and on the next frame, the bonus no longer exists.
+    
+
+### 8.3. Skills and Formulas
+
+Skills (Spells, Techniques, Special Moves) follow a direct parallel with Active Items, sharing the same Target routing system (`Target` with `Scope` and `Side`). The main difference lies in cost and math:
+
+- **Execution Cost:** Unlike an item that is subtracted from the `Inventory`, a `Skill` validates and consumes resources from the user themselves (e.g., MP cost, HP cost, or Cooldown accumulation).
+    
+- **Formula Dependency:** Skill Effects generally house a `FormulaEffectDamage`. As seen in Chapter 7, these formulas cross-reference the user's (Attacker) Stats with the Target's (Defender) to generate organic values that scale with character levels.
+    
+
+### 8.4. Effective Delegation (Object Intelligence)
+
+In line with our adapted MVC architecture, the Graphic Interface (`BattleMenuItems` or `BattleMenuSkills`) acts merely as a messenger.
+
+- **The Object Acts on its Own:** All application logic lives inside the `Item` or `Skill` class itself. The UI does not write `target.hp -= 50`.
+    
+- The UI merely emits the corresponding `Input`, which travels to the Engine's `action_pool`. When the turn to resolve the action arrives, the Engine calls, for example, `item_to_use.apply_effects(target)`.
+    
+- **Autonomous Consumption:** The Item is solely responsible for removing a copy of itself from the `Inventory` via the `consume(inventory)` method, previously validating its `is_consumable` flag to prevent Key Items or Relics from being destroyed.
+    
+
+### 8.5. Equipment Slot System
+
+To ensure data integrity and prevent bugs like equipping a boot on a head or stacking multiple weapons, the framework uses a typed hierarchy for equipment slots.
+
+- **The Visual Base (`EquipmentSlot`):** This class acts as the foundation for each slot. It doesn't care about the mechanics of the item itself, but rather its visual identification for the User Interface (UI), exporting the slot's `name` and `icon`.
+    
+- **Strict Typing in Child Classes:** True control happens in derived classes (like `AccessorySlot`, `WeaponSlot`, `ArmorSlot`, etc.). Instead of accepting a generic `Item`, they export variables with strict typing for the respective subclass (e.g., `@export var item: Accessory`). This delegates equipment validation to the Godot editor itself, preventing dragging the wrong type of item into the slot.
+    
+- **The Slot Aggregator (`EquipmentSlots` / `slots.tres`):** All these individual slots are unified into a single central Resource. This resource acts as the character's "skeleton" or Paper Doll, defining the equipment anatomy supported by the game.
+    
+- **Synergy with `TraitAggregator`:** Because this structure is so well-defined and typed, the Trait Aggregator's `get_sources()` function can safely access `battler.equip.weapon.item.traits` directly. The system always knows where to look for each piece of equipment without needing to iterate through unstructured generic arrays.
+    
+
+### 8.6. Customization vs. Creating New Slots
+
+The data-driven architecture makes visual customization immediate, but adding structural slots requires knowledge of how the framework is interconnected. It's crucial to understand the difference between these two approaches:
+
+- **What is Trivial (Rename and Reuse):** If your game design doesn't have "Helmets" and uses "Shoes" instead, the change takes five seconds. Just go to the `head_slot.tres` resource in the Inspector, change the `name` property from "Head" to "Shoes", and swap the icon. Since the engine only cares about structure, the UI will start displaying "Shoes", and everything will continue working perfectly.
+    
+- **What is Complex (Creating New Slots from Scratch):** If the game requires an additional structural slot (e.g., the character already has Weapon, Armor, Head, and Accessory, and you want to add an exclusive "Relic" slot), the process isn't automatic. Because the framework demands strict typing to prevent inventory errors, the developer will have to:
+    
+    1. **Create the Item Class:** Create a new script inheriting from the base equippable item (e.g., `class_name Relic extends Equippable`).
+        
+    2. **Create the Slot Class:** Create the script dictating the slot's typing (e.g., `class_name RelicSlot extends EquipmentSlot` with `@export var item: Relic`).
+        
+    3. **Update Global Anatomy:** Add the newly exported variable to the `EquipmentSlots` script and fill it in the `slots.tres` resource.
+        
+    4. **Update the Math Engine:** Add the new check in the `TraitAggregator`'s `get_sources()` function so it knows this new slot exists and should be read (e.g., `if battler.equip.relic.item: sources.append(...)`).
+        
+    5. **Update Equipment UI:** Modify the equipment menu interface to instantiate and draw an extra button for this new slot.
+        
+- **Summary:** The architecture allows for total expansion, but adding new anatomical slots requires following the MVC pattern tracks adopted by the framework: Model (Create Class), Controller (Read in TraitAggregator), and View (Update Menu).
+    
+
+---
+
+## 9. Status System (Buffs, Debuffs, and Abnormal States)
+
+In RPG games, managing temporary states (like Poison, Paralysis, or Attack Bonuses) is traditionally complex and prone to failure, especially when reverting stats once the effect expires. Our framework mitigates this by treating `Status` exactly like Equipment: they are temporary capsules of `Traits`.
+
+### 9.1. Hybrid Nature of Status
+
+A `Status` is not a script with its own logic running in the background. It is a pure data Resource containing:
+
+- **Visual Identity:** Name, Icon, and Messages (e.g., "The target was poisoned!").
+    
+- **Duration Rules:** How many turns it lasts (or if it's infinite until cured).
+    
+- **Payload (`TraitList`):** A list of modifiers that affect whoever holds it.
+    
+- **Practical Example:** The "Poisoned" status doesn't have a `deal_damage()` function. It simply carries a `TraitEffectHPRegen` trait with a negative value (e.g., -10%).
+    
+
+### 9.2. Application via Effects
+
+Statuses don't apply themselves. As seen in Chapter 8, Items and Skills have `Effects`. When a Fire Spell with a Burn chance is resolved in the action queue, the Engine calls `EffectApplyStatus`. This effect checks the success chance, reads the target's immunity in the `TraitAggregator`, and if successful, adds the `Status` Resource to the `Battler`'s active status list.
+
+### 9.3. The Magic of Temporary Recalculation
+
+Here the Stateless Recalculation philosophy (Chapter 4) shines brightly.
+
+- **Upon Adding:** When the "Defense Break" status (Defense x0.5) enters the character's list, the system doesn't alter the original `Stat`. It merely triggers `TraitAggregator.refresh()`. The aggregator scans the new status list, finds the modifier, and starts factoring it into on-demand calculations.
+    
+- **Upon Removing:** When the `Status` is cured (by an Item) or its duration reaches zero, it is simply ejected from the character's list. A new `refresh()` is called, the aggregator rebuilds the math tree, and the character's defense returns immediately to 100%, with no risk of the reverse recalculation failing and leaving the character with permanently broken defense.
+    
+
+### 9.4. Lifecycle and Upkeep (`BattlePhaseUpkeep`)
+
+If combat math happens in the Action phase, where does Poison deal damage or Regen heal? All this is managed in `BattlePhaseUpkeep` (Maintenance Phase), which occurs at the end of each global turn. The flow for this phase for each `Battler` is strict:
+
+1. **Damage/Heal Over Time (DoT/HoT):** The phase asks the `TraitAggregator` if the character has active HP or MP regen traits (whether positive from buffs, or negative from poison/bleed). If yes, the value is processed and deducted/healed.
+    
+2. **Survival Check:** If poison damage kills the character, they are marked as dead and removed from active combat immediately.
+    
+3. **Duration Decay:** The phase iterates over all the character's temporary `Status`es and subtracts `1` from the duration.
+    
+4. **Cleanup:** If any `Status` duration reaches `0`, it is removed, and the trait cache is cleared and updated.
+    
+
+### 9.5. Conflict Resolution and Immunities
+
+To prevent a Final Boss from being instantly defeated by a Death spell, the framework supports preemptive blocking. Before an `EffectApplyStatus` pushes the `Status` to the entity, the code queries the defender's unified `all_traits` list looking for a `TraitStatusImmunity` matching that ID. If the Trait is found (injected by the Boss's race or an immunity ring), the effect is silently ignored (or raises an "Immune" flag for the UI to draw on screen).
+
+---
+
+## 10. Event and Command System
+
+Unlike procedural scripts where a scene's logic is hardcoded, the framework utilizes an architecture based on the Command Pattern. This allows complex actions (like moving an NPC, playing a sound, and starting a battle) to be stacked and executed sequentially in a controlled manner.
+
+### 10.1. The Atomic Unit: `Command`
+
+The `Command` is an abstract `Resource` representing a single discrete action in the game world.
+
+- **The `resolve()` Method:** Each command overrides this function with its specific logic (e.g., `CommandStartBattle` loads the combat scene).
+    
+- **Synchrony and `is_wait`:** This is the heart of flow control.
+    
+    - If `is_wait` is `true`, the event system will pause execution and wait until the command emits the `finished` signal (e.g., waiting for a character to finish walking 5 meters before opening the text box).
+        
+    - If `false`, the command is fired and the next one in the list starts immediately (e.g., playing background music while the character is still speaking).
+        
+
+### 10.2. The Aggregator: `CommandList`
+
+A `CommandList` is a container (also a `Resource`) that stores an `Array[Command]`.
+
+- **Visual Programming/RPG Maker Inspiration:** In the Godot Inspector, the developer can create a list of commands and drag them into the desired order. This allows designers to create entire cutscenes without touching a single line of GDScript, merely composing existing resources.
+    
+
+### 10.3. The Orchestrator: `EventRunner` (Autoload)
+
+The `EventRunner` is the global node responsible for reading `CommandLists` and processing them.
+
+- **Sequential Execution:** It iterates through the command list. For each command, it calls `resolve()`. If the command is a "wait" type (`is_wait`), the `EventRunner` uses an `await command.finished` before moving to the next.
+    
+- **Game State:** Generally, when starting an `EventRunner`, the `GameManager` transitions to a `MAP_ACT` or `BATTLE_ACT` state, blocking player inputs so the scene plays out without interference.
+    
+
+### 10.4. Trigger Versatility (Maps and Battles)
+
+The great strength of this system is that it's context-agnostic:
+
+- **On the Map:** A "Teleport" object or an "NPC" can hold a `CommandList`. Upon interacting with them, the object's script passes its list to `EventRunner.run()`.
+    
+- **In Battle:** Battle events (like a boss saying something when reaching 50% HP) utilize the same structure. The `BattleEngine` detects the condition and requests the `EventRunner` to execute the narrative command sequence within the combat scenario.
+    
+
+### 10.5. Examples of Implemented Commands
+
+The framework already provides fundamental commands that serve as templates for new ones:
+
+- `CommandStartBattle`: Manages fade-out, swaps the map scene for the battle scene, initializes settings, and upon finishing, cleans up the battle and returns to the map.
+    
+- `CommandChangeFace`: Changes the face graphic in the menu or dialog.
+    
+- **Customization:** The developer can create commands for anything — from shaking the screen (`CommandScreenshake`) to altering global progression variables (`CommandSetSwitch`).
+    
+
+### 10.6. World State Variables (Switches)
+
+For the event system to create a cohesive narrative, it needs memory. The game needs to know if the chest has already been opened or if the King has already been saved. This is managed by the Switches system.
+
+- **Global Storage:** The `GameManager` holds a global dictionary `switches: Dictionary[String, Switch]`. As seen in Chapter 6, this dictionary is serialized and saved directly into the `SaveState`.
+    
+- **Logical Branching:** In practice, Switches work in tandem with the `CommandList`. You can create conditional commands that check a Switch's value (e.g., `"boss_defeated" == true`) to decide whether the `EventRunner` should proceed with the event's normal execution or branch off into an alternative `CommandList` (e.g., the NPC says thank you instead of giving the quest again).
+    
+
+---
+
+## 11. Integrations and Third-Party Tools
+
+To keep the framework's core lean and focused on JRPG management itself, we delegate the responsibility of highly specialized systems to consolidated plugins widely adopted by the Godot community. Our Command system acts as the communication bridge with these tools.
+
+### 11.1. Dialogue System (Dialogue Manager)
+
+All text box rendering, speech bubbles, conversation branching, and dynamic language translation are managed by **Dialogue Manager** (community standard).
+
+- **Framework Integration:** Instead of managing text interfaces manually, the developer creates a command (e.g., `CommandShowDialogue`) in the `CommandList`. When the `EventRunner` processes this command, it pauses the cutscene, triggers the Dialogue Manager bubble with the correct string, and only resumes the list when the player finishes reading and closes the text box.
+    
+- **External Documentation:** Because this is a robust ecosystem on its own, covering Rich Text formatting (`RichTextLabel`), variables inserted into text, and native translations, we advise that all dialogue development follow the plugin's official rules.
+    
+- **Where to Learn:** Consult the **Official Dialogue Manager Documentation** to understand its markup language and interface pipelines.
+    
+
+### 11.2. Cinematography and Transitions (Phantom Camera)
+
+For camera control on the map — whether following the player smoothly, focusing on a point of interest during an `EventRunner` cutscene, or automatically framing the arena during the `BattleEngine` —, the framework uses **Phantom Camera**.
+
+- **Framework Integration:** Camera transitioning is done declaratively. Instead of manually calculating mathematical interpolations (`lerp`) in `_process`, the developer simply uses Phantom Camera nodes and alters their `priority`. The plugin handles smoothly interpolating the global game camera between actors.
+    
+- **External Documentation:** The plugin features an extensive system for Dead Zones (areas where the character moves without moving the camera), automatic tracking, framing, and Tween integration.
+    
+- **Where to Learn:** To configure advanced exploration view behaviors, read the **Official Phantom Camera Documentation**.

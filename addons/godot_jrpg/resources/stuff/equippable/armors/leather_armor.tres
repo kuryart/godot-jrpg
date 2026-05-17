@@ -63,8 +63,6 @@ metadata/_custom_type_script = "uid://bgy4kuc1fk1nh"
 [sub_resource type="Resource" id="Resource_h118v"]
 script = ExtResource("4_7gtya")
 stat = ExtResource("8_h118v")
-value_multiply = 1.2
-value_add = 5
 metadata/_custom_type_script = "uid://cuqvw14m0anvs"
 
 [sub_resource type="Resource" id="Resource_kxsr5"]

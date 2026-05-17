@@ -8,6 +8,6 @@ func _init(_actor: Battler = null, _targets: Array[Battler] = [], _data: BattleA
 func resolve(engine: BattleEngine):
 	super(engine)
 	var skill = data.get_data()
-	
+	skill.pay_cost(actor)
 	for target in targets:
-		skill.use(target)
+		skill.apply_effects(target, actor, engine)

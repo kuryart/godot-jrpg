@@ -15,7 +15,7 @@ class_name EffectStatModifier extends Effect
 @export var duration: int = -1
 
 ## Apply the effect.
-func apply(target: Battler):
+func apply(target: Battler, _attacker: Battler = null, _engine: BattleEngine = null):
 	var stat_obj = target.stats.get_stat_by_name(stat_name)
 	if stat_obj:
 		var mod = StatModifier.new(effect_id, value_multiply, value_add, duration)

@@ -30,6 +30,7 @@ UI="*uid://cxbfphub3ll7l"
 VFXManager="*uid://cgkr7tsoxq5kj"
 DialogueManager="*uid://c3rodes2l3gxb"
 PhantomCameraManager="*uid://duq6jhf6unyis"
+_mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [display]
 
@@ -39,7 +40,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
 [input]
 

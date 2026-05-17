@@ -12,4 +12,5 @@
 script = ExtResource("2_jxybv")
 players = Array[ExtResource("1_sadef")]([ExtResource("3_78mbn"), ExtResource("4_8ygxl"), ExtResource("5_1p5i3"), ExtResource("6_6vggn")])
 inventory = ExtResource("1_t61ht")
+money = 10
 metadata/_custom_type_script = "uid://bolkcf4dvwgu5"
