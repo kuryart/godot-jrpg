@@ -16,7 +16,7 @@ signal enemy_selected
 signal instantiate_enemies_emitted(enemies_settings: Array[EnemySettings], enemies: Array[Enemy], engine: BattleEngine)
 signal instantiate_players_emitted(engine: BattleEngine, players: Array[Player])
 signal player_changed(player: Player)
-signal player_damaged
+signal player_damaged(face: BattleFace)
 signal player_selected(player: Player)
 signal player_select_ended
 signal select_enemy_emitted

@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://caggj6rpows4p" path="res://addons/godot_jrpg/tests/battle/settings/test_battle_settings.tres" id="5_i015i"]
 [ext_resource type="Script" uid="uid://cyias6dpfredp" path="res://addons/godot_jrpg/nodes/battle/battle_ui.gd" id="6_7on8q"]
 [ext_resource type="Texture2D" uid="uid://d52xi71py1jf" path="res://addons/godot_jrpg/assets/sprites/battle/backgrounds/back-desert-005.jpg" id="7_4qrtq"]
+[ext_resource type="Script" uid="uid://t4cbxo4nowao" path="res://addons/godot_jrpg/nodes/battle/battle_vfx_player.gd" id="8_vfxpl"]
 
 [sub_resource type="Resource" id="Resource_tn54o"]
 script = ExtResource("3_7on8q")
@@ -38,3 +39,7 @@ texture = ExtResource("7_4qrtq")
 expand_mode = 1
 
 [node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]
+
+[node name="BattleVFX" type="Node" parent="." unique_id=112233445]
+script = ExtResource("8_vfxpl")
+battle_signals = ExtResource("4_655j7")

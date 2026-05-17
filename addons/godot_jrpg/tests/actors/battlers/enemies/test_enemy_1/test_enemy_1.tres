@@ -90,7 +90,7 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 [sub_resource type="Resource" id="Resource_vlr1o"]
 script = ExtResource("2_vmhau")
 display_name = "HP"
-base_value = 100
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_48jrh"]
@@ -117,7 +117,7 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 script = ExtResource("2_vmhau")
 display_name = "MP"
 id = 1
-base_value = 50
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_b0n0i"]

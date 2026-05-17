@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bmmvef1tpe86n" path="res://addons/godot_jrpg/assets/sprites/battle/ui/icon-run.png" id="20_cpmal"]
 [ext_resource type="Script" uid="uid://qrnwoftv2fvm" path="res://addons/godot_jrpg/nodes/battle/players_menu/battle_menu_players.gd" id="21_l0f1s"]
 [ext_resource type="Script" uid="uid://dm6otfu7t0hq3" path="res://addons/godot_jrpg/nodes/battle/fight_menu/battle_skills_button.gd" id="22_tihi7"]
-[ext_resource type="Script" uid="uid://t4cbxo4nowao" path="res://addons/godot_jrpg/nodes/battle/battle_vfx.gd" id="23_3ewcx"]
+[ext_resource type="Script" uid="uid://t4cbxo4nowao" path="res://addons/godot_jrpg/nodes/battle/battle_vfx_player.gd" id="23_3ewcx"]
 
 [sub_resource type="Resource" id="Resource_3ewcx"]
 script = ExtResource("5_cpmal")
@@ -323,5 +323,6 @@ vertical_alignment = 1
 
 [node name="BattleInputHandlers" type="Node" parent="." unique_id=77813398]
 
-[node name="BattleVFX" type="Node" parent="." unique_id=1169910518]
+[node name="BattleVFXPlayer" type="Node" parent="." unique_id=1169910518]
 script = ExtResource("23_3ewcx")
+battle_signals = ExtResource("4_nterj")

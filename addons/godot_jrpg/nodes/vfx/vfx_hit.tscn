@@ -1,28 +1,15 @@
 [gd_scene format=3 uid="uid://bcjf4gwmy06t4"]
 
 [ext_resource type="Texture2D" uid="uid://cryi527nxmpn4" path="res://addons/godot_jrpg/assets/sprites/vfx/vfx-hit.png" id="1_s6fdg"]
-[ext_resource type="Material" uid="uid://c03324vpjatgx" path="res://addons/godot_jrpg/resources/materials/battler.tres" id="2_fg4uj"]
 [ext_resource type="Texture2D" uid="uid://ca17no4jdeecw" path="res://addons/godot_jrpg/assets/sprites/vfx/vfx-flare.png" id="3_hs4jy"]
 [ext_resource type="Texture2D" uid="uid://cuxlr54x4g0pi" path="res://addons/godot_jrpg/assets/sprites/vfx/vfx-shockwave.png" id="4_ili1d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_numc7"]
 transparency = 1
 cull_mode = 2
+shading_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_s6fdg")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_c7rpx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi68n"]
-transparency = 1
-cull_mode = 2
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_hs4jy")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -35,6 +22,24 @@ point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_sy550"]
 curve = SubResource("Curve_bq8xv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_flash"]
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_sy550")
+
+[sub_resource type="QuadMesh" id="QuadMesh_c7rpx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi68n"]
+transparency = 1
+cull_mode = 2
+shading_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_hs4jy")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_hh552"]
 _data = [Vector2(0, 0), 0.0, 1.2716763, 0, 1, Vector2(0.7863636, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 1, 0]
@@ -54,6 +59,7 @@ alpha_curve = SubResource("CurveTexture_sy550")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mph6k"]
 transparency = 1
 cull_mode = 2
+shading_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("4_ili1d")
 billboard_mode = 3
@@ -78,7 +84,7 @@ emitting = false
 amount = 1
 lifetime = 0.1
 one_shot = true
-process_material = ExtResource("2_fg4uj")
+process_material = SubResource("ParticleProcessMaterial_flash")
 draw_pass_1 = SubResource("QuadMesh_c7rpx")
 
 [node name="Flare" type="GPUParticles3D" parent="." unique_id=54190094]
