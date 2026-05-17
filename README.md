@@ -35,7 +35,7 @@ Godot JRPG is a framework for building 2D JRPGs (Japanese Role Playing Games) in
 
 If you have any question, you can:
 
-- Read the [documentation](godot_jrpg/docs/README.md) (work-in-progress);
+- Read the [documentation](addons/godot_jrpg/docs/README.md) (work-in-progress);
 - Press F1 in Godot and search for the class name (work-in-progress).
 
 ## Structure
