@@ -29,8 +29,9 @@ func list_saves() -> void:
 		var date_str = format_save_date(saves[i]["time"])
 
 		var btn_res = SafeResourceLoader.load(saves[i]["path"]) as SaveState
-		
-		btn.text = "Load %s [%s] - %s" % [str(i + 1), date_str, "btn_res.current_scene_name"]
+		var scene_name = btn_res.current_scene_path.get_file().get_basename() if btn_res and btn_res.current_scene_path != "" else "---"
+
+		btn.text = "Load %s [%s] - %s" % [str(i + 1), date_str, scene_name]
 		btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		btn.pressed.connect(func(): _on_load_selected(saves[i]["path"]))
 
@@ -51,4 +52,9 @@ func create_label(text: String) -> void:
 	options_list.add_child(lbl)
 
 func _on_load_selected(path: String) -> void:
+	UI.set_ui_lock(true)
+	await Fade.fade_out(4.0).finished
 	GameManager.load_game(path)
+	GameManager.change_game_state(GameManager.GameStates.MAP)
+	Fade.fade_in(4.0)
+	queue_free()

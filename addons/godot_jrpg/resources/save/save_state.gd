@@ -4,8 +4,8 @@ const SAVE_GAME_PATH:= "user://saves/save_game.tres"
 
 @export var party: Party
 @export var switches: Dictionary[String, Switch]
-#@export var current_scene_name: String
-#@export var current_scene_path: String
+@export var current_scene_path: String
+@export var player_position: Vector2
 @export var current_time: String
 @export var elapsed_time: String
 @export var game_state: GameManager.GameStates

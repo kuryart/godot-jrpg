@@ -623,7 +623,7 @@ size = Vector2(15, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx3w4"]
 size = Vector2(15, 15)
 
-[node name="Player" type="CharacterBody2D" unique_id=1420408874]
+[node name="Player" type="CharacterBody2D" unique_id=1420408874 groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_eh75w")
 

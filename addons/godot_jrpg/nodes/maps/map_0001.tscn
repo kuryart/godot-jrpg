@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://wdxdwx3lr32c" path="res://addons/godot_jrpg/nodes/maps/map.gd" id="1_o7u0u"]
 [ext_resource type="TileSet" uid="uid://c01b373itm1bk" path="res://addons/godot_jrpg/resources/tilesets/tileset1.tres" id="2_p673k"]
-[ext_resource type="PackedScene" uid="uid://b2pew1f2eadnt" path="res://addons/godot_jrpg/nodes/maps/player.tscn" id="3_qx3w4"]
 [ext_resource type="Script" uid="uid://dipl8bl0bqo5p" path="res://addons/godot_jrpg/nodes/events/event_area.gd" id="6_x8td6"]
 [ext_resource type="Script" uid="uid://bv6eri7u646de" path="res://addons/godot_jrpg/nodes/events/event.gd" id="7_b8y8i"]
 [ext_resource type="Script" uid="uid://uequjhjx8251" path="res://addons/godot_jrpg/nodes/events/event_buses/map_0001/door.gd" id="7_dq5tp"]
@@ -64,6 +63,7 @@ script = ExtResource("13_7yq6e")
 [node name="Map0001" type="Node2D" unique_id=1098481513]
 y_sort_enabled = true
 script = ExtResource("1_o7u0u")
+player_spawn = Vector2(112, 112)
 
 [node name="TileUnder" type="Node2D" parent="." unique_id=25587888]
 y_sort_enabled = true
@@ -77,9 +77,6 @@ tile_set = ExtResource("2_p673k")
 z_index = -1
 tile_map_data = PackedByteArray("AAACAAYAAQAZABkAAAACAAcAAQAZABoAAAADAAYAAQAaABkAAAADAAcAAQAaABoAAAAHAAEAAQAVABEAAAAHAAIAAQAVABIAAAAIAAEAAQAWABEAAAAIAAIAAQAWABIAAAAJAAEAAQAXABEAAAAJAAIAAQAXABIAAAAEAAQAAQAMAAEAAAAHAAYAAQAMAAEAAAAIAAgAAQAMAAEAAAAIAAQAAQANAAEAAAASAAUAAQANAAEAAAARAAgAAQANAAIAAAAFAAgAAQAMAAIAAAALAAkAAQAMABcAAAANAAkAAQAOABcAAAAOAAkAAQAMABcAAAAQAAkAAQAOABcAAAARAAkAAQAMABcAAAATAAkAAQAOABcAAAACAAsAAQAQAAkAAAACAAwAAQAQAAoAAAACAA0AAQAQAAsAAAACAA4AAQAQAAwAAAADAAsAAQARAAkAAAADAAwAAQARAAoAAAADAA0AAQARAAsAAAADAA4AAQARAAwAAAAEAAsAAQASAAkAAAAEAAwAAQASAAoAAAAEAA0AAQASAAsAAAAEAA4AAQASAAwAAAAFAAsAAQATAAkAAAAFAAwAAQATAAoAAAAFAA0AAQATAAsAAAAFAA4AAQATAAwAAAAOAAwAAQAQAAkAAAAOAA0AAQAQAAoAAAAOAA4AAQAQAAsAAAAOAA8AAQAQAAwAAAAPAAwAAQARAAkAAAAPAA0AAQARAAoAAAAPAA4AAQARAAsAAAAPAA8AAQARAAwAAAAQAAwAAQASAAkAAAAQAA0AAQASAAoAAAAQAA4AAQASAAsAAAAQAA8AAQASAAwAAAARAAwAAQATAAkAAAARAA0AAQATAAoAAAARAA4AAQATAAsAAAARAA8AAQATAAwAAAAVAA0AAQAMAAsAAAAVAA4AAQAMAAwAAAAWAAwAAQANAAoAAAAWAA0AAQANAAsAAAAWAA4AAQANAAwAAAAXAAwAAQAOAAoAAAAXAA0AAQAOAAsAAAAXAA4AAQAOAAwAAAAYAAwAAQAPAAoAAAAYAA0AAQAPAAsAAAAWAAQAAQAMAAIAAAAXAAQAAQANAAIAAAAbAA4AAQAMAAIAAAAcAA4AAQANAAIAAAALAAoAAQAMABgAAAAMAAoAAQANABgAAAANAAoAAQAOABgAAAAOAAoAAQAMABgAAAAPAAoAAQANABgAAAAQAAoAAQAOABgAAAARAAoAAQAMABgAAAASAAoAAQANABgAAAATAAoAAQAOABgAAAABAAMAAQAJAAgAAAA=")
 tile_set = ExtResource("2_p673k")
-
-[node name="Player" parent="." unique_id=1420408874 instance=ExtResource("3_qx3w4")]
-position = Vector2(112, 112)
 
 [node name="TileAbove" type="Node2D" parent="." unique_id=575925417]
 
@@ -274,10 +271,8 @@ shape = SubResource("RectangleShape2D_3t4vi")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=485362803]
-physics_interpolation_mode = 1
 top_level = true
-position = Vector2(320, 176)
-process_callback = 0
+position = Vector2(112, 112)
 limit_left = 0
 limit_top = 0
 limit_right = 960
@@ -291,13 +286,12 @@ script = ExtResource("11_wevp0")
 interpolation_mode = 2
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1462547694 node_paths=PackedStringArray("follow_target")]
+[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1462547694]
 unique_name_in_owner = true
 top_level = true
 position = Vector2(112, 112)
 script = ExtResource("12_qx3w4")
 follow_mode = 2
-follow_target = NodePath("../Player")
 snap_to_pixel = true
 tween_resource = SubResource("Resource_ow71e")
 follow_damping = true

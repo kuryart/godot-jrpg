@@ -25,7 +25,7 @@ func _ready() -> void:
 	ray_up.add_exception(self)
 	ray_left.add_exception(self)
 	ray_right.add_exception(self)
-	pass
+
 
 func _process(delta: float) -> void:
 	if !GameManager.can_act:

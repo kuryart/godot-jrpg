@@ -118,9 +118,7 @@ var last_focused_slot: Control
 
 func _ready() -> void:
 	MenuManager.register_menu(self)
-	var cam = get_viewport().get_camera_2d()
-	if cam:
-		global_position = cam.get_screen_center_position() - (size / 2.0)
+	call_deferred("center_on_screen")
 	connect_signals()
 	hide_scrolls()
 	populate_equipped_buttons()
@@ -129,6 +127,11 @@ func _ready() -> void:
 
 func _exit_tree():
 	MenuManager.unregister_menu(self)
+
+func center_on_screen() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size / 2.0)
 
 ## Here we connect the signals from the [member menu_signals].
 func connect_signals():

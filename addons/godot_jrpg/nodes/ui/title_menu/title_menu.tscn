@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://daeh6hcpb60r1"]
 
 [ext_resource type="Script" uid="uid://boovhtqcogpmv" path="res://addons/godot_jrpg/nodes/ui/title_menu/title_menu.gd" id="1_w0khk"]
+[ext_resource type="PackedScene" uid="uid://bv1preurt15al" path="res://addons/godot_jrpg/nodes/ui/title_menu/load_menu/menu_load.tscn" id="2_jy37u"]
 [ext_resource type="PackedScene" uid="uid://cb74nrxym2kse" path="res://addons/godot_jrpg/nodes/maps/map_0001.tscn" id="2_wfyb6"]
 [ext_resource type="Texture2D" uid="uid://bd8r1fphy24yi" path="res://addons/godot_jrpg/assets/sprites/title/battleback6.png" id="3_molsw"]
 
@@ -12,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w0khk")
+load_scene = ExtResource("2_jy37u")
 first_map = ExtResource("2_wfyb6")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2032050699]

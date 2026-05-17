@@ -130,7 +130,7 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 [sub_resource type="Resource" id="Resource_krbav"]
 script = ExtResource("3_u4h65")
 display_name = "HP"
-base_value = 100
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_8r64l"]
@@ -157,7 +157,7 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 script = ExtResource("3_u4h65")
 display_name = "MP"
 id = 1
-base_value = 50
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_srytj"]
@@ -222,8 +222,8 @@ equip = SubResource("Resource_pkksl")
 stats = SubResource("Resource_1n2lh")
 status = Array[ExtResource("6_sn8uf")]([ExtResource("34_lm88f")])
 controller = SubResource("Resource_nf7ob")
-current_hp = 100
-current_mp = 30
+current_hp = 1000
+current_mp = 1000
 traits = SubResource("Resource_8ednr")
 skills = Array[ExtResource("17_blvwq")]([ExtResource("18_srytj"), ExtResource("19_cmjly")])
 grimoire = ExtResource("35_grm1")

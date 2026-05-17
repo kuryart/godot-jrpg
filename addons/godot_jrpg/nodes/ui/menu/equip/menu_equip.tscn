@@ -32,8 +32,13 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MenuEquip" type="Control" unique_id=653413658]
 z_index = 99
+custom_minimum_size = Vector2(74.615, 0)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_f4ej4")
 script = ExtResource("1_8xy2i")
 menu_signals = ExtResource("2_qagbo")
@@ -46,12 +51,12 @@ shield_equip_container = ExtResource("13_nnb4d")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1747304795]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -6.1035156e-05
-offset_right = 701.0531
-offset_bottom = 352.48163
+offset_right = 61.0531
+offset_bottom = 0.48162842
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.91291237, 0.9986337)

@@ -20,9 +20,7 @@ class_name MenuStatus extends Control
 
 func _ready() -> void:
 	MenuManager.register_menu(self)
-	var cam = get_viewport().get_camera_2d()
-	if cam:
-		global_position = cam.get_screen_center_position() - (size / 2.0)
+	call_deferred("center_on_screen")
 	set_player_name()
 	set_player_face()
 	set_hp()
@@ -38,6 +36,11 @@ func _ready() -> void:
 
 func _exit_tree():
 	MenuManager.unregister_menu(self)
+
+func center_on_screen() -> void:
+	var cam = get_viewport().get_camera_2d()
+	if cam:
+		global_position = cam.get_screen_center_position() - (size * scale / 2.0)
 
 func set_player_name():
 	name_player.text = player.name
