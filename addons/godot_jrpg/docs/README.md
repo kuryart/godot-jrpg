@@ -633,3 +633,206 @@ For camera control on the map — whether following the player smoothly, focusin
 - **External Documentation:** The plugin features an extensive system for Dead Zones (areas where the character moves without moving the camera), automatic tracking, framing, and Tween integration.
     
 - **Where to Learn:** To configure advanced exploration view behaviors, read the **Official Phantom Camera Documentation**.
+	
+
+---
+
+### 12. Audio System (Music and SFX)
+
+Just like the character stats and items, the audio system in this framework avoids hardcoded node dependencies. It uses a strictly Data-Driven approach managed by a global Singleton, ensuring that sound effects and music can be configured by sound designers without altering game logic.
+
+#### 12.1. Data-Driven Audio (Resources)
+
+Instead of attaching standard `AudioStreamPlayer` nodes directly to scenes and hardcoding their streams, the framework wraps audio data within custom Resources: `SFX` and `Music`.
+
+- **Encapsulation:** Each resource holds the `AudioStream` alongside its default `volume_db`, `pitch_scale`, and the target audio bus (`"SFX"` or `"Music"`).
+    
+- **Designer Freedom:** This allows a sound designer to tweak the exact volume and pitch of a specific sound effect (like a sword slash) directly in the Godot Inspector. When the engine plays this resource, it automatically respects these pre-configured values.
+    
+
+#### 12.2. Audio Banks
+
+To organize a large scale of sounds, the framework utilizes `AudioBank` resources (extended into `SFXBank` and `MusicBank`).
+
+- **Dictionary Grouping:** These banks are essentially dictionaries (`Dictionary[String, SFX]` or `Dictionary[String, Music]`) that group related sounds together.
+    
+- **Contextual Loading:** You can have specific banks for different contexts (e.g., `sfx_bank_ui.tres` for menu blips, or `sfx_bank_battle.tres` for combat sounds). This makes it trivial to retrieve a sound by a semantic string key (like `"hit"` or `"cursor_move"`) without worrying about absolute file paths.
+    
+
+#### 12.3. The Global Audio Manager (Autoload)
+
+The actual playback is orchestrated by the `Audio` Autoload (`audio.gd`), which acts as the global sound manager. It handles non-spatial Sound Effects and Background Music using two distinct architectural approaches:
+
+- **SFX Playback (`play_sfx`):** Sound effects often overlap (e.g., multiple characters taking damage simultaneously). When `play_sfx(sfx)` is called, the manager dynamically instantiates a new `AudioStreamPlayer` node, assigns the resource's properties, and adds it to the tree. Once the sound finishes playing, the node safely destroys itself (`queue_free()`). This ensures overlapping without audio clipping or memory leaks.
+    
+- **Music Playback (`play_music`):** Unlike SFX, background music requires a single, continuous stream. The `play_music(music)` function reuses a dedicated `music_player` node. If a track is already playing, it automatically stops the current stream, assigns the new `Music` resource parameters, and starts the new track, ensuring only one background song plays at a time.
+    
+
+#### 12.4. Spatial Audio (2D Propagation)
+
+Global audio players are insufficient for world exploration where sounds must attenuate based on the player's physical distance from the sound source (e.g., a river, a bonfire, or a localized explosion). The framework handles spatial audio through two distinct pipelines while keeping asset configuration completely decoupled from local acoustics.
+
+##### 12.4.1. Ambient Map Audio (`MapAudioPlayer2D`)
+
+For persistent or triggered structural sounds inside world maps, the framework introduces a custom node extending `AudioStreamPlayer2D`. This component acts as a bridge to our data-driven `SFXBank` architecture.
+
+```GDScript
+class_name MapAudioPlayer2D extends AudioStreamPlayer2D
+
+@export var sfx_bank: SFXBank
+@export var sfx_key: String
+@export var play_on_start: bool = false
+
+func _ready() -> void:
+	# Fetches the raw SFX resource inside the bank
+	if sfx_bank and sfx_bank.bank.has(sfx_key):
+		var sfx: SFX = sfx_bank.bank[sfx_key]
+		
+		# Injects the resource properties into the 2D node
+		stream = sfx.stream
+		bus = sfx.bus
+		
+		# Combines resource base volume with local node attenuation adjustments
+		volume_db += sfx.volume_db
+		pitch_scale *= sfx.pitch_scale
+		
+		if play_on_start:
+			play()
+	else:
+		push_warning("MapAudioPlayer2D: SFX key '", sfx_key, "' not found in bank.")
+
+## Triggerable manually via the EventRunner system or context commands
+func play_vfx_sound() -> void:
+	play()
+```
+
+- **The Acoustic Separation Principle:** Properties dictating spatial behavior—such as `max_distance` and `attenuation` curves—are **not** stored within the `SFX` resource. A single sound resource (e.g., `"fire_crackle"`) might be reused for a tiny torch (short radius) or a massive volcano (massive radius). Thus, asset data remains absolute, while acoustic physics remain strictly node-contextual.
+    
+
+##### 12.4.2. Dynamic Ephemeral Spatial Sounds (`play_sfx_2d`)
+
+When temporary events on the map require localized audio feedback (e.g., an NPC smashing a glass, an explosion, or a projectile impact during a cutscene), a static node cannot be pre-placed. The `Audio` manager handles this via a dynamic runtime instantiation method:
+
+```GDScript
+## Instantiates a temporary 2D spatial sound at a specific world coordinate.
+## Cleans up automatically after playback finishes.
+func play_sfx_2d(sfx: SFX, global_pos: Vector2, parent: Node = null) -> void:
+	var sfx_player := AudioStreamPlayer2D.new()
+	
+	# Injects data-driven parameters
+	sfx_player.stream = sfx.stream
+	sfx_player.bus = sfx.bus
+	sfx_player.volume_db = sfx.volume_db
+	sfx_player.pitch_scale = sfx.pitch_scale
+	
+	# Anchors the sound physically to the 2D world
+	sfx_player.global_position = global_pos
+	
+	# Routes parenting to the active scene tree or contextual override
+	if parent == null:
+		parent = get_tree().current_scene
+		
+	parent.add_child(sfx_player)
+	sfx_player.play()
+	
+	# Automatic memory disposal
+	sfx_player.finished.connect(sfx_player.queue_free)
+```
+
+---
+
+### 13. Visual Effects (VFX) System
+
+The framework features a hybrid, Data-Driven Visual Effects system capable of seamlessly rendering both 2D and 3D particles over a strictly 2D game environment. The architecture ensures that game logic (calculations, state machines) remains completely unaware of visual rendering.
+
+#### 13.1. Data-Driven Encapsulation (Resources & Banks)
+
+Following the framework's core philosophy, visual effects are not hardcoded into scripts. They are wrapped in custom resources:
+
+- **`VFX` (Resource):** Acts as a wrapper for a `PackedScene`. This allows VFX Artists to build complex particle systems (combining meshes, flares, and animations) in isolated `.tscn` files, which are then assigned to this resource.
+    
+- **`VFXBank`:** Similar to the Audio System, VFX resources are grouped into contextual dictionaries (`Dictionary[String, VFX]`), such as `vfx_bank_battle.tres`. This allows developers to trigger complex visual effects using simple semantic keys like `"hit"` or `"heal"`.
+    
+
+#### 13.2. The Hybrid Router (`VFXManager`)
+
+The core of the rendering pipeline is the `VFXManager` Autoload. Because JRPGs often benefit from spectacular 3D magic effects over 2D sprites, the Manager acts as a spatial router and projection layer.
+
+- **The Canvas Structure:** The `VFXManager` is a `SubViewportContainer` set to ignore mouse inputs (`MOUSE_FILTER_IGNORE`) and drawn at the very front of the screen (`move_to_front()`). It contains a transparent `SubViewport` with an Orthogonal `Camera3D`.
+    
+- **Smart Routing (`play_at_screen_position`):** When a VFX is requested, the Manager instantiates the `PackedScene` and checks its base type:
+    
+    - **If it's a `Node2D` or `Control`:** It is added directly as a child of the `SubViewportContainer`, sitting natively in the 2D space.
+        
+    - **If it's a `Node3D`:** It is routed into the `SubViewport`. The Manager automatically uses `Camera3D.project_position()` to translate the 2D screen coordinates into the 3D world, ensuring the 3D explosion happens exactly over the 2D target.
+        
+- **Auto-Cleanup:** The Manager scans instantiated 3D particles (`GPUParticles3D`), calculates their maximum lifetime, and automatically queues the instance for deletion, preventing memory leaks without requiring complex self-destruct scripts on every prefab.
+    
+
+#### 13.3. Decoupled Playback (Observer Pattern)
+
+The actual game engines (`BattleEngine`, `EventRunner`, etc.) do not communicate with the `VFXManager`. Instead, the framework uses specialized observer nodes to bridge data and visuals.
+
+- **`BattleVFXPlayer`:** An observer node that lives in the battle scene. It listens to `battle_signals` (e.g., `player_damaged`, `enemy_damaged`). When a battler takes damage, the observer retrieves the target's screen coordinates and asks the `VFXManager` to play the `"hit"` VFX from the `vfx_bank_battle`.
+    
+- **`MapVFXPlayer` (Architecture Extension):** Following the same pattern, map exploration utilizes a dedicated observer. When an event occurs on the map (e.g., a chest opening, a localized weather effect, or an overworld ability), the `MapVFXPlayer` intercepts the map signals and routes the visuals to the exact grid-to-screen coordinate, keeping the map's logical state entirely separated from the particle rendering.
+	
+
+---
+
+### 14. Grid and Map System
+
+Overworld and dungeon exploration in this framework is built upon a strict logical grid system, seamlessly integrated into Godot's continuous pixel space. This architecture ensures that Level Designers can build maps visually while the engine handles positions mathematically.
+
+#### 14.1. TileMapLayer Architecture
+
+Following Godot 4.3+ best practices, the framework discards the old monolithic `TileMap` node in favor of multiple independent `TileMapLayer` nodes.
+
+- **Separation of Layers:** Maps are composed of dedicated layers (e.g., `Ground`, `Objects`, `Walls`, `Overlays`). This allows for flawless Y-Sorting (Z-depth management based on the Y-axis), independent shader applications (like wind on trees, but not on the ground), and dynamic transparency (fading out roofs when the player enters a building).
+    
+
+#### 14.2. Base Resolution
+
+The framework is pre-configured for a **32x32 pixel** grid layout.
+
+- **Customization:** It is possible to change the grid size (e.g., to 48x48 or 16x16). However, doing so is a medium-complexity task, as it requires updating the `TILE_SIZE` constant within the `GridEntity` class, adjusting the project's default `TileSet` resource, and verifying the collision shapes of the actors.
+    
+
+#### 14.3. The `GridEntity` Class (Editor Tool)
+
+To bridge the gap between physical pixels and logical JRPG matrices (X, Y coordinates), the framework introduces the `GridEntity` class. It is an `@tool` script that extends `Node2D` and runs continuously inside the Godot Editor.
+
+- **Bi-directional Mapping:** It translates a node's `global_position` (pixels) into a discrete `grid_coord` (`Vector2i`).
+    
+- **Inspector Workflow:** When placing an entity on the map, the designer can click the **"Calculate Grid Coordinates"** button in the Inspector. The system instantly calculates the exact matrix coordinate and updates the interface, eliminating the need to manually calculate pixel distances in the `EventRunner` or interaction systems.
+    
+
+#### 14.4. Interactive Map Objects (Events)
+
+All interactable objects on the map inherit directly from `GridEntity`, ensuring every chest, NPC, or portal knows its exact logical coordinate on the grid. They are divided into two primary categories:
+
+- **`Event` (Solid Collisions):** Used for entities that physically block the player's movement (e.g., Treasure Chests, NPCs, Locked Doors). Under the hood, these utilize a physics body (like `StaticBody2D`) coupled with an interaction raycast from the player.
+    
+- **`EventArea` (Trigger Zones):** Used for entities the player can step on without physical resistance (e.g., Teleport Portals, Traps, Hidden Switches). Under the hood, these utilize an `Area2D` to detect player overlap.
+    
+
+#### 14.5. The Event Bus
+
+Both `Event` and `EventArea` encapsulate a dedicated child node called the `EventBus`.
+
+- **Decoupled Logic:** The `EventBus` is where the specific logic for that interaction resides (playing an animation, starting a dialogue, or giving an item). When the player interacts with an `Event` or steps on an `EventArea`, the root node simply emits the `fired` signal. The `EventBus` listens to this signal and executes the custom script provided by the designer.
+    
+
+#### 14.6. Editor Workflow (How to Use)
+
+To create and customize any interactive element or NPC on the map using the framework's logical skeletons, follow this pipeline:
+
+1. **Instantiate the Skeleton:** Drag the desired base saved scene (`event.tscn` for solid/interactive objects or `event_area.tscn` for floor triggers) from the FileSystem panel directly into your map's Scene Tree.
+    
+2. **Make Local:** Right-click the newly instantiated node and select **"Make Local"**. This unlinks the instance from the original scene, allowing you to modify the structure of this specific event without affecting the global framework template.
+    
+3. **Add Visual Components (Edit):** With the instance made local, add graphic and animation nodes as direct children of the event root. For a moving NPC or animated chest, add a `Sprite2D` and an `AnimationPlayer`. Since the root inherits from `GridEntity`, any transformation applied to the main node will cascade down to the visual components.
+    
+4. **Configure the Logic:** Access the `EventBus` child node of this instance and attach or configure the custom behavior script containing the commands to be executed when the event is triggered.
+    
+5. **Calculate Position:** Move the object around the map using the mouse. With the root node selected, click the **"Calculate Grid Coordinates"** button in the Inspector to synchronize the physical pixel position with the game's logical grid matrix.

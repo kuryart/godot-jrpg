@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="VFX" format=3 uid="uid://bv2h6jk4bm5gq"]
+
+[ext_resource type="Script" uid="uid://diobl2lg54y6d" path="res://addons/godot_jrpg/resources/vfx/vfx.gd" id="1_heal"]
+[ext_resource type="PackedScene" uid="uid://bv3f8jk4bm5gp" path="res://addons/godot_jrpg/nodes/vfx/vfx_heal.tscn" id="2_heal"]
+
+[resource]
+script = ExtResource("1_heal")
+vfx_node = ExtResource("2_heal")
+metadata/_custom_type_script = "uid://diobl2lg54y6d"

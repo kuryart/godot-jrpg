@@ -36,6 +36,8 @@ const TraitAggregatorScript = preload("uid://jpeqi1pb7q3t")
 
 ## The class used to collect all traits in player, class, status, equip, etc.
 var trait_aggregator: TraitAggregator
+## The last damage taken, used for display purposes.
+var last_damage_taken: int = 0
 
 @warning_ignore_start("unused_signal")
 ## Used to change values in [Bar] and [BarLabel].
@@ -103,6 +105,7 @@ func can_attack_both_enemy_and_ally() -> bool:
 
 ## Makes the battler take damage
 func take_damage(damage: int) -> void:
+	last_damage_taken = damage
 	current_hp -= damage
 	print("[Battler] ", name, " took ", damage, " damage.")
 

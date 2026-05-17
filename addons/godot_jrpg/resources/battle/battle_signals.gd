@@ -9,6 +9,9 @@ signal engine_initialized(engine: BattleEngine)
 signal set_background_emitted(settings: BattleSettings)
 # --- Actors ---
 signal battler_damaged(battler: Battler)
+signal battler_value_displayed(position: Vector2, value: int, is_heal: bool)
+signal vfx_requested_at_battler(vfx: VFX, battler: Battler)
+signal vfx_play_at_position(vfx: VFX, position: Vector2)
 signal change_player_face_emitted(action: BattleAction)
 signal damage_finished
 signal enemy_damaged(enemy: BattleEnemyUI)

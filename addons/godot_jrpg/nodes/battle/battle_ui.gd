@@ -80,6 +80,7 @@ func setup_ui():
 	battle_signals.instantiate_players_emitted.connect(_on_instantiate_players_emitted)
 	battle_signals.select_enemy_emitted.connect(_on_select_enemy_emitted)
 	battle_signals.battler_damaged.connect(_on_battler_damaged)
+	battle_signals.vfx_requested_at_battler.connect(_on_vfx_requested_at_battler)
 	battle_signals.player_changed.connect(_on_player_changed)
 	battle_signals.change_player_face_emitted.connect(_on_change_player_face_emitted)
 	battle_signals.battler_died.connect(_on_battler_died)
@@ -185,14 +186,19 @@ func _on_select_enemy_emitted():
 	var enemies_alive: Array[Enemy] = enemies_array.filter(func(enemy: Enemy): return enemy.is_alive())
 	enemies[enemies_alive[0]].grab_focus()
 
-## Used when the battler's damaged. It can call [codeblock]get_attacked()[/codeblock] in both Enemy and 
+## Used when the battler's damaged. It can call [codeblock]get_attacked()[/codeblock] in both Enemy and
 ## Player.
 func _on_battler_damaged(battler: Battler):
 	await wait_ready()
 	if battler is Enemy:
 		var enemy = enemies[battler as Enemy]
+		battle_signals.battler_value_displayed.emit(
+			enemy.get_global_rect().get_center(), battler.last_damage_taken, false)
 		await enemy.get_attacked()
 	elif battler is Player:
+		face.player = battler as Player
+		battle_signals.battler_value_displayed.emit(
+			face.get_global_rect().get_center(), battler.last_damage_taken, false)
 		battle_signals.player_damaged.emit(face)
 		await face.get_attacked()
 
@@ -478,6 +484,24 @@ func _on_all_skill_allies_confirmed_emitted():
 		var bpui := child as BattlePlayerUI
 		if bpui:
 			bpui.stop_flash()
+
+# --- VFX ---
+## Resolves the screen position of a battler's UI node and forwards the VFX request.
+func _on_vfx_requested_at_battler(vfx: VFX, battler: Battler) -> void:
+	await wait_ready()
+	var position := Vector2.ZERO
+	if battler is Enemy:
+		var enemy_ui := enemies.get(battler as Enemy) as BattleEnemyUI
+		if enemy_ui:
+			position = enemy_ui.get_global_rect().get_center()
+			if vfx.target_flash:
+				enemy_ui.play_target_flash(vfx.target_flash as BattlerFlash)
+	elif battler is Player:
+		position = face.get_global_rect().get_center()
+		if vfx.target_flash:
+			face.play_target_flash(vfx.target_flash as BattlerFlash)
+	if position != Vector2.ZERO:
+		battle_signals.vfx_play_at_position.emit(vfx, position)
 
 # --- Messenger ---
 ## Used to pass messages to messenger.

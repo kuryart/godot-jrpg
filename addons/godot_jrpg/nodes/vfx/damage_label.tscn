@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dv8f1jk8bm3lo"]
+
+[ext_resource type="Script" uid="uid://cec5dsmfvr6ix" path="res://addons/godot_jrpg/nodes/vfx/damage_label.gd" id="1_dlbl"]
+
+[node name="DamageLabel" type="Control" unique_id=1502412801]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_dlbl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=121138011]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+scroll_active = false

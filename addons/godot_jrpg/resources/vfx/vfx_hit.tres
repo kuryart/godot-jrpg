@@ -1,9 +1,18 @@
 [gd_resource type="Resource" script_class="VFX" format=3 uid="uid://dcl8bbjqdrt6r"]
 
 [ext_resource type="Script" uid="uid://diobl2lg54y6d" path="res://addons/godot_jrpg/resources/vfx/vfx.gd" id="1_phnoc"]
+[ext_resource type="Animation" path="res://addons/godot_jrpg/resources/animations/flash_screen.tres" id="1_qugbj"]
+[ext_resource type="Script" uid="uid://bk3gajx5dm7rq" path="res://addons/godot_jrpg/resources/vfx/flash_effect.gd" id="2_drb1x"]
 [ext_resource type="PackedScene" uid="uid://bcjf4gwmy06t4" path="res://addons/godot_jrpg/nodes/vfx/vfx_hit.tscn" id="2_qvech"]
+
+[sub_resource type="Resource" id="Resource_qugbj"]
+script = ExtResource("2_drb1x")
+color = Color(0.8, 0, 0.16862746, 0.74509805)
+animation = ExtResource("1_qugbj")
+metadata/_custom_type_script = "uid://bk3gajx5dm7rq"
 
 [resource]
 script = ExtResource("1_phnoc")
 vfx_node = ExtResource("2_qvech")
+screen_flash = SubResource("Resource_qugbj")
 metadata/_custom_type_script = "uid://diobl2lg54y6d"

@@ -117,6 +117,7 @@ metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 script = ExtResource("3_14h8m")
 display_name = "MP Regen"
 id = 10
+base_value = 1000
 metadata/_custom_type_script = "uid://whk3qgx1yqyp"
 
 [sub_resource type="Resource" id="Resource_8qv68"]
