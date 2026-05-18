@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c75g7pdi7ncmd"]
+
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_7yhst"]
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="1_edyat"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_u0anh"]
+[ext_resource type="Script" uid="uid://0tfjrmoovjpd" path="res://addons/godot_jrpg/resources/effects/effect_status_cure.gd" id="3_ktup7"]
+[ext_resource type="Resource" uid="uid://dpg6cw7dmte3r" path="res://addons/godot_jrpg/resources/status/poisoned.tres" id="4_a2ayk"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="5_6vn7e"]
+[ext_resource type="Texture2D" uid="uid://bdv5tlbprtip0" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-magic-teapot.png" id="6_tml5k"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="8_btpgc"]
+[ext_resource type="Resource" path="res://addons/godot_jrpg/resources/vfx/vfx_heal.tres" id="9_p3fhi"]
+
+[sub_resource type="Resource" id="Resource_eb0le"]
+script = ExtResource("3_ktup7")
+status = ExtResource("4_a2ayk")
+metadata/_custom_type_script = "uid://0tfjrmoovjpd"
+
+[sub_resource type="Resource" id="Resource_h460p"]
+script = ExtResource("5_6vn7e")
+entries = Array[ExtResource("1_7yhst")]([SubResource("Resource_eb0le")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_mpjbm"]
+script = ExtResource("8_btpgc")
+scope = 1
+side = 2
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_edyat")
+used_on = 1
+effects = SubResource("Resource_h460p")
+targets = SubResource("Resource_mpjbm")
+vfx = ExtResource("9_p3fhi")
+display_name = "Magic Teapot"
+description = "A magic teapot that cure poisoned status for all players or for all enemies (why cure an enemy? I don't know)."
+icon = ExtResource("6_tml5k")
+price = 16
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

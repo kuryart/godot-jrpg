@@ -53,7 +53,7 @@ class_name BattleUI extends Control
 ## The status icon used to inform the players status
 @export var status_icon: PackedScene
 
-## A dictionary to retain the players' UIs. Each key is a [Player], and each 
+## A dictionary to retain the players' UIs. Each key is a [Player], and each
 ## value is a [BattlePlayerUI]
 var players: Dictionary[Player, BattlePlayerUI]
 ## A dictionary to retain the enemies' UIs. Each key is a [Enemy], and each
@@ -61,6 +61,8 @@ var players: Dictionary[Player, BattlePlayerUI]
 var enemies: Dictionary[Enemy, BattleEnemyUI]
 ## Tracks the current active player, updated via player_changed signal.
 var current_player: Player
+## True while both+all target mode is active; drives group-flash on focus change.
+var _both_all_flash_active: bool = false
 
 func _ready() -> void:
 	if DisplayServer.get_name() == "headless":
@@ -111,6 +113,10 @@ func setup_ui():
 	battle_signals.select_item_target_all_enemies_emitted.connect(_on_select_item_target_all_enemies_emitted)
 	battle_signals.all_allies_confirmed_emitted.connect(_on_all_allies_confirmed_emitted)
 	battle_signals.all_enemies_confirmed_emitted.connect(_on_all_enemies_confirmed_emitted)
+	battle_signals.select_item_target_one_both_emitted.connect(_on_select_item_target_one_both_emitted)
+	battle_signals.select_item_target_all_both_emitted.connect(_on_select_item_target_all_both_emitted)
+	battle_signals.select_item_target_everyone_emitted.connect(_on_select_item_target_everyone_emitted)
+	battle_signals.all_everyone_confirmed_emitted.connect(_on_all_everyone_confirmed_emitted)
 	battle_signals.select_item_target_self_emitted.connect(_on_select_item_target_self_emitted)
 	battle_signals.self_target_confirmed_emitted.connect(_on_self_target_confirmed_emitted)
 	# --- Skill target selection ---
@@ -119,6 +125,10 @@ func setup_ui():
 	battle_signals.select_skill_target_all_enemies_emitted.connect(_on_select_skill_target_all_enemies_emitted)
 	battle_signals.all_skill_allies_confirmed_emitted.connect(_on_all_skill_allies_confirmed_emitted)
 	battle_signals.all_skill_enemies_confirmed_emitted.connect(_on_all_skill_enemies_confirmed_emitted)
+	battle_signals.select_skill_target_one_both_emitted.connect(_on_select_skill_target_one_both_emitted)
+	battle_signals.select_skill_target_all_both_emitted.connect(_on_select_skill_target_all_both_emitted)
+	battle_signals.select_skill_target_everyone_emitted.connect(_on_select_skill_target_everyone_emitted)
+	battle_signals.all_skill_everyone_confirmed_emitted.connect(_on_all_skill_everyone_confirmed_emitted)
 	battle_signals.select_skill_target_self_emitted.connect(_on_select_skill_target_self_emitted)
 	battle_signals.self_skill_target_confirmed_emitted.connect(_on_self_skill_target_confirmed_emitted)
 	# --- Handle cancel ---
@@ -263,12 +273,16 @@ func _on_enemies_focus_mode_changed(mode: Control.FocusMode):
 		enemy.focus_mode = mode
 		if mode == Control.FOCUS_NONE:
 			(enemy as BattleEnemyUI).stop_flash()
+	if mode == Control.FOCUS_NONE:
+		_cleanup_both_all_flash()
 
-## Used when the players focus mode was changed. 
+## Used when the players focus mode was changed.
 func _on_players_focus_mode_changed(mode: Control.FocusMode):
 	await wait_ready()
 	for player in players_options.get_children():
 		player.focus_mode = mode
+		if mode == Control.FOCUS_NONE:
+			(player as BattlePlayerUI).stop_flash()
 
 ## Used when the fight menu focus mode was changed. 
 func _on_menu_fight_focus_mode_changed(mode: Control.FocusMode):
@@ -392,6 +406,7 @@ func _on_all_enemies_confirmed_emitted():
 	await wait_ready()
 	for enemy_ui in enemies.values():
 		(enemy_ui as BattleEnemyUI).stop_flash()
+	_cleanup_both_all_flash()
 
 ## Hides items menu and enables enemy selection with existing flash animation.
 func _on_select_item_target_one_enemy_emitted(_item: Item):
@@ -416,6 +431,7 @@ func _on_all_allies_confirmed_emitted():
 		var bpui := child as BattlePlayerUI
 		if bpui:
 			bpui.stop_flash()
+	_cleanup_both_all_flash()
 
 ## Hides items/skills menu and enables player buttons as selectable targets.
 func _on_go_to_players_menu_emitted():
@@ -460,6 +476,7 @@ func _on_all_skill_enemies_confirmed_emitted():
 	await wait_ready()
 	for enemy_ui in enemies.values():
 		(enemy_ui as BattleEnemyUI).stop_flash()
+	_cleanup_both_all_flash()
 
 ## Hides skills menu and enables enemy selection with existing flash animation.
 func _on_select_skill_target_one_enemy_emitted(_skill: Skill):
@@ -480,6 +497,183 @@ func _on_select_skill_target_all_allies_emitted(_skill: Skill):
 ## Stops all player flash animations when all-allies skill action is confirmed.
 func _on_all_skill_allies_confirmed_emitted():
 	await wait_ready()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui:
+			bpui.stop_flash()
+	_cleanup_both_all_flash()
+
+## Sets up focus neighbors so enemies navigate down to players and the top player
+## navigates up to the first enemy. Used for both+one and both+all target modes.
+func _setup_both_focus_neighbors() -> void:
+	var alive_enemy_uis: Array = enemies.values().filter(
+		func(e): return (e as BattleEnemyUI).enemy.is_alive())
+	var alive_player_uis: Array = players_options.get_children().filter(
+		func(p): return p is BattlePlayerUI and (p as BattlePlayerUI).player.is_alive())
+
+	if alive_enemy_uis.is_empty() or alive_player_uis.is_empty():
+		return
+
+	var first_enemy := alive_enemy_uis[0] as BattleEnemyUI
+	var first_player := alive_player_uis[0] as BattlePlayerUI
+
+	for eu in alive_enemy_uis:
+		var enemy_ui := eu as BattleEnemyUI
+		enemy_ui.focus_neighbor_bottom = first_player.get_path()
+		enemy_ui.focus_neighbor_top = enemy_ui.get_path()
+
+	for i in range(alive_player_uis.size()):
+		var bpui := alive_player_uis[i] as BattlePlayerUI
+		bpui.focus_neighbor_left = bpui.get_path()
+		bpui.focus_neighbor_right = bpui.get_path()
+		bpui.focus_neighbor_top = first_enemy.get_path() if i == 0 \
+			else (alive_player_uis[i - 1] as BattlePlayerUI).get_path()
+		bpui.focus_neighbor_bottom = bpui.get_path() if i == alive_player_uis.size() - 1 \
+			else (alive_player_uis[i + 1] as BattlePlayerUI).get_path()
+
+## Deactivates both+all group-flash mode and disconnects the viewport focus listener.
+func _cleanup_both_all_flash() -> void:
+	_both_all_flash_active = false
+	var vp := get_viewport()
+	if vp and vp.gui_focus_changed.is_connected(_on_both_all_focus_changed):
+		vp.gui_focus_changed.disconnect(_on_both_all_focus_changed)
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui:
+			bpui.remove_theme_stylebox_override("focus")
+			var path = bpui.get_path()
+			bpui.focus_neighbor_left = path
+			bpui.focus_neighbor_right = path
+			bpui.focus_neighbor_top = path
+			bpui.focus_neighbor_bottom = path
+
+## Switches group-level flash based on which UI group receives focus.
+func _on_both_all_focus_changed(focused_node: Control) -> void:
+	if not _both_all_flash_active:
+		return
+	if focused_node is BattleEnemyUI:
+		for enemy_ui in enemies.values():
+			if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+				(enemy_ui as BattleEnemyUI).flash()
+		for child in players_options.get_children():
+			var bpui := child as BattlePlayerUI
+			if bpui:
+				bpui.stop_flash()
+	elif focused_node is BattlePlayerUI:
+		for enemy_ui in enemies.values():
+			(enemy_ui as BattleEnemyUI).stop_flash()
+		for child in players_options.get_children():
+			var bpui := child as BattlePlayerUI
+			if bpui and bpui.player.is_alive():
+				bpui.flash()
+
+## Enables individual enemy+player focus navigation for item targeting one of both sides.
+func _on_select_item_target_one_both_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.focus_mode = Control.FOCUS_ALL
+	_setup_both_focus_neighbors()
+	var alive_enemies := enemies.values().filter(func(e): return (e as BattleEnemyUI).enemy.is_alive())
+	if not alive_enemies.is_empty():
+		(alive_enemies[0] as BattleEnemyUI).grab_focus()
+
+## Flashes all enemies by default; up/down focus navigation switches which group flashes.
+func _on_select_item_target_all_both_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.focus_mode = Control.FOCUS_ALL
+			bpui.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	for enemy_ui in enemies.values():
+		if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+			(enemy_ui as BattleEnemyUI).flash()
+	_setup_both_focus_neighbors()
+	_both_all_flash_active = true
+	get_viewport().gui_focus_changed.connect(_on_both_all_focus_changed)
+	var alive_enemies := enemies.values().filter(func(e): return (e as BattleEnemyUI).enemy.is_alive())
+	if not alive_enemies.is_empty():
+		(alive_enemies[0] as BattleEnemyUI).grab_focus()
+
+## Enables individual enemy+player focus navigation for skill targeting one of both sides.
+func _on_select_skill_target_one_both_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.focus_mode = Control.FOCUS_ALL
+	_setup_both_focus_neighbors()
+	var alive_enemies := enemies.values().filter(func(e): return (e as BattleEnemyUI).enemy.is_alive())
+	if not alive_enemies.is_empty():
+		(alive_enemies[0] as BattleEnemyUI).grab_focus()
+
+## Flashes all enemies by default; up/down focus navigation switches which group flashes.
+func _on_select_skill_target_all_both_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	battle_signals.update_enemy_focus_neighbor_emitted.emit()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.focus_mode = Control.FOCUS_ALL
+			bpui.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
+	for enemy_ui in enemies.values():
+		if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+			(enemy_ui as BattleEnemyUI).flash()
+	_setup_both_focus_neighbors()
+	_both_all_flash_active = true
+	get_viewport().gui_focus_changed.connect(_on_both_all_focus_changed)
+	var alive_enemies := enemies.values().filter(func(e): return (e as BattleEnemyUI).enemy.is_alive())
+	if not alive_enemies.is_empty():
+		(alive_enemies[0] as BattleEnemyUI).grab_focus()
+
+## Flashes all alive enemies and players simultaneously for item targeting everyone.
+func _on_select_item_target_everyone_emitted(_item: Item):
+	await wait_ready()
+	menu_items.hide()
+	for enemy_ui in enemies.values():
+		if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+			(enemy_ui as BattleEnemyUI).flash()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.flash()
+
+## Stops all flash animations when everyone item action is confirmed.
+func _on_all_everyone_confirmed_emitted():
+	await wait_ready()
+	for enemy_ui in enemies.values():
+		(enemy_ui as BattleEnemyUI).stop_flash()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui:
+			bpui.stop_flash()
+
+## Flashes all alive enemies and players simultaneously for skill targeting everyone.
+func _on_select_skill_target_everyone_emitted(_skill: Skill):
+	await wait_ready()
+	menu_skills.hide()
+	for enemy_ui in enemies.values():
+		if (enemy_ui as BattleEnemyUI).enemy.is_alive():
+			(enemy_ui as BattleEnemyUI).flash()
+	for child in players_options.get_children():
+		var bpui := child as BattlePlayerUI
+		if bpui and bpui.player.is_alive():
+			bpui.flash()
+
+## Stops all flash animations when everyone skill action is confirmed.
+func _on_all_skill_everyone_confirmed_emitted():
+	await wait_ready()
+	for enemy_ui in enemies.values():
+		(enemy_ui as BattleEnemyUI).stop_flash()
 	for child in players_options.get_children():
 		var bpui := child as BattlePlayerUI
 		if bpui:
