@@ -78,9 +78,11 @@ signal select_skill_target_everyone_emitted(skill: Skill)
 signal go_to_players_menu_emitted
 signal all_allies_confirmed_emitted
 signal all_enemies_confirmed_emitted
+signal all_everyone_confirmed_emitted
 signal self_target_confirmed_emitted
 signal all_skill_allies_confirmed_emitted
 signal all_skill_enemies_confirmed_emitted
+signal all_skill_everyone_confirmed_emitted
 signal self_skill_target_confirmed_emitted
 # --- Handle cancel ---
 # --- Messenger ---

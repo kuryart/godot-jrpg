@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bptdlpuosu3md"]
+
+[ext_resource type="Script" uid="uid://dpm6o4sc2sucp" path="res://addons/godot_jrpg/nodes/autoloads/commands.gd" id="1_lvfxm"]
+
+[node name="Commands" type="Node" unique_id=1719021527]
+script = ExtResource("1_lvfxm")

@@ -29,6 +29,14 @@ func _on_action_pressed():
 			engine.battle_signals.all_allies_confirmed_emitted.emit()
 		elif Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_enemies(phase.targets.side):
 			engine.battle_signals.all_enemies_confirmed_emitted.emit()
+		elif Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_both(phase.targets.side):
+			var focused := engine.get_viewport().gui_get_focus_owner()
+			if focused is BattleEnemyUI:
+				engine.battle_signals.all_enemies_confirmed_emitted.emit()
+			elif focused is BattlePlayerUI:
+				engine.battle_signals.all_allies_confirmed_emitted.emit()
+		elif Target.is_target_side_everyone(phase.targets.side):
+			engine.battle_signals.all_everyone_confirmed_emitted.emit()
 		elif Target.is_target_side_self(phase.targets.side):
 			engine.battle_signals.self_target_confirmed_emitted.emit()
 	elif engine.current_phase is BattlePhaseSkillTarget and engine.leader == actor:
@@ -37,6 +45,14 @@ func _on_action_pressed():
 			engine.battle_signals.all_skill_allies_confirmed_emitted.emit()
 		elif Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_enemies(phase.targets.side):
 			engine.battle_signals.all_skill_enemies_confirmed_emitted.emit()
+		elif Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_both(phase.targets.side):
+			var focused := engine.get_viewport().gui_get_focus_owner()
+			if focused is BattleEnemyUI:
+				engine.battle_signals.all_skill_enemies_confirmed_emitted.emit()
+			elif focused is BattlePlayerUI:
+				engine.battle_signals.all_skill_allies_confirmed_emitted.emit()
+		elif Target.is_target_side_everyone(phase.targets.side):
+			engine.battle_signals.all_skill_everyone_confirmed_emitted.emit()
 		elif Target.is_target_side_self(phase.targets.side):
 			engine.battle_signals.self_skill_target_confirmed_emitted.emit()
 
@@ -53,9 +69,15 @@ func _on_player_selected(player: Player):
 	if engine.current_phase is BattlePhasePlayers:
 		BattleInputFightMenu.new().resolve(engine)
 	elif engine.current_phase is BattlePhaseItemTarget:
+		var phase := engine.current_phase as BattlePhaseItemTarget
+		if Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_both(phase.targets.side):
+			return
 		var targets: Array[Battler] = [player]
 		BattleInputPlayerSelect.new(targets).resolve(engine)
 	elif engine.current_phase is BattlePhaseSkillTarget:
+		var phase := engine.current_phase as BattlePhaseSkillTarget
+		if Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_both(phase.targets.side):
+			return
 		var targets: Array[Battler] = [player]
 		BattleInputPlayerSelect.new(targets).resolve(engine)
 
@@ -80,6 +102,15 @@ func _on_enemy_button_up(target_enemy: Enemy):
 		if engine.current_phase is BattlePhaseAttackTarget or \
 		   engine.current_phase is BattlePhaseItemTarget or \
 		   engine.current_phase is BattlePhaseSkillTarget:
+
+			if engine.current_phase is BattlePhaseItemTarget:
+				var phase := engine.current_phase as BattlePhaseItemTarget
+				if Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_both(phase.targets.side):
+					return
+			elif engine.current_phase is BattlePhaseSkillTarget:
+				var phase := engine.current_phase as BattlePhaseSkillTarget
+				if Target.is_target_scope_all(phase.targets.scope) and Target.is_target_side_both(phase.targets.side):
+					return
 
 			var targets: Array[Battler] = [target_enemy]
 			BattleInputEnemySelect.new(targets).resolve(engine)

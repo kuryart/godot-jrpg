@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://s055cj1ncbt4"]
+
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="1_5o6xw"]
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_u87cb"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_jdrx2"]
+[ext_resource type="Script" uid="uid://0tfjrmoovjpd" path="res://addons/godot_jrpg/resources/effects/effect_status_cure.gd" id="3_trkt3"]
+[ext_resource type="Resource" uid="uid://dpg6cw7dmte3r" path="res://addons/godot_jrpg/resources/status/poisoned.tres" id="4_70axo"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="5_v3a2t"]
+[ext_resource type="Texture2D" uid="uid://c52fcjxe3b7ck" path="res://addons/godot_jrpg/assets/sprites/stuff/items/item-magic-pumpkin.png" id="6_x47r0"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="8_n05i0"]
+[ext_resource type="Resource" path="res://addons/godot_jrpg/resources/vfx/vfx_heal.tres" id="9_h7pfb"]
+
+[sub_resource type="Resource" id="Resource_m53rx"]
+script = ExtResource("3_trkt3")
+status = ExtResource("4_70axo")
+metadata/_custom_type_script = "uid://0tfjrmoovjpd"
+
+[sub_resource type="Resource" id="Resource_7om65"]
+script = ExtResource("5_v3a2t")
+entries = Array[ExtResource("1_u87cb")]([SubResource("Resource_m53rx")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_1sqjo"]
+script = ExtResource("8_n05i0")
+side = 2
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("1_5o6xw")
+used_on = 1
+effects = SubResource("Resource_7om65")
+targets = SubResource("Resource_1sqjo")
+vfx = ExtResource("9_h7pfb")
+display_name = "Magic Pumpkin"
+description = "Cures poisoned status. You can use in one ally, or one enemy (I don't know why, but you can)."
+icon = ExtResource("6_x47r0")
+price = 11
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"

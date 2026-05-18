@@ -22,24 +22,24 @@ func resolve(engine: BattleEngine):
 
 func setup_players(engine: BattleEngine) -> void:
 	var handlers_root = engine.get_node("../BattleInputHandlers")
-	
+
 	for i in range(engine.battle_settings.party.players.size()):
 		var player: Player = engine.battle_settings.party.players[i]
 		var ctrl = player.controller
 
 		if ctrl is PlayerManualController:
 			ctrl.input_assignment = InputManager.get_assignment(i)
-			
+
 			var handler = BattleInputHandler.new(ctrl.input_assignment)
 			handler.name = "P%d_Handler" % (i + 1)
 			handlers_root.add_child(handler)
-			
+
 			ctrl.setup(engine, handler, player)
 		elif ctrl is PlayerNPCController:
 			ctrl.setup(engine, null, null)
-			
+
 		engine.add_battle_battler(player)
-	
+
 	for i in range(engine.players.size()):
 		print("[BattlePhaseInit] Players: ", engine.players[i].name)
 
@@ -118,8 +118,10 @@ func connect_signals(engine: BattleEngine):
 	engine.battle_signals.skill_clicked.connect(engine._on_skill_clicked)
 	engine.battle_signals.all_allies_confirmed_emitted.connect(engine._on_all_allies_confirmed)
 	engine.battle_signals.all_enemies_confirmed_emitted.connect(engine._on_all_enemies_confirmed)
+	engine.battle_signals.all_everyone_confirmed_emitted.connect(engine._on_all_item_everyone_confirmed)
 	engine.battle_signals.self_target_confirmed_emitted.connect(engine._on_self_target_confirmed)
 	engine.battle_signals.all_skill_allies_confirmed_emitted.connect(engine._on_all_skill_allies_confirmed)
 	engine.battle_signals.all_skill_enemies_confirmed_emitted.connect(engine._on_all_skill_enemies_confirmed)
+	engine.battle_signals.all_skill_everyone_confirmed_emitted.connect(engine._on_all_skill_everyone_confirmed)
 	engine.battle_signals.self_skill_target_confirmed_emitted.connect(engine._on_self_skill_target_confirmed)
 	engine.battle_signals.player_select_ended.connect(engine._on_player_select_ended)

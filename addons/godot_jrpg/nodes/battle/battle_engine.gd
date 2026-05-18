@@ -438,6 +438,22 @@ func _on_self_skill_target_confirmed():
 	action_pool.append(BattleActionSkill.new(current_battler, targets, data))
 	battle_signals.enemy_selected.emit()
 
+## Connected to all_everyone_confirmed_emitted. Creates item action for all alive battlers.
+func _on_all_item_everyone_confirmed():
+	var phase := current_phase as BattlePhaseItemTarget
+	var alive_battlers: Array[Battler] = battlers.filter(func(b: Battler): return b.is_alive())
+	var data = BattleActionDataItem.new(phase.item)
+	action_pool.append(BattleActionItem.new(current_battler, alive_battlers, data))
+	battle_signals.enemy_selected.emit()
+
+## Connected to all_skill_everyone_confirmed_emitted. Creates skill action for all alive battlers.
+func _on_all_skill_everyone_confirmed():
+	var phase := current_phase as BattlePhaseSkillTarget
+	var alive_battlers: Array[Battler] = battlers.filter(func(b: Battler): return b.is_alive())
+	var data = BattleActionDataSkill.new(phase.skill)
+	action_pool.append(BattleActionSkill.new(current_battler, alive_battlers, data))
+	battle_signals.enemy_selected.emit()
+
 ## Connected to all_allies_confirmed_emitted. Creates item action for all alive allies.
 func _on_all_allies_confirmed():
 	var phase := current_phase as BattlePhaseItemTarget

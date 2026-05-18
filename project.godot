@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://8amf0haepi4a"
 [autoload]
 
 Audio="*uid://dkod14f143sv2"
+Commands="*uid://bptdlpuosu3md"
 EventRunner="*uid://kxo4x8hx1iyn"
 GameManager="*uid://3ddu8s8blwil"
 InputManager="*uid://l03e2mmhgbjs"

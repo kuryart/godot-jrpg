@@ -14,6 +14,9 @@
 [ext_resource type="Resource" uid="uid://drr6bb2oayaut" path="res://addons/godot_jrpg/resources/stuff/items/missiles.tres" id="11_qrq8h"]
 [ext_resource type="Resource" uid="uid://d3dfoc2kselyy" path="res://addons/godot_jrpg/resources/stuff/items/bomb.tres" id="12_lqiap"]
 [ext_resource type="Resource" uid="uid://dq853pqdcx7s1" path="res://addons/godot_jrpg/resources/stuff/items/curative.tres" id="13_lqiap"]
+[ext_resource type="Resource" uid="uid://culvsjstybfkc" path="res://addons/godot_jrpg/resources/stuff/items/magic_tooth.tres" id="14_fhj3n"]
+[ext_resource type="Resource" uid="uid://c75g7pdi7ncmd" path="res://addons/godot_jrpg/resources/stuff/items/magic_teapot.tres" id="15_dnr45"]
+[ext_resource type="Resource" uid="uid://s055cj1ncbt4" path="res://addons/godot_jrpg/resources/stuff/items/magic_pumpkin.tres" id="16_6ihvl"]
 
 [resource]
 script = ExtResource("8_fhj3n")
@@ -23,7 +26,10 @@ ExtResource("9_kicam"): 2,
 ExtResource("10_qrq8h"): 4,
 ExtResource("11_qrq8h"): 2,
 ExtResource("12_lqiap"): 3,
-ExtResource("13_lqiap"): 5
+ExtResource("13_lqiap"): 5,
+ExtResource("14_fhj3n"): 7,
+ExtResource("15_dnr45"): 3,
+ExtResource("16_6ihvl"): 2
 })
 equippables = Dictionary[ExtResource("1_uy071"), int]({
 ExtResource("2_fh0ug"): 2,

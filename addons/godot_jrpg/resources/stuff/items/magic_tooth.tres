@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://culvsjstybfkc"]
+
+[ext_resource type="Script" uid="uid://b0ddfb3bie0e8" path="res://addons/godot_jrpg/resources/effects/effect.gd" id="1_dtpui"]
+[ext_resource type="Script" uid="uid://x086btbocuul" path="res://addons/godot_jrpg/resources/elements/element.gd" id="2_bg8u6"]
+[ext_resource type="Script" uid="uid://0tfjrmoovjpd" path="res://addons/godot_jrpg/resources/effects/effect_status_cure.gd" id="3_llbs8"]
+[ext_resource type="Resource" uid="uid://dpg6cw7dmte3r" path="res://addons/godot_jrpg/resources/status/poisoned.tres" id="4_c7fah"]
+[ext_resource type="Script" uid="uid://dt05mo88hqdmw" path="res://addons/godot_jrpg/resources/effects/effect_list.gd" id="5_y2sal"]
+[ext_resource type="Script" uid="uid://crcoj8pbh7ouk" path="res://addons/godot_jrpg/resources/stuff/items/item.gd" id="6_xn4gx"]
+[ext_resource type="Script" uid="uid://b4bobc0pjnhrd" path="res://addons/godot_jrpg/resources/actors/battlers/target/target.gd" id="7_233yb"]
+[ext_resource type="Resource" path="res://addons/godot_jrpg/resources/vfx/vfx_heal.tres" id="8_1x7yq"]
+
+[sub_resource type="Resource" id="Resource_rmhig"]
+script = ExtResource("3_llbs8")
+status = ExtResource("4_c7fah")
+metadata/_custom_type_script = "uid://0tfjrmoovjpd"
+
+[sub_resource type="Resource" id="Resource_vd76y"]
+script = ExtResource("5_y2sal")
+entries = Array[ExtResource("1_dtpui")]([SubResource("Resource_rmhig")])
+metadata/_custom_type_script = "uid://dt05mo88hqdmw"
+
+[sub_resource type="Resource" id="Resource_6m51p"]
+script = ExtResource("7_233yb")
+scope = 1
+side = 4
+metadata/_custom_type_script = "uid://b4bobc0pjnhrd"
+
+[resource]
+script = ExtResource("6_xn4gx")
+used_on = 1
+effects = SubResource("Resource_vd76y")
+targets = SubResource("Resource_6m51p")
+vfx = ExtResource("8_1x7yq")
+display_name = "Magic Tooth"
+description = "A magic tooth that cure poisoned status for everyone (players and enemies)."
+price = 12
+metadata/_custom_type_script = "uid://crcoj8pbh7ouk"
