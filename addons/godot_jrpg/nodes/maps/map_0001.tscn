@@ -288,6 +288,10 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=485362803]
 top_level = true
 position = Vector2(112, 112)
+limit_left = 0
+limit_top = 0
+limit_right = 960
+limit_bottom = 544
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D" unique_id=730708657]
 process_priority = 300

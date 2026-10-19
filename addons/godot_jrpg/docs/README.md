@@ -479,17 +479,14 @@ The data-driven architecture makes visual customization immediate, but adding st
 
 - **What is Trivial (Rename and Reuse):** If your game design doesn't have "Helmets" and uses "Shoes" instead, the change takes five seconds. Just go to the `head_slot.tres` resource in the Inspector, change the `name` property from "Head" to "Shoes", and swap the icon. Since the engine only cares about structure, the UI will start displaying "Shoes", and everything will continue working perfectly.
     
-- **What is Complex (Creating New Slots from Scratch):** If the game requires an additional structural slot (e.g., the character already has Weapon, Armor, Head, and Accessory, and you want to add an exclusive "Relic" slot), the process isn't automatic. Because the framework demands strict typing to prevent inventory errors, the developer will have to:
+- **What is Complex (Creating New Slots from Scratch):** If the game requires an additional structural slot or requires an slot to be removed (e.g., the character already has Weapon, Armor, Head, and Accessory, and you want to add an exclusive "Relic" slot or you need to remove Head), the process isn't automatic. Because the framework demands strict typing to prevent inventory errors, the developer will have to change:
     
-    1. **Create the Item Class:** Create a new script inheriting from the base equippable item (e.g., `class_name Relic extends Equippable`).
-        
-    2. **Create the Slot Class:** Create the script dictating the slot's typing (e.g., `class_name RelicSlot extends EquipmentSlot` with `@export var item: Relic`).
-        
-    3. **Update Global Anatomy:** Add the newly exported variable to the `EquipmentSlots` script and fill it in the `slots.tres` resource.
-        
-    4. **Update the Math Engine:** Add the new check in the `TraitAggregator`'s `get_sources()` function so it knows this new slot exists and should be read (e.g., `if battler.equip.relic.item: sources.append(...)`).
-        
-    5. **Update Equipment UI:** Modify the equipment menu interface to instantiate and draw an extra button for this new slot.
+    - equipment_slots.gd
+    - trait_aggregator.gd
+    - player.gd
+    - inventory.gd
+    - menu_signals.gd
+    - menu_equip.gd
         
 - **Summary:** The architecture allows for total expansion, but adding new anatomical slots requires following the MVC pattern tracks adopted by the framework: Model (Create Class), Controller (Read in TraitAggregator), and View (Update Menu).
     

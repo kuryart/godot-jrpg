@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Godot JRPG"
 run/main_scene="uid://idk622o1a4ry"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
@@ -37,11 +37,12 @@ _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=352
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/godot_jrpg/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
 [global_group]
 
