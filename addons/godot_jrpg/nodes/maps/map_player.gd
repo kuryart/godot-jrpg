@@ -4,6 +4,8 @@ class_name MapPlayer extends CharacterBody2D
 
 @onready var player_body: = %Body
 @onready var player_head: = %Head
+@onready var player_torso: = %Torso
+@onready var player_legs: = %Legs
 
 @onready var ray_down: = %Down
 @onready var ray_up: = %Up
@@ -40,9 +42,13 @@ func _process(delta: float) -> void:
 	if is_moving or is_pressing:
 		player_body.play("walk_" + dir_string)
 		player_head.play("walk_" + dir_string)
+		player_torso.play("walk_" + dir_string)
+		player_legs.play("walk_" + dir_string)
 	else:
 		player_body.play("idle_" + dir_string)
 		player_head.play("idle_" + dir_string)
+		player_torso.play("idle_" + dir_string)
+		player_legs.play("idle_" + dir_string)
 
 func _physics_process(delta: float) -> void:
 	if !GameManager.can_act:
