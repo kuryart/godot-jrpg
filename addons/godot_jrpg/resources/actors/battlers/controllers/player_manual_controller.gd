@@ -21,6 +21,10 @@ func setup(_engine: BattleEngine, _handler: BattleInputHandler, _actor: Battler)
 	engine.battle_signals.enemy_button_up.connect(_on_enemy_button_up)
 
 func _on_action_pressed():
+	print(engine.current_phase)
+	print(engine.leader)
+	print(actor)
+	print(engine.current_phase.is_finished)
 	if engine.current_phase is BattlePhaseInit and engine.leader == actor and engine.current_phase.is_finished:
 		BattleInputStartBattle.new().resolve(engine)
 	elif engine.current_phase is BattlePhaseItemTarget and engine.leader == actor:
