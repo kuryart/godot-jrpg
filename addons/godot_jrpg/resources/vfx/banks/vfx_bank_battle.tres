@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("2_3cxh6")
 bank = Dictionary[String, ExtResource("1_031m0")]({
-"hit": ExtResource("2_ba30f"),
-"heal": ExtResource("3_heal")
+"heal": ExtResource("3_heal"),
+"hit": ExtResource("2_ba30f")
 })
 metadata/_custom_type_script = "uid://bihtri0usrs8t"

@@ -28,9 +28,15 @@ func setup_players(engine: BattleEngine) -> void:
 		var ctrl = player.controller
 
 		if ctrl is PlayerManualController:
-			ctrl.input_assignment = InputManager.get_assignment(i)
 
-			var handler = BattleInputHandler.new(ctrl.input_assignment)
+			print("[BattlePhaseInit] i=%d | InputManager.assignments=%d | get_assignment=%s | DisplayServer=%s"
+				% [i, InputManager.assignments.size(), str(InputManager.get_assignment(i)), DisplayServer.get_name()])
+			
+			ctrl.input_assignment = InputManager.get_assignment(i)
+			assert(ctrl.input_assignment != null, "[BattlePhaseInit] ctrl.input_assignment is not null.")
+
+			var handler = BattleInputHandler.new()
+			handler.setup(ctrl.input_assignment)
 			handler.name = "P%d_Handler" % (i + 1)
 			handlers_root.add_child(handler)
 

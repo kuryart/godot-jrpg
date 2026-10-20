@@ -19,18 +19,23 @@ func configure() -> void:
 	input_setup_complete.emit()
 
 func setup_hardware() -> void:
-	assignments.append(create_assignment(0, InputAssignment.DeviceType.KEYBOARD, 0))
+	assignments.append(create_assignment(0, InputAssignment.DeviceType.KEYBOARD, InputEvent.DEVICE_ID_KEYBOARD))
+	assignments.append(create_assignment(1, InputAssignment.DeviceType.KEYBOARD, InputEvent.DEVICE_ID_KEYBOARD))
+	assignments.append(create_assignment(2, InputAssignment.DeviceType.KEYBOARD, InputEvent.DEVICE_ID_KEYBOARD))
+	assignments.append(create_assignment(3, InputAssignment.DeviceType.KEYBOARD, InputEvent.DEVICE_ID_KEYBOARD))
 	print_assignment(assignments[0])
+	print_assignment(assignments[1])
+	print_assignment(assignments[2])
+	print_assignment(assignments[3])
 
-	var joys = Input.get_connected_joypads()
-	for i in range(joys.size()):
-		var player_id = i + 1
-		if player_id > 3: break
-		assignments.append(create_assignment(player_id, InputAssignment.DeviceType.JOYPAD, joys[i]))
-		print_assignment(assignments[player_id])
+	#var joys = Input.get_connected_joypads()
+	#for i in range(joys.size()):
+		#if i > 3: break
+		#assignments.append(create_assignment(i, InputAssignment.DeviceType.KEYBOARD, InputEvent.DEVICE_ID_KEYBOARD))
+		#print_assignment(assignments[i])
 
 func print_assignment(a: InputAssignment) -> void:
-	print("[InputManager] Player %d | Device %d | Type %d | CONNECTED" % [a.player_index, a.device_id, a.device_type])
+	print("[InputManager] Player %d | Device %d | Type %d | CONNECTED" % [a.player_index + 1, a.device_id, a.device_type])
 
 func setup_headless() -> void:
 	for i in range(4):
